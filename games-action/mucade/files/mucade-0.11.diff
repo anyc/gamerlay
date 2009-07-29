@@ -1,0 +1,454 @@
+diff -Naur mcd/import/ode/common.d mcd-gentoo/import/ode/common.d
+--- mcd/import/ode/common.d	2006-02-19 05:57:26.000000000 +0100
++++ mcd-gentoo/import/ode/common.d	2007-09-20 08:21:23.000000000 +0200
+@@ -24,7 +24,8 @@
+ private import std.c.math;
+ private import std.c.stdlib;
+ import ode.config;
+-import ode.error;
++import ode.error;
++import ode.objects;
+ 
+ extern(C):
+ 
+@@ -68,8 +69,8 @@
+ 
+ /* floating point data type, vector, matrix and quaternion types */
+ 
+-alias double dReal;
+-
++//alias double dReal;
++alias float dReal;
+ 
+ /* round an integer up to a multiple of 4, except that 0 and 1 are unmodified
+  * (used to compute matrix leading dimensions)
+@@ -119,8 +120,8 @@
+ struct dxWorld;		/* dynamics world */
+ struct dxSpace;		/* collision space */
+ struct dxBody;		/* rigid body (dynamics object) */
+-struct dxGeom;		/* geometry (collision object) */
+-struct dxJoint;
++struct dxGeom { };
++struct dxJoint { };
+ struct dxJointNode;
+ struct dxJointGroup;
+ 
+diff -Naur mcd/import/ode/ode.d mcd-gentoo/import/ode/ode.d
+--- mcd/import/ode/ode.d	2006-02-19 05:57:26.000000000 +0100
++++ mcd-gentoo/import/ode/ode.d	2007-09-20 08:21:23.000000000 +0200
+@@ -23,21 +23,21 @@
+ 
+ /* include *everything* here */
+ 
+-import ode.config;
+-import ode.compatibility;
+-import ode.common;
+-import ode.contact;
+-import ode.error;
+-import ode.memory;
+-import ode.odemath;
+-import ode.matrix;
+-import ode.timer;
+-import ode.rotation;
+-import ode.mass;
+-import ode.misc;
+-import ode.objects;
++public import ode.config;
++public import ode.compatibility;
++public import ode.common;
++public import ode.contact;
++public import ode.error;
++public import ode.memory;
++public import ode.odemath;
++public import ode.matrix;
++public import ode.timer;
++public import ode.rotation;
++public import ode.mass;
++public import ode.misc;
++public import ode.objects;
+ //import ode.odecpp;
+-import ode.collision_space;
+-import ode.collision;
++public import ode.collision_space;
++public import ode.collision;
+ //import ode.odecpp_collision;
+-import ode.export_dif;
++public import ode.export_dif;
+diff -Naur mcd/import/opengl.d mcd-gentoo/import/opengl.d
+--- mcd/import/opengl.d	2006-02-19 05:57:25.000000000 +0100
++++ mcd-gentoo/import/opengl.d	2007-09-20 08:21:54.000000000 +0200
+@@ -1,10 +1,4 @@
+-version (Win32) {
+-	private import std.c.windows.windows;
+-	extern(Windows):
+-}
+-version (linux) {
+ 	extern(C):
+-}
+ 
+ alias uint GLenum;
+ alias ubyte GLboolean;
+@@ -1116,7 +1110,7 @@
+ /*************************************************************/
+ 
+ void /*APIENTRY*/glAccum (GLenum op, GLfloat value);
+-void /*APIENTRY*/glAlphaFunc (GLenum func, GLclampf ref);
++void /*APIENTRY*/glAlphaFunc (GLenum func, GLclampf);
+ GLboolean /*APIENTRY*/glAreTexturesResident (GLsizei n, GLuint *textures, GLboolean *residences);
+ void /*APIENTRY*/glArrayElement (GLint i);
+ void /*APIENTRY*/glBegin (GLenum mode);
+@@ -1369,7 +1363,7 @@
+ void /*APIENTRY*/glScissor (GLint x, GLint y, GLsizei width, GLsizei height);
+ void /*APIENTRY*/glSelectBuffer (GLsizei size, GLuint *buffer);
+ void /*APIENTRY*/glShadeModel (GLenum mode);
+-void /*APIENTRY*/glStencilFunc (GLenum func, GLint ref, GLuint mask);
++void /*APIENTRY*/glStencilFunc (GLenum func, GLint, GLuint mask);
+ void /*APIENTRY*/glStencilMask (GLuint mask);
+ void /*APIENTRY*/glStencilOp (GLenum fail, GLenum zfail, GLenum zpass);
+ void /*APIENTRY*/glTexCoord1d (GLdouble s);
+diff -Naur mcd/import/openglu.d mcd-gentoo/import/openglu.d
+--- mcd/import/openglu.d	2006-02-19 05:57:25.000000000 +0100
++++ mcd-gentoo/import/openglu.d	2007-09-20 08:22:01.000000000 +0200
+@@ -1,11 +1,6 @@
+ import opengl;
+ 
+-version (Win32) {
+-	extern(Windows):
+-}
+-version (linux) {
+ 	extern(C):
+-}
+ 
+ GLubyte* gluErrorString (
+     GLenum   errCode);
+diff -Naur mcd/import/SDL.d mcd-gentoo/import/SDL.d
+--- mcd/import/SDL.d	2006-02-19 05:57:25.000000000 +0100
++++ mcd-gentoo/import/SDL.d	2007-09-20 08:21:23.000000000 +0200
+@@ -20,18 +20,28 @@
+     slouken@devolution.com
+ */
+ 
+-import SDL_types;
+-import SDL_getenv;
+-import SDL_error;
+-import SDL_rwops;
+-import SDL_timer;
+-import SDL_audio;
+-import SDL_cdrom;
+-import SDL_joystick;
+-import SDL_events;
+-import SDL_video;
+-import SDL_byteorder;
+-import SDL_Version;
++public import SDL_Keysym;
++public import SDL_Version;
++public import SDL_active;
++public import SDL_audio;
++public import SDL_byteorder;
++public import SDL_cdrom;
++public import SDL_copying;
++public import SDL_endian;
++public import SDL_error;
++public import SDL_events;
++public import SDL_getenv;
++public import SDL_joystick;
++public import SDL_keyboard;
++public import SDL_mouse;
++public import SDL_mutex;
++public import SDL_quit;
++public import SDL_rwops;
++public import SDL_syswm;
++public import SDL_thread;
++public import SDL_timer;
++public import SDL_types;
++public import SDL_video;
+ 
+ extern(C):
+ 
+diff -Naur mcd/Makefile mcd-gentoo/Makefile
+--- mcd/Makefile	1970-01-01 01:00:00.000000000 +0100
++++ mcd-gentoo/Makefile	2007-09-20 08:21:23.000000000 +0200
+@@ -0,0 +1,26 @@
++DC=gdmd
++#DC=gdc
++ifeq ($(DC), gdmd)
++DFLAGS=-O -g -debug -d -release -Iimport -Isrc
++#DFLAGS=-g -debug -Iimport -Isrc
++DOUT=-of
++else
++DFLAGS=-O -frelease -Iimport -Isrc
++#DFLAGS=-g -fdebug -Iimport -Isrc
++DOUT=-o
++endif
++
++DSRC=$(shell find src/abagames -name "*.d")
++SOURCES=$(DSRC) import/SDL_video.d import/SDL_mixer.d $(wildcard import/ode/*.d)
++OBJS=$(SOURCES:.d=.o)
++EXE=mucade
++
++all: $(EXE)
++
++$(EXE): $(OBJS)
++	gcc -o $@ $(OBJS) -lbulletml_d -lgphobos -lpthread -lm -lSDL -lGL -lGLU -lSDL_mixer -lstdc++ -lode
++
++$(OBJS): %.o: %.d
++	$(DC) -c $(DOUT)$@ $(DFLAGS) $<
++
++
+diff -Naur mcd/src/abagames/mcd/barrage.d mcd-gentoo/src/abagames/mcd/barrage.d
+--- mcd/src/abagames/mcd/barrage.d	2006-03-18 03:42:50.000000000 +0100
++++ mcd-gentoo/src/abagames/mcd/barrage.d	2007-09-20 08:21:23.000000000 +0200
+@@ -62,7 +62,8 @@
+ 
+   public static void load() {
+     char[][] dirs = listdir(BARRAGE_DIR_NAME);
+-    foreach (char[] dirName; dirs) {
++    foreach (char[] dirName; dirs) {
++      parser[dirName] = null;
+       char[][] files = listdir(BARRAGE_DIR_NAME ~ "/" ~ dirName);
+       foreach (char[] fileName; files) {
+         if (getExt(fileName) != "xml")
+diff -Naur mcd/src/abagames/mcd/enemy.d mcd-gentoo/src/abagames/mcd/enemy.d
+--- mcd/src/abagames/mcd/enemy.d	2006-03-18 03:42:50.000000000 +0100
++++ mcd-gentoo/src/abagames/mcd/enemy.d	2007-09-20 08:21:23.000000000 +0200
+@@ -7,7 +7,20 @@
+ 
+ private import std.math;
+ private import opengl;
+-private import ode.ode;
++private import ode.ode;
++import ode.config;
++import ode.compatibility;
++import ode.common;
++import ode.contact;
++import ode.error;
++import ode.memory;
++import ode.odemath;
++import ode.matrix;
++import ode.timer;
++import ode.rotation;
++import ode.mass;
++import ode.misc;
++import ode.objects;
+ private import abagames.util.vector;
+ private import abagames.util.rand;
+ private import abagames.util.math;
+diff -Naur mcd/src/abagames/mcd/shape.d mcd-gentoo/src/abagames/mcd/shape.d
+--- mcd/src/abagames/mcd/shape.d	2006-02-19 05:57:26.000000000 +0100
++++ mcd-gentoo/src/abagames/mcd/shape.d	2007-09-20 08:21:23.000000000 +0200
+@@ -6,7 +6,20 @@
+ module abagames.mcd.shape;
+ 
+ private import opengl;
+-private import ode.ode;
++private import ode.ode;
++import ode.config;
++import ode.compatibility;
++import ode.common;
++import ode.contact;
++import ode.error;
++import ode.memory;
++import ode.odemath;
++import ode.matrix;
++import ode.timer;
++import ode.rotation;
++import ode.mass;
++import ode.misc;
++import ode.objects;
+ private import abagames.util.vector;
+ private import abagames.util.sdl.displaylist;
+ private import abagames.util.ode.odeactor;
+@@ -34,7 +47,7 @@
+   }
+ 
+   public void setMass(OdeActor oa, Vector3 sizeScale = null, float massScale = 1) {
+-    dMass m;
++    dMass m = void;
+     dMassSetZero(&m);
+     addMass(&m, sizeScale, massScale);
+     oa.setMass(m);
+@@ -87,7 +100,7 @@
+   }
+ 
+   public void addMass(dMass* m, Vector3 sizeScale = null, float massScale = 1) {
+-    dMass sm;
++    dMass sm = void;
+     if (sizeScale) {
+       dMassSetBox(&sm, 1, size.x * sizeScale.x, size.y * sizeScale.y, size.z * sizeScale.z);
+       dMassTranslate(&sm, pos.x * sizeScale.x, pos.y * sizeScale.y, pos.z * sizeScale.z);
+@@ -436,7 +449,7 @@
+ 
+   public void beginRecord() {
+     posIdx = 0;
+-    glGetFloatv(GL_MODELVIEW_MATRIX, m);
++    glGetFloatv(GL_MODELVIEW_MATRIX, m.ptr);
+   }
+ 
+   public void setPos(Vector3 p) {
+diff -Naur mcd/src/abagames/mcd/ship.d mcd-gentoo/src/abagames/mcd/ship.d
+--- mcd/src/abagames/mcd/ship.d	2006-03-18 03:42:50.000000000 +0100
++++ mcd-gentoo/src/abagames/mcd/ship.d	2007-09-20 08:21:23.000000000 +0200
+@@ -7,7 +7,20 @@
+ 
+ private import std.math;
+ private import opengl;
+-private import ode.ode;
++private import ode.ode;
++import ode.config;
++import ode.compatibility;
++import ode.common;
++import ode.contact;
++import ode.error;
++import ode.memory;
++import ode.odemath;
++import ode.matrix;
++import ode.timer;
++import ode.rotation;
++import ode.mass;
++import ode.misc;
++import ode.objects;
+ private import abagames.util.vector;
+ private import abagames.util.rand;
+ private import abagames.util.math;
+@@ -520,7 +533,7 @@
+   Ship ship;
+   ParticlePool particles;
+   ConnectedParticlePool connectedParticles;
+-  dMass m;
++  dMass m = void;
+   Shape shape;
+   LinePoint linePoint;
+   dJointID joint;
+diff -Naur mcd/src/abagames/mcd/spec.d mcd-gentoo/src/abagames/mcd/spec.d
+--- mcd/src/abagames/mcd/spec.d	2006-03-18 03:42:50.000000000 +0100
++++ mcd-gentoo/src/abagames/mcd/spec.d	2007-09-20 08:21:23.000000000 +0200
+@@ -7,7 +7,21 @@
+ 
+ private import std.math;
+ private import opengl;
+-private import ode.ode;
++private import ode.ode;
++import ode.objects;
++import ode.config;
++import ode.compatibility;
++import ode.common;
++import ode.contact;
++import ode.error;
++import ode.memory;
++import ode.odemath;
++import ode.matrix;
++import ode.timer;
++import ode.rotation;
++import ode.mass;
++import ode.misc;
++import ode.objects;
+ private import abagames.util.vector;
+ private import abagames.util.math;
+ private import abagames.util.ode.odeactor;
+diff -Naur mcd/src/abagames/mcd/stagemanager.d mcd-gentoo/src/abagames/mcd/stagemanager.d
+--- mcd/src/abagames/mcd/stagemanager.d	2006-03-18 03:42:50.000000000 +0100
++++ mcd-gentoo/src/abagames/mcd/stagemanager.d	2007-09-20 08:21:23.000000000 +0200
+@@ -9,7 +9,20 @@
+ private import std.string;
+ private import std.stream;
+ private import opengl;
+-private import ode.ode;
++private import ode.ode;
++import ode.config;
++import ode.compatibility;
++import ode.common;
++import ode.contact;
++import ode.error;
++import ode.memory;
++import ode.odemath;
++import ode.matrix;
++import ode.timer;
++import ode.rotation;
++import ode.mass;
++import ode.misc;
++import ode.objects;
+ private import abagames.util.tokenizer;
+ private import abagames.util.iterator;
+ private import abagames.util.rand;
+diff -Naur mcd/src/abagames/util/ode/odeactor.d mcd-gentoo/src/abagames/util/ode/odeactor.d
+--- mcd/src/abagames/util/ode/odeactor.d	2006-02-19 05:57:26.000000000 +0100
++++ mcd-gentoo/src/abagames/util/ode/odeactor.d	2007-09-20 08:21:23.000000000 +0200
+@@ -7,7 +7,20 @@
+ 
+ private import std.math;
+ private import opengl;
+-private import ode.ode;
++private import ode.ode;
++import ode.config;
++import ode.compatibility;
++import ode.common;
++import ode.contact;
++import ode.error;
++import ode.memory;
++import ode.odemath;
++import ode.matrix;
++import ode.timer;
++import ode.rotation;
++import ode.mass;
++import ode.misc;
++import ode.objects;
+ private import abagames.util.actor;
+ private import abagames.util.vector;
+ private import abagames.util.ode.world;
+diff -Naur mcd/src/abagames/util/ode/world.d mcd-gentoo/src/abagames/util/ode/world.d
+--- mcd/src/abagames/util/ode/world.d	2006-02-22 23:27:47.000000000 +0100
++++ mcd-gentoo/src/abagames/util/ode/world.d	2007-09-20 08:21:23.000000000 +0200
+@@ -5,7 +5,20 @@
+  */
+ module abagames.util.ode.world;
+ 
+-private import ode.ode;
++private import ode.ode;
++import ode.config;
++import ode.compatibility;
++import ode.common;
++import ode.contact;
++import ode.error;
++import ode.memory;
++import ode.odemath;
++import ode.matrix;
++import ode.timer;
++import ode.rotation;
++import ode.mass;
++import ode.misc;
++import ode.objects;
+ private import abagames.util.ode.odeactor;
+ 
+ /**
+diff -Naur mcd/src/abagames/util/sdl/texture.d mcd-gentoo/src/abagames/util/sdl/texture.d
+--- mcd/src/abagames/util/sdl/texture.d	2006-02-19 05:57:26.000000000 +0100
++++ mcd-gentoo/src/abagames/util/sdl/texture.d	2007-09-20 08:21:23.000000000 +0200
+@@ -103,13 +103,13 @@
+         }
+         glBindTexture(GL_TEXTURE_2D, num + ti);
+         gluBuild2DMipmaps(GL_TEXTURE_2D, 4, panelWidth, panelHeight,
+-                          GL_RGBA, GL_UNSIGNED_BYTE, pixels);
++                          GL_RGBA, GL_UNSIGNED_BYTE, pixels.ptr);
+         glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR_MIPMAP_NEAREST);
+         glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
+         if (maskColor != 0xffffffffu) {
+           glBindTexture(GL_TEXTURE_2D, maskNum + ti);
+           gluBuild2DMipmaps(GL_TEXTURE_2D, 4, panelWidth, panelHeight,
+-                            GL_RGBA, GL_UNSIGNED_BYTE, maskPixels);
++                            GL_RGBA, GL_UNSIGNED_BYTE, maskPixels.ptr);
+           glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR_MIPMAP_NEAREST);
+           glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
+         }
+diff -Naur mcd/src/abagames/util/sdl/twinstickpad.d mcd-gentoo/src/abagames/util/sdl/twinstickpad.d
+--- mcd/src/abagames/util/sdl/twinstickpad.d	2006-03-18 04:36:00.000000000 +0100
++++ mcd-gentoo/src/abagames/util/sdl/twinstickpad.d	2007-09-20 08:21:23.000000000 +0200
+@@ -8,7 +8,8 @@
+ private import std.string;
+ private import std.stream;
+ private import std.math;
+-private import SDL;
++private import SDL;
++private import SDL_keyboard;
+ private import abagames.util.vector;
+ private import abagames.util.sdl.input;
+ private import abagames.util.sdl.recordableinput;
