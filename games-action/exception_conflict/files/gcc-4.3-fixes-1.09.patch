@@ -1,0 +1,11 @@
+diff -Naur src/lib/ist/bstream.h src-patch/lib/ist/bstream.h
+--- src/lib/ist/bstream.h	2009-01-01 19:13:42.000000000 +0100
++++ src-patch/lib/ist/bstream.h	2009-07-15 12:05:29.000000000 +0200
+@@ -8,6 +8,7 @@
+ #include <algorithm>
+ #include <iostream>
+ #include <fstream>
++#include <cstring>
+ #ifdef IST_BSTREAM_ENABLE_ZLIB
+   #include <zlib.h>
+ #endif
