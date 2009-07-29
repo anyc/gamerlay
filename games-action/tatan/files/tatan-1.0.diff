@@ -1,0 +1,123 @@
+diff -Naur tatan/import/opengl.d tatan-gentoo/import/opengl.d
+--- tatan/import/opengl.d	2007-07-28 16:01:16.000000000 +0200
++++ tatan-gentoo/import/opengl.d	2007-09-20 08:30:48.000000000 +0200
+@@ -1,10 +1,4 @@
+-version (Win32) {
+-	private import std.c.windows.windows;
+-	extern(Windows):
+-}
+-version (linux) {
+ 	extern(C):
+-}
+ 
+ alias uint GLenum;
+ alias ubyte GLboolean;
+@@ -1116,7 +1110,7 @@
+ /*************************************************************/
+ 
+ void /*APIENTRY*/glAccum (GLenum op, GLfloat value);
+-//void /*APIENTRY*/glAlphaFunc (GLenum func, GLclampf ref);
++void /*APIENTRY*/glAlphaFunc (GLenum func, GLclampf);
+ GLboolean /*APIENTRY*/glAreTexturesResident (GLsizei n, GLuint *textures, GLboolean *residences);
+ void /*APIENTRY*/glArrayElement (GLint i);
+ void /*APIENTRY*/glBegin (GLenum mode);
+@@ -1369,7 +1363,7 @@
+ void /*APIENTRY*/glScissor (GLint x, GLint y, GLsizei width, GLsizei height);
+ void /*APIENTRY*/glSelectBuffer (GLsizei size, GLuint *buffer);
+ void /*APIENTRY*/glShadeModel (GLenum mode);
+-//void /*APIENTRY*/glStencilFunc (GLenum func, GLint ref, GLuint mask);
++void /*APIENTRY*/glStencilFunc (GLenum func, GLint, GLuint mask);
+ void /*APIENTRY*/glStencilMask (GLuint mask);
+ void /*APIENTRY*/glStencilOp (GLenum fail, GLenum zfail, GLenum zpass);
+ void /*APIENTRY*/glTexCoord1d (GLdouble s);
+diff -Naur tatan/import/openglu.d tatan-gentoo/import/openglu.d
+--- tatan/import/openglu.d	2007-07-28 15:26:24.000000000 +0200
++++ tatan-gentoo/import/openglu.d	2007-09-20 08:30:55.000000000 +0200
+@@ -1,11 +1,6 @@
+ import opengl;
+ 
+-version (Win32) {
+-	extern(Windows):
+-}
+-version (linux) {
+ 	extern(C):
+-}
+ 
+ GLubyte* gluErrorString (
+     GLenum   errCode);
+diff -Naur tatan/Makefile tatan-gentoo/Makefile
+--- tatan/Makefile	1970-01-01 01:00:00.000000000 +0100
++++ tatan-gentoo/Makefile	2007-09-20 08:30:00.000000000 +0200
+@@ -0,0 +1,17 @@
++DC=gdmd
++DFLAGS=-g -O -d -release -Iimport -Isrc
++DOUT=-of
++
++DSRC=$(shell find src/ -name "*.d")
++SOURCES=$(DSRC) import/SDL_video.d import/SDL_mouse.d import/hell2.d import/SDL_mixer.d
++OBJS=$(SOURCES:.d=.o)
++EXE=tatan
++
++all: $(EXE)
++
++$(EXE): $(OBJS)
++	gcc -o $@ $(OBJS) -lbulletml_d -lgphobos -lpthread -lm -lSDL -lGL -lGLU -lSDL_mixer
++
++$(OBJS): %.o: %.d
++	$(DC) -c $(DOUT)$@ $(DFLAGS) $<
++
+diff -Naur tatan/src/br/boot.d tatan-gentoo/src/br/boot.d
+--- tatan/src/br/boot.d	2007-07-28 16:09:10.000000000 +0200
++++ tatan-gentoo/src/br/boot.d	2007-09-20 08:30:00.000000000 +0200
+@@ -6,6 +6,8 @@
+ private Mainloop mainloop;
+ private Key key;
+ private Mouse mouse;
++
++version (Win32_release) {
+ 
+ private:
+ import std.c.windows.windows;
+@@ -37,7 +39,22 @@
+ 	}
+ 	gc_term();
+ 	return result;
++}
++} else {
++  // Boot as the general executable.
++  public int main(char[][] args) {
++    return boot(args);
++  }
+ }
++
++public int boot(char[][] args) {
++ 	double d;
++	key = new Key();
++	mouse = new Mouse();
++	mainloop = new Mainloop(key ,mouse);
++	mainloop.loop();
++	return 0;
++}
+ 
+ int user_start(){
+ 	double d;
+diff -Naur tatan/src/util/ascii.d tatan-gentoo/src/util/ascii.d
+--- tatan/src/util/ascii.d	2007-07-29 21:57:04.000000000 +0200
++++ tatan-gentoo/src/util/ascii.d	2007-09-20 08:30:00.000000000 +0200
+@@ -116,7 +116,7 @@
+ 		default:break;
+ 	}
+ 	foreach(int b;bars){
+-		bar[b] = true;
++	//	bar[b] = true;
+ 	}
+ 	drawCrossBar(x ,y+20*scale ,scale ,bar[0]);
+ 	drawVerticalBar(x-10*scale ,y+10*scale ,scale ,bar[1]);
+@@ -333,4 +333,5 @@
+ 		
+ 		glPopMatrix();
+ 	}
+-}
+\ Kein Zeilenumbruch am Dateiende.
++}
++
