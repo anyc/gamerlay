@@ -1,0 +1,2907 @@
+diff -Naur a7xpg/import/opengl.d a7xpg-gentoo/import/opengl.d
+--- a7xpg/import/opengl.d	2003-09-19 23:55:50.000000000 +0200
++++ a7xpg-gentoo/import/opengl.d	2007-09-19 22:13:30.000000000 +0200
+@@ -1,6 +1,6 @@
+-import windows;
+ 
+-extern(Windows):
++	extern(C):
++
+ 
+ alias uint GLenum;
+ alias ubyte GLboolean;
+@@ -1111,345 +1111,343 @@
+ 
+ /*************************************************************/
+ 
+-extern(Windows) void /*APIENTRY*/glAccum (GLenum op, GLfloat value);
+-extern(Windows) void /*APIENTRY*/glAlphaFunc (GLenum func, GLclampf ref);
+-extern(Windows) GLboolean /*APIENTRY*/glAreTexturesResident (GLsizei n, GLuint *textures, GLboolean *residences);
+-extern(Windows) void /*APIENTRY*/glArrayElement (GLint i);
+-extern(Windows) void /*APIENTRY*/glBegin (GLenum mode);
+-extern(Windows) void /*APIENTRY*/glBindTexture (GLenum target, GLuint texture);
+-extern(Windows) void /*APIENTRY*/glBitmap (GLsizei width, GLsizei height, GLfloat xorig, GLfloat yorig, GLfloat xmove, GLfloat ymove, GLubyte *bitmap);
+-extern(Windows) void /*APIENTRY*/glBlendFunc (GLenum sfactor, GLenum dfactor);
+-extern(Windows) void /*APIENTRY*/glCallList (GLuint list);
+-extern(Windows) void /*APIENTRY*/glCallLists (GLsizei n, GLenum type, GLvoid *lists);
+-extern(Windows) void /*APIENTRY*/glClear (GLbitfield mask);
+-extern(Windows) void /*APIENTRY*/glClearAccum (GLfloat red, GLfloat green, GLfloat blue, GLfloat alpha);
+-extern(Windows) void /*APIENTRY*/glClearColor (GLclampf red, GLclampf green, GLclampf blue, GLclampf alpha);
+-extern(Windows) void /*APIENTRY*/glClearDepth (GLclampd depth);
+-extern(Windows) void /*APIENTRY*/glClearIndex (GLfloat c);
+-extern(Windows) void /*APIENTRY*/glClearStencil (GLint s);
+-extern(Windows) void /*APIENTRY*/glClipPlane (GLenum plane, GLdouble *equation);
+-extern(Windows) void /*APIENTRY*/glColor3b (GLbyte red, GLbyte green, GLbyte blue);
+-extern(Windows) void /*APIENTRY*/glColor3bv (GLbyte *v);
+-extern(Windows) void /*APIENTRY*/glColor3d (GLdouble red, GLdouble green, GLdouble blue);
+-extern(Windows) void /*APIENTRY*/glColor3dv (GLdouble *v);
+-extern(Windows) void /*APIENTRY*/glColor3f (GLfloat red, GLfloat green, GLfloat blue);
+-extern(Windows) void /*APIENTRY*/glColor3fv (GLfloat *v);
+-extern(Windows) void /*APIENTRY*/glColor3i (GLint red, GLint green, GLint blue);
+-extern(Windows) void /*APIENTRY*/glColor3iv (GLint *v);
+-extern(Windows) void /*APIENTRY*/glColor3s (GLshort red, GLshort green, GLshort blue);
+-extern(Windows) void /*APIENTRY*/glColor3sv (GLshort *v);
+-extern(Windows) void /*APIENTRY*/glColor3ub (GLubyte red, GLubyte green, GLubyte blue);
+-extern(Windows) void /*APIENTRY*/glColor3ubv (GLubyte *v);
+-extern(Windows) void /*APIENTRY*/glColor3ui (GLuint red, GLuint green, GLuint blue);
+-extern(Windows) void /*APIENTRY*/glColor3uiv (GLuint *v);
+-extern(Windows) void /*APIENTRY*/glColor3us (GLushort red, GLushort green, GLushort blue);
+-extern(Windows) void /*APIENTRY*/glColor3usv (GLushort *v);
+-extern(Windows) void /*APIENTRY*/glColor4b (GLbyte red, GLbyte green, GLbyte blue, GLbyte alpha);
+-extern(Windows) void /*APIENTRY*/glColor4bv (GLbyte *v);
+-extern(Windows) void /*APIENTRY*/glColor4d (GLdouble red, GLdouble green, GLdouble blue, GLdouble alpha);
+-extern(Windows) void /*APIENTRY*/glColor4dv (GLdouble *v);
+-extern(Windows) void /*APIENTRY*/glColor4f (GLfloat red, GLfloat green, GLfloat blue, GLfloat alpha);
+-extern(Windows) void /*APIENTRY*/glColor4fv (GLfloat *v);
+-extern(Windows) void /*APIENTRY*/glColor4i (GLint red, GLint green, GLint blue, GLint alpha);
+-extern(Windows) void /*APIENTRY*/glColor4iv (GLint *v);
+-extern(Windows) void /*APIENTRY*/glColor4s (GLshort red, GLshort green, GLshort blue, GLshort alpha);
+-extern(Windows) void /*APIENTRY*/glColor4sv (GLshort *v);
+-extern(Windows) void /*APIENTRY*/glColor4ub (GLubyte red, GLubyte green, GLubyte blue, GLubyte alpha);
+-extern(Windows) void /*APIENTRY*/glColor4ubv (GLubyte *v);
+-extern(Windows) void /*APIENTRY*/glColor4ui (GLuint red, GLuint green, GLuint blue, GLuint alpha);
+-extern(Windows) void /*APIENTRY*/glColor4uiv (GLuint *v);
+-extern(Windows) void /*APIENTRY*/glColor4us (GLushort red, GLushort green, GLushort blue, GLushort alpha);
+-extern(Windows) void /*APIENTRY*/glColor4usv (GLushort *v);
+-extern(Windows) void /*APIENTRY*/glColorMask (GLboolean red, GLboolean green, GLboolean blue, GLboolean alpha);
+-extern(Windows) void /*APIENTRY*/glColorMaterial (GLenum face, GLenum mode);
+-extern(Windows) void /*APIENTRY*/glColorPointer (GLint size, GLenum type, GLsizei stride, GLvoid *pointer);
+-extern(Windows) void /*APIENTRY*/glCopyPixels (GLint x, GLint y, GLsizei width, GLsizei height, GLenum type);
+-extern(Windows) void /*APIENTRY*/glCopyTexImage1D (GLenum target, GLint level, GLenum internalFormat, GLint x, GLint y, GLsizei width, GLint border);
+-extern(Windows) void /*APIENTRY*/glCopyTexImage2D (GLenum target, GLint level, GLenum internalFormat, GLint x, GLint y, GLsizei width, GLsizei height, GLint border);
+-extern(Windows) void /*APIENTRY*/glCopyTexSubImage1D (GLenum target, GLint level, GLint xoffset, GLint x, GLint y, GLsizei width);
+-extern(Windows) void /*APIENTRY*/glCopyTexSubImage2D (GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint x, GLint y, GLsizei width, GLsizei height);
+-extern(Windows) void /*APIENTRY*/glCullFace (GLenum mode);
+-extern(Windows) void /*APIENTRY*/glDeleteLists (GLuint list, GLsizei range);
+-extern(Windows) void /*APIENTRY*/glDeleteTextures (GLsizei n, GLuint *textures);
+-extern(Windows) void /*APIENTRY*/glDepthFunc (GLenum func);
+-extern(Windows) void /*APIENTRY*/glDepthMask (GLboolean flag);
+-extern(Windows) void /*APIENTRY*/glDepthRange (GLclampd zNear, GLclampd zFar);
+-extern(Windows) void /*APIENTRY*/glDisable (GLenum cap);
+-extern(Windows) void /*APIENTRY*/glDisableClientState (GLenum array);
+-extern(Windows) void /*APIENTRY*/glDrawArrays (GLenum mode, GLint first, GLsizei count);
+-extern(Windows) void /*APIENTRY*/glDrawBuffer (GLenum mode);
+-extern(Windows) void /*APIENTRY*/glDrawElements (GLenum mode, GLsizei count, GLenum type, GLvoid *indices);
+-extern(Windows) void /*APIENTRY*/glDrawPixels (GLsizei width, GLsizei height, GLenum format, GLenum type, GLvoid *pixels);
+-extern(Windows) void /*APIENTRY*/glEdgeFlag (GLboolean flag);
+-extern(Windows) void /*APIENTRY*/glEdgeFlagPointer (GLsizei stride, GLvoid *pointer);
+-extern(Windows) void /*APIENTRY*/glEdgeFlagv (GLboolean *flag);
+-extern(Windows) void /*APIENTRY*/glEnable (GLenum cap);
+-extern(Windows) void /*APIENTRY*/glEnableClientState (GLenum array);
+-extern(Windows) void /*APIENTRY*/glEnd ();
+-extern(Windows) void /*APIENTRY*/glEndList ();
+-extern(Windows) void /*APIENTRY*/glEvalCoord1d (GLdouble u);
+-extern(Windows) void /*APIENTRY*/glEvalCoord1dv (GLdouble *u);
+-extern(Windows) void /*APIENTRY*/glEvalCoord1f (GLfloat u);
+-extern(Windows) void /*APIENTRY*/glEvalCoord1fv (GLfloat *u);
+-extern(Windows) void /*APIENTRY*/glEvalCoord2d (GLdouble u, GLdouble v);
+-extern(Windows) void /*APIENTRY*/glEvalCoord2dv (GLdouble *u);
+-extern(Windows) void /*APIENTRY*/glEvalCoord2f (GLfloat u, GLfloat v);
+-extern(Windows) void /*APIENTRY*/glEvalCoord2fv (GLfloat *u);
+-extern(Windows) void /*APIENTRY*/glEvalMesh1 (GLenum mode, GLint i1, GLint i2);
+-extern(Windows) void /*APIENTRY*/glEvalMesh2 (GLenum mode, GLint i1, GLint i2, GLint j1, GLint j2);
+-extern(Windows) void /*APIENTRY*/glEvalPoint1 (GLint i);
+-extern(Windows) void /*APIENTRY*/glEvalPoint2 (GLint i, GLint j);
+-extern(Windows) void /*APIENTRY*/glFeedbackBuffer (GLsizei size, GLenum type, GLfloat *buffer);
+-extern(Windows) void /*APIENTRY*/glFinish ();
+-extern(Windows) void /*APIENTRY*/glFlush ();
+-extern(Windows) void /*APIENTRY*/glFogf (GLenum pname, GLfloat param);
+-extern(Windows) void /*APIENTRY*/glFogfv (GLenum pname, GLfloat *params);
+-extern(Windows) void /*APIENTRY*/glFogi (GLenum pname, GLint param);
+-extern(Windows) void /*APIENTRY*/glFogiv (GLenum pname, GLint *params);
+-extern(Windows) void /*APIENTRY*/glFrontFace (GLenum mode);
+-extern(Windows) void /*APIENTRY*/glFrustum (GLdouble left, GLdouble right, GLdouble bottom, GLdouble top, GLdouble zNear, GLdouble zFar);
+-extern(Windows) GLuint /*APIENTRY*/glGenLists (GLsizei range);
+-extern(Windows) void /*APIENTRY*/glGenTextures (GLsizei n, GLuint *textures);
+-extern(Windows) void /*APIENTRY*/glGetBooleanv (GLenum pname, GLboolean *params);
+-extern(Windows) void /*APIENTRY*/glGetClipPlane (GLenum plane, GLdouble *equation);
+-extern(Windows) void /*APIENTRY*/glGetDoublev (GLenum pname, GLdouble *params);
+-extern(Windows) GLenum /*APIENTRY*/glGetError ();
+-extern(Windows) void /*APIENTRY*/glGetFloatv (GLenum pname, GLfloat *params);
+-extern(Windows) void /*APIENTRY*/glGetIntegerv (GLenum pname, GLint *params);
+-extern(Windows) void /*APIENTRY*/glGetLightfv (GLenum light, GLenum pname, GLfloat *params);
+-extern(Windows) void /*APIENTRY*/glGetLightiv (GLenum light, GLenum pname, GLint *params);
+-extern(Windows) void /*APIENTRY*/glGetMapdv (GLenum target, GLenum query, GLdouble *v);
+-extern(Windows) void /*APIENTRY*/glGetMapfv (GLenum target, GLenum query, GLfloat *v);
+-extern(Windows) void /*APIENTRY*/glGetMapiv (GLenum target, GLenum query, GLint *v);
+-extern(Windows) void /*APIENTRY*/glGetMaterialfv (GLenum face, GLenum pname, GLfloat *params);
+-extern(Windows) void /*APIENTRY*/glGetMaterialiv (GLenum face, GLenum pname, GLint *params);
+-extern(Windows) void /*APIENTRY*/glGetPixelMapfv (GLenum map, GLfloat *values);
+-extern(Windows) void /*APIENTRY*/glGetPixelMapuiv (GLenum map, GLuint *values);
+-extern(Windows) void /*APIENTRY*/glGetPixelMapusv (GLenum map, GLushort *values);
+-extern(Windows) void /*APIENTRY*/glGetPointerv (GLenum pname, GLvoid* *params);
+-extern(Windows) void /*APIENTRY*/glGetPolygonStipple (GLubyte *mask);
+-extern(Windows) GLubyte * /*APIENTRY*/glGetString (GLenum name);
+-extern(Windows) void /*APIENTRY*/glGetTexEnvfv (GLenum target, GLenum pname, GLfloat *params);
+-extern(Windows) void /*APIENTRY*/glGetTexEnviv (GLenum target, GLenum pname, GLint *params);
+-extern(Windows) void /*APIENTRY*/glGetTexGendv (GLenum coord, GLenum pname, GLdouble *params);
+-extern(Windows) void /*APIENTRY*/glGetTexGenfv (GLenum coord, GLenum pname, GLfloat *params);
+-extern(Windows) void /*APIENTRY*/glGetTexGeniv (GLenum coord, GLenum pname, GLint *params);
+-extern(Windows) void /*APIENTRY*/glGetTexImage (GLenum target, GLint level, GLenum format, GLenum type, GLvoid *pixels);
+-extern(Windows) void /*APIENTRY*/glGetTexLevelParameterfv (GLenum target, GLint level, GLenum pname, GLfloat *params);
+-extern(Windows) void /*APIENTRY*/glGetTexLevelParameteriv (GLenum target, GLint level, GLenum pname, GLint *params);
+-extern(Windows) void /*APIENTRY*/glGetTexParameterfv (GLenum target, GLenum pname, GLfloat *params);
+-extern(Windows) void /*APIENTRY*/glGetTexParameteriv (GLenum target, GLenum pname, GLint *params);
+-extern(Windows) void /*APIENTRY*/glHint (GLenum target, GLenum mode);
+-extern(Windows) void /*APIENTRY*/glIndexMask (GLuint mask);
+-extern(Windows) void /*APIENTRY*/glIndexPointer (GLenum type, GLsizei stride, GLvoid *pointer);
+-extern(Windows) void /*APIENTRY*/glIndexd (GLdouble c);
+-extern(Windows) void /*APIENTRY*/glIndexdv (GLdouble *c);
+-extern(Windows) void /*APIENTRY*/glIndexf (GLfloat c);
+-extern(Windows) void /*APIENTRY*/glIndexfv (GLfloat *c);
+-extern(Windows) void /*APIENTRY*/glIndexi (GLint c);
+-extern(Windows) void /*APIENTRY*/glIndexiv (GLint *c);
+-extern(Windows) void /*APIENTRY*/glIndexs (GLshort c);
+-extern(Windows) void /*APIENTRY*/glIndexsv (GLshort *c);
+-extern(Windows) void /*APIENTRY*/glIndexub (GLubyte c);
+-extern(Windows) void /*APIENTRY*/glIndexubv (GLubyte *c);
+-extern(Windows) void /*APIENTRY*/glInitNames ();
+-extern(Windows) void /*APIENTRY*/glInterleavedArrays (GLenum format, GLsizei stride, GLvoid *pointer);
+-extern(Windows) GLboolean /*APIENTRY*/glIsEnabled (GLenum cap);
+-extern(Windows) GLboolean /*APIENTRY*/glIsList (GLuint list);
+-extern(Windows) GLboolean /*APIENTRY*/glIsTexture (GLuint texture);
+-extern(Windows) void /*APIENTRY*/glLightModelf (GLenum pname, GLfloat param);
+-extern(Windows) void /*APIENTRY*/glLightModelfv (GLenum pname, GLfloat *params);
+-extern(Windows) void /*APIENTRY*/glLightModeli (GLenum pname, GLint param);
+-extern(Windows) void /*APIENTRY*/glLightModeliv (GLenum pname, GLint *params);
+-extern(Windows) void /*APIENTRY*/glLightf (GLenum light, GLenum pname, GLfloat param);
+-extern(Windows) void /*APIENTRY*/glLightfv (GLenum light, GLenum pname, GLfloat *params);
+-extern(Windows) void /*APIENTRY*/glLighti (GLenum light, GLenum pname, GLint param);
+-extern(Windows) void /*APIENTRY*/glLightiv (GLenum light, GLenum pname, GLint *params);
+-extern(Windows) void /*APIENTRY*/glLineStipple (GLint factor, GLushort pattern);
+-extern(Windows) void /*APIENTRY*/glLineWidth (GLfloat width);
+-extern(Windows) void /*APIENTRY*/glListBase (GLuint base);
+-extern(Windows) void /*APIENTRY*/glLoadIdentity ();
+-extern(Windows) void /*APIENTRY*/glLoadMatrixd (GLdouble *m);
+-extern(Windows) void /*APIENTRY*/glLoadMatrixf (GLfloat *m);
+-extern(Windows) void /*APIENTRY*/glLoadName (GLuint name);
+-extern(Windows) void /*APIENTRY*/glLogicOp (GLenum opcode);
+-extern(Windows) void /*APIENTRY*/glMap1d (GLenum target, GLdouble u1, GLdouble u2, GLint stride, GLint order, GLdouble *points);
+-extern(Windows) void /*APIENTRY*/glMap1f (GLenum target, GLfloat u1, GLfloat u2, GLint stride, GLint order, GLfloat *points);
+-extern(Windows) void /*APIENTRY*/glMap2d (GLenum target, GLdouble u1, GLdouble u2, GLint ustride, GLint uorder, GLdouble v1, GLdouble v2, GLint vstride, GLint vorder, GLdouble *points);
+-extern(Windows) void /*APIENTRY*/glMap2f (GLenum target, GLfloat u1, GLfloat u2, GLint ustride, GLint uorder, GLfloat v1, GLfloat v2, GLint vstride, GLint vorder, GLfloat *points);
+-extern(Windows) void /*APIENTRY*/glMapGrid1d (GLint un, GLdouble u1, GLdouble u2);
+-extern(Windows) void /*APIENTRY*/glMapGrid1f (GLint un, GLfloat u1, GLfloat u2);
+-extern(Windows) void /*APIENTRY*/glMapGrid2d (GLint un, GLdouble u1, GLdouble u2, GLint vn, GLdouble v1, GLdouble v2);
+-extern(Windows) void /*APIENTRY*/glMapGrid2f (GLint un, GLfloat u1, GLfloat u2, GLint vn, GLfloat v1, GLfloat v2);
+-extern(Windows) void /*APIENTRY*/glMaterialf (GLenum face, GLenum pname, GLfloat param);
+-extern(Windows) void /*APIENTRY*/glMaterialfv (GLenum face, GLenum pname, GLfloat *params);
+-extern(Windows) void /*APIENTRY*/glMateriali (GLenum face, GLenum pname, GLint param);
+-extern(Windows) void /*APIENTRY*/glMaterialiv (GLenum face, GLenum pname, GLint *params);
+-extern(Windows) void /*APIENTRY*/glMatrixMode (GLenum mode);
+-extern(Windows) void /*APIENTRY*/glMultMatrixd (GLdouble *m);
+-extern(Windows) void /*APIENTRY*/glMultMatrixf (GLfloat *m);
+-extern(Windows) void /*APIENTRY*/glNewList (GLuint list, GLenum mode);
+-extern(Windows) void /*APIENTRY*/glNormal3b (GLbyte nx, GLbyte ny, GLbyte nz);
+-extern(Windows) void /*APIENTRY*/glNormal3bv (GLbyte *v);
+-extern(Windows) void /*APIENTRY*/glNormal3d (GLdouble nx, GLdouble ny, GLdouble nz);
+-extern(Windows) void /*APIENTRY*/glNormal3dv (GLdouble *v);
+-extern(Windows) void /*APIENTRY*/glNormal3f (GLfloat nx, GLfloat ny, GLfloat nz);
+-extern(Windows) void /*APIENTRY*/glNormal3fv (GLfloat *v);
+-extern(Windows) void /*APIENTRY*/glNormal3i (GLint nx, GLint ny, GLint nz);
+-extern(Windows) void /*APIENTRY*/glNormal3iv (GLint *v);
+-extern(Windows) void /*APIENTRY*/glNormal3s (GLshort nx, GLshort ny, GLshort nz);
+-extern(Windows) void /*APIENTRY*/glNormal3sv (GLshort *v);
+-extern(Windows) void /*APIENTRY*/glNormalPointer (GLenum type, GLsizei stride, GLvoid *pointer);
+-extern(Windows) void /*APIENTRY*/glOrtho (GLdouble left, GLdouble right, GLdouble bottom, GLdouble top, GLdouble zNear, GLdouble zFar);
+-extern(Windows) void /*APIENTRY*/glPassThrough (GLfloat token);
+-extern(Windows) void /*APIENTRY*/glPixelMapfv (GLenum map, GLsizei mapsize, GLfloat *values);
+-extern(Windows) void /*APIENTRY*/glPixelMapuiv (GLenum map, GLsizei mapsize, GLuint *values);
+-extern(Windows) void /*APIENTRY*/glPixelMapusv (GLenum map, GLsizei mapsize, GLushort *values);
+-extern(Windows) void /*APIENTRY*/glPixelStoref (GLenum pname, GLfloat param);
+-extern(Windows) void /*APIENTRY*/glPixelStorei (GLenum pname, GLint param);
+-extern(Windows) void /*APIENTRY*/glPixelTransferf (GLenum pname, GLfloat param);
+-extern(Windows) void /*APIENTRY*/glPixelTransferi (GLenum pname, GLint param);
+-extern(Windows) void /*APIENTRY*/glPixelZoom (GLfloat xfactor, GLfloat yfactor);
+-extern(Windows) void /*APIENTRY*/glPointSize (GLfloat size);
+-extern(Windows) void /*APIENTRY*/glPolygonMode (GLenum face, GLenum mode);
+-extern(Windows) void /*APIENTRY*/glPolygonOffset (GLfloat factor, GLfloat units);
+-extern(Windows) void /*APIENTRY*/glPolygonStipple (GLubyte *mask);
+-extern(Windows) void /*APIENTRY*/glPopAttrib ();
+-extern(Windows) void /*APIENTRY*/glPopClientAttrib ();
+-extern(Windows) void /*APIENTRY*/glPopMatrix ();
+-extern(Windows) void /*APIENTRY*/glPopName ();
+-extern(Windows) void /*APIENTRY*/glPrioritizeTextures (GLsizei n, GLuint *textures, GLclampf *priorities);
+-extern(Windows) void /*APIENTRY*/glPushAttrib (GLbitfield mask);
+-extern(Windows) void /*APIENTRY*/glPushClientAttrib (GLbitfield mask);
+-extern(Windows) void /*APIENTRY*/glPushMatrix ();
+-extern(Windows) void /*APIENTRY*/glPushName (GLuint name);
+-extern(Windows) void /*APIENTRY*/glRasterPos2d (GLdouble x, GLdouble y);
+-extern(Windows) void /*APIENTRY*/glRasterPos2dv (GLdouble *v);
+-extern(Windows) void /*APIENTRY*/glRasterPos2f (GLfloat x, GLfloat y);
+-extern(Windows) void /*APIENTRY*/glRasterPos2fv (GLfloat *v);
+-extern(Windows) void /*APIENTRY*/glRasterPos2i (GLint x, GLint y);
+-extern(Windows) void /*APIENTRY*/glRasterPos2iv (GLint *v);
+-extern(Windows) void /*APIENTRY*/glRasterPos2s (GLshort x, GLshort y);
+-extern(Windows) void /*APIENTRY*/glRasterPos2sv (GLshort *v);
+-extern(Windows) void /*APIENTRY*/glRasterPos3d (GLdouble x, GLdouble y, GLdouble z);
+-extern(Windows) void /*APIENTRY*/glRasterPos3dv (GLdouble *v);
+-extern(Windows) void /*APIENTRY*/glRasterPos3f (GLfloat x, GLfloat y, GLfloat z);
+-extern(Windows) void /*APIENTRY*/glRasterPos3fv (GLfloat *v);
+-extern(Windows) void /*APIENTRY*/glRasterPos3i (GLint x, GLint y, GLint z);
+-extern(Windows) void /*APIENTRY*/glRasterPos3iv (GLint *v);
+-extern(Windows) void /*APIENTRY*/glRasterPos3s (GLshort x, GLshort y, GLshort z);
+-extern(Windows) void /*APIENTRY*/glRasterPos3sv (GLshort *v);
+-extern(Windows) void /*APIENTRY*/glRasterPos4d (GLdouble x, GLdouble y, GLdouble z, GLdouble w);
+-extern(Windows) void /*APIENTRY*/glRasterPos4dv (GLdouble *v);
+-extern(Windows) void /*APIENTRY*/glRasterPos4f (GLfloat x, GLfloat y, GLfloat z, GLfloat w);
+-extern(Windows) void /*APIENTRY*/glRasterPos4fv (GLfloat *v);
+-extern(Windows) void /*APIENTRY*/glRasterPos4i (GLint x, GLint y, GLint z, GLint w);
+-extern(Windows) void /*APIENTRY*/glRasterPos4iv (GLint *v);
+-extern(Windows) void /*APIENTRY*/glRasterPos4s (GLshort x, GLshort y, GLshort z, GLshort w);
+-extern(Windows) void /*APIENTRY*/glRasterPos4sv (GLshort *v);
+-extern(Windows) void /*APIENTRY*/glReadBuffer (GLenum mode);
+-extern(Windows) void /*APIENTRY*/glReadPixels (GLint x, GLint y, GLsizei width, GLsizei height, GLenum format, GLenum type, GLvoid *pixels);
+-extern(Windows) void /*APIENTRY*/glRectd (GLdouble x1, GLdouble y1, GLdouble x2, GLdouble y2);
+-extern(Windows) void /*APIENTRY*/glRectdv (GLdouble *v1, GLdouble *v2);
+-extern(Windows) void /*APIENTRY*/glRectf (GLfloat x1, GLfloat y1, GLfloat x2, GLfloat y2);
+-extern(Windows) void /*APIENTRY*/glRectfv (GLfloat *v1, GLfloat *v2);
+-extern(Windows) void /*APIENTRY*/glRecti (GLint x1, GLint y1, GLint x2, GLint y2);
+-extern(Windows) void /*APIENTRY*/glRectiv (GLint *v1, GLint *v2);
+-extern(Windows) void /*APIENTRY*/glRects (GLshort x1, GLshort y1, GLshort x2, GLshort y2);
+-extern(Windows) void /*APIENTRY*/glRectsv (GLshort *v1, GLshort *v2);
+-extern(Windows) GLint /*APIENTRY*/glRenderMode (GLenum mode);
+-extern(Windows) void /*APIENTRY*/glRotated (GLdouble angle, GLdouble x, GLdouble y, GLdouble z);
+-extern(Windows) void /*APIENTRY*/glRotatef (GLfloat angle, GLfloat x, GLfloat y, GLfloat z);
+-extern(Windows) void /*APIENTRY*/glScaled (GLdouble x, GLdouble y, GLdouble z);
+-extern(Windows) void /*APIENTRY*/glScalef (GLfloat x, GLfloat y, GLfloat z);
+-extern(Windows) void /*APIENTRY*/glScissor (GLint x, GLint y, GLsizei width, GLsizei height);
+-extern(Windows) void /*APIENTRY*/glSelectBuffer (GLsizei size, GLuint *buffer);
+-extern(Windows) void /*APIENTRY*/glShadeModel (GLenum mode);
+-extern(Windows) void /*APIENTRY*/glStencilFunc (GLenum func, GLint ref, GLuint mask);
+-extern(Windows) void /*APIENTRY*/glStencilMask (GLuint mask);
+-extern(Windows) void /*APIENTRY*/glStencilOp (GLenum fail, GLenum zfail, GLenum zpass);
+-extern(Windows) void /*APIENTRY*/glTexCoord1d (GLdouble s);
+-extern(Windows) void /*APIENTRY*/glTexCoord1dv (GLdouble *v);
+-extern(Windows) void /*APIENTRY*/glTexCoord1f (GLfloat s);
+-extern(Windows) void /*APIENTRY*/glTexCoord1fv (GLfloat *v);
+-extern(Windows) void /*APIENTRY*/glTexCoord1i (GLint s);
+-extern(Windows) void /*APIENTRY*/glTexCoord1iv (GLint *v);
+-extern(Windows) void /*APIENTRY*/glTexCoord1s (GLshort s);
+-extern(Windows) void /*APIENTRY*/glTexCoord1sv (GLshort *v);
+-extern(Windows) void /*APIENTRY*/glTexCoord2d (GLdouble s, GLdouble t);
+-extern(Windows) void /*APIENTRY*/glTexCoord2dv (GLdouble *v);
+-extern(Windows) void /*APIENTRY*/glTexCoord2f (GLfloat s, GLfloat t);
+-extern(Windows) void /*APIENTRY*/glTexCoord2fv (GLfloat *v);
+-extern(Windows) void /*APIENTRY*/glTexCoord2i (GLint s, GLint t);
+-extern(Windows) void /*APIENTRY*/glTexCoord2iv (GLint *v);
+-extern(Windows) void /*APIENTRY*/glTexCoord2s (GLshort s, GLshort t);
+-extern(Windows) void /*APIENTRY*/glTexCoord2sv (GLshort *v);
+-extern(Windows) void /*APIENTRY*/glTexCoord3d (GLdouble s, GLdouble t, GLdouble r);
+-extern(Windows) void /*APIENTRY*/glTexCoord3dv (GLdouble *v);
+-extern(Windows) void /*APIENTRY*/glTexCoord3f (GLfloat s, GLfloat t, GLfloat r);
+-extern(Windows) void /*APIENTRY*/glTexCoord3fv (GLfloat *v);
+-extern(Windows) void /*APIENTRY*/glTexCoord3i (GLint s, GLint t, GLint r);
+-extern(Windows) void /*APIENTRY*/glTexCoord3iv (GLint *v);
+-extern(Windows) void /*APIENTRY*/glTexCoord3s (GLshort s, GLshort t, GLshort r);
+-extern(Windows) void /*APIENTRY*/glTexCoord3sv (GLshort *v);
+-extern(Windows) void /*APIENTRY*/glTexCoord4d (GLdouble s, GLdouble t, GLdouble r, GLdouble q);
+-extern(Windows) void /*APIENTRY*/glTexCoord4dv (GLdouble *v);
+-extern(Windows) void /*APIENTRY*/glTexCoord4f (GLfloat s, GLfloat t, GLfloat r, GLfloat q);
+-extern(Windows) void /*APIENTRY*/glTexCoord4fv (GLfloat *v);
+-extern(Windows) void /*APIENTRY*/glTexCoord4i (GLint s, GLint t, GLint r, GLint q);
+-extern(Windows) void /*APIENTRY*/glTexCoord4iv (GLint *v);
+-extern(Windows) void /*APIENTRY*/glTexCoord4s (GLshort s, GLshort t, GLshort r, GLshort q);
+-extern(Windows) void /*APIENTRY*/glTexCoord4sv (GLshort *v);
+-extern(Windows) void /*APIENTRY*/glTexCoordPointer (GLint size, GLenum type, GLsizei stride, GLvoid *pointer);
+-extern(Windows) void /*APIENTRY*/glTexEnvf (GLenum target, GLenum pname, GLfloat param);
+-extern(Windows) void /*APIENTRY*/glTexEnvfv (GLenum target, GLenum pname, GLfloat *params);
+-extern(Windows) void /*APIENTRY*/glTexEnvi (GLenum target, GLenum pname, GLint param);
+-extern(Windows) void /*APIENTRY*/glTexEnviv (GLenum target, GLenum pname, GLint *params);
+-extern(Windows) void /*APIENTRY*/glTexGend (GLenum coord, GLenum pname, GLdouble param);
+-extern(Windows) void /*APIENTRY*/glTexGendv (GLenum coord, GLenum pname, GLdouble *params);
+-extern(Windows) void /*APIENTRY*/glTexGenf (GLenum coord, GLenum pname, GLfloat param);
+-extern(Windows) void /*APIENTRY*/glTexGenfv (GLenum coord, GLenum pname, GLfloat *params);
+-extern(Windows) void /*APIENTRY*/glTexGeni (GLenum coord, GLenum pname, GLint param);
+-extern(Windows) void /*APIENTRY*/glTexGeniv (GLenum coord, GLenum pname, GLint *params);
+-extern(Windows) void /*APIENTRY*/glTexImage1D (GLenum target, GLint level, GLint internalformat, GLsizei width, GLint border, GLenum format, GLenum type, GLvoid *pixels);
+-extern(Windows) void /*APIENTRY*/glTexImage2D (GLenum target, GLint level, GLint internalformat, GLsizei width, GLsizei height, GLint border, GLenum format, GLenum type, GLvoid *pixels);
+-extern(Windows) void /*APIENTRY*/glTexParameterf (GLenum target, GLenum pname, GLfloat param);
+-extern(Windows) void /*APIENTRY*/glTexParameterfv (GLenum target, GLenum pname, GLfloat *params);
+-extern(Windows) void /*APIENTRY*/glTexParameteri (GLenum target, GLenum pname, GLint param);
+-extern(Windows) void /*APIENTRY*/glTexParameteriv (GLenum target, GLenum pname, GLint *params);
+-extern(Windows) void /*APIENTRY*/glTexSubImage1D (GLenum target, GLint level, GLint xoffset, GLsizei width, GLenum format, GLenum type, GLvoid *pixels);
+-extern(Windows) void /*APIENTRY*/glTexSubImage2D (GLenum target, GLint level, GLint xoffset, GLint yoffset, GLsizei width, GLsizei height, GLenum format, GLenum type, GLvoid *pixels);
+-extern(Windows) void /*APIENTRY*/glTranslated (GLdouble x, GLdouble y, GLdouble z);
+-extern(Windows) void /*APIENTRY*/glTranslatef (GLfloat x, GLfloat y, GLfloat z);
+-extern(Windows) void /*APIENTRY*/glVertex2d (GLdouble x, GLdouble y);
+-extern(Windows) void /*APIENTRY*/glVertex2dv (GLdouble *v);
+-extern(Windows) void /*APIENTRY*/glVertex2f (GLfloat x, GLfloat y);
+-extern(Windows) void /*APIENTRY*/glVertex2fv (GLfloat *v);
+-extern(Windows) void /*APIENTRY*/glVertex2i (GLint x, GLint y);
+-extern(Windows) void /*APIENTRY*/glVertex2iv (GLint *v);
+-extern(Windows) void /*APIENTRY*/glVertex2s (GLshort x, GLshort y);
+-extern(Windows) void /*APIENTRY*/glVertex2sv (GLshort *v);
+-extern(Windows) void /*APIENTRY*/glVertex3d (GLdouble x, GLdouble y, GLdouble z);
+-extern(Windows) void /*APIENTRY*/glVertex3dv (GLdouble *v);
+-extern(Windows) void /*APIENTRY*/glVertex3f (GLfloat x, GLfloat y, GLfloat z);
+-extern(Windows) void /*APIENTRY*/glVertex3fv (GLfloat *v);
+-extern(Windows) void /*APIENTRY*/glVertex3i (GLint x, GLint y, GLint z);
+-extern(Windows) void /*APIENTRY*/glVertex3iv (GLint *v);
+-extern(Windows) void /*APIENTRY*/glVertex3s (GLshort x, GLshort y, GLshort z);
+-extern(Windows) void /*APIENTRY*/glVertex3sv (GLshort *v);
+-extern(Windows) void /*APIENTRY*/glVertex4d (GLdouble x, GLdouble y, GLdouble z, GLdouble w);
+-extern(Windows) void /*APIENTRY*/glVertex4dv (GLdouble *v);
+-extern(Windows) void /*APIENTRY*/glVertex4f (GLfloat x, GLfloat y, GLfloat z, GLfloat w);
+-extern(Windows) void /*APIENTRY*/glVertex4fv (GLfloat *v);
+-extern(Windows) void /*APIENTRY*/glVertex4i (GLint x, GLint y, GLint z, GLint w);
+-extern(Windows) void /*APIENTRY*/glVertex4iv (GLint *v);
+-extern(Windows) void /*APIENTRY*/glVertex4s (GLshort x, GLshort y, GLshort z, GLshort w);
+-extern(Windows) void /*APIENTRY*/glVertex4sv (GLshort *v);
+-extern(Windows) void /*APIENTRY*/glVertexPointer (GLint size, GLenum type, GLsizei stride, GLvoid *pointer);
+-extern(Windows) void /*APIENTRY*/glViewport (GLint x, GLint y, GLsizei width, GLsizei height);
+-
++void /*APIENTRY*/glAccum (GLenum op, GLfloat value);
++void /*APIENTRY*/glAlphaFunc (GLenum func, GLclampf);
++GLboolean /*APIENTRY*/glAreTexturesResident (GLsizei n, GLuint *textures, GLboolean *residences);
++void /*APIENTRY*/glArrayElement (GLint i);
++void /*APIENTRY*/glBegin (GLenum mode);
++void /*APIENTRY*/glBindTexture (GLenum target, GLuint texture);
++void /*APIENTRY*/glBitmap (GLsizei width, GLsizei height, GLfloat xorig, GLfloat yorig, GLfloat xmove, GLfloat ymove, GLubyte *bitmap);
++void /*APIENTRY*/glBlendFunc (GLenum sfactor, GLenum dfactor);
++void /*APIENTRY*/glCallList (GLuint list);
++void /*APIENTRY*/glCallLists (GLsizei n, GLenum type, GLvoid *lists);
++void /*APIENTRY*/glClear (GLbitfield mask);
++void /*APIENTRY*/glClearAccum (GLfloat red, GLfloat green, GLfloat blue, GLfloat alpha);
++void /*APIENTRY*/glClearColor (GLclampf red, GLclampf green, GLclampf blue, GLclampf alpha);
++void /*APIENTRY*/glClearDepth (GLclampd depth);
++void /*APIENTRY*/glClearIndex (GLfloat c);
++void /*APIENTRY*/glClearStencil (GLint s);
++void /*APIENTRY*/glClipPlane (GLenum plane, GLdouble *equation);
++void /*APIENTRY*/glColor3b (GLbyte red, GLbyte green, GLbyte blue);
++void /*APIENTRY*/glColor3bv (GLbyte *v);
++void /*APIENTRY*/glColor3d (GLdouble red, GLdouble green, GLdouble blue);
++void /*APIENTRY*/glColor3dv (GLdouble *v);
++void /*APIENTRY*/glColor3f (GLfloat red, GLfloat green, GLfloat blue);
++void /*APIENTRY*/glColor3fv (GLfloat *v);
++void /*APIENTRY*/glColor3i (GLint red, GLint green, GLint blue);
++void /*APIENTRY*/glColor3iv (GLint *v);
++void /*APIENTRY*/glColor3s (GLshort red, GLshort green, GLshort blue);
++void /*APIENTRY*/glColor3sv (GLshort *v);
++void /*APIENTRY*/glColor3ub (GLubyte red, GLubyte green, GLubyte blue);
++void /*APIENTRY*/glColor3ubv (GLubyte *v);
++void /*APIENTRY*/glColor3ui (GLuint red, GLuint green, GLuint blue);
++void /*APIENTRY*/glColor3uiv (GLuint *v);
++void /*APIENTRY*/glColor3us (GLushort red, GLushort green, GLushort blue);
++void /*APIENTRY*/glColor3usv (GLushort *v);
++void /*APIENTRY*/glColor4b (GLbyte red, GLbyte green, GLbyte blue, GLbyte alpha);
++void /*APIENTRY*/glColor4bv (GLbyte *v);
++void /*APIENTRY*/glColor4d (GLdouble red, GLdouble green, GLdouble blue, GLdouble alpha);
++void /*APIENTRY*/glColor4dv (GLdouble *v);
++void /*APIENTRY*/glColor4f (GLfloat red, GLfloat green, GLfloat blue, GLfloat alpha);
++void /*APIENTRY*/glColor4fv (GLfloat *v);
++void /*APIENTRY*/glColor4i (GLint red, GLint green, GLint blue, GLint alpha);
++void /*APIENTRY*/glColor4iv (GLint *v);
++void /*APIENTRY*/glColor4s (GLshort red, GLshort green, GLshort blue, GLshort alpha);
++void /*APIENTRY*/glColor4sv (GLshort *v);
++void /*APIENTRY*/glColor4ub (GLubyte red, GLubyte green, GLubyte blue, GLubyte alpha);
++void /*APIENTRY*/glColor4ubv (GLubyte *v);
++void /*APIENTRY*/glColor4ui (GLuint red, GLuint green, GLuint blue, GLuint alpha);
++void /*APIENTRY*/glColor4uiv (GLuint *v);
++void /*APIENTRY*/glColor4us (GLushort red, GLushort green, GLushort blue, GLushort alpha);
++void /*APIENTRY*/glColor4usv (GLushort *v);
++void /*APIENTRY*/glColorMask (GLboolean red, GLboolean green, GLboolean blue, GLboolean alpha);
++void /*APIENTRY*/glColorMaterial (GLenum face, GLenum mode);
++void /*APIENTRY*/glColorPointer (GLint size, GLenum type, GLsizei stride, GLvoid *pointer);
++void /*APIENTRY*/glCopyPixels (GLint x, GLint y, GLsizei width, GLsizei height, GLenum type);
++void /*APIENTRY*/glCopyTexImage1D (GLenum target, GLint level, GLenum internalFormat, GLint x, GLint y, GLsizei width, GLint border);
++void /*APIENTRY*/glCopyTexImage2D (GLenum target, GLint level, GLenum internalFormat, GLint x, GLint y, GLsizei width, GLsizei height, GLint border);
++void /*APIENTRY*/glCopyTexSubImage1D (GLenum target, GLint level, GLint xoffset, GLint x, GLint y, GLsizei width);
++void /*APIENTRY*/glCopyTexSubImage2D (GLenum target, GLint level, GLint xoffset, GLint yoffset, GLint x, GLint y, GLsizei width, GLsizei height);
++void /*APIENTRY*/glCullFace (GLenum mode);
++void /*APIENTRY*/glDeleteLists (GLuint list, GLsizei range);
++void /*APIENTRY*/glDeleteTextures (GLsizei n, GLuint *textures);
++void /*APIENTRY*/glDepthFunc (GLenum func);
++void /*APIENTRY*/glDepthMask (GLboolean flag);
++void /*APIENTRY*/glDepthRange (GLclampd zNear, GLclampd zFar);
++void /*APIENTRY*/glDisable (GLenum cap);
++void /*APIENTRY*/glDisableClientState (GLenum array);
++void /*APIENTRY*/glDrawArrays (GLenum mode, GLint first, GLsizei count);
++void /*APIENTRY*/glDrawBuffer (GLenum mode);
++void /*APIENTRY*/glDrawElements (GLenum mode, GLsizei count, GLenum type, GLvoid *indices);
++void /*APIENTRY*/glDrawPixels (GLsizei width, GLsizei height, GLenum format, GLenum type, GLvoid *pixels);
++void /*APIENTRY*/glEdgeFlag (GLboolean flag);
++void /*APIENTRY*/glEdgeFlagPointer (GLsizei stride, GLvoid *pointer);
++void /*APIENTRY*/glEdgeFlagv (GLboolean *flag);
++void /*APIENTRY*/glEnable (GLenum cap);
++void /*APIENTRY*/glEnableClientState (GLenum array);
++void /*APIENTRY*/glEnd ();
++void /*APIENTRY*/glEndList ();
++void /*APIENTRY*/glEvalCoord1d (GLdouble u);
++void /*APIENTRY*/glEvalCoord1dv (GLdouble *u);
++void /*APIENTRY*/glEvalCoord1f (GLfloat u);
++void /*APIENTRY*/glEvalCoord1fv (GLfloat *u);
++void /*APIENTRY*/glEvalCoord2d (GLdouble u, GLdouble v);
++void /*APIENTRY*/glEvalCoord2dv (GLdouble *u);
++void /*APIENTRY*/glEvalCoord2f (GLfloat u, GLfloat v);
++void /*APIENTRY*/glEvalCoord2fv (GLfloat *u);
++void /*APIENTRY*/glEvalMesh1 (GLenum mode, GLint i1, GLint i2);
++void /*APIENTRY*/glEvalMesh2 (GLenum mode, GLint i1, GLint i2, GLint j1, GLint j2);
++void /*APIENTRY*/glEvalPoint1 (GLint i);
++void /*APIENTRY*/glEvalPoint2 (GLint i, GLint j);
++void /*APIENTRY*/glFeedbackBuffer (GLsizei size, GLenum type, GLfloat *buffer);
++void /*APIENTRY*/glFinish ();
++void /*APIENTRY*/glFlush ();
++void /*APIENTRY*/glFogf (GLenum pname, GLfloat param);
++void /*APIENTRY*/glFogfv (GLenum pname, GLfloat *params);
++void /*APIENTRY*/glFogi (GLenum pname, GLint param);
++void /*APIENTRY*/glFogiv (GLenum pname, GLint *params);
++void /*APIENTRY*/glFrontFace (GLenum mode);
++void /*APIENTRY*/glFrustum (GLdouble left, GLdouble right, GLdouble bottom, GLdouble top, GLdouble zNear, GLdouble zFar);
++GLuint /*APIENTRY*/glGenLists (GLsizei range);
++void /*APIENTRY*/glGenTextures (GLsizei n, GLuint *textures);
++void /*APIENTRY*/glGetBooleanv (GLenum pname, GLboolean *params);
++void /*APIENTRY*/glGetClipPlane (GLenum plane, GLdouble *equation);
++void /*APIENTRY*/glGetDoublev (GLenum pname, GLdouble *params);
++GLenum /*APIENTRY*/glGetError ();
++void /*APIENTRY*/glGetFloatv (GLenum pname, GLfloat *params);
++void /*APIENTRY*/glGetIntegerv (GLenum pname, GLint *params);
++void /*APIENTRY*/glGetLightfv (GLenum light, GLenum pname, GLfloat *params);
++void /*APIENTRY*/glGetLightiv (GLenum light, GLenum pname, GLint *params);
++void /*APIENTRY*/glGetMapdv (GLenum target, GLenum query, GLdouble *v);
++void /*APIENTRY*/glGetMapfv (GLenum target, GLenum query, GLfloat *v);
++void /*APIENTRY*/glGetMapiv (GLenum target, GLenum query, GLint *v);
++void /*APIENTRY*/glGetMaterialfv (GLenum face, GLenum pname, GLfloat *params);
++void /*APIENTRY*/glGetMaterialiv (GLenum face, GLenum pname, GLint *params);
++void /*APIENTRY*/glGetPixelMapfv (GLenum map, GLfloat *values);
++void /*APIENTRY*/glGetPixelMapuiv (GLenum map, GLuint *values);
++void /*APIENTRY*/glGetPixelMapusv (GLenum map, GLushort *values);
++void /*APIENTRY*/glGetPointerv (GLenum pname, GLvoid* *params);
++void /*APIENTRY*/glGetPolygonStipple (GLubyte *mask);
++GLubyte * /*APIENTRY*/glGetString (GLenum name);
++void /*APIENTRY*/glGetTexEnvfv (GLenum target, GLenum pname, GLfloat *params);
++void /*APIENTRY*/glGetTexEnviv (GLenum target, GLenum pname, GLint *params);
++void /*APIENTRY*/glGetTexGendv (GLenum coord, GLenum pname, GLdouble *params);
++void /*APIENTRY*/glGetTexGenfv (GLenum coord, GLenum pname, GLfloat *params);
++void /*APIENTRY*/glGetTexGeniv (GLenum coord, GLenum pname, GLint *params);
++void /*APIENTRY*/glGetTexImage (GLenum target, GLint level, GLenum format, GLenum type, GLvoid *pixels);
++void /*APIENTRY*/glGetTexLevelParameterfv (GLenum target, GLint level, GLenum pname, GLfloat *params);
++void /*APIENTRY*/glGetTexLevelParameteriv (GLenum target, GLint level, GLenum pname, GLint *params);
++void /*APIENTRY*/glGetTexParameterfv (GLenum target, GLenum pname, GLfloat *params);
++void /*APIENTRY*/glGetTexParameteriv (GLenum target, GLenum pname, GLint *params);
++void /*APIENTRY*/glHint (GLenum target, GLenum mode);
++void /*APIENTRY*/glIndexMask (GLuint mask);
++void /*APIENTRY*/glIndexPointer (GLenum type, GLsizei stride, GLvoid *pointer);
++void /*APIENTRY*/glIndexd (GLdouble c);
++void /*APIENTRY*/glIndexdv (GLdouble *c);
++void /*APIENTRY*/glIndexf (GLfloat c);
++void /*APIENTRY*/glIndexfv (GLfloat *c);
++void /*APIENTRY*/glIndexi (GLint c);
++void /*APIENTRY*/glIndexiv (GLint *c);
++void /*APIENTRY*/glIndexs (GLshort c);
++void /*APIENTRY*/glIndexsv (GLshort *c);
++void /*APIENTRY*/glIndexub (GLubyte c);
++void /*APIENTRY*/glIndexubv (GLubyte *c);
++void /*APIENTRY*/glInitNames ();
++void /*APIENTRY*/glInterleavedArrays (GLenum format, GLsizei stride, GLvoid *pointer);
++GLboolean /*APIENTRY*/glIsEnabled (GLenum cap);
++GLboolean /*APIENTRY*/glIsList (GLuint list);
++GLboolean /*APIENTRY*/glIsTexture (GLuint texture);
++void /*APIENTRY*/glLightModelf (GLenum pname, GLfloat param);
++void /*APIENTRY*/glLightModelfv (GLenum pname, GLfloat *params);
++void /*APIENTRY*/glLightModeli (GLenum pname, GLint param);
++void /*APIENTRY*/glLightModeliv (GLenum pname, GLint *params);
++void /*APIENTRY*/glLightf (GLenum light, GLenum pname, GLfloat param);
++void /*APIENTRY*/glLightfv (GLenum light, GLenum pname, GLfloat *params);
++void /*APIENTRY*/glLighti (GLenum light, GLenum pname, GLint param);
++void /*APIENTRY*/glLightiv (GLenum light, GLenum pname, GLint *params);
++void /*APIENTRY*/glLineStipple (GLint factor, GLushort pattern);
++void /*APIENTRY*/glLineWidth (GLfloat width);
++void /*APIENTRY*/glListBase (GLuint base);
++void /*APIENTRY*/glLoadIdentity ();
++void /*APIENTRY*/glLoadMatrixd (GLdouble *m);
++void /*APIENTRY*/glLoadMatrixf (GLfloat *m);
++void /*APIENTRY*/glLoadName (GLuint name);
++void /*APIENTRY*/glLogicOp (GLenum opcode);
++void /*APIENTRY*/glMap1d (GLenum target, GLdouble u1, GLdouble u2, GLint stride, GLint order, GLdouble *points);
++void /*APIENTRY*/glMap1f (GLenum target, GLfloat u1, GLfloat u2, GLint stride, GLint order, GLfloat *points);
++void /*APIENTRY*/glMap2d (GLenum target, GLdouble u1, GLdouble u2, GLint ustride, GLint uorder, GLdouble v1, GLdouble v2, GLint vstride, GLint vorder, GLdouble *points);
++void /*APIENTRY*/glMap2f (GLenum target, GLfloat u1, GLfloat u2, GLint ustride, GLint uorder, GLfloat v1, GLfloat v2, GLint vstride, GLint vorder, GLfloat *points);
++void /*APIENTRY*/glMapGrid1d (GLint un, GLdouble u1, GLdouble u2);
++void /*APIENTRY*/glMapGrid1f (GLint un, GLfloat u1, GLfloat u2);
++void /*APIENTRY*/glMapGrid2d (GLint un, GLdouble u1, GLdouble u2, GLint vn, GLdouble v1, GLdouble v2);
++void /*APIENTRY*/glMapGrid2f (GLint un, GLfloat u1, GLfloat u2, GLint vn, GLfloat v1, GLfloat v2);
++void /*APIENTRY*/glMaterialf (GLenum face, GLenum pname, GLfloat param);
++void /*APIENTRY*/glMaterialfv (GLenum face, GLenum pname, GLfloat *params);
++void /*APIENTRY*/glMateriali (GLenum face, GLenum pname, GLint param);
++void /*APIENTRY*/glMaterialiv (GLenum face, GLenum pname, GLint *params);
++void /*APIENTRY*/glMatrixMode (GLenum mode);
++void /*APIENTRY*/glMultMatrixd (GLdouble *m);
++void /*APIENTRY*/glMultMatrixf (GLfloat *m);
++void /*APIENTRY*/glNewList (GLuint list, GLenum mode);
++void /*APIENTRY*/glNormal3b (GLbyte nx, GLbyte ny, GLbyte nz);
++void /*APIENTRY*/glNormal3bv (GLbyte *v);
++void /*APIENTRY*/glNormal3d (GLdouble nx, GLdouble ny, GLdouble nz);
++void /*APIENTRY*/glNormal3dv (GLdouble *v);
++void /*APIENTRY*/glNormal3f (GLfloat nx, GLfloat ny, GLfloat nz);
++void /*APIENTRY*/glNormal3fv (GLfloat *v);
++void /*APIENTRY*/glNormal3i (GLint nx, GLint ny, GLint nz);
++void /*APIENTRY*/glNormal3iv (GLint *v);
++void /*APIENTRY*/glNormal3s (GLshort nx, GLshort ny, GLshort nz);
++void /*APIENTRY*/glNormal3sv (GLshort *v);
++void /*APIENTRY*/glNormalPointer (GLenum type, GLsizei stride, GLvoid *pointer);
++void /*APIENTRY*/glOrtho (GLdouble left, GLdouble right, GLdouble bottom, GLdouble top, GLdouble zNear, GLdouble zFar);
++void /*APIENTRY*/glPassThrough (GLfloat token);
++void /*APIENTRY*/glPixelMapfv (GLenum map, GLsizei mapsize, GLfloat *values);
++void /*APIENTRY*/glPixelMapuiv (GLenum map, GLsizei mapsize, GLuint *values);
++void /*APIENTRY*/glPixelMapusv (GLenum map, GLsizei mapsize, GLushort *values);
++void /*APIENTRY*/glPixelStoref (GLenum pname, GLfloat param);
++void /*APIENTRY*/glPixelStorei (GLenum pname, GLint param);
++void /*APIENTRY*/glPixelTransferf (GLenum pname, GLfloat param);
++void /*APIENTRY*/glPixelTransferi (GLenum pname, GLint param);
++void /*APIENTRY*/glPixelZoom (GLfloat xfactor, GLfloat yfactor);
++void /*APIENTRY*/glPointSize (GLfloat size);
++void /*APIENTRY*/glPolygonMode (GLenum face, GLenum mode);
++void /*APIENTRY*/glPolygonOffset (GLfloat factor, GLfloat units);
++void /*APIENTRY*/glPolygonStipple (GLubyte *mask);
++void /*APIENTRY*/glPopAttrib ();
++void /*APIENTRY*/glPopClientAttrib ();
++void /*APIENTRY*/glPopMatrix ();
++void /*APIENTRY*/glPopName ();
++void /*APIENTRY*/glPrioritizeTextures (GLsizei n, GLuint *textures, GLclampf *priorities);
++void /*APIENTRY*/glPushAttrib (GLbitfield mask);
++void /*APIENTRY*/glPushClientAttrib (GLbitfield mask);
++void /*APIENTRY*/glPushMatrix ();
++void /*APIENTRY*/glPushName (GLuint name);
++void /*APIENTRY*/glRasterPos2d (GLdouble x, GLdouble y);
++void /*APIENTRY*/glRasterPos2dv (GLdouble *v);
++void /*APIENTRY*/glRasterPos2f (GLfloat x, GLfloat y);
++void /*APIENTRY*/glRasterPos2fv (GLfloat *v);
++void /*APIENTRY*/glRasterPos2i (GLint x, GLint y);
++void /*APIENTRY*/glRasterPos2iv (GLint *v);
++void /*APIENTRY*/glRasterPos2s (GLshort x, GLshort y);
++void /*APIENTRY*/glRasterPos2sv (GLshort *v);
++void /*APIENTRY*/glRasterPos3d (GLdouble x, GLdouble y, GLdouble z);
++void /*APIENTRY*/glRasterPos3dv (GLdouble *v);
++void /*APIENTRY*/glRasterPos3f (GLfloat x, GLfloat y, GLfloat z);
++void /*APIENTRY*/glRasterPos3fv (GLfloat *v);
++void /*APIENTRY*/glRasterPos3i (GLint x, GLint y, GLint z);
++void /*APIENTRY*/glRasterPos3iv (GLint *v);
++void /*APIENTRY*/glRasterPos3s (GLshort x, GLshort y, GLshort z);
++void /*APIENTRY*/glRasterPos3sv (GLshort *v);
++void /*APIENTRY*/glRasterPos4d (GLdouble x, GLdouble y, GLdouble z, GLdouble w);
++void /*APIENTRY*/glRasterPos4dv (GLdouble *v);
++void /*APIENTRY*/glRasterPos4f (GLfloat x, GLfloat y, GLfloat z, GLfloat w);
++void /*APIENTRY*/glRasterPos4fv (GLfloat *v);
++void /*APIENTRY*/glRasterPos4i (GLint x, GLint y, GLint z, GLint w);
++void /*APIENTRY*/glRasterPos4iv (GLint *v);
++void /*APIENTRY*/glRasterPos4s (GLshort x, GLshort y, GLshort z, GLshort w);
++void /*APIENTRY*/glRasterPos4sv (GLshort *v);
++void /*APIENTRY*/glReadBuffer (GLenum mode);
++void /*APIENTRY*/glReadPixels (GLint x, GLint y, GLsizei width, GLsizei height, GLenum format, GLenum type, GLvoid *pixels);
++void /*APIENTRY*/glRectd (GLdouble x1, GLdouble y1, GLdouble x2, GLdouble y2);
++void /*APIENTRY*/glRectdv (GLdouble *v1, GLdouble *v2);
++void /*APIENTRY*/glRectf (GLfloat x1, GLfloat y1, GLfloat x2, GLfloat y2);
++void /*APIENTRY*/glRectfv (GLfloat *v1, GLfloat *v2);
++void /*APIENTRY*/glRecti (GLint x1, GLint y1, GLint x2, GLint y2);
++void /*APIENTRY*/glRectiv (GLint *v1, GLint *v2);
++void /*APIENTRY*/glRects (GLshort x1, GLshort y1, GLshort x2, GLshort y2);
++void /*APIENTRY*/glRectsv (GLshort *v1, GLshort *v2);
++GLint /*APIENTRY*/glRenderMode (GLenum mode);
++void /*APIENTRY*/glRotated (GLdouble angle, GLdouble x, GLdouble y, GLdouble z);
++void /*APIENTRY*/glRotatef (GLfloat angle, GLfloat x, GLfloat y, GLfloat z);
++void /*APIENTRY*/glScaled (GLdouble x, GLdouble y, GLdouble z);
++void /*APIENTRY*/glScalef (GLfloat x, GLfloat y, GLfloat z);
++void /*APIENTRY*/glScissor (GLint x, GLint y, GLsizei width, GLsizei height);
++void /*APIENTRY*/glSelectBuffer (GLsizei size, GLuint *buffer);
++void /*APIENTRY*/glShadeModel (GLenum mode);
++void /*APIENTRY*/glStencilFunc (GLenum func, GLint, GLuint mask);
++void /*APIENTRY*/glStencilMask (GLuint mask);
++void /*APIENTRY*/glStencilOp (GLenum fail, GLenum zfail, GLenum zpass);
++void /*APIENTRY*/glTexCoord1d (GLdouble s);
++void /*APIENTRY*/glTexCoord1dv (GLdouble *v);
++void /*APIENTRY*/glTexCoord1f (GLfloat s);
++void /*APIENTRY*/glTexCoord1fv (GLfloat *v);
++void /*APIENTRY*/glTexCoord1i (GLint s);
++void /*APIENTRY*/glTexCoord1iv (GLint *v);
++void /*APIENTRY*/glTexCoord1s (GLshort s);
++void /*APIENTRY*/glTexCoord1sv (GLshort *v);
++void /*APIENTRY*/glTexCoord2d (GLdouble s, GLdouble t);
++void /*APIENTRY*/glTexCoord2dv (GLdouble *v);
++void /*APIENTRY*/glTexCoord2f (GLfloat s, GLfloat t);
++void /*APIENTRY*/glTexCoord2fv (GLfloat *v);
++void /*APIENTRY*/glTexCoord2i (GLint s, GLint t);
++void /*APIENTRY*/glTexCoord2iv (GLint *v);
++void /*APIENTRY*/glTexCoord2s (GLshort s, GLshort t);
++void /*APIENTRY*/glTexCoord2sv (GLshort *v);
++void /*APIENTRY*/glTexCoord3d (GLdouble s, GLdouble t, GLdouble r);
++void /*APIENTRY*/glTexCoord3dv (GLdouble *v);
++void /*APIENTRY*/glTexCoord3f (GLfloat s, GLfloat t, GLfloat r);
++void /*APIENTRY*/glTexCoord3fv (GLfloat *v);
++void /*APIENTRY*/glTexCoord3i (GLint s, GLint t, GLint r);
++void /*APIENTRY*/glTexCoord3iv (GLint *v);
++void /*APIENTRY*/glTexCoord3s (GLshort s, GLshort t, GLshort r);
++void /*APIENTRY*/glTexCoord3sv (GLshort *v);
++void /*APIENTRY*/glTexCoord4d (GLdouble s, GLdouble t, GLdouble r, GLdouble q);
++void /*APIENTRY*/glTexCoord4dv (GLdouble *v);
++void /*APIENTRY*/glTexCoord4f (GLfloat s, GLfloat t, GLfloat r, GLfloat q);
++void /*APIENTRY*/glTexCoord4fv (GLfloat *v);
++void /*APIENTRY*/glTexCoord4i (GLint s, GLint t, GLint r, GLint q);
++void /*APIENTRY*/glTexCoord4iv (GLint *v);
++void /*APIENTRY*/glTexCoord4s (GLshort s, GLshort t, GLshort r, GLshort q);
++void /*APIENTRY*/glTexCoord4sv (GLshort *v);
++void /*APIENTRY*/glTexCoordPointer (GLint size, GLenum type, GLsizei stride, GLvoid *pointer);
++void /*APIENTRY*/glTexEnvf (GLenum target, GLenum pname, GLfloat param);
++void /*APIENTRY*/glTexEnvfv (GLenum target, GLenum pname, GLfloat *params);
++void /*APIENTRY*/glTexEnvi (GLenum target, GLenum pname, GLint param);
++void /*APIENTRY*/glTexEnviv (GLenum target, GLenum pname, GLint *params);
++void /*APIENTRY*/glTexGend (GLenum coord, GLenum pname, GLdouble param);
++void /*APIENTRY*/glTexGendv (GLenum coord, GLenum pname, GLdouble *params);
++void /*APIENTRY*/glTexGenf (GLenum coord, GLenum pname, GLfloat param);
++void /*APIENTRY*/glTexGenfv (GLenum coord, GLenum pname, GLfloat *params);
++void /*APIENTRY*/glTexGeni (GLenum coord, GLenum pname, GLint param);
++void /*APIENTRY*/glTexGeniv (GLenum coord, GLenum pname, GLint *params);
++void /*APIENTRY*/glTexImage1D (GLenum target, GLint level, GLint internalformat, GLsizei width, GLint border, GLenum format, GLenum type, GLvoid *pixels);
++void /*APIENTRY*/glTexImage2D (GLenum target, GLint level, GLint internalformat, GLsizei width, GLsizei height, GLint border, GLenum format, GLenum type, GLvoid *pixels);
++void /*APIENTRY*/glTexParameterf (GLenum target, GLenum pname, GLfloat param);
++void /*APIENTRY*/glTexParameterfv (GLenum target, GLenum pname, GLfloat *params);
++void /*APIENTRY*/glTexParameteri (GLenum target, GLenum pname, GLint param);
++void /*APIENTRY*/glTexParameteriv (GLenum target, GLenum pname, GLint *params);
++void /*APIENTRY*/glTexSubImage1D (GLenum target, GLint level, GLint xoffset, GLsizei width, GLenum format, GLenum type, GLvoid *pixels);
++void /*APIENTRY*/glTexSubImage2D (GLenum target, GLint level, GLint xoffset, GLint yoffset, GLsizei width, GLsizei height, GLenum format, GLenum type, GLvoid *pixels);
++void /*APIENTRY*/glTranslated (GLdouble x, GLdouble y, GLdouble z);
++void /*APIENTRY*/glTranslatef (GLfloat x, GLfloat y, GLfloat z);
++void /*APIENTRY*/glVertex2d (GLdouble x, GLdouble y);
++void /*APIENTRY*/glVertex2dv (GLdouble *v);
++void /*APIENTRY*/glVertex2f (GLfloat x, GLfloat y);
++void /*APIENTRY*/glVertex2fv (GLfloat *v);
++void /*APIENTRY*/glVertex2i (GLint x, GLint y);
++void /*APIENTRY*/glVertex2iv (GLint *v);
++void /*APIENTRY*/glVertex2s (GLshort x, GLshort y);
++void /*APIENTRY*/glVertex2sv (GLshort *v);
++void /*APIENTRY*/glVertex3d (GLdouble x, GLdouble y, GLdouble z);
++void /*APIENTRY*/glVertex3dv (GLdouble *v);
++void /*APIENTRY*/glVertex3f (GLfloat x, GLfloat y, GLfloat z);
++void /*APIENTRY*/glVertex3fv (GLfloat *v);
++void /*APIENTRY*/glVertex3i (GLint x, GLint y, GLint z);
++void /*APIENTRY*/glVertex3iv (GLint *v);
++void /*APIENTRY*/glVertex3s (GLshort x, GLshort y, GLshort z);
++void /*APIENTRY*/glVertex3sv (GLshort *v);
++void /*APIENTRY*/glVertex4d (GLdouble x, GLdouble y, GLdouble z, GLdouble w);
++void /*APIENTRY*/glVertex4dv (GLdouble *v);
++void /*APIENTRY*/glVertex4f (GLfloat x, GLfloat y, GLfloat z, GLfloat w);
++void /*APIENTRY*/glVertex4fv (GLfloat *v);
++void /*APIENTRY*/glVertex4i (GLint x, GLint y, GLint z, GLint w);
++void /*APIENTRY*/glVertex4iv (GLint *v);
++void /*APIENTRY*/glVertex4s (GLshort x, GLshort y, GLshort z, GLshort w);
++void /*APIENTRY*/glVertex4sv (GLshort *v);
++void /*APIENTRY*/glVertexPointer (GLint size, GLenum type, GLsizei stride, GLvoid *pointer);
++void /*APIENTRY*/glViewport (GLint x, GLint y, GLsizei width, GLsizei height);
+ 
+-extern(Windows):
+ 
+ /* EXT_vertex_array */
+ typedef void (* PFNGLARRAYELEMENTEXTPROC) (GLint i);
+@@ -1483,4 +1481,4 @@
+ typedef void (* PFNGLGETCOLORTABLEPARAMETERFVEXTPROC)
+     (GLenum target, GLenum pname, GLfloat *params);
+ 
+-import openglu;
+\ Kein Zeilenumbruch am Dateiende.
++//import openglu;
+diff -Naur a7xpg/import/openglu.d a7xpg-gentoo/import/openglu.d
+--- a7xpg/import/openglu.d	2003-09-19 23:55:50.000000000 +0200
++++ a7xpg-gentoo/import/openglu.d	2007-09-19 22:11:52.000000000 +0200
+@@ -1,6 +1,6 @@
+-import opengl;
+ 
+-extern(Windows):
++	extern(C):
++
+ 
+ GLubyte* gluErrorString (
+     GLenum   errCode);
+@@ -357,7 +357,6 @@
+ 
+ /****           Tesselation constants           ****/
+ 
+-//const extended GLU_TESS_MAX_COORD            = 1.0e150;
+ const real GLU_TESS_MAX_COORD            = 1.0e150;
+ 
+ /* TessProperty */
+diff -Naur a7xpg/import/SDL.d a7xpg-gentoo/import/SDL.d
+--- a7xpg/import/SDL.d	2003-09-19 23:55:50.000000000 +0200
++++ a7xpg-gentoo/import/SDL.d	2007-09-19 22:11:32.000000000 +0200
+@@ -31,7 +31,7 @@
+ import SDL_events;
+ import SDL_video;
+ import SDL_byteorder;
+-import SDL_version;
++import SDL_Version;
+ 
+ extern(C):
+ 
+@@ -73,6 +73,7 @@
+  */
+ void SDL_Quit();
+ 
++/+
+ void SDL_SetModuleHandle(void *hInst);
+ extern(Windows) void* GetModuleHandle(char*);
+ 
+@@ -87,4 +88,5 @@
+ static ~this()
+ {
+ 	SDL_Quit();
+-}
+\ Kein Zeilenumbruch am Dateiende.
++}
+++/
+diff -Naur a7xpg/import/SDL_endian.d a7xpg-gentoo/import/SDL_endian.d
+--- a7xpg/import/SDL_endian.d	2003-09-19 23:55:50.000000000 +0200
++++ a7xpg-gentoo/import/SDL_endian.d	2007-09-19 22:11:32.000000000 +0200
+@@ -57,9 +57,9 @@
+ Uint64 SDL_Swap64(Uint64 val) {
+ 	Uint32 hi, lo;
+ 	/* Separate into high and low 32-bit values and swap them */
+-	lo = (Uint32)(val&0xFFFFFFFF);
++	lo = cast(Uint32)(val&0xFFFFFFFF);
+ 	val >>= 32;
+-	hi = (Uint32)(val&0xFFFFFFFF);
++	hi = cast(Uint32)(val&0xFFFFFFFF);
+ 	val = SDL_Swap32(lo);
+ 	val <<= 32;
+ 	val |= SDL_Swap32(hi);
+diff -Naur a7xpg/import/SDL_events.d a7xpg-gentoo/import/SDL_events.d
+--- a7xpg/import/SDL_events.d	2003-09-19 23:55:50.000000000 +0200
++++ a7xpg-gentoo/import/SDL_events.d	2007-09-19 22:11:32.000000000 +0200
+@@ -304,7 +304,7 @@
+   If 'state' is set to SDL_QUERY, SDL_EventState() will return the 
+   current processing state of the specified event.
+ */
+-const uint SDL_QUERY	= -1;
++const uint SDL_QUERY	= cast(uint) -1;
+ const uint SDL_IGNORE	= 0;
+ const uint SDL_DISABLE	= 0;
+ const uint SDL_ENABLE	= 1;
+diff -Naur a7xpg/import/SDL_getenv.d a7xpg-gentoo/import/SDL_getenv.d
+--- a7xpg/import/SDL_getenv.d	2003-09-19 23:55:50.000000000 +0200
++++ a7xpg-gentoo/import/SDL_getenv.d	2007-09-19 22:11:32.000000000 +0200
+@@ -2,6 +2,7 @@
+ 
+ extern(C):
+ 
++/+
+ /* Put a variable of the form "name=value" into the environment */
+ int SDL_putenv(char *variable);
+ int putenv(char* X) { return SDL_putenv(X); }
+@@ -9,3 +10,4 @@
+ /* Retrieve a variable named "name" from the environment */
+ char *SDL_getenv(char *name);
+ char *getenv(char* X) { return SDL_getenv(X); }
+++/
+diff -Naur a7xpg/import/SDL_Keysym.d a7xpg-gentoo/import/SDL_Keysym.d
+--- a7xpg/import/SDL_Keysym.d	1970-01-01 01:00:00.000000000 +0100
++++ a7xpg-gentoo/import/SDL_Keysym.d	2007-09-19 22:11:32.000000000 +0200
+@@ -0,0 +1,308 @@
++/*
++    SDL - Simple DirectMedia Layer
++    Copyright (C) 1997, 1998, 1999, 2000, 2001  Sam Lantinga
++
++    This library is free software; you can redistribute it and/or
++    modify it under the terms of the GNU Library General Public
++    License as published by the Free Software Foundation; either
++    version 2 of the License, or (at your option) any later version.
++
++    This library is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++    Library General Public License for more details.
++
++    You should have received a copy of the GNU Library General Public
++    License along with this library; if not, write to the Free
++    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
++
++    Sam Lantinga
++    slouken@devolution.com
++*/
++
++/* What we really want is a mapping of every raw key on the keyboard.
++   To support international keyboards, we use the range 0xA1 - 0xFF
++   as international virtual keycodes.  We'll follow in the footsteps of X11...
++   The names of the keys
++ */
++ 
++alias int SDLKey;
++enum {
++	/* The keyboard syms have been cleverly chosen to map to ASCII */
++	SDLK_UNKNOWN		= 0,
++	SDLK_FIRST		= 0,
++	SDLK_BACKSPACE		= 8,
++	SDLK_TAB		= 9,
++	SDLK_CLEAR		= 12,
++	SDLK_RETURN		= 13,
++	SDLK_PAUSE		= 19,
++	SDLK_ESCAPE		= 27,
++	SDLK_SPACE		= 32,
++	SDLK_EXCLAIM		= 33,
++	SDLK_QUOTEDBL		= 34,
++	SDLK_HASH		= 35,
++	SDLK_DOLLAR		= 36,
++	SDLK_AMPERSAND		= 38,
++	SDLK_QUOTE		= 39,
++	SDLK_LEFTPAREN		= 40,
++	SDLK_RIGHTPAREN		= 41,
++	SDLK_ASTERISK		= 42,
++	SDLK_PLUS		= 43,
++	SDLK_COMMA		= 44,
++	SDLK_MINUS		= 45,
++	SDLK_PERIOD		= 46,
++	SDLK_SLASH		= 47,
++	SDLK_0			= 48,
++	SDLK_1			= 49,
++	SDLK_2			= 50,
++	SDLK_3			= 51,
++	SDLK_4			= 52,
++	SDLK_5			= 53,
++	SDLK_6			= 54,
++	SDLK_7			= 55,
++	SDLK_8			= 56,
++	SDLK_9			= 57,
++	SDLK_COLON		= 58,
++	SDLK_SEMICOLON		= 59,
++	SDLK_LESS		= 60,
++	SDLK_EQUALS		= 61,
++	SDLK_GREATER		= 62,
++	SDLK_QUESTION		= 63,
++	SDLK_AT			= 64,
++	/* 
++	   Skip uppercase letters
++	 */
++	SDLK_LEFTBRACKET	= 91,
++	SDLK_BACKSLASH		= 92,
++	SDLK_RIGHTBRACKET	= 93,
++	SDLK_CARET		= 94,
++	SDLK_UNDERSCORE		= 95,
++	SDLK_BACKQUOTE		= 96,
++	SDLK_a			= 97,
++	SDLK_b			= 98,
++	SDLK_c			= 99,
++	SDLK_d			= 100,
++	SDLK_e			= 101,
++	SDLK_f			= 102,
++	SDLK_g			= 103,
++	SDLK_h			= 104,
++	SDLK_i			= 105,
++	SDLK_j			= 106,
++	SDLK_k			= 107,
++	SDLK_l			= 108,
++	SDLK_m			= 109,
++	SDLK_n			= 110,
++	SDLK_o			= 111,
++	SDLK_p			= 112,
++	SDLK_q			= 113,
++	SDLK_r			= 114,
++	SDLK_s			= 115,
++	SDLK_t			= 116,
++	SDLK_u			= 117,
++	SDLK_v			= 118,
++	SDLK_w			= 119,
++	SDLK_x			= 120,
++	SDLK_y			= 121,
++	SDLK_z			= 122,
++	SDLK_DELETE		= 127,
++	/* End of ASCII mapped keysyms */
++
++	/* International keyboard syms */
++	SDLK_WORLD_0		= 160,		/* 0xA0 */
++	SDLK_WORLD_1		= 161,
++	SDLK_WORLD_2		= 162,
++	SDLK_WORLD_3		= 163,
++	SDLK_WORLD_4		= 164,
++	SDLK_WORLD_5		= 165,
++	SDLK_WORLD_6		= 166,
++	SDLK_WORLD_7		= 167,
++	SDLK_WORLD_8		= 168,
++	SDLK_WORLD_9		= 169,
++	SDLK_WORLD_10		= 170,
++	SDLK_WORLD_11		= 171,
++	SDLK_WORLD_12		= 172,
++	SDLK_WORLD_13		= 173,
++	SDLK_WORLD_14		= 174,
++	SDLK_WORLD_15		= 175,
++	SDLK_WORLD_16		= 176,
++	SDLK_WORLD_17		= 177,
++	SDLK_WORLD_18		= 178,
++	SDLK_WORLD_19		= 179,
++	SDLK_WORLD_20		= 180,
++	SDLK_WORLD_21		= 181,
++	SDLK_WORLD_22		= 182,
++	SDLK_WORLD_23		= 183,
++	SDLK_WORLD_24		= 184,
++	SDLK_WORLD_25		= 185,
++	SDLK_WORLD_26		= 186,
++	SDLK_WORLD_27		= 187,
++	SDLK_WORLD_28		= 188,
++	SDLK_WORLD_29		= 189,
++	SDLK_WORLD_30		= 190,
++	SDLK_WORLD_31		= 191,
++	SDLK_WORLD_32		= 192,
++	SDLK_WORLD_33		= 193,
++	SDLK_WORLD_34		= 194,
++	SDLK_WORLD_35		= 195,
++	SDLK_WORLD_36		= 196,
++	SDLK_WORLD_37		= 197,
++	SDLK_WORLD_38		= 198,
++	SDLK_WORLD_39		= 199,
++	SDLK_WORLD_40		= 200,
++	SDLK_WORLD_41		= 201,
++	SDLK_WORLD_42		= 202,
++	SDLK_WORLD_43		= 203,
++	SDLK_WORLD_44		= 204,
++	SDLK_WORLD_45		= 205,
++	SDLK_WORLD_46		= 206,
++	SDLK_WORLD_47		= 207,
++	SDLK_WORLD_48		= 208,
++	SDLK_WORLD_49		= 209,
++	SDLK_WORLD_50		= 210,
++	SDLK_WORLD_51		= 211,
++	SDLK_WORLD_52		= 212,
++	SDLK_WORLD_53		= 213,
++	SDLK_WORLD_54		= 214,
++	SDLK_WORLD_55		= 215,
++	SDLK_WORLD_56		= 216,
++	SDLK_WORLD_57		= 217,
++	SDLK_WORLD_58		= 218,
++	SDLK_WORLD_59		= 219,
++	SDLK_WORLD_60		= 220,
++	SDLK_WORLD_61		= 221,
++	SDLK_WORLD_62		= 222,
++	SDLK_WORLD_63		= 223,
++	SDLK_WORLD_64		= 224,
++	SDLK_WORLD_65		= 225,
++	SDLK_WORLD_66		= 226,
++	SDLK_WORLD_67		= 227,
++	SDLK_WORLD_68		= 228,
++	SDLK_WORLD_69		= 229,
++	SDLK_WORLD_70		= 230,
++	SDLK_WORLD_71		= 231,
++	SDLK_WORLD_72		= 232,
++	SDLK_WORLD_73		= 233,
++	SDLK_WORLD_74		= 234,
++	SDLK_WORLD_75		= 235,
++	SDLK_WORLD_76		= 236,
++	SDLK_WORLD_77		= 237,
++	SDLK_WORLD_78		= 238,
++	SDLK_WORLD_79		= 239,
++	SDLK_WORLD_80		= 240,
++	SDLK_WORLD_81		= 241,
++	SDLK_WORLD_82		= 242,
++	SDLK_WORLD_83		= 243,
++	SDLK_WORLD_84		= 244,
++	SDLK_WORLD_85		= 245,
++	SDLK_WORLD_86		= 246,
++	SDLK_WORLD_87		= 247,
++	SDLK_WORLD_88		= 248,
++	SDLK_WORLD_89		= 249,
++	SDLK_WORLD_90		= 250,
++	SDLK_WORLD_91		= 251,
++	SDLK_WORLD_92		= 252,
++	SDLK_WORLD_93		= 253,
++	SDLK_WORLD_94		= 254,
++	SDLK_WORLD_95		= 255,		/* 0xFF */
++
++	/* Numeric keypad */
++	SDLK_KP0		= 256,
++	SDLK_KP1		= 257,
++	SDLK_KP2		= 258,
++	SDLK_KP3		= 259,
++	SDLK_KP4		= 260,
++	SDLK_KP5		= 261,
++	SDLK_KP6		= 262,
++	SDLK_KP7		= 263,
++	SDLK_KP8		= 264,
++	SDLK_KP9		= 265,
++	SDLK_KP_PERIOD		= 266,
++	SDLK_KP_DIVIDE		= 267,
++	SDLK_KP_MULTIPLY	= 268,
++	SDLK_KP_MINUS		= 269,
++	SDLK_KP_PLUS		= 270,
++	SDLK_KP_ENTER		= 271,
++	SDLK_KP_EQUALS		= 272,
++
++	/* Arrows + Home/End pad */
++	SDLK_UP			= 273,
++	SDLK_DOWN		= 274,
++	SDLK_RIGHT		= 275,
++	SDLK_LEFT		= 276,
++	SDLK_INSERT		= 277,
++	SDLK_HOME		= 278,
++	SDLK_END		= 279,
++	SDLK_PAGEUP		= 280,
++	SDLK_PAGEDOWN		= 281,
++
++	/* Function keys */
++	SDLK_F1			= 282,
++	SDLK_F2			= 283,
++	SDLK_F3			= 284,
++	SDLK_F4			= 285,
++	SDLK_F5			= 286,
++	SDLK_F6			= 287,
++	SDLK_F7			= 288,
++	SDLK_F8			= 289,
++	SDLK_F9			= 290,
++	SDLK_F10		= 291,
++	SDLK_F11		= 292,
++	SDLK_F12		= 293,
++	SDLK_F13		= 294,
++	SDLK_F14		= 295,
++	SDLK_F15		= 296,
++
++	/* Key state modifier keys */
++	SDLK_NUMLOCK		= 300,
++	SDLK_CAPSLOCK		= 301,
++	SDLK_SCROLLOCK		= 302,
++	SDLK_RSHIFT		= 303,
++	SDLK_LSHIFT		= 304,
++	SDLK_RCTRL		= 305,
++	SDLK_LCTRL		= 306,
++	SDLK_RALT		= 307,
++	SDLK_LALT		= 308,
++	SDLK_RMETA		= 309,
++	SDLK_LMETA		= 310,
++	SDLK_LSUPER		= 311,		/* Left "Windows" key */
++	SDLK_RSUPER		= 312,		/* Right "Windows" key */
++	SDLK_MODE		= 313,		/* "Alt Gr" key */
++	SDLK_COMPOSE		= 314,		/* Multi-key compose key */
++
++	/* Miscellaneous function keys */
++	SDLK_HELP		= 315,
++	SDLK_PRINT		= 316,
++	SDLK_SYSREQ		= 317,
++	SDLK_BREAK		= 318,
++	SDLK_MENU		= 319,
++	SDLK_POWER		= 320,		/* Power Macintosh power key */
++	SDLK_EURO		= 321,		/* Some european keyboards */
++	SDLK_UNDO		= 322,		/* Atari keyboard has Undo */
++
++	/* Add any other keys here */
++
++	SDLK_LAST
++}
++
++/* Enumeration of valid key mods (possibly OR'd together) */
++alias int SDLMod;
++enum {
++	KMOD_NONE  = 0x0000,
++	KMOD_LSHIFT= 0x0001,
++	KMOD_RSHIFT= 0x0002,
++	KMOD_LCTRL = 0x0040,
++	KMOD_RCTRL = 0x0080,
++	KMOD_LALT  = 0x0100,
++	KMOD_RALT  = 0x0200,
++	KMOD_LMETA = 0x0400,
++	KMOD_RMETA = 0x0800,
++	KMOD_NUM   = 0x1000,
++	KMOD_CAPS  = 0x2000,
++	KMOD_MODE  = 0x4000,
++	KMOD_RESERVED = 0x8000
++}
++
++const uint KMOD_CTRL	= (KMOD_LCTRL|KMOD_RCTRL);
++const uint KMOD_SHIFT	= (KMOD_LSHIFT|KMOD_RSHIFT);
++const uint KMOD_ALT		= (KMOD_LALT|KMOD_RALT);
++const uint KMOD_META	= (KMOD_LMETA|KMOD_RMETA);
+diff -Naur a7xpg/import/SDL_mixer.d a7xpg-gentoo/import/SDL_mixer.d
+--- a7xpg/import/SDL_mixer.d	2003-09-19 23:55:50.000000000 +0200
++++ a7xpg-gentoo/import/SDL_mixer.d	2007-09-19 22:11:32.000000000 +0200
+@@ -22,9 +22,32 @@
+ 
+ // convert to D by shinichiro.h
+ 
+-/* $Id: SDL_mixer.d,v 1.1.1.1 2003/09/19 14:55:49 kenta Exp $ */
++/* $Id: SDL_mixer.d,v 1.1.1.1 2005/06/18 00:46:00 kenta Exp $ */
+ 
+ import SDL;
++import SDL_active;   
++import SDL_joystick;  
++import SDL_mutex;   
++import SDL_timer;
++import SDL_audio;      
++import SDL_endian;  
++import SDL_keyboard;  
++import SDL_quit;
++import SDL_types;
++import SDL_byteorder;  
++import SDL_error;
++import SDL_Keysym;    
++import SDL_rwops;   
++import SDL_version;
++import SDL_cdrom;   
++import SDL_events;  
++import SDL_syswm;  
++import SDL_Version;
++import SDL_copying;  
++import SDL_getenv;
++import SDL_mouse;   
++import SDL_thread;  
++import SDL_video;
+ 
+ extern (C) {
+ 
+diff -Naur a7xpg/import/SDL_mouse.d a7xpg-gentoo/import/SDL_mouse.d
+--- a7xpg/import/SDL_mouse.d	2003-09-19 23:55:50.000000000 +0200
++++ a7xpg-gentoo/import/SDL_mouse.d	2007-09-19 22:11:32.000000000 +0200
+@@ -109,6 +109,8 @@
+ const uint SDL_BUTTON_LEFT		= 1;
+ const uint SDL_BUTTON_MIDDLE	= 2;
+ const uint SDL_BUTTON_RIGHT		= 3;
++const uint SDL_BUTTON_WHEELUP	= 4;
++const uint SDL_BUTTON_WHEELDOWN	= 5;
+ const uint SDL_BUTTON_LMASK		= SDL_PRESSED << (SDL_BUTTON_LEFT - 1);
+ const uint SDL_BUTTON_MMASK		= SDL_PRESSED << (SDL_BUTTON_MIDDLE - 1);
+ const uint SDL_BUTTON_RMASK		= SDL_PRESSED << (SDL_BUTTON_RIGHT - 1);
+diff -Naur a7xpg/import/SDL_quit.d a7xpg-gentoo/import/SDL_quit.d
+--- a7xpg/import/SDL_quit.d	2003-09-19 23:55:50.000000000 +0200
++++ a7xpg-gentoo/import/SDL_quit.d	2007-09-19 22:11:32.000000000 +0200
+@@ -43,5 +43,5 @@
+ bit SDL_QuitRequested()
+ {
+ 	SDL_PumpEvents();
+-	return SDL_PeepEvents(null, 0, SDL_PEEKEVENT, SDL_QUITMASK);
++	return cast(bit)SDL_PeepEvents(null, 0, SDL_PEEKEVENT, SDL_QUITMASK);
+ }
+diff -Naur a7xpg/import/SDL_rwops.d a7xpg-gentoo/import/SDL_rwops.d
+--- a7xpg/import/SDL_rwops.d	2003-09-19 23:55:50.000000000 +0200
++++ a7xpg-gentoo/import/SDL_rwops.d	2007-09-19 22:11:32.000000000 +0200
+@@ -28,6 +28,11 @@
+ 
+ extern(C):
+ 
++typedef int (*_seek_func_t)(SDL_RWops *context, int offset, int whence);
++typedef int (*_read_func_t)(SDL_RWops *context, void *ptr, int size, int maxnum);
++typedef int (*_write_func_t)(SDL_RWops *context, void *ptr, int size, int num);
++typedef int (*_close_func_t)(SDL_RWops *context);
++
+ /* This is the read/write operation structure -- very basic */
+ 
+ struct SDL_RWops {
+@@ -35,22 +40,26 @@
+ 		SEEK_SET, SEEK_CUR, SEEK_END
+ 	   Returns the final offset in the data source.
+ 	 */
+-	int (*seek)(SDL_RWops *context, int offset, int whence);
++	_seek_func_t seek;
++//	int (*seek)(SDL_RWops *context, int offset, int whence);
+ 
+ 	/* Read up to 'num' objects each of size 'objsize' from the data
+ 	   source to the area pointed at by 'ptr'.
+ 	   Returns the number of objects read, or -1 if the read failed.
+ 	 */
+-	int (*read)(SDL_RWops *context, void *ptr, int size, int maxnum);
++	_read_func_t read;
++//	int (*read)(SDL_RWops *context, void *ptr, int size, int maxnum);
+ 
+ 	/* Write exactly 'num' objects each of size 'objsize' from the area
+ 	   pointed at by 'ptr' to data source.
+ 	   Returns 'num', or -1 if the write failed.
+ 	 */
+-	int (*write)(SDL_RWops *context, void *ptr, int size, int num);
++	_write_func_t write;
++//	int (*write)(SDL_RWops *context, void *ptr, int size, int num);
+ 
+ 	/* Close and free an allocated SDL_FSops structure */
+-	int (*close)(SDL_RWops *context);
++	_close_func_t close;
++//	int (*close)(SDL_RWops *context);
+ 
+ 	Uint32 type;
+ 	union {
+@@ -84,35 +93,40 @@
+ /* Macros to easily read and write from an SDL_RWops structure */
+ int SDL_RWseek(SDL_RWops *ctx, int offset, int whence)
+ {
+-	int (*seek)(SDL_RWops *context, int offset, int whence);
++	_seek_func_t seek;
++//	int (*seek)(SDL_RWops *context, int offset, int whence);
+ 	seek = ctx.seek;
+ 	return (*seek)(ctx, offset, whence);
+ }
+ 
+ int SDL_RWtell(SDL_RWops *ctx)
+ {
+-	int (*seek)(SDL_RWops *context, int offset, int whence);
++	_seek_func_t seek;
++//	int (*seek)(SDL_RWops *context, int offset, int whence);
+ 	seek = ctx.seek;
+ 	return (*seek)(ctx, 0, 1);
+ }
+ 
+ int SDL_RWread(SDL_RWops *ctx, void* ptr, int size, int n)
+ {
+-	int (*read)(SDL_RWops *context, void *ptr, int size, int maxnum);
++	_read_func_t read;
++//	int (*read)(SDL_RWops *context, void *ptr, int size, int maxnum);
+ 	read = ctx.read;
+ 	return (*read)(ctx, ptr, size, n);
+ }
+ 
+ int SDL_RWwrite(SDL_RWops *ctx, void* ptr, int size, int n)
+ {
+-	int (*write)(SDL_RWops *context, void *ptr, int size, int num);
++	_write_func_t write;
++//	int (*write)(SDL_RWops *context, void *ptr, int size, int num);
+ 	write = ctx.write;
+ 	return (*write)(ctx, ptr, size, n);
+ }
+ 
+ int SDL_RWclose(SDL_RWops *ctx)
+ {
+-	int (*close)(SDL_RWops *context);
++	_close_func_t close;
++//	int (*close)(SDL_RWops *context);
+ 	close = ctx.close;
+ 	return (*close)(ctx);
+ }
+diff -Naur a7xpg/import/SDL_syswm.d a7xpg-gentoo/import/SDL_syswm.d
+--- a7xpg/import/SDL_syswm.d	2003-09-19 23:55:50.000000000 +0200
++++ a7xpg-gentoo/import/SDL_syswm.d	2007-09-19 22:11:32.000000000 +0200
+@@ -22,7 +22,7 @@
+ 
+ /* Include file for SDL custom system window manager hooks */
+ 
+-import SDL_version;
++import SDL_Version;
+ 
+ extern(C):
+ 
+diff -Naur a7xpg/import/SDL_Version.d a7xpg-gentoo/import/SDL_Version.d
+--- a7xpg/import/SDL_Version.d	1970-01-01 01:00:00.000000000 +0100
++++ a7xpg-gentoo/import/SDL_Version.d	2007-09-19 22:11:32.000000000 +0200
+@@ -0,0 +1,75 @@
++/*
++    SDL - Simple DirectMedia Layer
++    Copyright (C) 1997, 1998, 1999, 2000, 2001  Sam Lantinga
++
++    This library is free software; you can redistribute it and/or
++    modify it under the terms of the GNU Library General Public
++    License as published by the Free Software Foundation; either
++    version 2 of the License, or (at your option) any later version.
++
++    This library is distributed in the hope that it will be useful,
++    but WITHOUT ANY WARRANTY; without even the implied warranty of
++    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
++    Library General Public License for more details.
++
++    You should have received a copy of the GNU Library General Public
++    License along with this library; if not, write to the Free
++    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
++
++    Sam Lantinga
++    slouken@devolution.com
++*/
++
++/* This header defines the current SDL version */
++
++import SDL_types;
++
++extern(C):
++
++/* Printable format: "%d.%d.%d", MAJOR, MINOR, PATCHLEVEL
++*/
++const uint SDL_MAJOR_VERSION	= 1;
++const uint SDL_MINOR_VERSION	= 2;
++const uint SDL_PATCHLEVEL		= 6;
++
++struct SDL_version {
++	Uint8 major;
++	Uint8 minor;
++	Uint8 patch;
++}
++
++/* This macro can be used to fill a version structure with the compile-time
++ * version of the SDL library.
++ */
++void SDL_VERSION(SDL_version* X)
++{
++	X.major = SDL_MAJOR_VERSION;
++	X.minor = SDL_MINOR_VERSION;
++	X.patch = SDL_PATCHLEVEL;
++}
++
++/* This macro turns the version numbers into a numeric value:
++   (1,2,3) -> (1203)
++   This assumes that there will never be more than 100 patchlevels
++*/
++uint SDL_VERSIONNUM(Uint8 X, Uint8 Y, Uint8 Z)
++{
++	return X * 1000 + Y * 100 + Z;
++}
++
++/* This is the version number macro for the current SDL version */
++const uint SDL_COMPILEDVERSION = SDL_MAJOR_VERSION * 1000 +
++									SDL_MINOR_VERSION * 100 +
++									SDL_PATCHLEVEL;
++
++/* This macro will evaluate to true if compiled with SDL at least X.Y.Z */
++bit SDL_VERSION_ATLEAST(Uint8 X, Uint8 Y, Uint8 Z)
++{
++	return (SDL_COMPILEDVERSION >= SDL_VERSIONNUM(X, Y, Z));
++}
++
++/* This function gets the version of the dynamically linked SDL library.
++   it should NOT be used to fill a version structure, instead you should
++   use the SDL_Version() macro.
++ */
++SDL_version * SDL_Linked_Version();
+diff -Naur a7xpg/Makefile a7xpg-gentoo/Makefile
+--- a7xpg/Makefile	1970-01-01 01:00:00.000000000 +0100
++++ a7xpg-gentoo/Makefile	2007-09-19 22:11:32.000000000 +0200
+@@ -0,0 +1,27 @@
++DSRC=$(shell find src -name "*.d")
++SOURCES=$(DSRC) import/SDL_video.d import/SDL_mixer.d
++OBJS=$(SOURCES:.d=.o)
++CFLAGS=
++DFLAGS=-O -release -Iimport -Isrc -I/usr/X11R6/include/
++EXE=a7xpg
++COBJS=src/dirent_d.o
++
++all: $(EXE)
++
++$(EXE): import/SDL_Keysym.d $(OBJS) $(COBJS)
++	gcc $(CFLAGS) -o $@ $(OBJS) $(COBJS) -L/usr/local/lib -L/usr/lib -lgphobos -lpthread -lGLU -lGL -lglut -lm -lstdc++ -lSDL -lSDL_mixer
++
++$(OBJS): %.o: %.d
++	gdmd -d -c -of$@ $(DFLAGS) $<
++
++src/dirent_d.o: src/dirent_d.c
++	gcc -c $< -o $@
++
++import/SDL_Keysym.d:
++	mv import/SDL_keysym.d import/SDL_Keysym.d
++
++clean: 	rm src/*.o
++	rm src/abagames/a7xpg/*.o
++	rm src/abagames/util/*.o
++	rm src/abagames/util/sdl/*.o
++	rm -r import/*.o
+diff -Naur a7xpg/src/abagames/a7xpg/A7xBoot.d a7xpg-gentoo/src/abagames/a7xpg/A7xBoot.d
+--- a7xpg/src/abagames/a7xpg/A7xBoot.d	2003-09-21 13:01:26.000000000 +0200
++++ a7xpg-gentoo/src/abagames/a7xpg/A7xBoot.d	2007-09-19 22:11:32.000000000 +0200
+@@ -5,13 +5,15 @@
+  */
+ module abagames.a7xpg.A7xBoot;
+ 
+-import string;
++//import std.string;
++import std.c.stdlib;
+ import abagames.a7xpg.A7xScreen;
+ import abagames.a7xpg.A7xGameManager;
+ import abagames.a7xpg.A7xPrefManager;
+ import abagames.util.Logger;
+-import abagames.util.sdl.Input;
+-import abagames.util.sdl.MainLoop;
++import abagames.util.sdl.Input;
++import abagames.util.sdl.Sound;
++import abagames.util.sdl.MainLoop;
+ 
+ /**
+  * Boot A7Xpg.
+@@ -28,9 +30,9 @@
+     ("Usage: a7xpg [-brightness [0-100]] [-luminous [0-100]] [-nosound] [-window] [-lowres]");
+ }
+ 
+-private void parseArgs(char[][] args) {
+-  //for (int i = 1; i < argv.length; i++) {
+-  for (int i = 0; i < args.length; i++) {
++public void parseArgs(char[][] args) {
++  for (int i = 1; i < args.length; i++) {
++  //for (int i = 0; i < args.length; i++) {
+     switch (args[i]) {
+     case "-brightness":
+       if (i >= args.length - 1) {
+@@ -38,7 +40,7 @@
+ 	exit(EXIT_FAILURE);
+       }
+       i++;
+-      float b = (float) atoi(args[i]) / 100;
++      float b = cast(float) atoi(args[i]) / 100;
+       if (b < 0 || b > 1) {
+ 	usage();
+ 	exit(EXIT_FAILURE);
+@@ -51,7 +53,7 @@
+ 	exit(EXIT_FAILURE);
+       }
+       i++;
+-      float l = (float) atoi(args[i]) / 100;
++      float l = cast(float) atoi(args[i]) / 100;
+       if (l < 0 || l > 1) {
+ 	usage();
+ 	exit(EXIT_FAILURE);
+@@ -77,9 +79,10 @@
+   }
+ }
+ 
+-//public int main(char[][] argc) {
+-private int boot(char[] argl) {
+-  char[][] args = split(argl);
++public int main(char[][] argl) {
++//private int boot(char[] argl) {
++
++  char[][] args = argl;
+   screen = new A7xScreen;
+   input = new Input;
+   try {
+@@ -90,24 +93,24 @@
+   mainLoop = new MainLoop(screen, input, gameManager, prefManager);
+   parseArgs(args);
+   mainLoop.loop();
+-  return EXIT_SUCCESS;
++   return EXIT_SUCCESS;
+ }
+ 
+ // Boot as the windows executable.
+-import windows;
++//import windows;
+ 
+-extern (C) void gc_init();
+-extern (C) void gc_term();
+-extern (C) void _minit();
+-extern (C) void _moduleCtor();
++//extern (C) void gc_init();
++//extern (C) void gc_term();
++//extern (C) void _minit();
++//extern (C) void _moduleCtor();
+ 
+-extern (Windows)
++/* extern (Windows)
+ int WinMain(HINSTANCE hInstance,
+ 	    HINSTANCE hPrevInstance,
+ 	    LPSTR lpCmdLine,
+ 	    int nCmdShow) {
+   int result;
+-  
++
+   gc_init();
+   _minit();
+   try {
+@@ -121,3 +124,4 @@
+   gc_term();
+   return result;
+ }
++*/
+diff -Naur a7xpg/src/abagames/a7xpg/A7xGameManager.d a7xpg-gentoo/src/abagames/a7xpg/A7xGameManager.d
+--- a7xpg/src/abagames/a7xpg/A7xGameManager.d	2003-09-20 00:56:12.000000000 +0200
++++ a7xpg-gentoo/src/abagames/a7xpg/A7xGameManager.d	2007-09-19 22:11:32.000000000 +0200
+@@ -5,10 +5,34 @@
+  */
+ module abagames.a7xpg.A7xGameManager;
+ 
+-import math;
++import std.math;
+ import opengl;
+-import SDL;
+-import abagames.util.Rand;
++import SDL;
++import SDL_active;   
++import SDL_joystick;  
++import SDL_mutex;   
++import SDL_timer;
++import SDL_audio;      
++import SDL_endian;  
++import SDL_keyboard;  
++import SDL_quit;
++import SDL_types;
++import SDL_byteorder;  
++import SDL_error;
++import SDL_Keysym;    
++import SDL_rwops;   
++import SDL_version;
++import SDL_cdrom;   
++import SDL_events;  
++import SDL_syswm;  
++import SDL_Version;
++import SDL_copying;  
++import SDL_getenv;
++import SDL_mouse;   
++import SDL_thread;  
++import SDL_video;
++import abagames.util.Rand;
++import abagames.util.Vector;
+ import abagames.util.GameManager;
+ import abagames.util.ActorPool;
+ import abagames.util.sdl.Screen3D;
+@@ -68,7 +92,7 @@
+   Texture titleTexture;
+ 
+   const int STAGE_NUM = 30;
+-  float[][STAGE_NUM] stgData = 
++  float[][STAGE_NUM] stgData =
+     [
+      // width, height, time, #gold, #gold on field, interval enemy appearing, [enemy data]
+      // [enemy data] = #, type, size, speed
+@@ -104,19 +128,19 @@
+ 
+      [24, 18, 50, 20, 2, 75, 1, 0, 1, 0.4, 1, 0, 1.25, 0.35, 1, 0, 1.5, 0.3, 1, 0, 1.75, 0.25,
+      1, 0, 2, 0.2, 1, 0, 2.25, 0.15, 1, 0, 2.5, 0.1],
+-     [29, 25, 60, 25, 3, 100, 1, 4, 15, 0.25, 1, 4, 10, 0.3, 
++     [29, 25, 60, 25, 3, 100, 1, 4, 15, 0.25, 1, 4, 10, 0.3,
+      1, 3, 2, 0.35, 1, 5, 1.5, 0.35, 1, 1, 2, 0.35, 4, 0, 1, 0.3],
+      [20, 24, 40, 15, 1, 120, 7, 4, 2, 0.6],
+      [22, 22, 60, 30, 5, 100, 4, 4, 8, 0.3, 4, 3, 2, 0.4],
+-     [24, 18, 40, 10, 1, 20, 4, 0, 1, 0.2, 3, 1, 1, 0.25, 2, 2, 1, 0.3, 1, 3, 1, 0.3, 
++     [24, 18, 40, 10, 1, 20, 4, 0, 1, 0.2, 3, 1, 1, 0.25, 2, 2, 1, 0.3, 1, 3, 1, 0.3,
+      1, 4, 3, 0.3, 1, 5, 1, 0.2],
+     ];
+   float[3][ENEMY_MAX] enemyTable;
+   int enemyTableIdx, enemyNum;
+ 
+   public override void init() {
+-    prefManager = (A7xPrefManager) abstPrefManager;
+-    screen = (A7xScreen) abstScreen;
++    prefManager = cast(A7xPrefManager) abstPrefManager;
++    screen = cast(A7xScreen) abstScreen;
+     screen.makeLuminousTexture();
+     rand = new Rand;
+     field = new Field;
+@@ -189,7 +213,7 @@
+   }
+ 
+   public void addGold() {
+-    Gold gold = (Gold) golds.getInstance();
++    Gold gold = cast(Gold) golds.getInstance();
+     assert(gold);
+     gold.set();
+   }
+@@ -210,14 +234,14 @@
+ 
+   public void addBonus(int sc, Vector pos, float size) {
+     addScore(sc);
+-    Bonus bonus = (Bonus) bonuses.getInstanceForced();
++    Bonus bonus = cast(Bonus) bonuses.getInstanceForced();
+     assert(bonus);
+     bonus.set(sc, pos, size);
+   }
+ 
+   public void getGold() {
+     playSe(0);
+-    addBonus(((int)(ship.speed / (ship.DEFAULT_SPEED / 2))) * 10, ship.pos, 0.7);
++    addBonus((cast(int)(ship.speed / (ship.DEFAULT_SPEED / 2))) * 10, ship.pos, 0.7);
+     leftGold--;
+     if (leftGold - appGold >= 0)
+       addGold();
+@@ -235,14 +259,14 @@
+ 
+   public void addEnemy(int type, float size, float speed) {
+     playSe(5);
+-    Enemy enemy = (Enemy) enemies.getInstance();
++    Enemy enemy = cast(Enemy) enemies.getInstance();
+     if (!enemy) return;
+     enemy.set(type, size, speed);
+   }
+ 
+   public void addParticle(Vector pos, float deg, float ofs, float speed,
+ 			  float r, float g, float b) {
+-    Particle pt = (Particle) particles.getInstanceForced();
++    Particle pt = cast(Particle) particles.getInstanceForced();
+     assert(pt);
+     pt.set(pos, deg, ofs, speed, r, g, b);
+   }
+@@ -254,16 +278,16 @@
+     field.size.y = stgData[st][1];
+     field.eyeZ = 300;
+     field.alpha = 1;
+-    stageTimer = stgData[st][2] * 60;
+-    leftGold = stgData[st][3];
+-    appGold = stgData[st][4];
+-    enemyAppInterval = stgData[st][5];    
++    stageTimer = cast(int)(stgData[st][2] * 60);
++    leftGold = cast(int)(stgData[st][3]);
++    appGold = cast(int)(stgData[st][4]);
++    enemyAppInterval = cast(int)(stgData[st][5]);
+     int ei = 0;
+     for (int i = 6; i < stgData[st].length;) {
+-      int n = stgData[st][i]; i++;
+-      int tp = stgData[st][i]; i++;
+-      float sz = stgData[st][i]; i++; 
+-      float sp = stgData[st][i]; i++; 
++      int n = cast(int)(stgData[st][i]); i++;
++      int tp = cast(int)(stgData[st][i]); i++;
++      float sz = stgData[st][i]; i++;
++      float sp = stgData[st][i]; i++;
+       for (int j = 0; j < n; j++) {
+ 	enemyTable[ei][0] = tp;
+ 	enemyTable[ei][1] = sz;
+@@ -374,7 +398,7 @@
+       if (enemyTableIdx == 0 && lap >= 1) {
+ 	int ei = enemyNum - 1;
+ 	for (int i = 0; i < lap * 2; i++) {
+-	  addEnemy(enemyTable[ei][0],
++	  addEnemy(cast(int)enemyTable[ei][0],
+ 		   enemyTable[ei][1] * (1 + lap * 0.1),
+ 		   enemyTable[ei][2] * (1 + lap * 0.1));
+ 	  ei--;
+@@ -383,7 +407,7 @@
+ 	}
+       }
+       enemyTimer = enemyAppInterval;
+-      addEnemy(enemyTable[enemyTableIdx][0],
++      addEnemy(cast(int)enemyTable[enemyTableIdx][0],
+ 	       enemyTable[enemyTableIdx][1],
+ 	       enemyTable[enemyTableIdx][2]);
+       enemyTableIdx++;
+@@ -500,7 +524,7 @@
+ 	startTitle();
+     } else if (cnt > 500) {
+ 	startTitle();
+-    } 
++    }
+     field.addSpeed(ship.DEFAULT_SPEED / 2);
+     field.move();
+     enemies.move();
+diff -Naur a7xpg/src/abagames/a7xpg/A7xPrefManager.d a7xpg-gentoo/src/abagames/a7xpg/A7xPrefManager.d
+--- a7xpg/src/abagames/a7xpg/A7xPrefManager.d	2003-09-19 23:55:50.000000000 +0200
++++ a7xpg-gentoo/src/abagames/a7xpg/A7xPrefManager.d	2007-09-19 22:11:32.000000000 +0200
+@@ -5,7 +5,7 @@
+  */
+ module abagames.a7xpg.A7xPrefManager;
+ 
+-import stream;
++import std.stream;
+ import abagames.util.PrefManager;
+ 
+ /**
+@@ -25,6 +25,10 @@
+     auto File fd = new File;
+     try {
+       int ver;
++//      if (exists(PREF_FILE) == 0){
++  //      init();
++    //    save();
++      //}
+       fd.open(PREF_FILE);
+       fd.read(ver);
+       if (ver != VERSION_NUM)
+diff -Naur a7xpg/src/abagames/a7xpg/A7xScreen.d a7xpg-gentoo/src/abagames/a7xpg/A7xScreen.d
+--- a7xpg/src/abagames/a7xpg/A7xScreen.d	2003-09-21 13:01:28.000000000 +0200
++++ a7xpg-gentoo/src/abagames/a7xpg/A7xScreen.d	2007-09-19 22:11:32.000000000 +0200
+@@ -40,13 +40,13 @@
+   GLuint luminousTexture;
+   const int LUMINOUS_TEXTURE_WIDTH_MAX = 128;
+   const int LUMINOUS_TEXTURE_HEIGHT_MAX = 128;
+-  GLuint td[LUMINOUS_TEXTURE_WIDTH_MAX * LUMINOUS_TEXTURE_HEIGHT_MAX * 4 * uint.size];
++  GLuint td[LUMINOUS_TEXTURE_WIDTH_MAX * LUMINOUS_TEXTURE_HEIGHT_MAX * 4 * uint.sizeof];
+   int luminousTextureWidth = 128, luminousTextureHeight = 128;
+ 
+   public void makeLuminousTexture() {
+     uint *data = td;
+     int i;
+-    memset(data, 0, luminousTextureWidth * luminousTextureHeight * 4 * uint.size);
++ //   memset(data, 0, luminousTextureWidth * luminousTextureHeight * 4 * uint.sizeof);
+     glGenTextures(1, &luminousTexture);
+     glBindTexture(GL_TEXTURE_2D, luminousTexture);
+     glTexImage2D(GL_TEXTURE_2D, 0, 4, luminousTextureWidth, luminousTextureHeight, 0,
+diff -Naur a7xpg/src/abagames/a7xpg/Bonus.d a7xpg-gentoo/src/abagames/a7xpg/Bonus.d
+--- a7xpg/src/abagames/a7xpg/Bonus.d	2003-09-19 23:55:50.000000000 +0200
++++ a7xpg-gentoo/src/abagames/a7xpg/Bonus.d	2007-09-19 22:11:32.000000000 +0200
+@@ -24,7 +24,7 @@
+   public override Actor newActor() {
+     return new Bonus;
+   }
+-  
++
+   public override void init(ActorInitializer ini) {
+     pos = new Vector;
+   }
+@@ -36,7 +36,7 @@
+       tn /= 10;
+     pos.x = p.x - s / 2 * tn; pos.y = p.y;
+     size = s;
+-    cnt = 32 + s * 24;
++    cnt = cast(int)(32 + s * 24);
+     my = 0.03 + s * 0.2;
+     isExist = true;
+   }
+diff -Naur a7xpg/src/abagames/a7xpg/Enemy.d a7xpg-gentoo/src/abagames/a7xpg/Enemy.d
+--- a7xpg/src/abagames/a7xpg/Enemy.d	2003-09-21 13:01:28.000000000 +0200
++++ a7xpg-gentoo/src/abagames/a7xpg/Enemy.d	2007-09-19 22:11:32.000000000 +0200
+@@ -5,13 +5,15 @@
+  */
+ module abagames.a7xpg.Enemy;
+ 
+-import math;
++import std.math;
+ import opengl;
+ import abagames.util.Vector;
+ import abagames.util.Rand;
+-import abagames.util.ActorInitializer;
++import abagames.util.ActorInitializer;
++import abagames.util.Actor;
+ import abagames.a7xpg.LuminousActor;
+-import abagames.a7xpg.Ship;
++import abagames.a7xpg.Ship;
++import abagames.a7xpg.Field;
+ import abagames.a7xpg.A7xGameManager;
+ import abagames.a7xpg.A7xScreen;
+ 
+@@ -48,7 +50,7 @@
+   }
+ 
+   public override void init(ActorInitializer ini) {
+-    EnemyInitializer ei = (EnemyInitializer) ini;
++    EnemyInitializer ei = cast(EnemyInitializer) ini;
+     ship = ei.ship;
+     field = ei.field;
+     rand = ei.rand;
+@@ -89,32 +91,32 @@
+     isExist = true;
+     switch (type) {
+     case 0:
+-      deg = math.PI / 2 * rand.nextInt(4);
++      deg = PI / 2 * rand.nextInt(4);
+       break;
+     case 1:
+-      deg = math.PI / 4 * rand.nextInt(8);
++      deg = PI / 4 * rand.nextInt(8);
+       break;
+     case 2:
+       chaseType = 0;
+-      deg = math.PI / 2 * rand.nextInt(4);
++      deg = PI / 2 * rand.nextInt(4);
+       break;
+     case 3:
+       vel.x = vel.y = 0;
+-      deg = rand.nextFloat(math.PI * 2);
++      deg = rand.nextFloat(PI * 2);
+       break;
+     case 4:
+-      deg = rand.nextFloat(math.PI * 2);
++      deg = rand.nextFloat(PI * 2);
+       vel.x = sin(deg) * speed;
+       vel.y = cos(deg) * speed;
+-      armDeg = rand.nextFloat(math.PI * 2);
+-      if (rand.nextInt(2) == 0) 
++      armDeg = rand.nextFloat(PI * 2);
++      if (rand.nextInt(2) == 0)
+ 	armDegMv = rand.nextFloat(0.01) + 0.02;
+       else
+ 	armDegMv = -rand.nextFloat(0.01) - 0.02;
+       break;
+     case 5:
+       posHstIdx = POSITION_HISTORY_LENGTH;
+-      deg = math.PI / 2 * rand.nextInt(4);
++      deg = PI / 2 * rand.nextInt(4);
+       for (int i = 0; i < POSITION_HISTORY_LENGTH; i++) {
+ 	posHst[i].x = pos.x;
+ 	posHst[i].y = pos.y;
+@@ -126,7 +128,7 @@
+     }
+   }
+ 
+-  private float[][] enemyColor = 
++  private float[][] enemyColor =
+     [
+      [0.9, 0.2, 0.2],
+      [0.7, 0.3, 0.6],
+@@ -140,7 +142,7 @@
+     if (ship.invincible) {
+       manager.playSe(6);
+       for (int i = 0; i < 60; i++) {
+-	manager.addParticle(pos, rand.nextFloat(math.PI * 2), size, rand.nextFloat(0.5),
++	manager.addParticle(pos, rand.nextFloat(PI * 2), size, rand.nextFloat(0.5),
+ 			    enemyColor[type][0], enemyColor[type][1], enemyColor[type][2]);
+       }
+       ship.destroyEnemy();
+@@ -148,7 +150,7 @@
+       cnt = -DESTROYED_CNT;
+     } else if (!ship.restart) {
+       for (int i = 0; i < 100; i++) {
+-	manager.addParticle(pos, rand.nextFloat(math.PI * 2), size, rand.nextFloat(1),
++	manager.addParticle(pos, rand.nextFloat(PI * 2), size, rand.nextFloat(1),
+ 			    0.3, 1, 0.2);
+       }
+       ship.miss();
+@@ -160,16 +162,16 @@
+     turnDist -= speed;
+     if (hitWall) {
+       turnDist = (rand.nextInt(60) + 60) * 0.2;
+-      if (deg < math.PI / 4 * 1 || (deg > math.PI / 4 * 3 && deg < math.PI / 4 * 5)) {
++      if (deg < PI / 4 * 1 || (deg > PI / 4 * 3 && deg < PI / 4 * 5)) {
+ 	if (ship.pos.x < pos.x)
+-	  deg = math.PI / 4 * 6;
+-	else 
+-	  deg = math.PI / 4 * 2;
++	  deg = PI / 4 * 6;
++	else
++	  deg = PI / 4 * 2;
+       } else {
+ 	if (ship.pos.y < pos.y)
+-	  deg = math.PI / 4 * 4;
+-	else 
+-	  deg = math.PI / 4 * 0;
++	  deg = PI / 4 * 4;
++	else
++	  deg = PI / 4 * 0;
+       }
+     }
+     if (cnt < APPEAR_CNT)
+@@ -177,21 +179,21 @@
+     if (turnDist <= 0) {
+       turnDist = (rand.nextInt(90) + 60) * 0.2;
+       float od = atan2(ship.pos.x - pos.x, ship.pos.y - pos.y);
+-      if (od < -math.PI / 4 * 3) 
+-	deg = math.PI / 4 * 4;
+-      else if (od < -math.PI / 4 * 1) 
+-	deg = math.PI / 4 * 6;
+-      else if (od < math.PI / 4 * 1) 
+-	deg = math.PI / 4 * 0;
+-      else 
+-	deg = math.PI / 4 * 2;
++      if (od < -PI / 4 * 3)
++	deg = PI / 4 * 4;
++      else if (od < -PI / 4 * 1)
++	deg = PI / 4 * 6;
++      else if (od < PI / 4 * 1)
++	deg = PI / 4 * 0;
++      else
++	deg = PI / 4 * 2;
+     }
+     if (rand.nextInt(9) == 0) {
+-      manager.addParticle(pos, deg + math.PI + math.PI / 7 + rand.nextFloat(0.2) - 0.1, 
++      manager.addParticle(pos, deg + PI + PI / 7 + rand.nextFloat(0.2) - 0.1,
+ 			  size, speed * 2, 0.9, 0.3, 0.3);
+     }
+     if (rand.nextInt(9) == 0) {
+-      manager.addParticle(pos, deg + math.PI - math.PI / 7 + rand.nextFloat(0.2) - 0.1, 
++      manager.addParticle(pos, deg + PI - PI / 7 + rand.nextFloat(0.2) - 0.1,
+ 			  size, speed * 2, 0.9, 0.3, 0.3);
+     }
+     if (ship.checkHit(pos.x, pos.y - size * 0.8, pos.x, pos.y + size * 0.8) ||
+@@ -203,9 +205,9 @@
+   private void moveType1() {
+     turnDist -= speed;
+     if (hitWall) {
+-      deg += math.PI;
+-      if (deg >= math.PI * 2)
+-	deg -= math.PI * 2;
++      deg += PI;
++      if (deg >= PI * 2)
++	deg -= PI * 2;
+     }
+     if (cnt < APPEAR_CNT)
+       return;
+@@ -213,22 +215,22 @@
+       turnDist = (rand.nextInt(40) + 8) * 0.2;
+       float od = atan2(ship.pos.x - pos.x, ship.pos.y - pos.y);
+       if (od < 0)
+-	od += math.PI * 2;
++	od += PI * 2;
+       od -= deg;
+-      if (od > -math.PI / 8 && od < math.PI / 8) {
+-      } else if (od < -math.PI / 8 * 15 || od > math.PI / 8 * 15) {
+-      } else if ((od > -math.PI && od < 0) || od > math.PI) {
+-	deg -= math.PI / 4;
++      if (od > -PI / 8 && od < PI / 8) {
++      } else if (od < -PI / 8 * 15 || od > PI / 8 * 15) {
++      } else if ((od > -PI && od < 0) || od > PI) {
++	deg -= PI / 4;
+ 	if (deg < 0)
+-	  deg += math.PI * 2;
++	  deg += PI * 2;
+       } else {
+-	deg += math.PI / 4;
+-	if (deg >= math.PI * 2)
+-	  deg -= math.PI * 2;
++	deg += PI / 4;
++	if (deg >= PI * 2)
++	  deg -= PI * 2;
+       }
+     }
+     if (rand.nextInt(4) == 0) {
+-      manager.addParticle(pos, deg + math.PI + rand.nextFloat(0.2) - 0.1, 
++      manager.addParticle(pos, deg + PI + rand.nextFloat(0.2) - 0.1,
+ 			  size, speed * 2.5, 0.8, 0.4, 0.5);
+     }
+     if (ship.checkHit(pos.x, pos.y - size * 0.8, pos.x, pos.y + size * 0.8) ||
+@@ -241,15 +243,15 @@
+     if (hitWall) {
+       if ((hitWallType & 1) == 1) {
+ 	float od = atan2(ship.pos.x - pos.x, ship.pos.y - pos.y);
+-	if (od > -math.PI / 2 && od <= math.PI / 2) {
++	if (od > -PI / 2 && od <= PI / 2) {
+ 	  if (chaseType > 0)
+ 	    deg = 0;
+ 	  else
+-	    deg = math.PI / 2 * 2;
++	    deg = PI / 2 * 2;
+ 	  chaseType++;
+ 	} else {
+ 	  if (chaseType > 0)
+-	    deg = math.PI / 2 * 2;
++	    deg = PI / 2 * 2;
+ 	  else
+ 	    deg = 0;
+ 	  chaseType++;
+@@ -259,15 +261,15 @@
+ 	float od = atan2(ship.pos.x - pos.x, ship.pos.y - pos.y);
+ 	if (od < 0) {
+ 	  if (chaseType > 0)
+-	    deg = math.PI / 2 * 3;
++	    deg = PI / 2 * 3;
+ 	  else
+-	    deg = math.PI / 2;
++	    deg = PI / 2;
+ 	  chaseType++;
+ 	} else {
+ 	  if (chaseType > 0)
+-	    deg = math.PI / 2;
++	    deg = PI / 2;
+ 	  else
+-	    deg = math.PI / 2 * 3;
++	    deg = PI / 2 * 3;
+ 	  chaseType++;
+ 	}
+       }
+@@ -275,31 +277,31 @@
+       if (deg < 0.1) {
+ 	if (ship.pos.y <= pos.y) {
+ 	  if (ship.pos.x < pos.x)
+-	    deg = math.PI / 2 * 3;
++	    deg = PI / 2 * 3;
+ 	  else
+-	    deg = math.PI / 2;
++	    deg = PI / 2;
+ 	  chaseType = 0;
+ 	}
+-      } else if (deg > math.PI / 2 - 0.1 && deg < math.PI / 2 + 0.1) {
++      } else if (deg > PI / 2 - 0.1 && deg < PI / 2 + 0.1) {
+ 	if (ship.pos.x <= pos.x) {
+ 	  if (ship.pos.y < pos.y)
+-	    deg = math.PI / 2 * 2;
++	    deg = PI / 2 * 2;
+ 	  else
+ 	    deg = 0;
+ 	  chaseType = 0;
+ 	}
+-      } else if (deg > math.PI / 2 * 2 - 0.1 && deg < math.PI / 2 * 2 + 0.1) {
++      } else if (deg > PI / 2 * 2 - 0.1 && deg < PI / 2 * 2 + 0.1) {
+ 	if (ship.pos.y >= pos.y) {
+ 	  if (ship.pos.x < pos.x)
+-	    deg = math.PI / 2 * 3;
++	    deg = PI / 2 * 3;
+ 	  else
+-	    deg = math.PI / 2;
++	    deg = PI / 2;
+ 	  chaseType = 0;
+ 	}
+-      } else if (deg > math.PI / 2 * 3 - 0.1 && deg < math.PI / 2 * 3 + 0.1) {
++      } else if (deg > PI / 2 * 3 - 0.1 && deg < PI / 2 * 3 + 0.1) {
+ 	if (ship.pos.x >= pos.x) {
+ 	  if (ship.pos.y < pos.y)
+-	    deg = math.PI / 2 * 2;
++	    deg = PI / 2 * 2;
+ 	  else
+ 	    deg = 0;
+ 	  chaseType = 0;
+@@ -309,11 +311,11 @@
+     if (cnt < APPEAR_CNT)
+       return;
+     if (rand.nextInt(9) == 0) {
+-      manager.addParticle(pos, deg + math.PI + math.PI / 12 + rand.nextFloat(0.2) - 0.1, 
++      manager.addParticle(pos, deg + PI + PI / 12 + rand.nextFloat(0.2) - 0.1,
+ 			  size, speed * 2, 0.3, 0.9, 0.3);
+     }
+     if (rand.nextInt(9) == 0) {
+-      manager.addParticle(pos, deg + math.PI - math.PI / 12 + rand.nextFloat(0.2) - 0.1, 
++      manager.addParticle(pos, deg + PI - PI / 12 + rand.nextFloat(0.2) - 0.1,
+ 			  size, speed * 2, 0.3, 0.9, 0.3);
+     }
+     if (ship.checkHit(pos.x, pos.y - size * 0.8, pos.x, pos.y + size * 0.8) ||
+@@ -347,7 +349,7 @@
+     if (cnt < APPEAR_CNT)
+       return;
+     if (rand.nextInt(4) == 0) {
+-      manager.addParticle(pos, rand.nextFloat(math.PI * 2), 
++      manager.addParticle(pos, rand.nextFloat(PI * 2),
+ 			  size, speed, 0.9, 0.3, 0.6);
+     }
+     if (ship.checkHit(pos.x, pos.y - size * 0.8, pos.x, pos.y + size * 0.8) ||
+@@ -381,11 +383,11 @@
+     if (cnt < APPEAR_CNT)
+       return;
+     if (rand.nextInt(7) == 0) {
+-      manager.addParticle(pos, armDeg + rand.nextFloat(0.2) - 0.1, 
++      manager.addParticle(pos, armDeg + rand.nextFloat(0.2) - 0.1,
+ 			  1, speed * 2, 0.5, 0.9, 0.3);
+     }
+     if (rand.nextInt(7) == 0) {
+-      manager.addParticle(pos, armDeg + math.PI + rand.nextFloat(0.2) - 0.1, 
++      manager.addParticle(pos, armDeg + PI + rand.nextFloat(0.2) - 0.1,
+ 			  1, speed * 2, 0.5, 0.9, 0.3);
+     }
+     float ax = size * sin(armDeg) * 0.9;
+@@ -398,32 +400,32 @@
+   private void moveType5() {
+     turnDist -= speed;
+     if (hitWall) {
+-      deg += math.PI;
+-      if (deg >= math.PI * 2)
+-	deg -= math.PI * 2;
+-    } 
++      deg += PI;
++      if (deg >= PI * 2)
++	deg -= PI * 2;
++    }
+     if (cnt < APPEAR_CNT)
+       return;
+     if (!hitWall && turnDist <= 0) {
+       turnDist = (rand.nextInt(24) + 16) * 0.2;
+       float od = atan2(ship.pos.x - pos.x, ship.pos.y - pos.y);
+       if (od < 0)
+-	od += math.PI * 2;
++	od += PI * 2;
+       od -= deg;
+-      if (od > -math.PI / 8 && od < math.PI / 8) {
+-      } else if (od < -math.PI / 8 * 15 || od > math.PI / 8 * 15) {
+-      } else if ((od > -math.PI && od < 0) || od > math.PI) {
+-	deg -= math.PI / 2;
++      if (od > -PI / 8 && od < PI / 8) {
++      } else if (od < -PI / 8 * 15 || od > PI / 8 * 15) {
++      } else if ((od > -PI && od < 0) || od > PI) {
++	deg -= PI / 2;
+ 	if (deg < 0)
+-	  deg += math.PI * 2;
++	  deg += PI * 2;
+       } else {
+-	deg += math.PI / 2;
+-	if (deg >= math.PI * 2)
+-	  deg -= math.PI * 2;
++	deg += PI / 2;
++	if (deg >= PI * 2)
++	  deg -= PI * 2;
+       }
+     }
+     if (rand.nextInt(4) == 0) {
+-      manager.addParticle(pos, deg + math.PI + rand.nextFloat(0.2) - 0.1, 
++      manager.addParticle(pos, deg + PI + rand.nextFloat(0.2) - 0.1,
+ 			  0, speed * 5, 0.5, 0.3, 0.9);
+     }
+     int hi = posHstIdx;
+@@ -485,7 +487,7 @@
+       if (type < 4) {
+ 	blowedVel.mul(-0.7);
+       }
+-      if (type != 4) { 
++      if (type != 4) {
+ 	pos.x = ppos.x; pos.y = ppos.y;
+       }
+     }
+@@ -524,7 +526,7 @@
+       sz = size;
+     glPushMatrix();
+     glTranslatef(pos.x, pos.y, 0.5);
+-    glRotatef(-deg * 180 / math.PI, 0, 0, 1);
++    glRotatef(-deg * 180 / PI, 0, 0, 1);
+     glScalef(sz, sz, sz);
+     glCallList(displayListIdx + type * 3);
+     glCallList(displayListIdx + type * 3 + 1);
+@@ -557,7 +559,7 @@
+       sz = size;
+     glPushMatrix();
+     glTranslatef(pos.x, pos.y, 0.5);
+-    glRotatef(-armDeg * 180 / math.PI, 0, 0, 1);
++    glRotatef(-armDeg * 180 / PI, 0, 0, 1);
+     glBegin(GL_TRIANGLE_FAN);
+     A7xScreen.setColor(0.7, 0.9, 0.3, 0.3);
+     glVertex3f(0, 0, 0.5);
+@@ -593,7 +595,7 @@
+     for (int i = 0; i < 5; i++) {
+       glPushMatrix();
+       glTranslatef(posHst[hi].x, posHst[hi].y, 0.5);
+-      glRotatef(-degHst[hi] * 180 / math.PI, 0, 0, 1);
++      glRotatef(-degHst[hi] * 180 / PI, 0, 0, 1);
+       glScalef(sz, sz, sz);
+       glCallList(displayListIdx + 5 * 3);
+       glCallList(displayListIdx + 5 * 3 + 1);
+@@ -625,7 +627,7 @@
+   private void drawType0Luminous() {
+     glPushMatrix();
+     glTranslatef(pos.x, pos.y, 0.5);
+-    glRotatef(-deg * 180 / math.PI, 0, 0, 1);
++    glRotatef(-deg * 180 / PI, 0, 0, 1);
+     glScalef(size, size, size);
+     glCallList(displayListIdx + type * 3 + 1);
+     glPopMatrix();
+@@ -641,7 +643,7 @@
+   private void drawArmLuminous() {
+     glPushMatrix();
+     glTranslatef(pos.x, pos.y, 0.5);
+-    glRotatef(-armDeg * 180 / math.PI, 0, 0, 1);
++    glRotatef(-armDeg * 180 / PI, 0, 0, 1);
+     glBegin(GL_LINE_STRIP);
+     A7xScreen.setColor(0.5, 0.9, 0.3, 0.9);
+     glVertex3f(-0.5, 0, 0.5);
+diff -Naur a7xpg/src/abagames/a7xpg/Gold.d a7xpg-gentoo/src/abagames/a7xpg/Gold.d
+--- a7xpg/src/abagames/a7xpg/Gold.d	2003-09-21 13:01:28.000000000 +0200
++++ a7xpg-gentoo/src/abagames/a7xpg/Gold.d	2007-09-19 22:11:32.000000000 +0200
+@@ -5,11 +5,12 @@
+  */
+ module abagames.a7xpg.Gold;
+ 
+-import math;
++import std.math;
+ import opengl;
+ import abagames.util.Vector;
+ import abagames.util.Rand;
+ import abagames.util.ActorInitializer;
++import abagames.util.Actor;
+ import abagames.a7xpg.LuminousActor;
+ import abagames.a7xpg.Ship;
+ import abagames.a7xpg.Field;
+@@ -37,14 +38,14 @@
+   }
+ 
+   public override void init(ActorInitializer ini) {
+-    GoldInitializer gi = (GoldInitializer) ini;
++    GoldInitializer gi = cast(GoldInitializer) ini;
+     ship = gi.ship;
+     field = gi.field;
+     rand = gi.rand;
+     manager = gi.manager;
+     pos = new Vector;
+   }
+-  
++
+   public void set() {
+     for (int i = 0; i < 8 ; i++) {
+       pos.x = rand.nextFloat((field.size.x - SIZE) * 2) - field.size.x + SIZE;
+@@ -66,7 +67,7 @@
+     	ship.checkHit(pos.x - SIZE, pos.y, pos.x + SIZE, pos.y)) {
+       isExist = false;
+       for (int i = 0; i < 16; i++) {
+-	manager.addParticle(pos, rand.nextFloat(math.PI * 2), 0.5, 0,5, 0.8, 0);
++	manager.addParticle(pos, rand.nextFloat(PI * 2), 0.5, 0,5, 0.8, 0);
+       }
+       manager.getGold();
+     }
+diff -Naur a7xpg/src/abagames/a7xpg/LetterRender.d a7xpg-gentoo/src/abagames/a7xpg/LetterRender.d
+--- a7xpg/src/abagames/a7xpg/LetterRender.d	2003-09-19 23:55:50.000000000 +0200
++++ a7xpg-gentoo/src/abagames/a7xpg/LetterRender.d	2007-09-19 22:11:32.000000000 +0200
+@@ -123,7 +123,7 @@
+     float x, y, length, size, t;
+     int deg;
+     for ( i=0 ; ; i++ ) {
+-      deg = (int) spData[idx][i][4];
++      deg = cast(int) spData[idx][i][4];
+       if (deg > 99990) break;
+       x = -spData[idx][i][0]; 
+       y = -spData[idx][i][1];
+diff -Naur a7xpg/src/abagames/a7xpg/LuminousActorPool.d a7xpg-gentoo/src/abagames/a7xpg/LuminousActorPool.d
+--- a7xpg/src/abagames/a7xpg/LuminousActorPool.d	2003-09-19 23:55:50.000000000 +0200
++++ a7xpg-gentoo/src/abagames/a7xpg/LuminousActorPool.d	2007-09-19 22:11:32.000000000 +0200
+@@ -21,7 +21,7 @@
+   public void drawLuminous() {
+     for (int i = 0; i < actor.length; i++) {
+       if (actor[i].isExist)
+-	((LuminousActor) actor[i]).drawLuminous();
++	(cast(LuminousActor) actor[i]).drawLuminous();
+     }
+   }
+ }
+diff -Naur a7xpg/src/abagames/a7xpg/Particle.d a7xpg-gentoo/src/abagames/a7xpg/Particle.d
+--- a7xpg/src/abagames/a7xpg/Particle.d	2003-09-21 13:01:28.000000000 +0200
++++ a7xpg-gentoo/src/abagames/a7xpg/Particle.d	2007-09-19 22:11:32.000000000 +0200
+@@ -5,9 +5,10 @@
+  */
+ module abagames.a7xpg.Particle;
+ 
+-import math;
++import std.math;
+ import opengl;
+-import abagames.util.Vector;
++import abagames.util.Vector;
++import abagames.util.Actor;
+ import abagames.util.Rand;
+ import abagames.util.ActorInitializer;
+ import abagames.a7xpg.LuminousActor;
+@@ -34,7 +35,7 @@
+   }
+ 
+   public override void init(ActorInitializer ini) {
+-    ParticleInitializer pi = (ParticleInitializer) ini;
++    ParticleInitializer pi = cast(ParticleInitializer) ini;
+     field = pi.field;
+     rand = pi.rand;
+     pos = new Vector;
+diff -Naur a7xpg/src/abagames/a7xpg/Ship.d a7xpg-gentoo/src/abagames/a7xpg/Ship.d
+--- a7xpg/src/abagames/a7xpg/Ship.d	2003-09-19 23:55:50.000000000 +0200
++++ a7xpg-gentoo/src/abagames/a7xpg/Ship.d	2007-09-19 22:11:32.000000000 +0200
+@@ -5,7 +5,7 @@
+  */
+ module abagames.a7xpg.Ship;
+ 
+-import math;
++import std.math;
+ import opengl;
+ import abagames.util.Vector;
+ import abagames.util.Rand;
+@@ -79,7 +79,7 @@
+     cnt = -RESTART_CNT;
+   }
+ 
+-  private const int[] ENEMY_SCORE_TABLE = 
++  private const int[] ENEMY_SCORE_TABLE =
+     [100, 200, 400, 800, 1600, 3200, 4850, 5730, 7650, 8560];
+ 
+   public void destroyEnemy() {
+@@ -119,23 +119,23 @@
+     int pad = input.getPadState();
+     if (pad & Input.PAD_UP) {
+       if (pad & Input.PAD_RIGHT)
+-	deg = math.PI / 4;
++	deg = PI / 4;
+       else if (pad & Input.PAD_LEFT)
+-	deg = math.PI / 4 * 7;
+-      else 
++	deg = PI / 4 * 7;
++      else
+ 	deg = 0;
+     } else if (pad & Input.PAD_DOWN) {
+       if (pad & Input.PAD_RIGHT)
+-	deg = math.PI / 4 * 3;
++	deg = PI / 4 * 3;
+       else if (pad & Input.PAD_LEFT)
+-	deg = math.PI / 4 * 5;
+-      else 
+-	deg = math.PI / 4 * 4;
++	deg = PI / 4 * 5;
++      else
++	deg = PI / 4 * 4;
+     } else {
+       if (pad & Input.PAD_RIGHT)
+-	deg = math.PI / 4 * 2;
++	deg = PI / 4 * 2;
+       else if (pad & Input.PAD_LEFT)
+-	deg = math.PI / 4 * 6;
++	deg = PI / 4 * 6;
+     }
+     int btn = input.getButtonState();
+     if (btn & (Input.PAD_BUTTON1 | Input.PAD_BUTTON2)) {
+@@ -180,7 +180,7 @@
+ 	invincible = true;
+ 	enemyDstCnt = 0;
+ 	for (int i = 0; i < 50; i++) {
+-	  manager.addParticle(pos, rand.nextFloat(math.PI * 2), SIZE, rand.nextFloat(4),
++	  manager.addParticle(pos, rand.nextFloat(PI * 2), SIZE, rand.nextFloat(4),
+ 			      0.9, 0.5, 0.5);
+ 	}
+       }
+@@ -228,16 +228,16 @@
+     for (int i = 0; i < prtNum; i++) {
+       float pr, pg, pb;
+       if (invincible) {
+-	pr = 0.3 + 0.6 * gauge / GAUGE_MAX; 
+-	pg = 0.4; 
+-	pb = 0.9 - 0.6 * gauge / GAUGE_MAX; 
++	pr = 0.3 + 0.6 * gauge / GAUGE_MAX;
++	pg = 0.4;
++	pb = 0.9 - 0.6 * gauge / GAUGE_MAX;
+       } else {
+ 	pr = 0.3; pg = 0.3; pb = 0.9;
+       }
+-      manager.addParticle(pos, deg + math.PI + rand.nextFloat(0.5) - 0.25, SIZE, ps, pr, pg, pb);
++      manager.addParticle(pos, deg + PI + rand.nextFloat(0.5) - 0.25, SIZE, ps, pr, pg, pb);
+     }
+     if (hitWall && pSpeed > DEFAULT_SPEED * 1.1) {
+-      int pn = pSpeed / (DEFAULT_SPEED / 4);
++      int pn = cast(int)(pSpeed / (DEFAULT_SPEED / 4));
+       for (int i = 0; i < pn; i++) {
+ 	manager.addParticle(pos, deg + rand.nextFloat(1.2) - 0.6, SIZE, pSpeed * 3,
+ 			    0.8, 0.6, 0.1);
+@@ -259,7 +259,7 @@
+       return;
+     glPushMatrix();
+     glTranslatef(pos.x, pos.y, 0.5);
+-    glRotatef(-deg * 180 / math.PI, 0, 0, 1);
++    glRotatef(-deg * 180 / PI, 0, 0, 1);
+     glCallList(displayListIdx);
+     glCallList(displayListIdx + 1);
+     glTranslatef(0, 0, -0.5);
+@@ -273,7 +273,7 @@
+       return;
+     glPushMatrix();
+     glTranslatef(pos.x, pos.y, 0.5);
+-    glRotatef(-deg * 180 / math.PI, 0, 0, 1);
++    glRotatef(-deg * 180 / PI, 0, 0, 1);
+     if (invincible)
+       glCallList(displayListIdx + 2);
+     else
+@@ -341,15 +341,15 @@
+     float d = atan2(pos.x - p.x, pos.y - p.y);
+     float wd = d;
+     if (d < 0)
+-      d += math.PI * 2;
++      d += PI * 2;
+     d -= deg;
+-    if (d < -math.PI)
+-      d += math.PI * 2;
+-    else if (d > math.PI)
+-      d -= math.PI * 2;
++    if (d < -PI)
++      d += PI * 2;
++    else if (d > PI)
++      d -= PI * 2;
+     if (d < 0)
+       d = -d;
+-    if (d > math.PI / 4)
++    if (d > PI / 4)
+       return;
+     d *= 2; d++;
+     float ds = pos.dist(p);
+diff -Naur a7xpg/src/abagames/util/ActorPool.d a7xpg-gentoo/src/abagames/util/ActorPool.d
+--- a7xpg/src/abagames/util/ActorPool.d	2003-09-19 23:55:50.000000000 +0200
++++ a7xpg-gentoo/src/abagames/util/ActorPool.d	2007-09-19 22:11:32.000000000 +0200
+@@ -6,6 +6,7 @@
+ module abagames.util.ActorPool;
+ 
+ import abagames.util.Actor;
++import abagames.util.ActorInitializer;
+ 
+ /**
+  * Object pooling for actors.
+diff -Naur a7xpg/src/abagames/util/Logger.d a7xpg-gentoo/src/abagames/util/Logger.d
+--- a7xpg/src/abagames/util/Logger.d	2003-09-20 13:04:06.000000000 +0200
++++ a7xpg-gentoo/src/abagames/util/Logger.d	2007-09-19 22:11:32.000000000 +0200
+@@ -5,14 +5,14 @@
+  */
+ module abagames.util.Logger;
+ 
+-import stream;
++import std.stream;
+ 
+ /**
+  * Logger(error/info).
+  */
+ public class Logger {
+   public static void info(char[] msg) {
+-    stderr.writeLine("Info: " ~ msg);
++//    stderr.writeLine("Info: " ~ msg);
+   }
+ 
+   public static void error(char[] msg) {
+diff -Naur a7xpg/src/abagames/util/Rand.d a7xpg-gentoo/src/abagames/util/Rand.d
+--- a7xpg/src/abagames/util/Rand.d	2003-09-19 23:55:50.000000000 +0200
++++ a7xpg-gentoo/src/abagames/util/Rand.d	2007-09-19 22:11:32.000000000 +0200
+@@ -5,28 +5,28 @@
+  */
+ module abagames.util.Rand;
+ 
+-import random;
+-import date;
++import std.random;
++import std.date;
+ 
+ /**
+  * Random number generator.
+  */
+ public class Rand {
+-  
++
+   public this() {
+     d_time timer = getUTCtime();
+-    rand_seed(timer, 0);   
++    rand_seed(timer, 0);
+   }
+ 
+   public int nextInt(int n) {
+-    return random.rand() % n;
++    return rand() % n;
+   }
+ 
+   public int nextSignedInt(int n) {
+-    return random.rand() % (n * 2) - n;
++    return rand() % (n * 2) - n;
+   }
+ 
+   public float nextFloat(float n) {
+-    return ((float)(random.rand() % (n * 10000))) / 10000;
++    return (cast(float)(rand() % (n * 10000))) / 10000;
+   }
+ }
+diff -Naur a7xpg/src/abagames/util/sdl/Input.d a7xpg-gentoo/src/abagames/util/sdl/Input.d
+--- a7xpg/src/abagames/util/sdl/Input.d	2003-09-19 23:55:50.000000000 +0200
++++ a7xpg-gentoo/src/abagames/util/sdl/Input.d	2007-09-19 22:11:32.000000000 +0200
+@@ -5,9 +5,35 @@
+  */
+ module abagames.util.sdl.Input;
+ 
+-import string;
+-import SDL;
++import std.string;
++import SDL;
++import SDL_active;   
++import SDL_joystick;  
++import SDL_mutex;   
++import SDL_timer;
++import SDL_audio;      
++import SDL_endian;  
++import SDL_keyboard;  
++import SDL_quit;
++import SDL_types;
++import SDL_byteorder;  
++import SDL_error;
++import SDL_Keysym;    
++import SDL_rwops;   
++import SDL_version;
++import SDL_cdrom;   
++import SDL_events;  
++import SDL_mixer;   
++import SDL_syswm;  
++import SDL_Version;
++import SDL_copying;  
++import SDL_getenv;
++import SDL_mouse;   
++import SDL_thread;  
++import SDL_video;
++
+ import abagames.util.sdl.SDLInitFailedException;
++import abagames.util.Logger;
+ 
+ /**
+  * Joystick and keyboard input.
+@@ -29,16 +55,19 @@
+ 
+   public void openJoystick() {
+     if (SDL_InitSubSystem(SDL_INIT_JOYSTICK) < 0) {
+-      throw new SDLInitFailedException(
+-	"Unable to init SDL joystick: " ~ string.toString(SDL_GetError()));
++      //throw new SDLInitFailedException(
++	  Logger.info(
++	"Unable to init SDL joystick: " ~ std.string.toString(SDL_GetError()));
+     }
++	else {
+     stick = SDL_JoystickOpen(0);
++	}
+   }
+ 
+   public void handleEvent(SDL_Event *event) {
+     keys = SDL_GetKeyState(null);
+   }
+-  
++
+   // Joystick and keyboard handler.
+ 
+   public int getPadState() {
+diff -Naur a7xpg/src/abagames/util/sdl/MainLoop.d a7xpg-gentoo/src/abagames/util/sdl/MainLoop.d
+--- a7xpg/src/abagames/util/sdl/MainLoop.d	2003-09-19 23:55:50.000000000 +0200
++++ a7xpg-gentoo/src/abagames/util/sdl/MainLoop.d	2007-09-19 22:11:32.000000000 +0200
+@@ -5,9 +5,33 @@
+  */
+ module abagames.util.sdl.MainLoop;
+ 
+-import string;
+-import c.stdlib;
+-import SDL;
++import std.string;
++import std.c.stdlib;
++import SDL;
++import SDL_active;   
++import SDL_joystick;  
++import SDL_mutex;   
++import SDL_timer;
++import SDL_audio;      
++import SDL_endian;  
++import SDL_keyboard;  
++import SDL_quit;
++import SDL_types;
++import SDL_byteorder;  
++import SDL_error;
++import SDL_Keysym;    
++import SDL_rwops;   
++import SDL_version;
++import SDL_cdrom;   
++import SDL_events;  
++import SDL_mixer;   
++import SDL_syswm;  
++import SDL_Version;
++import SDL_copying;  
++import SDL_getenv;
++import SDL_mouse;   
++import SDL_thread;  
++import SDL_video;
+ import abagames.util.Logger;
+ import abagames.util.Rand;
+ import abagames.util.GameManager;
+@@ -71,7 +95,7 @@
+     int i;
+     long nowTick;
+     int frame;
+-    
++
+     try {
+       screen.initSDL();
+     } catch (SDLInitFailedException e) {
+@@ -88,7 +112,7 @@
+ 	done = 1;
+ 
+       nowTick = SDL_GetTicks();
+-      frame = (int) (nowTick-prvTickCount) / interval;
++      frame = cast(int) (nowTick-prvTickCount) / interval;
+       if (frame <= 0) {
+ 	frame = 1;
+ 	SDL_Delay(prvTickCount+interval-nowTick);
+diff -Naur a7xpg/src/abagames/util/sdl/Screen3D.d a7xpg-gentoo/src/abagames/util/sdl/Screen3D.d
+--- a7xpg/src/abagames/util/sdl/Screen3D.d	2003-09-21 13:01:28.000000000 +0200
++++ a7xpg-gentoo/src/abagames/util/sdl/Screen3D.d	2007-09-19 22:11:32.000000000 +0200
+@@ -5,9 +5,33 @@
+  */
+ module abagames.util.sdl.Screen3D;
+ 
+-import string;
+-import c.stdlib;
+-import SDL;
++import std.string;
++import std.c.stdlib;
++import SDL;
++import SDL_active;   
++import SDL_joystick;  
++import SDL_mutex;   
++import SDL_timer;
++import SDL_audio;      
++import SDL_endian;  
++import SDL_keyboard;  
++import SDL_quit;
++import SDL_types;
++import SDL_byteorder;  
++import SDL_error;
++import SDL_Keysym;    
++import SDL_rwops;   
++import SDL_version;
++import SDL_cdrom;   
++import SDL_events;  
++import SDL_mixer;   
++import SDL_syswm;  
++import SDL_Version;
++import SDL_copying;  
++import SDL_getenv;
++import SDL_mouse;   
++import SDL_thread;  
++import SDL_video;
+ import opengl;
+ import abagames.util.Logger;
+ import abagames.util.sdl.Screen;
+@@ -38,7 +62,7 @@
+     // Initialize SDL.
+     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
+       throw new SDLInitFailedException(
+-	"Unable to initialize SDL: " ~ string.toString(SDL_GetError()));
++	"Unable to initialize SDL: " ~ std.string.toString(SDL_GetError()));
+     }
+     // Create an OpenGL screen.
+     Uint32 videoFlags;
+@@ -46,10 +70,10 @@
+       videoFlags = SDL_OPENGL | SDL_RESIZABLE;
+     } else {
+       videoFlags = SDL_OPENGL | SDL_FULLSCREEN;
+-    } 
++    }
+     if (SDL_SetVideoMode(width, height, 0, videoFlags) == null) {
+       throw new SDLInitFailedException
+-	("Unable to create SDL screen: " ~ string.toString(SDL_GetError()));
++	("Unable to create SDL screen: " ~ std.string.toString(SDL_GetError()));
+     }
+     glViewport(0, 0, width, height);
+     glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+@@ -67,8 +91,8 @@
+     //gluPerspective(45.0f, (GLfloat)width/(GLfloat)height, nearPlane, farPlane);
+     glFrustum(-nearPlane,
+ 	      nearPlane,
+-	      -nearPlane * (GLfloat)height / (GLfloat)width,
+-	      nearPlane * (GLfloat)height / (GLfloat)width,
++	      -nearPlane * cast(GLfloat)height / cast(GLfloat)width,
++	      nearPlane * cast(GLfloat)height / cast(GLfloat)width,
+ 	      0.1f, farPlane);
+     glMatrixMode(GL_MODELVIEW);
+   }
+@@ -101,6 +125,6 @@
+   }
+ 
+   protected void setCaption(char[] name) {
+-    SDL_WM_SetCaption(string.toStringz(name), null);
++    SDL_WM_SetCaption(std.string.toStringz(name), null);
+   }
+ }
+diff -Naur a7xpg/src/abagames/util/sdl/Sound.d a7xpg-gentoo/src/abagames/util/sdl/Sound.d
+--- a7xpg/src/abagames/util/sdl/Sound.d	2003-09-19 23:55:50.000000000 +0200
++++ a7xpg-gentoo/src/abagames/util/sdl/Sound.d	2007-09-19 22:11:32.000000000 +0200
+@@ -5,9 +5,32 @@
+  */
+ module abagames.util.sdl.Sound;
+ 
+-import string;
+-import SDL;
+-import SDL_mixer;
++import std.string;
++import SDL;
++import SDL_active;   
++import SDL_joystick;  
++import SDL_mutex;   
++import SDL_timer;
++import SDL_audio;      
++import SDL_endian;  
++import SDL_keyboard;  
++import SDL_quit;
++import SDL_types;
++import SDL_byteorder;  
++import SDL_error;
++import SDL_Keysym;    
++import SDL_rwops;   
++import SDL_version;
++import SDL_cdrom;   
++import SDL_events;  
++import SDL_mixer;   
++import SDL_syswm;  
++import SDL_Version;
++import SDL_copying;  
++import SDL_getenv;
++import SDL_mouse;   
++import SDL_thread;  
++import SDL_video;
+ import abagames.util.sdl.SDLInitFailedException;
+ 
+ /**
+@@ -31,7 +54,7 @@
+     if (SDL_InitSubSystem(SDL_INIT_AUDIO) < 0) {
+       noSound = 1;
+       throw new SDLInitFailedException
+-	("Unable to initialize SDL_AUDIO: " ~ string.toString(SDL_GetError()));
++	("Unable to initialize SDL_AUDIO: " ~ std.string.toString(SDL_GetError()));
+     }
+ 
+     audio_rate = 44100;
+@@ -41,7 +64,7 @@
+     if (Mix_OpenAudio(audio_rate, audio_format, audio_channels, audio_buffers) < 0) {
+       noSound = 1;
+       throw new SDLInitFailedException
+-	("Couldn't open audio: " ~ string.toString(SDL_GetError()));
++	("Couldn't open audio: " ~ std.string.toString(SDL_GetError()));
+     }
+     Mix_QuerySpec(&audio_rate, &audio_format, &audio_channels);
+   }
+@@ -66,22 +89,22 @@
+   public void loadSound(char[] name) {
+     if (noSound) return;
+     char[] fileName = soundsDir ~ name;
+-    music = Mix_LoadMUS(string.toStringz(fileName));
++    music = Mix_LoadMUS(std.string.toStringz(fileName));
+     if (!music) {
+       noSound = true;
+-      throw new SDLInitFailedException("Couldn't load: " ~ fileName ~ 
+-				       " (" ~ string.toString(Mix_GetError()) ~ ")");
++      throw new SDLInitFailedException("Couldn't load: " ~ fileName ~
++				       " (" ~ std.string.toString(Mix_GetError()) ~ ")");
+     }
+   }
+-  
++
+   public void loadChunk(char[] name, int ch) {
+     if (noSound) return;
+     char[] fileName = chunksDir ~ name;
+-    chunk = Mix_LoadWAV(string.toStringz(fileName));
++    chunk = Mix_LoadWAV(std.string.toStringz(fileName));
+     if (!chunk) {
+       noSound = true;
+-      throw new SDLInitFailedException("Couldn't load: " ~ fileName ~ 
+-				       " (" ~ string.toString(Mix_GetError()) ~ ")");
++      throw new SDLInitFailedException("Couldn't load: " ~ fileName ~
++				       " (" ~ std.string.toString(Mix_GetError()) ~ ")");
+     }
+     chunkChannel = ch;
+   }
+diff -Naur a7xpg/src/abagames/util/sdl/Texture.d a7xpg-gentoo/src/abagames/util/sdl/Texture.d
+--- a7xpg/src/abagames/util/sdl/Texture.d	2003-09-19 23:55:50.000000000 +0200
++++ a7xpg-gentoo/src/abagames/util/sdl/Texture.d	2007-09-19 22:11:32.000000000 +0200
+@@ -5,9 +5,33 @@
+  */
+ module abagames.util.sdl.Texture;
+ 
+-import string;
++import std.string;
+ import opengl;
+-import SDL;
++import SDL;
++import SDL_active;   
++import SDL_joystick;  
++import SDL_mutex;   
++import SDL_timer;
++import SDL_audio;      
++import SDL_endian;  
++import SDL_keyboard;  
++import SDL_quit;
++import SDL_types;
++import SDL_byteorder;  
++import SDL_error;
++import SDL_Keysym;    
++import SDL_rwops;   
++import SDL_version;
++import SDL_cdrom;   
++import SDL_events;  
++import SDL_mixer;   
++import SDL_syswm;  
++import SDL_Version;
++import SDL_copying;  
++import SDL_getenv;
++import SDL_mouse;   
++import SDL_thread;  
++import SDL_video;
+ import abagames.util.sdl.SDLInitFailedException;
+ 
+ /**
+@@ -22,8 +46,8 @@
+ 
+   public this(char[] name) {
+     char[] fileName = imagesDir ~ name;
+-    SDL_Surface *surface;    
+-    surface = SDL_LoadBMP(string.toStringz(fileName));
++    SDL_Surface *surface;
++    surface = SDL_LoadBMP(std.string.toStringz(fileName));
+     if (!surface) {
+       throw new SDLInitFailedException("Unable to load: " ~ fileName);
+     }
+@@ -33,7 +57,7 @@
+ 		 GL_RGB, GL_UNSIGNED_BYTE, surface.pixels);
+     glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
+     glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
+-    /*gluBuild2DMipmaps(GL_TEXTURE_2D, 3, surface.w, surface.h, 
++    /*gluBuild2DMipmaps(GL_TEXTURE_2D, 3, surface.w, surface.h,
+       GL_RGB, GL_UNSIGNED_BYTE, surface.pixels);
+     glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR_MIPMAP_NEAREST);
+     glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);*/
+diff -Naur a7xpg/src/abagames/util/Vector.d a7xpg-gentoo/src/abagames/util/Vector.d
+--- a7xpg/src/abagames/util/Vector.d	2003-09-19 23:55:50.000000000 +0200
++++ a7xpg-gentoo/src/abagames/util/Vector.d	2007-09-19 22:11:32.000000000 +0200
+@@ -5,7 +5,7 @@
+  */
+ module abagames.util.Vector;
+ 
+-import math;
++import std.math;
+ 
+ /**
+  * Vector.
+@@ -34,7 +34,7 @@
+       rsl.x = mag * v.x / ll;
+       rsl.y = mag * v.y / ll;
+     } else {
+-      rsl.x = rsl.y = 0; 
++      rsl.x = rsl.y = 0;
+     }
+     return rsl;
+   }
+@@ -49,30 +49,30 @@
+     y -= v.y;
+   }
+ 
+-  public void mul(float a) {	
++  public void mul(float a) {
+     x *= a;
+     y *= a;
+   }
+ 
+-  public void div(float a) {	
++  public void div(float a) {
+     x /= a;
+     y /= a;
+   }
+ 
+   public int checkSide(Vector pos1, Vector pos2) {
+-    int xo = pos2.x - pos1.x;
+-    int yo = pos2.y - pos1.y;
++    int xo = cast(int)(pos2.x - pos1.x);
++    int yo = cast(int)(pos2.y - pos1.y);
+     if (xo == 0) {
+       if (yo == 0)
+ 	return 0;
+-      return x - pos1.x;
++      return cast(int)(x - pos1.x);
+     } else if (yo == 0) {
+-      return pos1.y - y;
++      return cast(int)(pos1.y - y);
+     } else {
+-      if (xo * yo > 0) { 
+-	return (x - pos1.x) / xo - (y - pos1.y) / yo;
++      if (xo * yo > 0) {
++	return cast(int)((x - pos1.x) / xo - (y - pos1.y) / yo);
+       } else {
+-	return -(x - pos1.x) / xo + (y - pos1.y) / yo;
++	return -cast(int)((x - pos1.x) / xo + (y - pos1.y) / yo);
+       }
+     }
+   }
+diff -Naur a7xpg/src/dirent.d a7xpg-gentoo/src/dirent.d
+--- a7xpg/src/dirent.d	1970-01-01 01:00:00.000000000 +0100
++++ a7xpg-gentoo/src/dirent.d	2007-09-19 22:11:32.000000000 +0200
+@@ -0,0 +1,10 @@
++import std.string;
++
++extern (C) {
++	alias void DIR;
++	alias void dirent;
++	DIR* opendir(char* name);
++	dirent* readdir(DIR* dir);
++	int closedir(DIR* dir);
++	char* readdir_filename(DIR* ent);
++}
+diff -Naur a7xpg/src/dirent_d.c a7xpg-gentoo/src/dirent_d.c
+--- a7xpg/src/dirent_d.c	1970-01-01 01:00:00.000000000 +0100
++++ a7xpg-gentoo/src/dirent_d.c	2007-09-19 22:11:32.000000000 +0200
+@@ -0,0 +1,59 @@
++#ifdef WINDOWS
++
++#include <windows.h>
++
++#include <stdio.h>
++#include <malloc.h>
++
++typedef struct {
++	HANDLE h;
++	char* prev;
++} DIR;
++
++DIR* opendir(char* dir) {
++	WIN32_FIND_DATA fd;
++	HANDLE h;
++	DIR* d;
++	char buf[MAX_PATH];
++
++	sprintf(buf, "%s/*", dir);
++	h = FindFirstFileA(buf, &fd);
++	d = (DIR*)malloc(sizeof(DIR));
++	d->h = h;
++	d->prev = 0;
++	return d;
++}
++
++char* readdir_filename(DIR* d) {
++	WIN32_FIND_DATA fd;
++	BOOL ret = FindNextFileA(d->h, &fd);
++	if (ret) {
++		if (d->prev != 0) free(d->prev);
++		d->prev = malloc(sizeof(char) * strlen(fd.cFileName));
++		strcpy(d->prev, fd.cFileName);
++		return d->prev;
++	}
++	else {
++		return NULL;
++	}
++}
++
++int closedir(DIR* d) {
++	FindClose(d->h);
++	free(d->prev);
++	free(d);
++}
++
++#else // ! WINDOWS
++
++#include "dirent.h"
++#include "unistd.h"
++
++char* readdir_filename(DIR* dir) {
++	struct dirent* ent = readdir(dir);
++	if (ent == NULL) return NULL;
++	else return ent->d_name;
++}
++
++#endif // WINDOWS
++
