@@ -8,6 +8,10 @@
 - Packages already in main tree can be included if provide more features
 - Live ebuilds can be added
 - New non-official categories can be created
+- Patches need to be named correctly
+  -> see http://dev.gentoo.org/~scarabeus/patches-glep.html, about naming
+     conventions.
+  -> Generates patches using git is a usually preferable
 
 Example directory structure
 -------------------
