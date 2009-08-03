@@ -12,16 +12,20 @@ HOMEPAGE="http://www.clanlib.org/"
 SRC_URI="http://clanlib.org/download/releases-${PV:0:3}/${MY_P}.tgz"
 
 LICENSE="ZLIB"
-SLOT="2"
+SLOT="0.8"
 KEYWORDS="~amd64 ~x86"
-IUSE="opengl sdl vorbis doc mikmod ipv6"
+IUSE="opengl sdl vorbis doc mikmod ipv6 network pcre sqlite gui "
 
 # opengl keyword does not drop the GL/GLU requirement.
 # Autoconf files need to be fixed
-RDEPEND="media-libs/libpng
+RDEPEND="
+	media-libs/libpng
 	media-libs/jpeg
-	virtual/opengl
-	virtual/glu
+	media-libs/freetype
+	opengl? ( 
+		virtual/opengl
+		virtual/glu
+	)
 	sdl? (
 		media-libs/libsdl
 		media-libs/sdl-gfx
@@ -30,6 +34,8 @@ RDEPEND="media-libs/libpng
 	x11-libs/libXmu
 	x11-libs/libXxf86vm
 	media-libs/alsa-lib
+	pcre? ( dev-libs/libpcre )
+	sqlite? ( dev-db/sqlite )
 	mikmod? ( media-libs/libmikmod )
 	vorbis? ( media-libs/libvorbis )"
 DEPEND="${RDEPEND}
@@ -48,6 +54,10 @@ src_configure() {
 		$(use_enable sdl clanSDL) \
 		$(use_enable vorbis clanVorbis) \
 		$(use_enable mikmod clanMikMod) \
+		$(use_enable pcre clanRegExp) \
+		$(use_enable sqlite clanSqlite) \
+		$(use_enable network clanNetwork) \
+		$(use_enable gui clanGUI) \
 		$(use_enable ipv6 getaddr) \
 		|| die "econf failed"
 }
