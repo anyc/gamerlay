@@ -58,8 +58,7 @@ src_configure() {
 		$(use_enable sqlite clanSqlite) \
 		$(use_enable network clanNetwork) \
 		$(use_enable gui clanGUI) \
-		$(use_enable ipv6 getaddr) \
-		|| die "econf failed"
+		$(use_enable ipv6 getaddr)
 }
 
 src_install() {
