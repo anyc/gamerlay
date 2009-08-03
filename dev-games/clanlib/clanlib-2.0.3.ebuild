@@ -49,6 +49,7 @@ src_configure() {
 		$(use_enable vorbis clanVorbis) \
 		$(use_enable mikmod clanMikMod) \
 		$(use_enable ipv6 getaddr) \
+		|| die "econf failed"
 }
 
 src_install() {
