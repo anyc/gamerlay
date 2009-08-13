@@ -10,7 +10,7 @@
 <author title="Author">Tomáš Chvátal</author>
 
 <description>
-	The Gamerlay subproject manages various games not accepted by portage games team in specifed overlay.
+	The Gamerlay subproject manages various games and help upstream with packaging them.
 </description>
 
 <longdescription>
@@ -29,13 +29,13 @@
 <dev role="member" description="Commit coordinator">mrpouet</dev>
 
 <extrachapter position="bottom">
-<title>Want to help?</title>
+<title>Want to contribute?</title>
 <section>
 <body>
 	<p>If you want to get involved with improving Gentoo's gamers experience, we'd
 	like to hear from you! The main thing you'll want to do is be active on
 	<uri link="http://bugs.gentoo.org">Gentoo's Bugzilla</uri>. Also please
-	join desktop project members in #gentoo-gamerlay on irc.freenode.net.</p>
+	join gamerlay project members in #gentoo-gamerlay on irc.freenode.net.</p>
 </body>
 </section>
 </extrachapter>

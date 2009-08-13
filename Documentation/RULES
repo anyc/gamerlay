@@ -6,12 +6,13 @@
 - No bundled libs allowed. If package bundle libraries provided by other
   packages it must be unbundled first
 - Packages already in main tree can be included if provide more features
-- Live ebuilds can be added
+- Live ebuilds can be added, for stale games with no upstream first coordination
+  with freedesktop-games team is in effect, then live ebuild should be added.
 - New non-official categories can be created
 - Patches need to be named correctly
   -> see http://dev.gentoo.org/~scarabeus/patches-glep.html, about naming
      conventions.
-  -> Generates patches using git is a usually preferable
+  -> Generating patches using git is a usually preferable
 
 Example directory structure
 -------------------

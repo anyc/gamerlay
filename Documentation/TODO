@@ -14,7 +14,7 @@ What we need to do until the project will be ready ?
 - Write a page "HowToContribute" will be a good thing ?
 
 - Have a look to games.eclass but normally all should be okay
- (scarab: may be more details about that ?)
+ (games eclass is ok, we need eclass for FPS based on icculus makefile)
 
 - Create an e-mail alias
 
