@@ -14,8 +14,6 @@ LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~x86 ~amd64"
 IUSE="+iconv +internal libcaca ncurses slang +unicode"
-## pdcurses not in portage so do not use them
-## internal use internal engine
 
 RDEPEND="ncurses? ( sys-libs/ncurses )
 	slang? ( sys-libs/slang )
@@ -23,15 +21,17 @@ RDEPEND="ncurses? ( sys-libs/ncurses )
 	libcaca? ( media-libs/libcaca )
 	"
 DEPEND="${RDEPEND}"
+
 pkg_setup() {
-	elog "You should choose only one backend. Availible are:"
-	elog "1) internal (default on): internal game backend, nicest in X"
-	elog "2) ncurses: use ncurses backend"
-	elog "3) slang: use slang backend"
-	elog "If you add more than one backend they are overriden"
-	elog "in this order: slang->ncurses->raw."
+	einfo "You should choose only one backend. Availible are:"
+	einfo "1) internal (default on): internal game backend, nicest in X"
+	einfo "2) ncurses: use ncurses backend"
+	einfo "3) slang: use slang backend"
+	einfo "If you add more than one backend they are overriden"
+	einfo "in this order: slang->ncurses->raw."
 	games_pkg_setup
 }
+
 src_compile() {
 	local MYOPTS
 	if use unicode; then
@@ -49,13 +49,11 @@ src_compile() {
 		$(use_with iconv) \
 		$(use_with libcaca) \
 		--without-xcurses \
-		|| die "Configure failed!"
 
 	emake || die "Make failed!"
 }
 
 src_install() {
 	emake DESTDIR="${D}" install || die "Install failed"
-	elog "Now just type ${PN} and you can play in your chosen backend."
 	prepgamesdirs
 }
