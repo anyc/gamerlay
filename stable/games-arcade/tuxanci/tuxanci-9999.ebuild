@@ -1,4 +1,4 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -20,7 +20,7 @@ LICENSE="GPL-2"
 
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="alsa debug dedicated ipv6 nls opengl"
+IUSE="debug dedicated +ipv6 nls opengl +sound"
 # alsa is used only when building client
 
 RDEPEND="
@@ -30,7 +30,7 @@ RDEPEND="
 		media-libs/sdl-ttf[X]
 		media-libs/sdl-image[png]
 		x11-libs/cairo[X,svg]
-		alsa? (
+		sound? (
 			media-libs/sdl-mixer[vorbis]
 		)
 	)
@@ -39,7 +39,7 @@ DEPEND="${RDEPEND}
 	nls? ( sys-devel/gettext )"
 
 src_configure() {
-	local mycmakeargs="$(cmake-utils_use_with alsa AUDIO)
+	local mycmakeargs="$(cmake-utils_use_with sound AUDIO)
 		$(cmake-utils_use_enable debug)
 		$(cmake-utils_use_build dedicated SERVER)
 		$(cmake-utils_use_with nls)

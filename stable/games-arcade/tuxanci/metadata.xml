@@ -6,4 +6,7 @@
 	<name>Tomas Chvatal</name>
 </maintainer>
 <herd>games</herd>
+<use>
+	<flag name="sound">Enable in-game audio playback support</flag>
+</use>
 </pkgmetadata>
