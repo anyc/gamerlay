@@ -1,6 +1,8 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/games-arcade/dave/dave-1.0.ebuild,v 1.1 2008/09/02 13:31:40 frostwork Exp $
+
+EAPI="2"
 
 inherit games
 
@@ -25,9 +27,7 @@ DEPEND="${RDEPEND}
 
 S="${WORKDIR}"/"${PN}"
 
-src_unpack(){
-	unpack ${A}
-	cd "${S}"
+src_prepare(){
 	epatch "${FILESDIR}"/${P}-data.patch
 	epatch "${FILESDIR}"/${P}-gcc43.patch
 }
