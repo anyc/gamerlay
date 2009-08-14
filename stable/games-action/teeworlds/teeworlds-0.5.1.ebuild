@@ -39,7 +39,7 @@ src_prepare() {
 }
 
 pkg_setup() {
-	dodir /etc/${P}
+	dodir /etc/${PN}
 	enewgroup games
 	enewuser teeworlds -1 -1 -1 games
 }
@@ -85,7 +85,7 @@ src_install() {
 		else
 			dogamesbin ${PN} || die "dogamesbin failed"
 		fi
-		newicon other/icons/Teeworlds.ico ${PN}.ico
+		newicon other/icons/Teeworlds.ico ${PN}.ico || die "doicon failed"
 	    make_desktop_entry ${PN} "Teeworlds"
 		insinto "${dir}"
 		doins -r data || die "doins failed"
@@ -96,5 +96,7 @@ src_install() {
 
 	dodoc *.txt
 	prepgamesdirs
-	newinitd "${FILESDIR}"/teeworlds_init teeworlds
+	keepdir /etc/${PN}
+	newconfd "${FILESDIR}"/${PN}_conf ${PN}
+	newinitd "${FILESDIR}"/${PN}_init ${PN}
 }
