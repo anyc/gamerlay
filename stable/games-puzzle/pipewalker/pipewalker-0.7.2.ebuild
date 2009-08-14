@@ -2,6 +2,8 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
+EAPI="2"
+
 inherit autotools games
 
 DESCRIPTION="PipeWalker - is a clone of the NetWalk game."
@@ -11,13 +13,14 @@ SRC_URI="mirror://sourceforge/${PN}/${P}-src.tar.gz"
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="X glut"
+IUSE=""
 
-DEPEND="glut? ( media-libs/freeglut )"
+DEPEND="
+	media-libs/libsdl[opengl]
+"
 RDEPEND="${DEPEND}"
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
+
+src_prepare() {
 	# fix path placement
 	sed -i \
 		-e "s:\$(datadir):${GAMES_DATADIR_BASE}:g" \
@@ -25,17 +28,15 @@ src_unpack() {
 	sed -i \
 		-e "s:\$(datadir):${GAMES_DATADIR_BASE}:g" \
 		Makefile.am || die "Removing wrong path failed"
+	eautoreconf
 }
 
-src_compile() {
-	eautomake
+src_configure() {
 	egamesconf \
 		--disable-dependency-tracking \
-		--datadir=${GAMES_DATADIR_BASE} \
-		$(use_with X) \
-		$(use_with glut)
-	emake || die "emake failed"
+		--datadir=${GAMES_DATADIR_BASE}
 }
+
 src_install() {
 	emake DESTDIR=${D} install || die "install failed"
 
