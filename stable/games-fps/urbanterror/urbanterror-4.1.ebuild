@@ -86,13 +86,15 @@ src_install() {
 
 	doicon "${DISTDIR}"/Urbanterror.svg
 	cd "${S}"/UrbanTerror/q3ut4
-	dodoc readme41.txt
+	dodoc readme41.txt || die "dodoc failed"
 
 	# fix case sensitivity
-	mv demos/tutorial.dm_68 demos/TUTORIAL.dm_68
+	mv demos/tutorial.dm_68 demos/TUTORIAL.dm_68 || die "mv failed"
 
 	insinto "${GAMES_DATADIR}"/${PN}/q3ut4
-	doins -r *.pk3 autoexec.cfg demos/ description.txt mapcycle.txt screenshots/ server.cfg
+	doins -r *.pk3 autoexec.cfg demos/ description.txt mapcycle.txt screenshots/
+	server.cfg \
+		|| die "doins failed"
 
 	prepgamesdirs
 }
