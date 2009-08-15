@@ -20,6 +20,7 @@ DEPEND=">x11-libs/qt-gui-4.4"
 RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/${P}-src"
+
 src_compile() {
 	eqmake4
 
@@ -27,16 +28,16 @@ src_compile() {
 }
 
 src_install() {
-	exeinto "${ROOT}usr/share/${PN}"
+	exeinto "${GAMES_DATADIR}/${PN}"
 
 	doexe "${PN}-client" || die "doexe failed"
-	dosym "${ROOT}usr/share/${PN}/${PN}-client" "${ROOT}usr/bin/${PN}"
+	dosym "${GAMES_DATADIR}/${PN}/${PN}-client" "${GAMES_BINDIR}/${PN}"
 
 	if use server; then
 		doexe "${PN}-server" || die "doexe failed"
-		dosym "${ROOT}usr/share/${PN}/${PN}-server" "${ROOT}usr/bin/${PN}-server"
+		dosym "${GAMES_DATADIR}/${PN}/${PN}-server" "${GAMES_BINDIR}/${PN}-server"
 	fi
 
-	insinto "${ROOT}usr/share/${PN}"
+	insinto "${GAMES_DATADIR}/${PN}"
 	doins -r gfx || die "doins failed"
 }
