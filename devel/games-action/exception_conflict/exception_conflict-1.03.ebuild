@@ -65,4 +65,3 @@ src_install() {
 pkg_postinst() {
 	games_pkg_postinst
 }
-

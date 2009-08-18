@@ -2,7 +2,9 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-inherit eutils multilib
+EAPI="2"
+
+inherit d-games multilib
 
 IUSE=""
 
@@ -15,19 +17,19 @@ LICENSE="BSD"
 KEYWORDS="ppc x86 ~alpha"
 IUSE=""
 
-DEPEND="<=sys-devel/gcc-4.1.2[d]
-	dev-lang/perl
+DEPEND="dev-lang/perl
 	sys-devel/bison
 	app-arch/unzip"
-
 RDEPEND=""
 
 S="${WORKDIR}"/bulletss
 
 src_unpack() {
 	unpack ${A}
-	cd "${WORKDIR}"/bulletss/
+}
 
+src_prepare(){
+	cd "${WORKDIR}"/bulletss/
 	epatch "${FILESDIR}"/fix.diff
 }
 

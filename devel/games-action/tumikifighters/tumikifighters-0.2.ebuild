@@ -2,7 +2,9 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-inherit eutils games
+EAPI="2"
+
+inherit d-games
 
 MY_PN=tf
 MY_PV=${PV//./_}
@@ -16,39 +18,24 @@ SLOT="0"
 KEYWORDS="~ppc ~x86"
 IUSE=""
 
-DEPEND="media-libs/libsdl
+RDEPEND="media-libs/libsdl
 	media-libs/mesa
 	media-libs/sdl-mixer
 	dev-libs/bulletss"
-RDEPEND=""
+DEPEND="${RDEPEND}"
 
 S=${WORKDIR}/${MY_PN}
 
-pkg_setup() {
-	games_pkg_setup
-
-	# gcc must be built with "d" USE-FLAG
-	if ! built_with_use sys-devel/gcc:4.1 d; then
-		ewarn "sys-devel/gcc must be built with d for this package"
-		ewarn "to function."
-		die "recompile gcc with USE=\"d\""
-	fi
-	if [ "$(gcc-major-version)" == "4" ] && [ "$(gcc-minor-version)" == "2" ] ; then
-		die "gdc doesn't work with sys-devel/gcc-4.2 currently - use 4.1 instead"
-	fi
-}
-
-src_unpack(){
-	unpack ${A}
+src_prepare(){
 	epatch "${FILESDIR}"/${P}.diff
 	sed -i \
-	-e 's:"\(sounds/[^"]*\)":"'${GAMES_DATADIR}'/'${PN}'/\1":g' -i tf/src/abagames/util/sdl/sound.d \
-	-e 's:"\(barrage[^"]*\)":"'${GAMES_DATADIR}'/'${PN}'/\1":g' -i tf/src/abagames/tf/barragemanager.d \
-	-e 's:"\(enemy[^"]*\)":"'${GAMES_DATADIR}'/'${PN}'/\1":g' -i tf/src/abagames/tf/enemyspec.d \
-	-e 's:"\(field[^"]*\)":"'${GAMES_DATADIR}'/'${PN}'/\1":g' -i tf/src/abagames/tf/field.d \
-	-e 's:"\(stage[^"]*\)":"'${GAMES_DATADIR}'/'${PN}'/\1":g' -i tf/src/abagames/tf/stagemanager.d \
-	-e 's:"\(tumiki[^"]*\)":"'${GAMES_DATADIR}'/'${PN}'/\1":g' -i tf/src/abagames/tf/tumikiset.d \
-	-e 's:"\(tf.prf[^"]*\)":"'${GAMES_STATEDIR}'/\1":g' -i tf/src/abagames/tf/prefmanager.d \
+	-e 's:"\(sounds/[^"]*\)":"'${GAMES_DATADIR}'/'${PN}'/\1":g' -i src/abagames/util/sdl/sound.d \
+	-e 's:"\(barrage[^"]*\)":"'${GAMES_DATADIR}'/'${PN}'/\1":g' -i src/abagames/tf/barragemanager.d \
+	-e 's:"\(enemy[^"]*\)":"'${GAMES_DATADIR}'/'${PN}'/\1":g' -i src/abagames/tf/enemyspec.d \
+	-e 's:"\(field[^"]*\)":"'${GAMES_DATADIR}'/'${PN}'/\1":g' -i src/abagames/tf/field.d \
+	-e 's:"\(stage[^"]*\)":"'${GAMES_DATADIR}'/'${PN}'/\1":g' -i src/abagames/tf/stagemanager.d \
+	-e 's:"\(tumiki[^"]*\)":"'${GAMES_DATADIR}'/'${PN}'/\1":g' -i src/abagames/tf/tumikiset.d \
+	-e 's:"\(tf.prf[^"]*\)":"'${GAMES_STATEDIR}'/\1":g' -i src/abagames/tf/prefmanager.d \
 		|| die "sed failed"
 }
 
