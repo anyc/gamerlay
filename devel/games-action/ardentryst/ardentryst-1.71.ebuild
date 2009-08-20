@@ -16,6 +16,7 @@ KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 RDEPEND="dev-python/pygame"
+DEPEND="${RDEPEND}"
 
 S=${WORKDIR}/${MY_P}
 
@@ -25,6 +26,6 @@ src_install() {
 	games_make_wrapper ${PN} "python ./ardentryst.py" "${GAMES_DATADIR}/${PN}"
 	newicon Data/icon.png ${PN}.png
 	make_desktop_entry ${PN} Ardentryst
-	dodoc help.txt
+	dodoc help.txt || die
 	prepgamesdirs
 }
