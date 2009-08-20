@@ -21,7 +21,6 @@ DEPEND="media-libs/libsdl
 	dev-libs/expat"
 RDEPEND=""
 
-
 src_prepare() {
 	epatch "${FILESDIR}"/${PV}-gentoopath.diff || die "patch failed"
 }
@@ -34,7 +33,6 @@ src_install() {
 	newicon "${FILESDIR}"/${PN}.png ${PN}.png
 	make_desktop_entry ${PN} ${PN}
 	prepgamesdirs
-
 }
 
 pkg_postinst() {
