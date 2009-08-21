@@ -1,3 +1,0 @@
-PIDFILE=/var/run/teeworlds.pid
-GAME_DIRECTORY=/usr/games/bin
-CONFIG=/etc/teeworlds/teeworlds_srv.cfg
