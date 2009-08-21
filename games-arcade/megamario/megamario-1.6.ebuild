@@ -25,9 +25,9 @@ RDEPEND="media-libs/libsdl
 DEPEND="${RDEPEND}"
 
 src_prepare(){
-	epatch "${FILESDIR}"/${PV}-gcc43.patch || die "gcc 43 patch failed"
-	epatch "${FILESDIR}"/${PV}-hqmusic.patch || die "hq music patch failed"
-	epatch "${FILESDIR}"/${PV}-logpath.patch || die "logpath patch failed"
+	epatch "${FILESDIR}"/${PV}-gcc43.patch
+	epatch "${FILESDIR}"/${PV}-hqmusic.patch
+	epatch "${FILESDIR}"/${PV}-logpath.patch
         sed -s \
            -e 's/\/home\/opt/${GAMES_DATADIR}/g' -i Makefile \
            -e 's/\/share//g' -i Makefile \
@@ -44,7 +44,6 @@ src_install() {
 	for i in `find ${WORKDIR}/data -name "*.JPG"`; do \
 		mv $i `echo $i|sed s/JPG/jpg/`; \
 	done
-	dodir ${datadir}
 	insinto "${datadir}"
 	doins -r data/* mp3music  || die "data install failed"
 	doicon ${PN}.png
