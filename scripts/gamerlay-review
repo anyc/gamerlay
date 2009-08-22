@@ -23,29 +23,13 @@ test -d ${tmpdir} || mkdir ${tmpdir}
 git diff --patch-with-stat --full-index master > ${patchset} \
     || die "Diff between devel and stable branches failed"
 
-for file in $(ls -d *-*/*/files/* 2>/dev/null); do
-    # charset=binary, so we have to deal with a binary file
-    # we need to exclude it from git apply.
-    if [ "$(file -i ${file} | cut -d '=' -f 2)" == "binary" ]; then
-	have_binaries="1"
-	exclude_list="${exclude_list} --exclude=${file}"
-	backupdir=${tmpdir}/$(dirname ${file})
-	test -d ${backupdir} || mkdir -p ${backupdir}
-	# Then backup it, and handle it later in a tarball
-	cp -p ${file} ${backupdir}
-    fi
-done
-
-if [ ${have_binaries} ]; then
-    pushd ${tmpdir}
-    tar cjpf binaries.tar.bz2 $(ls -d *-*/)
-    popd
-fi
-
 git checkout master || die "Switch to stable branch failed"
-git apply --whitespace=nowarn --exclude='Documentation' --exclude='scripts' \
-    ${exclude_list} ${patchset} || die "Unable to apply patchset"
-[ ${have_binaries} ] && tar xjpf ${tmpdir}/binaries.tar.bz2
-#repoman commit -m ${review_msg}
+# Why --exclude=Documentation/ or --exclude=scripts/ doesn't work ?
+# WTF ?
+git apply --whitespace=nowarn ${exclude_list} ${patchset} \
+    || die "Unable to apply patchset"
+#FIXME: Use --exclude option, when an alternative would be found
+rm -rf Documentation/ scripts/
+repoman commit -m ${review_msg}
 einfo "${review_msg}...commited"
 rm -rf ${tmpdir}
