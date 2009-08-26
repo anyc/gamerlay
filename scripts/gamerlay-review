@@ -17,7 +17,7 @@ YELLOW=$WARN
 
 tmpdir="/tmp/$(basename ${0}).$$"
 patchset=${tmpdir}/$(basename ${0})-patchset.patch
-changes=""
+summary_changes=${tmpdir}/$(basename ${0})-summary-changes.log
 opt_norepoman=0
 opt_quiet=0
 opt_verbose=0
@@ -26,10 +26,18 @@ fatal() {
     eerror "!!! Error: $*"
 }
 
-die() {
-    fatal $*
-    exit 1
-}
+#TODO: Interesting thing to handle a backtrace in case of problems ? (ala ebuild.sh)
+#backtrace() {
+#    if [ $opt_verbose == 1 ]; then
+#	eerror "Call stack:"
+#	set ${FUNCNAME[*]}; shift
+#	while [ $# > 1 ]; do
+#	    eerror "  $(basename ${0}): Called ${1}"
+#	    shift
+#	done
+#    fi
+#    exit $1
+#}
 
 eend_or_die() {
     eend $1 || exit $?
@@ -39,7 +47,7 @@ usage() {
 cat <<EOF
 ${BOLD}Usage:${NORMAL} ${LIGHTBLUE}gamerlay-review${NORMAL} [ ${GREEN}options${NORMAL} ] ${BLUE}message${NORMAL}
 
-${GREEN}options${NORMAL}:
+${GREEN}options${NORMAL}:      
   ${BOLD}--help, -h${NORMAL}       Show help
   ${BOLD}--norepoman, -p${NORMAL}  Skip repoman check
   ${BOLD}--quiet, -q${NORMAL}      Don't ask for confirmation
@@ -99,7 +107,8 @@ while [ $# > 0 ]; do
 done
 
 if [ -z "$*" ]; then
-    die "You must give a commit message, see gamerlay-review -h for more details"
+    fatal "You must give a commit message, see gamerlay-review -h for more details"
+    exit 1
 fi
 
 if [ $opt_norepoman = 0 ]; then
@@ -110,26 +119,26 @@ fi
 
 mkdir -p ${tmpdir}
 ebegin "Computing differences between the two working branches"
-changes=$(git diff --summary master)
+git_command -o ${summary_changes} diff --name-status master && \
+sed -e '/^A\tDocumentation\/[a-zA-Z0-9\._][a-zA-Z0-9\._]*$/d'  \
+    -e '/^A\tscripts\/[a-zA-Z0-9\._][a-zA-Z0-9\._]*/d' -i ${summary_changes} && \
 git_command -o ${patchset} diff --patch-with-stat --full-index master
 eend_or_die $?
 
-git_checkout master || exit $?
 ebegin "Synchronizing devel and stable branches"
-git_command apply --whitespace=nowarn ${patchset}
+git_checkout master && git_command apply --whitespace=nowarn ${patchset}
 eend_or_die $?
 
 rm -rf Documentation/ scripts/
 ebegin "Adding local changes to the working stable branch"
-git_command add "*" || set $?
-[ $1 = 0 ] && git_command commit -a -m "$*"
+git_command add "*" && git_command commit -a -m "$*"
 eend_or_die $?
 
 echo
 echo "${DARKGREEN}The following local changes will be pushed to the stable branch on the repository:${NORMAL}"
 echo
 
-echo ${changes}
+cat ${summary_changes}
 
 if [ $opt_quiet = 0 ]; then
     echo
@@ -147,12 +156,12 @@ if [ $opt_quiet = 0 ]; then
     esac
 fi
 
-git_checkout devel || exit $?
 ebegin "Adding a tag to the working devel branch"
-git_command tag -a Reviewed_up_$(data +%Y_%m_%d) -m "Reviewed up $(data +%Y/%m/%d)" || set $?
-[ $1 = 0 ] && git_command push
+git_checkout devel && \
+git_command tag -a Reviewed_up_$(data +%Y_%m_%d) -m "Reviewed up $(data +%Y/%m/%d)" && \
+git_command push
 eend_or_die $?
 ebegin "Pushing working copy of the stable branch to the repository"
-git_command push
-eend $?
+git_checkout master && git_command push
+eend_or_die $?
 rm -rf ${tmpdir}
