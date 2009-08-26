@@ -4,7 +4,7 @@
 
 EAPI="2"
 
-inherit eutils
+inherit d-games eutils
 
 DESCRIPTION="A Library of Bullet Markup Language for D-Lang"
 HOMEPAGE="http://shinh.skr.jp/bulletss/"
@@ -15,10 +15,8 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-RDEPEND="dev-lang/dmd-bin
-	media-libs/libsdl
+RDEPEND="media-libs/libsdl
 	media-libs/mesa"
-
 DEPEND="${RDEPEND}
 	dev-lang/perl"
 
