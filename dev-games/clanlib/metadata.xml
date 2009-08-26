@@ -2,4 +2,8 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 <herd>playboys</herd>
+<use>
+  <flag name='network'>Build within the ClanNetwork module</flag>
+  <flag name='gui'>Build within the ClanGUI module</flag>
+</use>
 </pkgmetadata>

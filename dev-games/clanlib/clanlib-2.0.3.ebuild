@@ -1,20 +1,19 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
 EAPI="2"
 
-MY_P="ClanLib-${PV}"
-inherit flag-o-matic eutils
+MY_P=ClanLib-${PV}
 
 DESCRIPTION="multi-platform game development library"
 HOMEPAGE="http://www.clanlib.org/"
 SRC_URI="http://clanlib.org/download/releases-${PV:0:3}/${MY_P}.tgz"
 
-LICENSE="ZLIB"
+LICENSE="as-is"
 SLOT="0.8"
 KEYWORDS="~amd64 ~x86"
-IUSE="opengl sdl vorbis doc mikmod ipv6 network pcre sqlite gui "
+IUSE="doc examples gui ipv6 mikmod network opengl pcre sdl sqlite vorbis"
 
 # opengl keyword does not drop the GL/GLU requirement.
 # Autoconf files need to be fixed
@@ -22,7 +21,7 @@ RDEPEND="
 	media-libs/libpng
 	media-libs/jpeg
 	media-libs/freetype
-	opengl? ( 
+	opengl? (
 		virtual/opengl
 		virtual/glu
 	)
@@ -41,7 +40,7 @@ RDEPEND="
 DEPEND="${RDEPEND}
 	x11-proto/xf86vidmodeproto"
 
-S="${WORKDIR}/${MY_P}"
+S=${WORKDIR}/${MY_P}
 
 src_configure() {
 	econf \
@@ -64,10 +63,18 @@ src_configure() {
 src_install() {
 	emake DESTDIR="${D}" install || die "emake install failed"
 	if use doc ; then
-		dodir /usr/share/doc/${PF}/html
-		mv "${D}"/usr/share/doc/clanlib/* "${D}"/usr/share/doc/${PF}/html/ || die
+		dodir /usr/share/doc/${PF}/html || die "dodir failed"
+		mv "${D}"/usr/share/doc/clanlib/* "${D}"/usr/share/doc/${PF}/html/ \
+			|| die "mv failed"
 		rm -rf "${D}"/usr/share/doc/clanlib
-		cp -r Examples Resources "${D}"/usr/share/doc/${PF}/ || die
 	fi
-	dodoc CODING_STYLE CREDITS NEWS PATCHES README* INSTALL.linux
+
+	#FIXME: What about the Resources subdirectory into tarball ?
+	# it's not documentation or examples at all, but seems to be extras themes...
+	if use examples; then
+		insinto /usr/share/doc/${PF}/examples
+		doins -r Examples || die "dobin -r failed"
+	fi
+
+	dodoc CODING_STYLE CREDITS README* || die "dodoc failed"
 }
