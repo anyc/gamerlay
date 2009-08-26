@@ -4,29 +4,25 @@
 
 EAPI="2"
 
-inherit d-games multilib
-
-IUSE=""
+inherit eutils
 
 DESCRIPTION="A Library of Bullet Markup Language for D-Lang"
-SRC_URI="http://my.vector.co.jp/servlet/System.FileDownload/download/http/0/301119/pack/win95/game/tool/bulletss.zip"
 HOMEPAGE="http://shinh.skr.jp/bulletss/"
+SRC_URI="http://my.vector.co.jp/servlet/System.FileDownload/download/http/0/301119/pack/win95/game/tool/${PN}.zip"
 
-SLOT="0"
 LICENSE="BSD"
-KEYWORDS="ppc x86 ~alpha"
+SLOT="0"
+KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-DEPEND="dev-lang/perl
-	sys-devel/bison
-	app-arch/unzip"
-RDEPEND=""
+RDEPEND="dev-lang/dmd-bin
+	media-libs/libsdl
+	media-libs/mesa"
+
+DEPEND="${RDEPEND}
+	dev-lang/perl"
 
 S="${WORKDIR}"/bulletss
-
-src_unpack() {
-	unpack ${A}
-}
 
 src_prepare(){
 	cd "${WORKDIR}"/bulletss/
@@ -34,20 +30,20 @@ src_prepare(){
 }
 
 src_compile() {
-	emake -C bulletml || die
+	emake -C bulletml || die "emake failed"
 }
 
 src_install() {
-	dodoc README*
+	dodoc README* || die "dodoc failed"
 
 	cd "${S}"/bulletml
-	dolib.a libbulletml_d.a
+	dolib.a libbulletml_d.a || die "dolib.a failed"
 
 	insinto /usr/include/bulletml-d
-	doins *.h
+	doins *.h || die "doins headers file failed"
 
-	dodir /usr/lib/dmd/phobos
+	dodir /usr/lib/dmd/phobos || die "dodir failed"
 	insinto /usr/lib/dmd/phobos
-	doins bulletml.d
-	dosed "s:\(alias bit bool\)://\1:" /usr/lib/dmd/phobos/bulletml.d
+	doins bulletml.d || die "doins bulletml.d failed"
+	dosed "s:\(alias bit bool\)://\1:" /usr/lib/dmd/phobos/bulletml.d || die "dosed failed"
 }
