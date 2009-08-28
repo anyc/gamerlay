@@ -11,7 +11,8 @@ MY_PV=${PV//./_}
 
 DESCRIPTION="Guns, Guns, Guns! 360-degree gunboat shooter, 'Gunroar'"
 HOMEPAGE="http://www.asahi-net.or.jp/~cs8k-cyu/windows/gr_e.html"
-SRC_URI="http://www.asahi-net.or.jp/~cs8k-cyu/windows/${MY_PN}${MY_PV}.zip"
+SRC_URI="http://www.asahi-net.or.jp/~cs8k-cyu/windows/${MY_PN}${MY_PV}.zip
+	mirror://debian/pool/main/g/${PN}/${PN}_${PV}.dfsg1-3.diff.gz"
 
 LICENSE="BSD"
 SLOT="0"
@@ -27,11 +28,21 @@ DEPEND="${RDEPEND}"
 S=${WORKDIR}/${MY_PN}
 
 src_prepare(){
-	epatch "${FILESDIR}"/${P}.diff
+	# using frostworks patches with debian's cleanups and minor patches
+	epatch "${WORKDIR}"/${PN}_${PV}.dfsg1-3.diff
+	sed -i -e "s:a7xpg-0.11.dfsg1/::g" -i "${WORKDIR}"/${MY_PN}/${P}.dfsg1/debian/patches/makefile.patch
+	epatch "${WORKDIR}"/${MY_PN}/${P}.dfsg1/debian/patches/01_sdl_fix_imports.diff
+	epatch "${WORKDIR}"/${MY_PN}/${P}.dfsg1/debian/patches/02_d_language_changes.diff
+	epatch "${WORKDIR}"/${MY_PN}/${P}.dfsg1/debian/patches/03_put_prefs_in_home_dir.diff
+	epatch "${WORKDIR}"/${MY_PN}/${P}.dfsg1/debian/patches/04_adapt_build_file_to_linux.diff
+	epatch "${WORKDIR}"/${MY_PN}/${P}.dfsg1/debian/patches/windowed.patch
+	epatch "${WORKDIR}"/${MY_PN}/${P}.dfsg1/debian/patches/makefile.patch
+	epatch "${WORKDIR}"/${MY_PN}/${P}.dfsg1/debian/patches/gdc-0.24-semantics-for-version.patch
+	epatch "${WORKDIR}"/${MY_PN}/${P}.dfsg1/debian/patches/window-resizing.patch
+	epatch "${WORKDIR}"/${MY_PN}/${P}.dfsg1/debian/patches/avoid-segfault-when-sdl-fails.patch
 	sed -i \
 	-e 's:"\(images/[^"]*\)":"'${GAMES_DATADIR}'/'${PN}'/\1":g' -i src/abagames/util/sdl/texture.d \
 	-e 's:"\(sounds/[^"]*\)":"'${GAMES_DATADIR}'/'${PN}'/\1":g' -i src/abagames/util/sdl/sound.d \
-	-e 's:"\(gr.prf[^"]*\)":"'${GAMES_STATEDIR}'/'${PN}'/\1":g' -i src/abagames/gr/prefmanager.d \
 		|| die "sed failed"
 }
 
@@ -40,17 +51,11 @@ src_install() {
 	dodir "${GAMES_STATEDIR}/${PN}" "${GAMES_STATEDIR}/${PN}/replay"
 	local statedir="${GAMES_STATEDIR}"/${PN}
 
-	if [ ! -e ${D}"${GAMES_STATEDIR}"/${PN}/gr.prf ]; then
-		touch ${D}"${GAMES_STATEDIR}"/${PN}/gr.prf
-		chmod ug+rw ${D}"${GAMES_STATEDIR}"/${PN}/gr.prf
-	        fperms 660 ${D}"${GAMES_STATEDIR}"/${PN}/gr.prf
-	fi
-
 	local datadir="${GAMES_DATADIR}"/${PN}
 	dodir ${datadir}
 	insinto "${GAMES_DATADIR}"/${PN}
 	doins -r images sounds || die
-	newicon "${FILESDIR}"/${PN}.png ${PN}.png
+	newicon "${WORKDIR}"/${MY_PN}/${P}.dfsg1/debian/${PN}.xpm ${PN}.xpm
 	make_desktop_entry ${PN} ${PN}
 	dodoc readme*
 	prepgamesdirs
