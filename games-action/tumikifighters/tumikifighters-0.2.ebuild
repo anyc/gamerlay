@@ -7,11 +7,13 @@ EAPI="2"
 inherit d-games
 
 MY_PN=tf
+MY_PD=tumiki-fighters
 MY_PV=${PV//./_}
 
 DESCRIPTION="Stick more enemies and become much stronger. Sticky 2D shooter, 'TUMIKI Fighters'. "
 HOMEPAGE="http://www.asahi-net.or.jp/~cs8k-cyu/windows/tf_e.html"
-SRC_URI="http://www.asahi-net.or.jp/~cs8k-cyu/windows/${MY_PN}${MY_PV}.zip"
+SRC_URI="http://www.asahi-net.or.jp/~cs8k-cyu/windows/${MY_PN}${MY_PV}.zip
+	mirror://debian/pool/main/t/${MY_PD}/${MY_PD}_${PV}.dfsg1-3.diff.gz"
 
 LICENSE="BSD"
 SLOT="0"
@@ -21,13 +23,23 @@ IUSE=""
 RDEPEND="media-libs/libsdl
 	media-libs/mesa
 	media-libs/sdl-mixer
-	dev-libs/bulletss"
+	dev-libs/libbulletml"
 DEPEND="${RDEPEND}"
 
 S=${WORKDIR}/${MY_PN}
 
 src_prepare(){
-	epatch "${FILESDIR}"/${P}.diff
+	# using frostworks patches with debian's cleanups and minor patches
+	epatch "${WORKDIR}"/${MY_PD}_${PV}.dfsg1-3.diff
+	sed -i -e "s:${MY_PD}-${PV}.dfsg1/::g" -i "${S}"/${MY_PD}-${PV}.dfsg1/debian/patches/makefile.patch
+	sed -i -e "s:${MY_PD}:${PN}:g" -i "${S}"/${MY_PD}-${PV}.dfsg1/debian/patches/makefile.patch
+	epatch "${S}"/${MY_PD}-${PV}.dfsg1/debian/patches/imports.patch
+	epatch "${S}"/${MY_PD}-${PV}.dfsg1/debian/patches/fixes.patch
+	epatch "${S}"/${MY_PD}-${PV}.dfsg1/debian/patches/windowed.patch
+	epatch "${S}"/${MY_PD}-${PV}.dfsg1/debian/patches/dotfile.patch
+	epatch "${S}"/${MY_PD}-${PV}.dfsg1/debian/patches/makefile.patch
+	epatch "${S}"/${MY_PD}-${PV}.dfsg1/debian/patches/gdc-0.24-semantics-for-version.patch
+	epatch "${S}"/${MY_PD}-${PV}.dfsg1/debian/patches/window-resizing.patch
 	sed -i \
 	-e 's:"\(sounds/[^"]*\)":"'${GAMES_DATADIR}'/'${PN}'/\1":g' -i src/abagames/util/sdl/sound.d \
 	-e 's:"\(barrage[^"]*\)":"'${GAMES_DATADIR}'/'${PN}'/\1":g' -i src/abagames/tf/barragemanager.d \
@@ -35,29 +47,22 @@ src_prepare(){
 	-e 's:"\(field[^"]*\)":"'${GAMES_DATADIR}'/'${PN}'/\1":g' -i src/abagames/tf/field.d \
 	-e 's:"\(stage[^"]*\)":"'${GAMES_DATADIR}'/'${PN}'/\1":g' -i src/abagames/tf/stagemanager.d \
 	-e 's:"\(tumiki[^"]*\)":"'${GAMES_DATADIR}'/'${PN}'/\1":g' -i src/abagames/tf/tumikiset.d \
-	-e 's:"\(tf.prf[^"]*\)":"'${GAMES_STATEDIR}'/\1":g' -i src/abagames/tf/prefmanager.d \
 		|| die "sed failed"
 }
 
 src_install() {
 	dogamesbin ${PN}
 
-	if [ ! -e "${GAMES_STATEDIR}"/tf.prf ]; then
-		dodir "${GAMES_STATEDIR}"
-		touch ${D}/"${GAMES_STATEDIR}"/tf.prf
-	fi
-
 	local datadir="${GAMES_DATADIR}"/${PN}
 	dodir ${datadir}
 	insinto "${GAMES_DATADIR}"/${PN}
 	doins -r barrage enemy field sounds stage tumiki || die
-	newicon "${FILESDIR}"/${PN}.png ${PN}.png
+	newicon "${S}"/${MY_PD}-${PV}.dfsg1/debian/${MY_PD}.xpm ${PN}.xpm
 	make_desktop_entry ${PN} ${PN}
 	dodoc readme*
 	prepgamesdirs
 }
 
 pkg_postinst() {
-	chmod 660 "${GAMES_STATEDIR}"/tf.prf
 	games_pkg_postinst
 }
