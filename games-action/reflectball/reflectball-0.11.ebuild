@@ -20,13 +20,17 @@ IUSE=""
 
 RDEPEND="media-libs/libsdl
 	media-libs/mesa
-	media-libs/sdl-mixer"
+	media-libs/sdl-mixer
+	dev-libs/libbulletml"
 DEPEND="${RDEPEND}"
 
 S=${WORKDIR}/${MY_PN}
 
 src_prepare(){
-	epatch "${FILESDIR}"/${P}.diff
+	epatch "${FILESDIR}"/${P}-fixes.diff
+	epatch "${FILESDIR}"/${P}-homedir.diff
+	epatch "${FILESDIR}"/${P}-import.diff
+	epatch "${FILESDIR}"/${P}-makefile.diff
 	mv src/reflection.d src/reflection.d-OFF
 	sed -i \
 	-e 's:"\(title.bmp[^"]*\)":"'${GAMES_DATADIR}'/'${PN}'/\1":g' -i src/init.d \
