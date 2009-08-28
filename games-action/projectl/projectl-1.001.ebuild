@@ -11,7 +11,8 @@ MY_PV=${PV//./}
 
 DESCRIPTION="Sword action STG inspired by projectN developed by D.K"
 HOMEPAGE="http://www.mb.ccnw.ne.jp/hiz/game/projectL/index_en.html"
-SRC_URI="http://www.mb.ccnw.ne.jp/hiz/game/projectL/${MY_PN}_${MY_PV}.zip"
+SRC_URI="http://www.mb.ccnw.ne.jp/hiz/game/projectL/${MY_PN}_${MY_PV}.zip
+	mirror://debian/pool/main/p/${PN}/${PN}_${PV}.dfsg1-2.diff.gz"
 
 LICENSE="BSD"
 SLOT="0"
@@ -21,13 +22,19 @@ IUSE=""
 RDEPEND="media-libs/libsdl
 	media-libs/mesa
 	media-libs/sdl-mixer
-	dev-libs/bulletss"
+	dev-libs/libbulletml"
 DEPEND="${RDEPEND}"
 
 S=${WORKDIR}/${MY_PN}_${MY_PV}
 
 src_prepare(){
-	epatch "${FILESDIR}"/${P}.diff
+	# using frostworks patches with debian's cleanups and minor patches
+	epatch "${WORKDIR}"/${PN}_${PV}.dfsg1-2.diff
+	sed -i -e "s:${PN}-${PV}.dfsg1/::g" -i "${S}"/${PN}-${PV}.dfsg1/debian/patches/makefile.patch
+	epatch "${S}"/${PN}-${PV}.dfsg1/debian/patches/import-opengl.patch
+	epatch "${S}"/${PN}-${PV}.dfsg1/debian/patches/fixes.patch
+	epatch "${S}"/${PN}-${PV}.dfsg1/debian/patches/makefile.patch
+	epatch "${S}"/${PN}-${PV}.dfsg1/debian/patches/put_prefs_in_home_dir.patch
 	sed -i \
 	-e 's:"\(se/[^"]*\)":"'${GAMES_DATADIR}'/'${PN}'/\1":g' -i src/br/gamemanager.d \
 	-e 's:"\(music/[^"]*\)":"'${GAMES_DATADIR}'/'${PN}'/\1":g' -i src/br/gamemanager.d \
@@ -38,19 +45,14 @@ src_prepare(){
 }
 
 src_install() {
-	dogamesbin projectL
+	dogamesbin ${PN}
 
 	local datadir="${GAMES_DATADIR}"/${PN}
 	dodir ${datadir}
 	insinto "${GAMES_DATADIR}"/${PN}
 	doins -r music se voice || die
 
-	if [ ! -e "${GAMES_STATEDIR}"/${PN}.prf ]
-	then
-		dodir "${GAMES_STATEDIR}"
-		touch ${D}/"${GAMES_STATEDIR}"/${PN}.prf
-	fi
-	newicon "${FILESDIR}"/${PN}.png ${PN}.png
+	newicon "${S}"/${PN}-${PV}.dfsg1/debian/${PN}.xpm ${PN}.xpm
 	make_desktop_entry projectL ${PN}
 	dodoc readme*
 	prepgamesdirs
@@ -58,5 +60,4 @@ src_install() {
 
 pkg_postinst() {
 	games_pkg_postinst
-	chmod ug+rw "${GAMES_STATEDIR}"/${PN}.prf
 }
