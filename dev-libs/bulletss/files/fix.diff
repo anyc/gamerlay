@@ -1,8 +1,0 @@
---- bulletml/d_cpp_interface.h
-+++ bulletml/d_cpp_interface.h
-@@ -1,4 +1,4 @@
--#define D_CPP_CLASS(CLASS, CLASS_NAME) ;
-+#define D_CPP_CLASS(CLASS, CLASS_NAME) 
- 
- #define D_CPP_NEW_0(CLASS, NEW_NAME) \
- CLASS* NEW_NAME() { \
