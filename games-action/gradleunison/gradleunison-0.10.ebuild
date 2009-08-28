@@ -21,7 +21,7 @@ IUSE=""
 RDEPEND="media-libs/libsdl
 	media-libs/mesa
 	media-libs/sdl-mixer
-	dev-libs/bulletss"
+	dev-libs/libbulletml"
 DEPEND="${RDEPEND}"
 
 S=${WORKDIR}/${MY_PN}
@@ -31,7 +31,10 @@ src_unpack(){
 }
 
 src_prepare(){
-	epatch "${FILESDIR}"/${P}.diff
+	epatch "${FILESDIR}"/${P}-makefile.diff
+	epatch "${FILESDIR}"/${P}-import.diff
+	epatch "${FILESDIR}"/${P}-fixes.diff
+	epatch "${FILESDIR}"/${P}-homedir.diff
 	mv src/reflection.d src/reflection.d-OFF
 	sed -i \
 	-e 's:"\(title.bmp[^"]*\)":"'${GAMES_DATADIR}'/'${PN}'/\1":g' -i src/init.d \
@@ -42,7 +45,6 @@ src_prepare(){
 	-e 's:"\(se_[^"]*\)":"'${GAMES_DATADIR}'/'${PN}'/\1":g' -i src/init.d \
 	-e 's:"\(gu_[^"]*\)":"'${GAMES_DATADIR}'/'${PN}'/\1":g' -i src/init.d \
 	-e 's:"\(./bullet[^"]*\)":"'${GAMES_DATADIR}'/'${PN}'/\1":g' -i src/init.d \
-	-e 's:"\(score.dat[^"]*\)":"'${GAMES_STATEDIR}'/'gu-'\1":g' -i src/gctrl.d \
 		|| die "sed failed"
 }
 
@@ -54,14 +56,6 @@ src_install() {
 	insinto "${GAMES_DATADIR}"/${PN}
 	doins -r bullet *.bmp *.ogg *.wav || die
 
-	if [ ! -e "${GAMES_STATEDIR}"/gu-score.dat ]
-	then
-		dodir "${GAMES_STATEDIR}"
-		insinto "${GAMES_STATEDIR}"
-		doins "${FILESDIR}"/gu-score.dat  || die
-		fperms 660 "${GAMES_STATEDIR}"/gu-score.dat
-	fi
-	newicon "${FILESDIR}"/${PN}.png ${PN}.png
 	make_desktop_entry ${PN} ${PN}
 	dodoc readme*
 	prepgamesdirs
