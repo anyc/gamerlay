@@ -6,12 +6,12 @@ EAPI="2"
 
 inherit d-games
 
-MY_PN=a7xpg
 MY_PV=${PV//./_}
 
 DESCRIPTION="The retro modern high speed shooting game"
 HOMEPAGE="http://www.asahi-net.or.jp/~cs8k-cyu/windows/a7xpg_e.html"
-SRC_URI="mirror://www.asahi-net.or.jp/~cs8k-cyu/windows/${MY_PN}${MY_PV}.zip"
+SRC_URI="mirror://www.asahi-net.or.jp/~cs8k-cyu/windows/${PN}${MY_PV}.zip
+	mirror://debian/pool/main/a/${PN}/${PN}_${PV}.dfsg1-4.diff.gz"
 
 LICENSE="BSD"
 SLOT="0"
@@ -30,11 +30,24 @@ src_unpack(){
 }
 
 src_prepare(){
-	epatch "${FILESDIR}"/${P}.diff
+	# using frostworks patches with debian's cleanups and minor patches
+	epatch "${WORKDIR}"/${PN}_${PV}.dfsg1-4.diff
+	sed -i -e "s:a7xpg-0.11.dfsg1/::g" -i "${WORKDIR}"/${PN}/${P}.dfsg1/debian/patches/makefile.patch
+	epatch "${WORKDIR}"/${PN}/${P}.dfsg1/debian/patches/01_port_opengl_headers.diff
+	epatch "${WORKDIR}"/${PN}/${P}.dfsg1/debian/patches/02_sdl_import_remove_windows_code.diff
+	epatch "${WORKDIR}"/${PN}/${P}.dfsg1/debian/patches/03_sdl_import_fix_weird_sdl_keysym_problem.diff
+	epatch "${WORKDIR}"/${PN}/${P}.dfsg1/debian/patches/04_sdl_import_d_language_updates.diff
+	epatch "${WORKDIR}"/${PN}/${P}.dfsg1/debian/patches/05_remove_windows_code.diff
+	epatch "${WORKDIR}"/${PN}/${P}.dfsg1/debian/patches/06_d_language_changes.diff
+	epatch "${WORKDIR}"/${PN}/${P}.dfsg1/debian/patches/07_store_prefs_in_home_dir.diff
+	epatch "${WORKDIR}"/${PN}/${P}.dfsg1/debian/patches/08_adapt_build_file_to_linux_gdc.diff
+	epatch "${WORKDIR}"/${PN}/${P}.dfsg1/debian/patches/windowed.patch
+	epatch "${WORKDIR}"/${PN}/${P}.dfsg1/debian/patches/makefile.patch
+	epatch "${WORKDIR}"/${PN}/${P}.dfsg1/debian/patches/window-resizing.patch
+	epatch "${WORKDIR}"/${PN}/${P}.dfsg1/debian/patches/allow-sound-init-to-fail.patch
 	sed -i \
 	-e 's:"\(images/[^"]*\)":"'${GAMES_DATADIR}'/'${PN}'/\1":g' -i src/abagames/util/sdl/Texture.d \
 	-e 's:"\(sounds/[^"]*\)":"'${GAMES_DATADIR}'/'${PN}'/\1":g' -i src/abagames/util/sdl/Sound.d \
-	-e 's:"\(a7xpg.prf[^"]*\)":"'${GAMES_STATEDIR}'/\1":g' -i src/abagames/a7xpg/A7xPrefManager.d \
 		|| die "sed failed"
 }
 
@@ -46,15 +59,7 @@ src_install() {
 	insinto "${GAMES_DATADIR}"/"${PN}"
 	doins -r images sounds || die
 
-	if [ ! -e "${GAMES_STATEDIR}"/${PN}.prf ]
-	then
-		dodir "${GAMES_STATEDIR}"
-	insinto "${GAMES_STATEDIR}"
-	doins "${FILESDIR}"/a7xpg.prf  || die
-	fperms 660 "${FILESDIR}"/a7xpg.prf
-	fi
-
-	newicon "${FILESDIR}"/${PN}.png ${PN}.png
+	newicon "${WORKDIR}"/${PN}/${P}.dfsg1/debian/${PN}.xpm ${PN}.xpm
 	make_desktop_entry ${PN} ${PN}
 	dodoc readme*
 	prepgamesdirs
@@ -62,5 +67,4 @@ src_install() {
 
 pkg_postinst() {
 	games_pkg_postinst
-	chmod ug+rw "${GAMES_STATEDIR}"/${PN}.prf
 }
