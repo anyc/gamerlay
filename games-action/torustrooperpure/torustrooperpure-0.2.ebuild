@@ -6,12 +6,17 @@ EAPI="2"
 
 inherit d-games
 
-MY_PN=ttp
+MY_PN=tt
 MY_PV=${PV//./_}
+MY_PD=torus-trooper
+MY_PDV=0_22
+MY_PDPV=0.22
 
 DESCRIPTION="Brake down and Burn up! original:Torus Trooper (ABA)"
 HOMEPAGE="http://www.mb.ccnw.ne.jp/hiz/game/tt/index_en.html"
-SRC_URI="http://www.mb.ccnw.ne.jp/hiz/game/tt//${MY_PN}${MY_PV}.zip"
+SRC_URI="http://www.asahi-net.or.jp/~cs8k-cyu/windows/${MY_PN}${MY_PDV}.zip
+	mirror://debian/pool/main/t/${MY_PD}/${MY_PD}_${MY_PDPV}.dfsg1-5.diff.gz"
+
 LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~ppc ~x86"
@@ -20,38 +25,43 @@ IUSE=""
 RDEPEND="media-libs/libsdl
 	media-libs/mesa
 	media-libs/sdl-mixer
-	dev-libs/bulletss"
+	dev-libs/libbulletml"
 DEPEND="${RDEPEND}"
 
-S=${WORKDIR}/${MY_PN}${MY_PV}
+S=${WORKDIR}/${MY_PN}
 
 src_prepare(){
-	epatch "${FILESDIR}"/${P}.diff
+	# using frostworks patches with debian's cleanups and minor patches
+	epatch "${WORKDIR}"/${MY_PD}_${MY_PDPV}.dfsg1-5.diff
+	sed -i -e "s:b/::g" -i "${S}"/${MY_PD}-${MY_PDPV}.dfsg1/debian/patches/fixes.patch
+	sed -i -e "s:src-hiz:src:g" -i "${S}"/${MY_PD}-${MY_PDPV}.dfsg1/debian/patches/fixes.patch
+	sed -i -e "s:torus-trooper-pure:${PN}:g" -i "${S}"/${MY_PD}-${MY_PDPV}.dfsg1/debian/patches/fixes.patch
+	epatch "${S}"/${MY_PD}-${MY_PDPV}.dfsg1/debian/patches/fixes.patch
+	epatch "${S}"/${MY_PD}-${MY_PDPV}.dfsg1/debian/patches/windowed.patch
+	epatch "${S}"/${MY_PD}-${MY_PDPV}.dfsg1/debian/patches/dotfile.patch
+	epatch "${S}"/${MY_PD}-${MY_PDPV}.dfsg1/debian/patches/gdc-0.24-semantics-for-version.patch
+	epatch "${S}"/${MY_PD}-${MY_PDPV}.dfsg1/debian/patches/window-resizing.patch
+	epatch "${S}"/${MY_PD}-${MY_PDPV}.dfsg1/debian/patches/save-score-444372.patch
+	epatch "${S}"/${MY_PD}-${MY_PDPV}.dfsg1/debian/patches/level-select-444948.patch
+	epatch "${S}"/${MY_PD}-${MY_PDPV}.dfsg1/debian/patches/avoid-segfault-when-sdl-fails.patch
+	epatch "${S}"/${MY_PD}-${MY_PDPV}.dfsg1/debian/patches/torus-trooper-pure.patch
 	sed -i \
 	-e 's:"\(images/[^"]*\)":"'${GAMES_DATADIR}'/'${PN}'/\1":g' -i src/abagames/util/sdl/texture.d \
 	-e 's:"\(sounds/[^"]*\)":"'${GAMES_DATADIR}'/'${PN}'/\1":g' -i src/abagames/util/sdl/sound.d \
 	-e 's:"\(barrage[^"]*\)":"'${GAMES_DATADIR}'/'${PN}'/\1":g' -i src/abagames/tt/barrage.d \
-	-e 's:"\(tt.prf[^"]*\)":"'${GAMES_STATEDIR}'/'${PN}'/\1":g' -i src/abagames/tt/prefmanager.d \
 		|| die "sed failed"
+	rm "${S}"/Makefile
+	mv "${S}"/Makefile.pure "${S}"/Makefile
 }
 
 src_install() {
 	dogamesbin ${PN}
 
-	dodir "${GAMES_STATEDIR}/${PN}" "${GAMES_STATEDIR}/${PN}/replay"
-	local statedir="${GAMES_STATEDIR}"/${PN}
-
-	if [ ! -e ${D}"${GAMES_STATEDIR}"/${PN}/tt.prf ]; then
-		touch ${D}"${GAMES_STATEDIR}"/${PN}/tt.prf
-		chmod ug+rw ${D}"${GAMES_STATEDIR}"/${PN}/tt.prf
-	        fperms 660 ${D}"${GAMES_STATEDIR}"/${PN}/tt.prf
-	fi
-
 	local datadir="${GAMES_DATADIR}"/${PN}
 	dodir ${datadir}
 	insinto "${GAMES_DATADIR}"/${PN}
 	doins -r barrage images sounds || die
-	newicon "${FILESDIR}"/${PN}.png ${PN}.png
+	newicon "${S}"/${MY_PD}-${MY_PDPV}.dfsg1/debian/${MY_PD}.xpm ${PN}.xpm
 	make_desktop_entry ${PN} ${PN}
 	dodoc readme*
 	prepgamesdirs
