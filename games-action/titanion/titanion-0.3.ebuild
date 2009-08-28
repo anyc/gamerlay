@@ -11,7 +11,8 @@ MY_PV=${PV//./_}
 
 DESCRIPTION="Strike down super high-velocity swooping insects. Fixed shooter in the good old days, 'Titanion'. "
 HOMEPAGE="http://www.asahi-net.or.jp/~cs8k-cyu/windows/ttn_e.html"
-SRC_URI="http://www.asahi-net.or.jp/~cs8k-cyu/windows/${MY_PN}${MY_PV}.zip"
+SRC_URI="http://www.asahi-net.or.jp/~cs8k-cyu/windows/${MY_PN}${MY_PV}.zip
+	mirror://debian/pool/main/t/${PN}/${PN}_${PV}.dfsg1-2.diff.gz"
 
 LICENSE="BSD"
 SLOT="0"
@@ -30,30 +31,27 @@ src_unpack(){
 }
 
 src_prepare(){
-	epatch "${FILESDIR}"/${P}.diff
+	# using frostworks patches with debian's cleanups and minor patches
+	epatch "${WORKDIR}"/${PN}_${PV}.dfsg1-2.diff
+	sed -i -e "s:${PN}-${PV}.dfsg1/::g" -i "${S}"/${PN}-${PV}.dfsg1/debian/patches/makefile.patch
+	epatch "${S}"/${PN}-${PV}.dfsg1/debian/patches/fix.diff
+	epatch "${S}"/${PN}-${PV}.dfsg1/debian/patches/windowed.patch
+	epatch "${S}"/${PN}-${PV}.dfsg1/debian/patches/dotfile.patch
+	epatch "${S}"/${PN}-${PV}.dfsg1/debian/patches/window-resize.patch
+	epatch "${S}"/${PN}-${PV}.dfsg1/debian/patches/makefile.patch
+	epatch "${S}"/${PN}-${PV}.dfsg1/debian/patches/gdc-0.24-semantics-for-version.patch
 	sed -i \
 	-e 's:"\(images/[^"]*\)":"'${GAMES_DATADIR}'/'${PN}'/\1":g' -i src/abagames/util/sdl/texture.d \
 	-e 's:"\(sounds/[^"]*\)":"'${GAMES_DATADIR}'/'${PN}'/\1":g' -i src/abagames/util/sdl/sound.d \
-	-e 's:"\(ttn.prf[^"]*\)":"'${GAMES_STATEDIR}'/'${PN}'/\1":g' -i src/abagames/ttn/preference.d \
 		|| die "sed failed"
 }
 
 src_install() {
 	dogamesbin ${PN}
-	dodir "${GAMES_STATEDIR}/${PN}" "${GAMES_STATEDIR}/${PN}/replay"
-	local statedir="${GAMES_STATEDIR}"/${PN}
-
-	if [ ! -e ${D}"${GAMES_STATEDIR}"/${PN}/ttn.prf ]; then
-		touch ${D}"${GAMES_STATEDIR}"/${PN}/ttn.prf
-		chmod ug+rw ${D}$"{GAMES_STATEDIR}"/${PN}/ttn.prf
-	        fperms 660 ${D}"${GAMES_STATEDIR}"/${PN}/ttn.prf
-	fi
-
-	local datadir="${GAMES_DATADIR}"/${PN}
 	dodir ${datadir}
 	insinto "${GAMES_DATADIR}"/${PN}
 	doins -r images sounds || die
-	newicon "${FILESDIR}"/${PN}.png ${PN}.png
+	newicon "${S}"/${PN}-${PV}.dfsg1/debian/${PN}.xpm ${PN}.xpm
 	make_desktop_entry ${PN} ${PN}
 	dodoc readme*
 	prepgamesdirs
