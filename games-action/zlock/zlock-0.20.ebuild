@@ -21,14 +21,19 @@ IUSE=""
 RDEPEND="media-libs/libsdl
 	media-libs/mesa
 	media-libs/sdl-mixer
-	dev-libs/bulletss"
+	dev-libs/libbulletml"
 DEPEND="${RDEPEND}"
 
 S=${WORKDIR}/${MY_PN}
 
 src_prepare(){
-	epatch "${FILESDIR}"/${P}.diff
+	epatch "${FILESDIR}"/${P}-fixes.diff
+	epatch "${FILESDIR}"/${P}-homedir.diff
+	epatch "${FILESDIR}"/${P}-imports.diff
+	epatch "${FILESDIR}"/${P}-makefile.diff
 	mv src/reflection.d src/reflection.d-OFF
+	mv import/SDL_keysym.d import/SDL_Keysym.d
+	mv import/SDL_version.d import/SDL_Version.d
 	sed -i \
 	-e 's:"\(title.bmp[^"]*\)":"'${GAMES_DATADIR}'/'${PN}'/\1":g' -i src/init.d \
 	-e 's:"\(next.bmp[^"]*\)":"'${GAMES_DATADIR}'/'${PN}'/\1":g' -i src/init.d \
@@ -38,8 +43,6 @@ src_prepare(){
 	-e 's:"\(voice_[^"]*\)":"'${GAMES_DATADIR}'/'${PN}'/\1":g' -i src/init.d \
 	-e 's:"\(zlock[^"]*\)":"'${GAMES_DATADIR}'/'${PN}'/\1":g' -i src/init.d \
 	-e 's:"\(bullet[^"]*\)":"'${GAMES_DATADIR}'/'${PN}'/\1":g' -i src/init.d \
-	-e 's:"\(config.dat[^"]*\)":"'${GAMES_STATEDIR}'/'zlock-'\1":g' -i src/gctrl.d \
-	-e 's:"\(score.dat[^"]*\)":"'${GAMES_STATEDIR}'/'zlock-'\1":g' -i src/gctrl.d \
 		|| die "sed failed"
 }
 
@@ -47,17 +50,10 @@ src_install() {
 	dogamesbin ${PN} || die "dogamesbin failed"
 
 	local datadir="${GAMES_DATADIR}"/${PN}
-	dodir "${GAMES_STATEDIR}"
-	insinto "${GAMES_STATEDIR}"
-	doins "${FILESDIR}"/zlock-score.dat  || die
-	doins "${FILESDIR}"/zlock-config.dat  || die
-	fperms 660 "${GAMES_STATEDIR}"/zlock-score.dat
-	fperms 660 "${GAMES_STATEDIR}"/zlock-config.dat
 
 	dodir ${datadir}
 	insinto "${GAMES_DATADIR}"/${PN}
 	doins -r *.xml *.bmp *.ogg *.wav || die
-	newicon "${FILESDIR}"/${PN}.png ${PN}.png
 	make_desktop_entry ${PN} ${PN}
 	dodoc readme*
 	prepgamesdirs
