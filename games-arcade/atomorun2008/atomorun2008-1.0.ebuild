@@ -28,9 +28,13 @@ src_unpack(){
 
 src_prepare(){
 	cd "${S}/${PN}-${PV}"
-	epatch ${FILESDIR}/"${P}.diff"
-	sed -i -e "s:resources/:"${GAMES_DATADIR}"/"${PN}"/resources/:" -i src/sound.d
-
+	epatch ${FILESDIR}/"${P}-homedir.diff"
+	for i in `find src -name *.d`; do sed -i "$i" -e "s:resources/:"${GAMES_DATADIR}"/"${PN}"/resources/:g"; done
+	cd resources
+	for i in `find heightmaps -name *.txt`; do sed -i "$i" -e "s:resources/:"${GAMES_DATADIR}"/"${PN}"/resources/:g"; done
+	for i in `find lvls -name *.txt`; do sed -i "$i" -e "s:resources/:"${GAMES_DATADIR}"/"${PN}"/resources/:g"; done
+	for i in `find meshes -name *.zms`; do sed -i "$i" -e "s:resources/:"${GAMES_DATADIR}"/"${PN}"/resources/:g"; done
+	for i in `find meshes -name *.py`; do sed -i "$i" -e "s:resources/:"${GAMES_DATADIR}"/"${PN}"/resources/:g"; done
 }
 
 src_compile() {
