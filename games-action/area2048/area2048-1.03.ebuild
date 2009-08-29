@@ -22,7 +22,7 @@ IUSE=""
 RDEPEND="media-libs/libsdl
 	media-libs/mesa
 	media-libs/sdl-mixer
-	dev-libs/bulletss"
+	dev-libs/libbulletml"
 DEPEND="${RDEPEND}"
 
 S=${WORKDIR}/${MY_PN}
@@ -36,7 +36,10 @@ src_unpack(){
 }
 
 src_prepare(){
-	epatch "${FILESDIR}"/${P}.diff
+	epatch "${FILESDIR}"/${P}-import.patch
+	epatch "${FILESDIR}"/${P}-src.patch
+	epatch "${FILESDIR}"/${P}-makefile.patch
+	epatch "${FILESDIR}"/${P}-homedir.patch
 	sed -i \
 	-e 's:"\(icon.bmp[^"]*\)":"'${GAMES_DATADIR}'/'${PN}'/\1":g' -i a2k_src/src/util_pad.d \
 	-e 's:"\(title.bmp[^"]*\)":"'${GAMES_DATADIR}'/'${PN}'/\1":g' -i a2k_src/src/init.d \
@@ -45,8 +48,6 @@ src_prepare(){
 	-e 's:"\(se_[^"]*\)":"'${GAMES_DATADIR}'/'${PN}'/\1":g' -i a2k_src/src/init.d \
 	-e 's:"\(voice[^"]*\)":"'${GAMES_DATADIR}'/'${PN}'/\1":g' -i a2k_src/src/init.d \
 	-e 's:"\(bullet[^"]*\)":"'${GAMES_DATADIR}'/'${PN}'/\1":g' -i a2k_src/src/init.d \
-	-e 's:"\(score.dat[^"]*\)":"'${GAMES_STATEDIR}'/'a2k'\1":g' -i a2k_src/src/init.d \
-	-e 's:"\(config.dat[^"]*\)":"'${GAMES_STATEDIR}'/'a2k'\1":g' -i a2k_src/src/init.d \
 		|| die "sed failed"
 }
 
@@ -54,12 +55,6 @@ src_install() {
 	dogamesbin ${PN} || die "dogamesbin failed"
 
 	local datadir="${GAMES_DATADIR}"/${PN}
-		dodir "${GAMES_STATEDIR}"
-		touch ${D}/"${GAMES_STATEDIR}"/a2kscore.dat  || die "touch failed"
-		fperms 660 "${GAMES_STATEDIR}"/a2kscore.dat
-		touch ${D}/"${GAMES_STATEDIR}"/a2kconfig.dat  || die "touch failed"
-		fperms 660 "${GAMES_STATEDIR}"/a2kconfig.dat
-
 	dodir ${datadir}
 	insinto "${GAMES_DATADIR}"/${PN}
 	doins *.xml *.bmp *.ogg *.wav || die
