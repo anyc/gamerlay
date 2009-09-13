@@ -4,22 +4,25 @@
 
 EAPI="2"
 
-inherit games qt4
+inherit games qt4 subversion
 
 DESCRIPTION="KBang is an open source implementation of the popular card game Bang!"
 HOMEPAGE="http://code.google.com/p/kbang/"
-SRC_URI="http://${PN}.googlecode.com/files/${P}-src.tar.bz2"
+SRC_URI=""
+ESVN_REPO_URI="http://${PN}.googlecode.com/svn/trunk/"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS=""
 IUSE="server"
 
 DEPEND=">x11-libs/qt-gui-4.4"
 RDEPEND="${DEPEND}"
 
-S="${WORKDIR}/${P}-src"
-
+src_prepare() {
+	esvn_clean
+}
+	
 src_compile() {
 	eqmake4
 
@@ -38,5 +41,5 @@ src_install() {
 	fi
 
 	insinto "${GAMES_DATADIR}/${PN}"
-	doins -r gfx || die "doins failed"
+	doins -r data || die "doins failed"
 }
