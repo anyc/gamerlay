@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-<herd>playboys</herd>
+	<herd>playboys</herd>
+	<use>
+		<flag name='maps'>Add extra maps</flag>
+	</use>
 </pkgmetadata>
