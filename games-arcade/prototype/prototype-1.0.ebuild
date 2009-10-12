@@ -19,7 +19,7 @@ RDEPEND="virtual/opengl
 	virtual/glu
 	media-libs/libsdl
 	media-libs/devil
-	media-libs/fmod"
+	=media-libs/fmod-3*"
 DEPEND="${RDEPEND}"
 
 S=${WORKDIR}/${PN}_${PV}
