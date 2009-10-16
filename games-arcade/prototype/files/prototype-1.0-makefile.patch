@@ -11,7 +11,7 @@ diff -Naur Makefile Makefile
 +LD	      = gcc
 +
 +SDL_LDFLAGS 	= $(shell sdl-config --libs) 
-+SDL_CFLAGS	= $(shell sdl-config --cflags) $(CXXLAGS)
++SDL_CFLAGS	= $(shell sdl-config --cflags) $(CXXFLAGS)
 +
 +MAKEFILE      = Makefile
 +
@@ -24,7 +24,7 @@ diff -Naur Makefile Makefile
 +SHELL	      = /bin/sh
 +
 +%.o:		%.cpp
-+		$(CPP) -O2 -g -I./ -I/usr/include/ -I/usr/include/GL  $(CXXLAGS) -c $<
++		$(CPP) -O2 -g $(CXXFLAGS) -c $<
 +all:		$(PROGRAM)
 +
 +$(PROGRAM):     $(OBJS) $(LIBS)
