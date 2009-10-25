@@ -1,0 +1,11 @@
+diff -Naur sources/main.cpp sources/main.cpp
+--- sources/main.cpp	2009-10-24 11:46:34.000000000 +0200
++++ sources/main.cpp	2009-10-25 09:41:27.000000000 +0100
+@@ -148,6 +148,7 @@
+     fprintf(newinifile,"Button_Up = 102\r\n");
+     fprintf(newinifile,"Button_Down = 103\r\n");
+     fprintf(newinifile,"\r\n");
++    fclose(newinifile);
+     #else
+     fprintf(newinifile,"[General]\n");
+     fprintf(newinifile,"Start_Stage = 1\n");
