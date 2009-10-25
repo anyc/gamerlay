@@ -26,7 +26,6 @@ DEPEND="${RDEPEND}
 S="${WORKDIR}/${MY_PN}_${PV}"
 
 src_prepare(){
-	epatch "${FILESDIR}"/${P}-writeconfig.patch
 	sed -i -e "s:classic.lvl:"${GAMES_DATADIR}"/"${PN}"/classic.lvl:g" -i sources/load_stage.cpp
 	for i in `find sources -name *.cpp`; do sed -i "$i" -e "s:base:"${GAMES_DATADIR}"/"${PN}/base":g"; done
 	if use editor; then
