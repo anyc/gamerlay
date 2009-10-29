@@ -23,6 +23,4 @@ src_install() {
 	insinto /usr/include
 	doins src/alpng.h
 	dodoc doc.html
-	# installing License (taken from opensnc archive) , as it is not bundled
-	dodoc "${FILESDIR}/AllegroPNG.txt"
 }
