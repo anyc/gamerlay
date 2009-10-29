@@ -11,7 +11,7 @@ inherit eutils games
 DESCRIPTION="multiplatform platform puzzle game"
 HOMEPAGE="http://maglog.jp/alpha-secret-base/Article717753.html"
 SRC_URI="http://www.geocities.jp/dij4121/alpha/data/${MY_PN}_${PV}.zip"
-LICENSE="Yawaraka-flexible" # inside installed readme_e.txt
+LICENSE="Yawaraka-flexible"
 KEYWORDS="~x86"
 IUSE=""
 SLOT="0"
