@@ -11,8 +11,8 @@ MY_PV=${PV//./_}
 
 DESCRIPTION="jumpei isshiki's HelloWorldProject (2005/01/17) "
 HOMEPAGE="http://homepage2.nifty.com/isshiki/prog_win_d.html"
-SRC_URI="mirror://homepage2.nifty.com/isshiki/${MY_PN}.zip
-	mirror://homepage2.nifty.com/isshiki/${MY_PN}_src.zip"
+SRC_URI="http://homepage2.nifty.com/isshiki/${MY_PN}.zip
+	http://homepage2.nifty.com/isshiki/${MY_PN}_src.zip"
 
 LICENSE="BSD"
 SLOT="0"

@@ -1,6 +1,6 @@
-diff -Naur a2k_src/import/opengl.d a2k_src-p/import/opengl.d
+diff -Naur a2k_src/import/opengl.d a2k_src/import/opengl.d
 --- a2k_src/import/opengl.d	2008-02-12 22:20:18.000000000 +0100
-+++ a2k_src-p/import/opengl.d	2009-08-27 15:18:28.000000000 +0200
++++ a2k_src/import/opengl.d	2009-08-27 15:18:28.000000000 +0200
 @@ -1,16 +1,6 @@
 -version (Win32) {
 -	import std.c.windows.windows;
@@ -38,9 +38,9 @@ diff -Naur a2k_src/import/opengl.d a2k_src-p/import/opengl.d
  void /*APIENTRY*/glStencilMask (GLuint mask);
  void /*APIENTRY*/glStencilOp (GLenum fail, GLenum zfail, GLenum zpass);
  void /*APIENTRY*/glTexCoord1d (GLdouble s);
-diff -Naur a2k_src/import/openglu.d a2k_src-p/import/openglu.d
+diff -Naur a2k_src/import/openglu.d a2k_src/import/openglu.d
 --- a2k_src/import/openglu.d	2008-02-12 22:20:14.000000000 +0100
-+++ a2k_src-p/import/openglu.d	2009-08-27 15:18:28.000000000 +0200
++++ a2k_src/import/openglu.d	2009-08-27 15:18:28.000000000 +0200
 @@ -1,15 +1,6 @@
 -import opengl;
  
@@ -58,9 +58,9 @@ diff -Naur a2k_src/import/openglu.d a2k_src-p/import/openglu.d
  
  GLubyte* gluErrorString (
      GLenum   errCode);
-diff -Naur a2k_src/import/SDL_active.d a2k_src-p/import/SDL_active.d
+diff -Naur a2k_src/import/SDL_active.d a2k_src/import/SDL_active.d
 --- a2k_src/import/SDL_active.d	2006-07-26 23:24:30.000000000 +0200
-+++ a2k_src-p/import/SDL_active.d	2009-08-27 15:18:28.000000000 +0200
++++ a2k_src/import/SDL_active.d	2009-08-27 15:18:28.000000000 +0200
 @@ -22,7 +22,7 @@
  
  /* Include file for SDL application focus event handling */
@@ -70,9 +70,9 @@ diff -Naur a2k_src/import/SDL_active.d a2k_src-p/import/SDL_active.d
  
  extern(C):
  
-diff -Naur a2k_src/import/SDL_audio.d a2k_src-p/import/SDL_audio.d
+diff -Naur a2k_src/import/SDL_audio.d a2k_src/import/SDL_audio.d
 --- a2k_src/import/SDL_audio.d	2006-07-26 23:24:40.000000000 +0200
-+++ a2k_src-p/import/SDL_audio.d	2009-08-27 15:18:28.000000000 +0200
++++ a2k_src/import/SDL_audio.d	2009-08-27 15:18:28.000000000 +0200
 @@ -20,10 +20,10 @@
      slouken@devolution.com
  */
@@ -88,9 +88,9 @@ diff -Naur a2k_src/import/SDL_audio.d a2k_src-p/import/SDL_audio.d
  
  extern(C):
  
-diff -Naur a2k_src/import/SDL_cdrom.d a2k_src-p/import/SDL_cdrom.d
+diff -Naur a2k_src/import/SDL_cdrom.d a2k_src/import/SDL_cdrom.d
 --- a2k_src/import/SDL_cdrom.d	2006-07-26 23:24:42.000000000 +0200
-+++ a2k_src-p/import/SDL_cdrom.d	2009-08-27 15:18:28.000000000 +0200
++++ a2k_src/import/SDL_cdrom.d	2009-08-27 15:18:28.000000000 +0200
 @@ -22,7 +22,7 @@
  
  /* This is the CD-audio control API for Simple DirectMedia Layer */
@@ -100,9 +100,9 @@ diff -Naur a2k_src/import/SDL_cdrom.d a2k_src-p/import/SDL_cdrom.d
  
  extern(C):
  
-diff -Naur a2k_src/import/SDL.d a2k_src-p/import/SDL.d
+diff -Naur a2k_src/import/SDL.d a2k_src/import/SDL.d
 --- a2k_src/import/SDL.d	2006-07-26 23:24:12.000000000 +0200
-+++ a2k_src-p/import/SDL.d	2009-08-27 15:18:28.000000000 +0200
++++ a2k_src/import/SDL.d	2009-08-27 15:18:28.000000000 +0200
 @@ -33,60 +33,60 @@
  public import SDL_byteorder;
  public import SDL_Version;
@@ -221,9 +221,9 @@ diff -Naur a2k_src/import/SDL.d a2k_src-p/import/SDL.d
 +	SDL_Quit();
 +}
 ++/
-diff -Naur a2k_src/import/SDL_endian.d a2k_src-p/import/SDL_endian.d
+diff -Naur a2k_src/import/SDL_endian.d a2k_src/import/SDL_endian.d
 --- a2k_src/import/SDL_endian.d	2006-09-14 01:57:50.000000000 +0200
-+++ a2k_src-p/import/SDL_endian.d	2009-08-27 15:18:28.000000000 +0200
++++ a2k_src/import/SDL_endian.d	2009-08-27 15:18:28.000000000 +0200
 @@ -34,9 +34,9 @@
           and other data sources.
  */
@@ -246,9 +246,9 @@ diff -Naur a2k_src/import/SDL_endian.d a2k_src-p/import/SDL_endian.d
  }
  
  Uint32 SDL_Swap32(Uint32 D) {
-diff -Naur a2k_src/import/SDL_events.d a2k_src-p/import/SDL_events.d
+diff -Naur a2k_src/import/SDL_events.d a2k_src/import/SDL_events.d
 --- a2k_src/import/SDL_events.d	2006-07-26 23:25:46.000000000 +0200
-+++ a2k_src-p/import/SDL_events.d	2009-08-27 15:18:28.000000000 +0200
++++ a2k_src/import/SDL_events.d	2009-08-27 15:18:28.000000000 +0200
 @@ -22,12 +22,12 @@
  
  /* Include file for SDL event handling */
@@ -277,9 +277,9 @@ diff -Naur a2k_src/import/SDL_events.d a2k_src-p/import/SDL_events.d
  const uint SDL_IGNORE	= 0;
  const uint SDL_DISABLE	= 0;
  const uint SDL_ENABLE	= 1;
-diff -Naur a2k_src/import/SDL_image.d a2k_src-p/import/SDL_image.d
+diff -Naur a2k_src/import/SDL_image.d a2k_src/import/SDL_image.d
 --- a2k_src/import/SDL_image.d	2006-07-26 23:24:58.000000000 +0200
-+++ a2k_src-p/import/SDL_image.d	2009-08-27 15:18:28.000000000 +0200
++++ a2k_src/import/SDL_image.d	2009-08-27 15:18:28.000000000 +0200
 @@ -26,7 +26,7 @@
  
  /* A simple library to load images of various formats as SDL surfaces */
@@ -289,9 +289,9 @@ diff -Naur a2k_src/import/SDL_image.d a2k_src-p/import/SDL_image.d
  
  extern (C) {
  
-diff -Naur a2k_src/import/SDL_joystick.d a2k_src-p/import/SDL_joystick.d
+diff -Naur a2k_src/import/SDL_joystick.d a2k_src/import/SDL_joystick.d
 --- a2k_src/import/SDL_joystick.d	2006-07-26 23:25:10.000000000 +0200
-+++ a2k_src-p/import/SDL_joystick.d	2009-08-27 15:18:28.000000000 +0200
++++ a2k_src/import/SDL_joystick.d	2009-08-27 15:18:28.000000000 +0200
 @@ -22,7 +22,7 @@
  
  /* Include file for SDL joystick event handling */
@@ -301,9 +301,9 @@ diff -Naur a2k_src/import/SDL_joystick.d a2k_src-p/import/SDL_joystick.d
  
  extern(C):
  
-diff -Naur a2k_src/import/SDL_keyboard.d a2k_src-p/import/SDL_keyboard.d
+diff -Naur a2k_src/import/SDL_keyboard.d a2k_src/import/SDL_keyboard.d
 --- a2k_src/import/SDL_keyboard.d	2006-07-26 23:25:14.000000000 +0200
-+++ a2k_src-p/import/SDL_keyboard.d	2009-08-27 15:18:28.000000000 +0200
++++ a2k_src/import/SDL_keyboard.d	2009-08-27 15:18:28.000000000 +0200
 @@ -22,11 +22,11 @@
  
  /* Include file for SDL keyboard event handling */
@@ -318,9 +318,9 @@ diff -Naur a2k_src/import/SDL_keyboard.d a2k_src-p/import/SDL_keyboard.d
  
  extern(C):
  
-diff -Naur a2k_src/import/SDL_keysym.d a2k_src-p/import/SDL_keysym.d
+diff -Naur a2k_src/import/SDL_keysym.d a2k_src/import/SDL_keysym.d
 --- a2k_src/import/SDL_keysym.d	2002-01-04 23:31:22.000000000 +0100
-+++ a2k_src-p/import/SDL_keysym.d	1970-01-01 01:00:00.000000000 +0100
++++ a2k_src/import/SDL_keysym.d	1970-01-01 01:00:00.000000000 +0100
 @@ -1,308 +0,0 @@
 -/*
 -    SDL - Simple DirectMedia Layer
@@ -630,9 +630,9 @@ diff -Naur a2k_src/import/SDL_keysym.d a2k_src-p/import/SDL_keysym.d
 -const uint KMOD_SHIFT	= (KMOD_LSHIFT|KMOD_RSHIFT);
 -const uint KMOD_ALT		= (KMOD_LALT|KMOD_RALT);
 -const uint KMOD_META	= (KMOD_LMETA|KMOD_RMETA);
-diff -Naur a2k_src/import/SDL_Keysym.d a2k_src-p/import/SDL_Keysym.d
+diff -Naur a2k_src/import/SDL_Keysym.d a2k_src/import/SDL_Keysym.d
 --- a2k_src/import/SDL_Keysym.d	1970-01-01 01:00:00.000000000 +0100
-+++ a2k_src-p/import/SDL_Keysym.d	2009-08-27 15:18:28.000000000 +0200
++++ a2k_src/import/SDL_Keysym.d	2009-08-27 15:18:28.000000000 +0200
 @@ -0,0 +1,308 @@
 +/*
 +    SDL - Simple DirectMedia Layer
@@ -942,9 +942,9 @@ diff -Naur a2k_src/import/SDL_Keysym.d a2k_src-p/import/SDL_Keysym.d
 +const uint KMOD_SHIFT	= (KMOD_LSHIFT|KMOD_RSHIFT);
 +const uint KMOD_ALT		= (KMOD_LALT|KMOD_RALT);
 +const uint KMOD_META	= (KMOD_LMETA|KMOD_RMETA);
-diff -Naur a2k_src/import/SDL_mixer.d a2k_src-p/import/SDL_mixer.d
+diff -Naur a2k_src/import/SDL_mixer.d a2k_src/import/SDL_mixer.d
 --- a2k_src/import/SDL_mixer.d	2006-07-26 23:24:04.000000000 +0200
-+++ a2k_src-p/import/SDL_mixer.d	2009-08-27 15:18:28.000000000 +0200
++++ a2k_src/import/SDL_mixer.d	2009-08-27 15:18:28.000000000 +0200
 @@ -24,7 +24,7 @@
  
  /* $Id: SDL_mixer.h,v 1.24 2002/05/21 05:45:59 slouken Exp $ */
@@ -954,9 +954,9 @@ diff -Naur a2k_src/import/SDL_mixer.d a2k_src-p/import/SDL_mixer.d
  
  extern (C) {
  
-diff -Naur a2k_src/import/SDL_mouse.d a2k_src-p/import/SDL_mouse.d
+diff -Naur a2k_src/import/SDL_mouse.d a2k_src/import/SDL_mouse.d
 --- a2k_src/import/SDL_mouse.d	2006-07-26 23:25:18.000000000 +0200
-+++ a2k_src-p/import/SDL_mouse.d	2009-08-27 15:18:28.000000000 +0200
++++ a2k_src/import/SDL_mouse.d	2009-08-27 15:18:28.000000000 +0200
 @@ -22,8 +22,8 @@
  
  /* Include file for SDL mouse event handling */
@@ -968,9 +968,9 @@ diff -Naur a2k_src/import/SDL_mouse.d a2k_src-p/import/SDL_mouse.d
  
  extern(C):
  
-diff -Naur a2k_src/import/SDL_mutex.d a2k_src-p/import/SDL_mutex.d
+diff -Naur a2k_src/import/SDL_mutex.d a2k_src/import/SDL_mutex.d
 --- a2k_src/import/SDL_mutex.d	2006-07-26 23:25:20.000000000 +0200
-+++ a2k_src-p/import/SDL_mutex.d	2009-08-27 15:18:28.000000000 +0200
++++ a2k_src/import/SDL_mutex.d	2009-08-27 15:18:28.000000000 +0200
 @@ -25,7 +25,7 @@
  	These are independent of the other SDL routines.
  */
@@ -980,9 +980,9 @@ diff -Naur a2k_src/import/SDL_mutex.d a2k_src-p/import/SDL_mutex.d
  
  extern(C):
  
-diff -Naur a2k_src/import/SDL_quit.d a2k_src-p/import/SDL_quit.d
+diff -Naur a2k_src/import/SDL_quit.d a2k_src/import/SDL_quit.d
 --- a2k_src/import/SDL_quit.d	2006-07-26 23:25:22.000000000 +0200
-+++ a2k_src-p/import/SDL_quit.d	2009-08-27 15:18:28.000000000 +0200
++++ a2k_src/import/SDL_quit.d	2009-08-27 15:18:28.000000000 +0200
 @@ -22,7 +22,7 @@
  
  /* Include file for SDL quit event handling */
@@ -992,9 +992,9 @@ diff -Naur a2k_src/import/SDL_quit.d a2k_src-p/import/SDL_quit.d
  
  /* 
    An SDL_QUITEVENT is generated when the user tries to close the application
-diff -Naur a2k_src/import/SDL_rwops.d a2k_src-p/import/SDL_rwops.d
+diff -Naur a2k_src/import/SDL_rwops.d a2k_src/import/SDL_rwops.d
 --- a2k_src/import/SDL_rwops.d	2006-07-26 23:25:24.000000000 +0200
-+++ a2k_src-p/import/SDL_rwops.d	2009-08-27 15:18:28.000000000 +0200
++++ a2k_src/import/SDL_rwops.d	2009-08-27 15:18:28.000000000 +0200
 @@ -24,7 +24,7 @@
     data sources.  It can easily be extended to files, memory, etc.
  */
@@ -1004,9 +1004,9 @@ diff -Naur a2k_src/import/SDL_rwops.d a2k_src-p/import/SDL_rwops.d
  
  extern(C):
  
-diff -Naur a2k_src/import/SDL_sound.d a2k_src-p/import/SDL_sound.d
+diff -Naur a2k_src/import/SDL_sound.d a2k_src/import/SDL_sound.d
 --- a2k_src/import/SDL_sound.d	2006-07-26 23:25:26.000000000 +0200
-+++ a2k_src-p/import/SDL_sound.d	2009-08-27 15:18:28.000000000 +0200
++++ a2k_src/import/SDL_sound.d	2009-08-27 15:18:28.000000000 +0200
 @@ -62,7 +62,7 @@
  
  // convert to D by shinichiro.h
@@ -1016,9 +1016,9 @@ diff -Naur a2k_src/import/SDL_sound.d a2k_src-p/import/SDL_sound.d
  
  extern (C) {
  	const int SOUND_VER_MAJOR = 1;
-diff -Naur a2k_src/import/SDL_syswm.d a2k_src-p/import/SDL_syswm.d
+diff -Naur a2k_src/import/SDL_syswm.d a2k_src/import/SDL_syswm.d
 --- a2k_src/import/SDL_syswm.d	2006-07-26 23:25:32.000000000 +0200
-+++ a2k_src-p/import/SDL_syswm.d	2009-08-27 15:18:28.000000000 +0200
++++ a2k_src/import/SDL_syswm.d	2009-08-27 15:18:28.000000000 +0200
 @@ -22,7 +22,7 @@
  
  /* Include file for SDL custom system window manager hooks */
@@ -1028,9 +1028,9 @@ diff -Naur a2k_src/import/SDL_syswm.d a2k_src-p/import/SDL_syswm.d
  
  extern(C):
  
-diff -Naur a2k_src/import/SDL_thread.d a2k_src-p/import/SDL_thread.d
+diff -Naur a2k_src/import/SDL_thread.d a2k_src/import/SDL_thread.d
 --- a2k_src/import/SDL_thread.d	2006-07-26 23:25:36.000000000 +0200
-+++ a2k_src-p/import/SDL_thread.d	2009-08-27 15:18:28.000000000 +0200
++++ a2k_src/import/SDL_thread.d	2009-08-27 15:18:28.000000000 +0200
 @@ -25,8 +25,8 @@
  	These are independent of the other SDL routines.
  */
@@ -1042,9 +1042,9 @@ diff -Naur a2k_src/import/SDL_thread.d a2k_src-p/import/SDL_thread.d
  
  extern(C):
  
-diff -Naur a2k_src/import/SDL_timer.d a2k_src-p/import/SDL_timer.d
+diff -Naur a2k_src/import/SDL_timer.d a2k_src/import/SDL_timer.d
 --- a2k_src/import/SDL_timer.d	2006-07-26 23:25:38.000000000 +0200
-+++ a2k_src-p/import/SDL_timer.d	2009-08-27 15:18:28.000000000 +0200
++++ a2k_src/import/SDL_timer.d	2009-08-27 15:18:28.000000000 +0200
 @@ -20,7 +20,7 @@
      slouken@devolution.com
  */
@@ -1054,9 +1054,9 @@ diff -Naur a2k_src/import/SDL_timer.d a2k_src-p/import/SDL_timer.d
  
  extern(C):
  
-diff -Naur a2k_src/import/SDL_version.d a2k_src-p/import/SDL_version.d
+diff -Naur a2k_src/import/SDL_version.d a2k_src/import/SDL_version.d
 --- a2k_src/import/SDL_version.d	2006-07-26 23:25:40.000000000 +0200
-+++ a2k_src-p/import/SDL_version.d	1970-01-01 01:00:00.000000000 +0100
++++ a2k_src/import/SDL_version.d	1970-01-01 01:00:00.000000000 +0100
 @@ -1,75 +0,0 @@
 -/*
 -    SDL - Simple DirectMedia Layer
@@ -1133,9 +1133,9 @@ diff -Naur a2k_src/import/SDL_version.d a2k_src-p/import/SDL_version.d
 -   use the SDL_Version() macro.
 - */
 -SDL_version * SDL_Linked_Version();
-diff -Naur a2k_src/import/SDL_Version.d a2k_src-p/import/SDL_Version.d
+diff -Naur a2k_src/import/SDL_Version.d a2k_src/import/SDL_Version.d
 --- a2k_src/import/SDL_Version.d	1970-01-01 01:00:00.000000000 +0100
-+++ a2k_src-p/import/SDL_Version.d	2009-08-27 15:18:28.000000000 +0200
++++ a2k_src/import/SDL_Version.d	2009-08-27 15:18:28.000000000 +0200
 @@ -0,0 +1,75 @@
 +/*
 +    SDL - Simple DirectMedia Layer
@@ -1212,9 +1212,9 @@ diff -Naur a2k_src/import/SDL_Version.d a2k_src-p/import/SDL_Version.d
 +   use the SDL_Version() macro.
 + */
 +SDL_version * SDL_Linked_Version();
-diff -Naur a2k_src/import/SDL_video.d a2k_src-p/import/SDL_video.d
+diff -Naur a2k_src/import/SDL_video.d a2k_src/import/SDL_video.d
 --- a2k_src/import/SDL_video.d	2006-07-26 23:25:42.000000000 +0200
-+++ a2k_src-p/import/SDL_video.d	2009-08-27 15:18:28.000000000 +0200
++++ a2k_src/import/SDL_video.d	2009-08-27 15:18:28.000000000 +0200
 @@ -22,9 +22,9 @@
  
  /* Header file for access to the SDL raw framebuffer window */
