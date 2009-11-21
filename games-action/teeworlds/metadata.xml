@@ -5,5 +5,9 @@
 	<email>lazy_bum@openbsd.pl</email>
 	<name>Piotr Szymaniak</name>
 </maintainer>
+<use>
+	<flag name="instagib">Enables support for instagib mod.</flag>
+	<flag name="racemod">Enables support for racemod.</flag>
+</use>
 <herd>playboys</herd>
 </pkgmetadata>

@@ -10,7 +10,8 @@ BAM_P="bam-0.2.0"
 DESCRIPTION="Online 2D platform shooter."
 HOMEPAGE="http://www.teeworlds.com"
 SRC_URI="http://www.teeworlds.com/files/${P}-src.tar.gz -> ${P}-src.tar.gz
-	http://teeworlds.com/trac/bam/browser/releases/bam-0.2.0.tar.gz?format=raw -> ${BAM_P}.tar.gz"
+	http://teeworlds.com/trac/bam/browser/releases/bam-0.2.0.tar.gz?format=raw -> ${BAM_P}.tar.gz
+	racemod? ( http://teeworlds.sushitee.de/race/0.5.2-racemod-2.3.patch )"
 
 LICENSE="as-is"
 SLOT="0"
@@ -43,7 +44,7 @@ src_prepare() {
 
 	epatch "${FILESDIR}"/fix_datadir_search.patch
 	use instagib && epatch "${FILESDIR}"/instagib-2.2.patch
-	use racemod && epatch "${FILESDIR}/${PV}-racemod-2.3.patch"
+	use racemod && epatch "${DISTDIR}/${PV}-racemod-2.3.patch"
 }
 
 src_compile() {
