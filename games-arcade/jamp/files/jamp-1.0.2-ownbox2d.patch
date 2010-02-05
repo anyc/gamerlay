@@ -1,0 +1,35 @@
+diff -Naur jamp-1.0.2/cLevel.cpp jamp-1.0.2-p/cLevel.cpp
+--- jamp-1.0.2/cLevel.cpp	2009-01-15 23:36:24.000000000 +0100
++++ jamp-1.0.2-p/cLevel.cpp	2009-10-12 17:01:02.000000000 +0200
+@@ -496,7 +496,7 @@
+ 	m_world->SetContinuousPhysics(true);
+ 	m_pointCount = 0;
+ 
+-	m_world->Step(timeStep, 10, 8);
++	m_world->Step(timeStep, (10, 8));
+ 	Singleton<cActorManager>::Ptr()->UpdateAllFromPhysics();
+ 	if (!m_debugPressed)
+ 	{
+diff -Naur jamp-1.0.2/Makefile jamp-1.0.2-p/Makefile
+--- jamp-1.0.2/Makefile	2009-10-12 16:50:07.000000000 +0200
++++ jamp-1.0.2-p/Makefile	2009-10-12 17:01:35.000000000 +0200
+@@ -2,8 +2,8 @@
+ SHAREDIR = /usr/share
+ DATADIR = /usr/share/games
+ 
+-PROJECT= ./box2d
+-CXXFLAGS= -g -O2 -I$(PROJECT)/Include
++PROJECT= Box2D
++CXXFLAGS= -g -O2 -I/usr/include/$(PROJECT)
+ SOURCES=\
+         cActorManager.cpp \
+         cCamera.cpp \
+@@ -21,7 +21,7 @@
+         cTextureManager.cpp \
+         Level1.cpp
+ all:
+-	(cd box2d/Source; $(MAKE))
++#	(cd box2d/Source; $(MAKE))
+ 	($(MAKE) jamp)
+ 
+ clean:
