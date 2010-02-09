@@ -22,4 +22,4 @@ DEPEND="dev-games/physfs
 	media-libs/openal"
 RDEPEND="${DEPEND}"
 
-S=${WORKDIR}/${PN}-20091214-301312c82b00
+S=${WORKDIR}/${PN}-20100207-521b59034dd1
