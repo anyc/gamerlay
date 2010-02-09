@@ -14,7 +14,7 @@ SRC_URI="http://www-graphics.stanford.edu/courses/cs248-videogame-competition/cs
 
 LICENSE="unknown"
 SLOT="0"
-KEYWORDS="~ppc ~x86"
+KEYWORDS="~amd64 ~ppc ~x86"
 IUSE=""
 
 DEPEND="media-libs/libsdl
