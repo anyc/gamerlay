@@ -6,7 +6,7 @@ EAPI="2"
 
 inherit games
 
-DESCRIPTION="Dave - The ordinary spaceman"
+DESCRIPTION="The Legend of Edgar, 2d jump n run"
 HOMEPAGE="http://www.parallelrealities.co.uk/projects/edgar.php"
 SRC_URI="http://www.parallelrealities.co.uk/download/8322c274/${PN}/${PN}-${PV}-1.tar.gz"
 
