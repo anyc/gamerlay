@@ -17,5 +17,6 @@ KEYWORDS="~x86"
 IUSE=""
 
 RDEPEND="media-libs/libsdl
-	media-libs/sdl-pango"
+	media-libs/sdl-pango
+	media-libs/sdl-ttf"
 DEPEND="${RDEPEND}"
