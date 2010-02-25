@@ -19,7 +19,10 @@ DEPEND="dev-games/physfs
 	media-libs/devil
 	media-libs/libsdl[joystick]
 	media-libs/sdl-sound
-	media-libs/openal"
+	media-libs/openal
+	media-libs/libmng
+	media-libs/libmodplug
+	media-sound/mpg123"
 RDEPEND="${DEPEND}"
 
 S=${WORKDIR}/${PN}-20100207-521b59034dd1
