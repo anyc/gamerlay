@@ -92,9 +92,7 @@ src_install() {
 	mv demos/tutorial.dm_68 demos/TUTORIAL.dm_68 || die "mv failed"
 
 	insinto "${GAMES_DATADIR}"/${PN}/q3ut4
-	doins -r *.pk3 autoexec.cfg demos/ description.txt mapcycle.txt screenshots/
-	server.cfg \
-		|| die "doins failed"
+	doins -r *.pk3 autoexec.cfg demos/ description.txt mapcycle.txt screenshots server.cfg || die "doins failed"
 
 	prepgamesdirs
 }
