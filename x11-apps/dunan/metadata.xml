@@ -7,9 +7,9 @@
 </maintainer>
   <herd>games</herd>
   <longdescription lang="en">
-Typhon is a slim and themeable opengl dashboard / program launcher.
+dunan shows Miku Miku Dance 3D models (pmd) on the desktop.
 </longdescription>
   <use>
-    <flag name="fmod">Add fmod sound support</flag>
+    <flag name="fmod">Add sound support (fmod)</flag>
   </use>
 </pkgmetadata>
