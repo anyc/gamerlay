@@ -6,7 +6,7 @@ EAPI=2
 
 inherit games subversion
 
-ESVN_REPO_URI="https://garage.maemo.org/svn/numptyphysics/trunk"
+ESVN_REPO_URI="https://vcs.maemo.org/svn/numptyphysics/trunk"
 if [[ "$PV" != "9999" ]] ; then
 	ESVN_REVISION="$PV"
 fi
