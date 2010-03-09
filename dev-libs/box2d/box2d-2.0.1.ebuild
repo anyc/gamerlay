@@ -12,7 +12,7 @@ IUSE=""
 
 DESCRIPTION="Box2D is an open source physics engine written primarily for games."
 HOMEPAGE="http://www.box2d.org"
-SRC_URI="mirror://sourceforge/${PN}/${MY_PN}_v${PV}.zip"
+SRC_URI="http://box2d.googlecode.com/files/${MY_PN}_v${PV}.zip"
 
 LICENSE="ZLIB"
 SLOT="0"
