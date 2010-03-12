@@ -11,5 +11,6 @@ Typhon is a slim and themeable opengl dashboard / program launcher.
 </longdescription>
   <use>
     <flag name="fmod">Add fmod sound support</flag>
+    <flag name="emu">Add emulator launcher support</flag>
   </use>
 </pkgmetadata>
