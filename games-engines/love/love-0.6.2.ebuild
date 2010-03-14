@@ -25,4 +25,4 @@ DEPEND="dev-games/physfs
 	media-sound/mpg123"
 RDEPEND="${DEPEND}"
 
-S=${WORKDIR}/${PN}-20100207-521b59034dd1
+S=${WORKDIR}/${PN}-20100303-db7cd0682883
