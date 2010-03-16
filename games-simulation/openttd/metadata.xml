@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer>
+  		<email>wizzleby@gmail.com</email>
+		<name>Locke Shinseiko</name>
+	</maintainer>
+	<herd>games</herd>
+	<use>
+		<flag name='opengfx'>Enables the free OpenGFX graphics package for use in OpenTTD.
+		With this there is no need for graphics from the Transport Tycoon Deluxe disc.</flag>
+		<flag name='opensfx'>Enables the free OpenSFX sound package for use in OpenTTD.
+		With this there is no need for sounds from the Transport Tycoon Deluxe disc.</flag>
+		<flag name='lzo'>Enables LZO compression for savegames. This is not needed, and
+		only affects your ability to load extremely old savegames. (versions before 0.2)</flag>
+		<flag name='dedicated'>Build only the openttd server, and not the client.</flag>
+		</use>
+</pkgmetadata>

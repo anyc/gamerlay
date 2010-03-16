@@ -1,0 +1,10 @@
+# ChangeLog for games-util/grfcodec
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*grfcodec-0_pre2306 (15 Mar 2010)
+
+  15 Mar 2010; Locke Shinseiko <wizzleby@gmail.com>
+  +grfcodec-0_pre2306.ebuild, +metadata.xml:
+  Initial commit.
+

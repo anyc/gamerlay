@@ -1,0 +1,10 @@
+# ChangeLog for games-simulation/openttd
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*openttd-1.0.0_rc2 (15 Mar 2010)
+
+  15 Mar 2010; Locke Shinseiko <wizzleby@gmail.com>
+  +openttd-1.0.0_rc2.ebuild, +files/openttd.initd, +metadata.xml:
+  Initial commit.
+
