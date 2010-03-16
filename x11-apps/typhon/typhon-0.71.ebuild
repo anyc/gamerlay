@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: x11-apps/typhontyphon-0.6.2.ebuild,v 1.0 2010/02/23 13:02:11 by frostwork Exp $
+# $Header: x11-apps/typhontyphon-0.71.ebuild,v 1.0 2010/03/16 10:37:45 by frostwork Exp $
 
 EAPI="2"
 
@@ -8,12 +8,14 @@ inherit eutils
 
 DESCRIPTION="A slim and themeable opengl dashboard / program launcher"
 HOMEPAGE="http://www.frostworx.de/programs/typhon.html"
-SRC_URI="http://www.frostworx.de/typhon/${P}.tar.bz2"
+SRC_URI="http://www.frostworx.de/typhon/${P/_/-}.tar.bz2"
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="~x86"
-IUSE="sdl fmod glut png debug"
+KEYWORDS="~amd64 ~x86"
+IUSE="+emu sdl fmod glut png debug"
+
+S="${WORKDIR}/${P/_/-}"
 
 RDEPEND="media-libs/ftgl
 	virtual/opengl
@@ -46,6 +48,9 @@ src_prepare() {
 	fi
 	if use debug; then
 	echo "DEBUGFLAGS   = -g" >> Makefile
+	fi
+	if use emu; then
+	echo "EMUFLAGS     = -DEMU" >> Makefile
 	fi
 }
 
