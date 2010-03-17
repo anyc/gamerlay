@@ -1,8 +1,15 @@
+dev-games
+dev-libs
 games-action
 games-arcade
 games-board
+games-engines
 games-fps
+games-misc
 games-puzzle
 games-rpg
+games-simulation
 games-strategy
-net-libs
+games-util
+media-libs
+x11-apps
