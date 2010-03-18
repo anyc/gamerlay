@@ -16,7 +16,7 @@ S=${WORKDIR}/${MY_P}
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc ~x86"
-IUSE="alsa debug dedicated iconv icu lzo +opengfx +opensfx +png +truetype zlib"
+IUSE="alsa debug dedicated iconv icu lzo +opengfx +opensfx openmsx +png +truetype zlib"
 RESTRICT="test"
 
 DEPEND="
@@ -39,7 +39,8 @@ RDEPEND="${DEPEND}
 	)"
 PDEPEND="
 	opengfx? ( games-misc/opengfx )
-	opensfx? ( games-misc/opensfx )"
+	opensfx? ( games-misc/opensfx )
+	openmsx? ( games-misc/openmsx )"
 
 src_configure() {
 	local myopts
@@ -141,6 +142,7 @@ pkg_postinst() {
 			elog "Available ports can be listed by using 'aplaymidi -l'."
 		else
 			elog "alsa not in USE so music will not be played during the game."
+
 		fi
 	fi
 }
