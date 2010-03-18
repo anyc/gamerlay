@@ -107,7 +107,7 @@ pkg_postinst() {
 
 	if ! use opengfx || ! use opensfx ; then
 		elog
-		elog "OpenTTD was compiled without opengfx or opensfx USE flags."1
+		elog "OpenTTD was compiled without opengfx or opensfx USE flags."
 		elog
 		elog "In order to play, you must either install games-misc/opengfx"
 		elog "or copy the following 6 files from a version of TTD"
