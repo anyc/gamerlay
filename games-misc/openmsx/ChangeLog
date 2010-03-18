@@ -1,0 +1,10 @@
+# ChangeLog for games-misc/openmsx
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*openmsx-0.2.0 (18 Mar 2010)
+
+  18 Mar 2010; Locke Shinseiko <wizzleby@gmail.com> +openmsx-0.2.0.ebuild,
+  +metadata.xml:
+  Initial commit
+
