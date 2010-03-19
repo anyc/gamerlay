@@ -2,6 +2,11 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  19 Mar 2010; Locke Shinseiko <wizzleby@gmail.com>
+  openttd-1.0.0_rc3.ebuild, metadata.xml:
+  Added openmsx useflag, conditional pdepend on games-misc/openmsx, and
+  elog message about music. USE flag description added to metadata.xml
+
 *openttd-1.0.0_rc2 (15 Mar 2010)
 
   15 Mar 2010; Locke Shinseiko <wizzleby@gmail.com>

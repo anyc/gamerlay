@@ -2,6 +2,9 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  19 Mar 2010; Locke Shinseiko <wizzleby@gmail.com> openmsx-0.2.0.ebuild:
+  Depend on >=openttd-1.0.0_beta1
+
 *openmsx-0.2.0 (18 Mar 2010)
 
   18 Mar 2010; Locke Shinseiko <wizzleby@gmail.com> +openmsx-0.2.0.ebuild,

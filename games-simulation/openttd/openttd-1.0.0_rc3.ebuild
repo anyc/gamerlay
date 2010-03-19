@@ -140,6 +140,11 @@ pkg_postinst() {
 			elog "You have emerged with 'aplaymidi' for playing MIDI."
 			elog "You have to set the environment variable ALSA_OUTPUT_PORTS."
 			elog "Available ports can be listed by using 'aplaymidi -l'."
+			if ! use openmsx ; then
+				elog "You have disabled the openmsx use flag, in game music"
+				elog "will be unavailable unless you build with openmsx"
+				elog "or install a music set in ~/.openttd/gm"
+			fi
 		else
 			elog "alsa not in USE so music will not be played during the game."
 

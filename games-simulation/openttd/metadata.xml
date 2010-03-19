@@ -11,6 +11,7 @@
 		With this there is no need for graphics from the Transport Tycoon Deluxe disc.</flag>
 		<flag name='opensfx'>Enables the free OpenSFX sound package for use in OpenTTD.
 		With this there is no need for sounds from the Transport Tycoon Deluxe disc.</flag>
+		<flag name='openmsx'>Enables the free OpenMSX music set for use in OpenTTD.</flag>
 		<flag name='lzo'>Enables LZO compression for savegames. This is not needed, and
 		only affects your ability to load extremely old savegames. (versions before 0.2)</flag>
 		<flag name='dedicated'>Build only the openttd server, and not the client.</flag>
