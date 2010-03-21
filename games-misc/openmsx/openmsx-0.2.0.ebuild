@@ -19,8 +19,7 @@ IUSE=""
 
 S="${WORKDIR}/${P}-source"
 
-DEPEND=">=games-simulation/openttd-1.0.0_beta1[alsa]
-	app-text/unix2dos"
+DEPEND=">=games-simulation/openttd-1.0.0_beta1[alsa]"
 RDEPEND="${DEPEND}"
 
 src_compile() {

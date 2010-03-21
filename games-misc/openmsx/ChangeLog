@@ -2,6 +2,9 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  21 Mar 2010; Locke Shinseiko <locke@gentoo.org> openmsx-0.2.0.ebuild:
+  as unix2dos does not appear to be used.. at all.. Do not depend on it
+
   19 Mar 2010; Locke Shinseiko <wizzleby@gmail.com> openmsx-0.2.0.ebuild:
   Depend on >=openttd-1.0.0_beta1
 
