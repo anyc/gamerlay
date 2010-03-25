@@ -17,15 +17,15 @@ SLOT="0"
 KEYWORDS="~x86"
 IUSE=""
 
-RDEPEND="media-libs/allegro
+RDEPEND="media-libs/allegro[png]
 	media-libs/libvorbis
-	media-libs/aldumb
-	media-libs/alpng"
+	media-libs/aldumb"
 DEPEND="${RDEPEND}"
 
 S=${WORKDIR}/${PN}-src-${PV}
 
 src_prepare(){
+	epatch ${FILESDIR}/"${P}-loadpng.patch"
 	# the configure script activates egamesconf which we don't want here
 	rm configure
 }
