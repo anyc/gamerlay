@@ -4,17 +4,18 @@
 
 EAPI="2"
 
-inherit cmake-utils games 
+inherit games cmake-utils
 
 MY_PN=opensnc
+MY_P=${MY_PN}-src-${PV}
 
 DESCRIPTION="Open Sonic is a free open-source game based on the Sonic the Hedgehog universe."
 HOMEPAGE="http://opensnc.sourceforge.net/"
-SRC_URI="mirror://sourceforge/${MY_PN}/${MY_PN}-src-${PV}.tar.gz"
+SRC_URI="mirror://sourceforge/${MY_PN}/${MY_P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~x86"
+KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 RDEPEND=">=media-libs/allegro-4.4.1.1-r1[png]
@@ -22,17 +23,16 @@ RDEPEND=">=media-libs/allegro-4.4.1.1-r1[png]
 	media-libs/aldumb"
 DEPEND="${RDEPEND}"
 
-S=${WORKDIR}/${MY_PN}-src-${PV}
+S=${WORKDIR}/${MY_P}
 
-src_prepare(){
-	epatch ${FILESDIR}/"${P}-loadpng.patch"
-	# the configure script activates egamesconf which we don't want here
-	rm configure
-}
+PATCHES=(
+	"${FILESDIR}/${P}-loadpng.patch"
+)
 
-src_compile() {
-	GAME_INSTALL_DIR="${GAMES_DATADIR}"/"${PN}" OPENSNC_ALLEGRO_LIBS=`allegro-config --libs` OPENSNC_ALLEGRO_VERSION=`allegro-config --version` cmake .
-	emake || die "make failed"
+src_configure() {
+	export OPENSNC_ALLEGRO_LIBS=`allegro-config --libs`
+	export OPENSNC_ALLEGRO_VERSION=`allegro-config --version`
+	cmake-utils_src_configure
 }
 
 src_install() {
@@ -40,14 +40,10 @@ src_install() {
 	insinto "${datadir}"
 	doins -r config images languages levels licenses musics quests samples screenshots themes || die "data install failed"
 	exeinto "${GAMES_DATADIR}"/${PN}
-	doexe ${PN}
+	doexe "${CMAKE_BUILD_DIR}"/${PN} || die
 	games_make_wrapper ${PN} "${GAMES_DATADIR}"/"${PN}"/"${PN}"
-	newicon icon.png "${PN}".png
+	newicon icon.png "${PN}".png || die
 	make_desktop_entry "${PN}" "${PN}"
-	dodoc readme.html
+	dohtml readme.html || die
 	prepgamesdirs
-}
-
-pkg_postinst() {
-	games_pkg_postinst
 }
