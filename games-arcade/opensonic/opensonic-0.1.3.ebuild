@@ -25,9 +25,24 @@ DEPEND="${RDEPEND}"
 
 S=${WORKDIR}/${MY_P}
 
-PATCHES=(
-	"${FILESDIR}/${P}-loadpng.patch"
-)
+src_prepare() {
+	epatch "${FILESDIR}/${P}-loadpng.patch"
+	sed -i -e "s:config/sprite.def:"${GAMES_DATADIR}"/"${PN}"/config/sprite.def:g" -i src/sprite.c
+	for i in `find src -name *.c`; do sed -i "$i" -e "s:images/:"${GAMES_DATADIR}"/"${PN}/images/":g"; done
+	for i in `find themes -name *.brk`; do sed -i "$i" -e "s:images/:"${GAMES_DATADIR}"/"${PN}/images/":g"; done
+	for i in `find themes -name *.bg`; do sed -i "$i" -e "s:images/:"${GAMES_DATADIR}"/"${PN}/images/":g"; done
+	for i in `find quests -name *.qst`; do sed -i "$i" -e "s:images/:"${GAMES_DATADIR}"/"${PN}/images/":g"; done
+	sed -i -e "s:images/:"${GAMES_DATADIR}"/"${PN}"/images/:g" -i config/sprite.def
+	sed -i -e "s:languages/:"${GAMES_DATADIR}"/"${PN}"/languages/:g" -i src/langselect.c
+	sed -i -e "s:languages/:"${GAMES_DATADIR}"/"${PN}"/languages/:g" -i src/lang.h
+	for i in `find src -name *.c`; do sed -i "$i" -e "s:levels/:"${GAMES_DATADIR}"/"${PN}/levels/":g"; done
+	for i in `find quests -name *.qst`; do sed -i "$i" -e "s:levels/:"${GAMES_DATADIR}"/"${PN}/levels/":g"; done
+	for i in `find src -name *.c`; do sed -i "$i" -e "s:musics/:"${GAMES_DATADIR}"/"${PN}/musics/":g"; done
+	for i in `find levels -name *.lev`; do sed -i "$i" -e "s:musics/:"${GAMES_DATADIR}"/"${PN}/musics/":g"; done
+	sed -i -e "s:quests/:"${GAMES_DATADIR}"/"${PN}"/quests/:g" -i src/menu.c
+	for i in `find src -name *.c`; do sed -i "$i" -e "s:samples/:"${GAMES_DATADIR}"/"${PN}/samples/":g"; done
+	for i in `find levels -name *.lev`; do sed -i "$i" -e "s:themes/:"${GAMES_DATADIR}"/"${PN}/themes/":g"; done
+}
 
 src_configure() {
 	export OPENSNC_ALLEGRO_LIBS=`allegro-config --libs`
@@ -39,9 +54,7 @@ src_install() {
 	local datadir="${GAMES_DATADIR}"/${PN}
 	insinto "${datadir}"
 	doins -r config images languages levels licenses musics quests samples screenshots themes || die "data install failed"
-	exeinto "${GAMES_DATADIR}"/${PN}
-	doexe "${CMAKE_BUILD_DIR}"/${PN} || die
-	games_make_wrapper ${PN} "${GAMES_DATADIR}"/"${PN}"/"${PN}"
+	dogamesbin "${CMAKE_BUILD_DIR}"/${PN} || die
 	newicon icon.png "${PN}".png || die
 	make_desktop_entry "${PN}" "${PN}"
 	dohtml readme.html || die
