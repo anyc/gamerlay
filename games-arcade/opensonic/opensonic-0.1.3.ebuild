@@ -4,25 +4,25 @@
 
 EAPI="2"
 
-inherit games
+inherit cmake-utils games 
 
-MY_PN=opensonic
+MY_PN=opensnc
 
 DESCRIPTION="Open Sonic is a free open-source game based on the Sonic the Hedgehog universe."
 HOMEPAGE="http://opensnc.sourceforge.net/"
-SRC_URI="mirror://sourceforge/${PN}/${PN}-src-${PV}.tar.gz"
+SRC_URI="mirror://sourceforge/${MY_PN}/${MY_PN}-src-${PV}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86"
 IUSE=""
 
-RDEPEND="media-libs/allegro[png]
+RDEPEND=">=media-libs/allegro-4.4.1.1-r1[png]
 	media-libs/libvorbis
 	media-libs/aldumb"
 DEPEND="${RDEPEND}"
 
-S=${WORKDIR}/${PN}-src-${PV}
+S=${WORKDIR}/${MY_PN}-src-${PV}
 
 src_prepare(){
 	epatch ${FILESDIR}/"${P}-loadpng.patch"
@@ -31,20 +31,19 @@ src_prepare(){
 }
 
 src_compile() {
-	GAME_INSTALL_DIR="${GAMES_DATADIR}"/"${MY_PN}" OPENSNC_ALLEGRO_LIBS=`allegro-config --libs` OPENSNC_ALLEGRO_VERSION=`allegro-config --version` cmake .
+	GAME_INSTALL_DIR="${GAMES_DATADIR}"/"${PN}" OPENSNC_ALLEGRO_LIBS=`allegro-config --libs` OPENSNC_ALLEGRO_VERSION=`allegro-config --version` cmake .
 	emake || die "make failed"
 }
 
 src_install() {
-	local datadir="${GAMES_DATADIR}"/${MY_PN}
+	local datadir="${GAMES_DATADIR}"/${PN}
 	insinto "${datadir}"
 	doins -r config images languages levels licenses musics quests samples screenshots themes || die "data install failed"
-	exeinto "${GAMES_DATADIR}"/${MY_PN}
-	doexe ${MY_PN}
-	games_make_wrapper ${PN} "${GAMES_DATADIR}"/"${MY_PN}"/"${MY_PN}"
-	games_make_wrapper ${PN}_launcher "${GAMES_DATADIR}"/"${MY_PN}"/"${MY_PN}"_launcher
-	newicon icon.png "${MY_PN}".png
-	make_desktop_entry "${MY_PN}" "${MY_PN}"
+	exeinto "${GAMES_DATADIR}"/${PN}
+	doexe ${PN}
+	games_make_wrapper ${PN} "${GAMES_DATADIR}"/"${PN}"/"${PN}"
+	newicon icon.png "${PN}".png
+	make_desktop_entry "${PN}" "${PN}"
 	dodoc readme.html
 	prepgamesdirs
 }
