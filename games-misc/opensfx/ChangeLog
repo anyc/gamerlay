@@ -2,6 +2,9 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  27 Mar 2010; Locke Shinseiko <wizzleby@gmail.com> opensfx-0.2.2.ebuild:
+  upstream directory structure changed, we need -source at the end of S
+
 *opensfx-0.2.2 (27 Mar 2010)
 
   27 Mar 2010; Locke Shinseiko <wizzleby@gmail.com> -opensfx-0.2.1.ebuild,

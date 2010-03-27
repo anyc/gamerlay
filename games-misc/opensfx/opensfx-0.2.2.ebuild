@@ -15,6 +15,8 @@ SLOT="0"
 KEYWORDS="~amd64 ~ppc ~x86"
 IUSE=""
 
+S="${WORKDIR}/${P}-source"
+
 DEPEND=">=games-simulation/openttd-1.0.0_beta1
 	games-util/catcodec"
 RDEPEND="${DEPEND}"
