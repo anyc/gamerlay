@@ -19,7 +19,7 @@ IUSE=""
 
 S="${WORKDIR}/${PN}-${MY_PV}"
 
-DEPEND="|| ( app-arch/upx app-arch/upx-ucl )"
+DEPEND="|| ( app-arch/upx-ucl app-arch/upx )"
 RDEPEND="${DEPEND}"
 
 src_prepare() {
