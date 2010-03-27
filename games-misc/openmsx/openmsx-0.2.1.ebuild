@@ -14,7 +14,7 @@ SRC_URI="http://bundles.openttdcoop.org/${PN}/releases/${P}-source.tar.gz"
 
 LICENSE="|| ( GPL-2 CCPL-Sampling-Plus-1.0 )"
 SLOT="0"
-KEYWORDS="~amd64"
+KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 S="${WORKDIR}/${P}-source"
