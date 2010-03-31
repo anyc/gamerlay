@@ -12,12 +12,12 @@ SRC_URI="http://bundles.openttdcoop.org/${PN}/releases/${P}-source.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~x86"
+KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 S="${WORKDIR}/${P}-source"
 
-DEPEND=">=games-simulation/openttd-0.7.3
+DEPEND=">=games-simulation/openttd-0.7.0
 	games-util/nforenum
 	games-util/grfcodec"
 RDEPEND="${DEPEND}"
