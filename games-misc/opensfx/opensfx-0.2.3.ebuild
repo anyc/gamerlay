@@ -12,18 +12,18 @@ SRC_URI="http://bundles.openttdcoop.org/${PN}/releases/${P}-source.tar.gz"
 
 LICENSE="CCPL-Sampling-Plus-1.0"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~x86"
+KEYWORDS="~amd64 ~x86"
 IUSE=""
-
-S="${WORKDIR}/${P}-source"
 
 DEPEND=">=games-simulation/openttd-1.0.0_beta1
 	games-util/catcodec"
 RDEPEND="${DEPEND}"
 
+S=${WORKDIR}/${P}-source
+
 src_install() {
 	insinto "${GAMES_DATADIR}/openttd/data/"
-	doins src/opensfx.cat opensfx.obs || die "doins failed in $(pwd)"
+	doins opensfx.cat opensfx.obs || die "doins failed in $(pwd)"
 	dodoc docs/*.txt || die "dodoc failed"
 	prepgamesdirs
 }
