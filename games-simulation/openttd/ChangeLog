@@ -2,6 +2,12 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*openttd-1.0.0 (01 Apr 2010)
+
+  01 Apr 2010; Locke Shinseiko <wizzleby@gmail.com>
+  -openttd-1.0.0_rc3.ebuild, +openttd-1.0.0.ebuild:
+  Version bump: openttd-1.0.0
+
   19 Mar 2010; Locke Shinseiko <wizzleby@gmail.com>
   openttd-1.0.0_rc3.ebuild, metadata.xml:
   Added openmsx useflag, conditional pdepend on games-misc/openmsx, and
