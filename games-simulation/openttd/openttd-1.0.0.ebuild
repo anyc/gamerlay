@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=2
+EAPI=3
 inherit eutils games
 
 MY_PV=${PV/_rc/-RC}
@@ -76,7 +76,7 @@ src_configure() {
 	# configure is a hand-written bash-script, so econf will not work
 	./configure \
 		--disable-strip \
-		--prefix-dir=/ \
+		--prefix-dir="${EPREFIX}" \
 		--binary-dir="${GAMES_BINDIR}" \
 		--data-dir="${GAMES_DATADIR}/${PN}" \
 		--install-dir="${D}" \

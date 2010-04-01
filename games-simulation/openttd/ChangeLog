@@ -2,6 +2,9 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  01 Apr 2010; Locke Shinseiko <wizzleby@gmail.com> openttd-1.0.0.ebuild:
+  port EAPI3 changes from openttd overlay
+
 *openttd-1.0.0 (01 Apr 2010)
 
   01 Apr 2010; Locke Shinseiko <wizzleby@gmail.com>
