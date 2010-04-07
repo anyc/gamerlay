@@ -16,7 +16,7 @@ S=${WORKDIR}/${MY_P}
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc ~x86"
-IUSE="alsa debug dedicated iconv icu lzo +opengfx +opensfx openmsx +png +truetype zlib"
+IUSE="alsa debug dedicated iconv icu lzo +openmedia +png +truetype zlib"
 RESTRICT="test"
 
 DEPEND="
@@ -38,9 +38,11 @@ RDEPEND="${DEPEND}
 		alsa? ( media-sound/alsa-utils )
 	)"
 PDEPEND="
-	opengfx? ( games-misc/opengfx )
-	opensfx? ( games-misc/opensfx )
-	openmsx? ( games-misc/openmsx )"
+	openmedia? (
+		games-misc/opengfx
+		games-misc/opensfx
+		games-misc/openmsx
+	)"
 
 src_configure() {
 	local myopts
@@ -106,12 +108,13 @@ src_install() {
 pkg_postinst() {
 	games_pkg_postinst
 
-	if ! use opengfx || ! use opensfx ; then
+	if ! use openmedia ; then
 		elog
-		elog "OpenTTD was compiled without opengfx or opensfx USE flags."
+		elog "OpenTTD was compiled without openmedia USE flags."
 		elog
 		elog "In order to play, you must either install games-misc/opengfx"
-		elog "or copy the following 6 files from a version of TTD"
+		elog "as well as games-misc/opensfx or copy the following 6 files"
+		elog "from a version of Transport Tycoon Deluxe (windows or DOS)"
 		elog "to ~/.openttd/data/ or ${GAMES_DATADIR}/${PN}/data/."
 		elog
 		elog "From the WINDOWS version you need: "
