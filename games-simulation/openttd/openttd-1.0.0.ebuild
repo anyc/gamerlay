@@ -76,7 +76,11 @@ src_configure() {
 	myopts="${myopts} --without-allegro"
 
 	# configure is a hand-written bash-script, so econf will not work
-	./configure \
+	# It's all built as C++, upstream uses CFLAGS, but if we import
+	# User CFLAGS, we can get C only CFLAGS. Request comment on this:
+	# Alternative for same result (don't pass CFLAGS to CXX) is huge
+	# 16 KiB patch. --Locke
+	CFLAGS="" ./configure \
 		--disable-strip \
 		--prefix-dir="${EPREFIX}" \
 		--binary-dir="${GAMES_BINDIR}" \
