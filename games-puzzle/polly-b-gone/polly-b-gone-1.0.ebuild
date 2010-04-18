@@ -31,7 +31,6 @@ src_prepare(){
 
 	cd "${S}"
 	sed -i -e "s:resources/:"${GAMES_DATADIR}"/"${PN}"/resources/:" -i resource.cpp
-
 }
 
 src_install() {
