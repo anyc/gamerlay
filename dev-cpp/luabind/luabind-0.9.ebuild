@@ -15,16 +15,17 @@ IUSE=""
 
 #there is no way to find out which bjam is installed, so i use 1.42 for now, ugly hack
 #also doc is missing
+#and i dont know an option to nostrip with bjam
 
 DEPEND="dev-lang/lua"
 RDEPEND="
-	dev-util/boost-build:1.42.0
+	dev-util/boost-build:1.42
 	${DEPEND}"
 
 src_compile() {
-	bjam-1_42 debug --prefix="${D}/usr/" link=shared toolset=gcc || die "compile failed"
+	bjam-1_42 release --prefix="${D}/usr/" link=shared toolset=gcc || die "compile failed"
 }
 
 src_install() {
-	bjam-1_42 debug --prefix="${D}/usr/" link=shared toolset=gcc install || die "install failed"
+	bjam-1_42 release --prefix="${D}/usr/" link=shared toolset=gcc install || die "install failed"
 }
