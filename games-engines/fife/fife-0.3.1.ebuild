@@ -8,7 +8,7 @@ inherit eutils python
 
 DESCRIPTION="Flexible Isometric Free Engine, 2D"
 HOMEPAGE="http://fifengine.de"
-SRC_URI="mirror://sourceforge/${PN}/files/active/src/${P}.tar.gz"
+SRC_URI="http://downloads.sourceforge.net/project/${PN}/active/src/${P}.tar.gz"
 LICENSE="GPL-2"
 
 KEYWORDS="~amd64 ~x86"
