@@ -16,7 +16,7 @@ S=${WORKDIR}/${MY_P}
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc ~ppc64 ~x86"
-IUSE="alsa debug dedicated iconv icu lzo +openmedia +png +timidity +truetype zlib"
+IUSE="alsa aplaymidi debug dedicated iconv icu lzo +openmedia +png +midi +truetype zlib"
 RESTRICT="test"
 
 DEPEND="
@@ -33,11 +33,15 @@ DEPEND="
 	iconv? ( virtual/libiconv )
 	png? ( media-libs/libpng )
 	zlib? ( sys-libs/zlib )"
+
 RDEPEND="${DEPEND}
 	!dedicated? (
 		alsa? ( media-sound/alsa-utils )
-		timidity? ( media-sound/timidity++ )
-)"
+		!aplaymidi? (
+			timidity? ( media-sound/timidity++ )
+		)
+	)"
+
 PDEPEND="
 	openmedia? (
 		games-misc/opengfx
@@ -58,10 +62,17 @@ src_configure() {
 
 	use debug && myopts="${myopts} --enable-debug=3"
 
+	if use midi ; then
+		if use alsa && use aplaymidi ; then
+			myopts="${myopts} --with-midi='/usr/bin/aplaymidi'"
+		else
+			myopts="${myopts} --with-midi='/usr/bin/timidity'"
+		fi
+	fi
+
 	if use dedicated ; then
 		myopts="${myopts} --enable-dedicated"
 	else
-		use timidity && myopts="${myopts} --with-midi='/usr/bin/timidity'"
 		myopts="${myopts}
 			$(use_with truetype freetype)
 			$(use_with icu)
