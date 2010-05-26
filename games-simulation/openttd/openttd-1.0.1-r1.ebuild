@@ -16,7 +16,7 @@ S=${WORKDIR}/${MY_P}
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc ~ppc64 ~x86"
-IUSE="alsa aplaymidi debug dedicated iconv icu lzo +openmedia +png +midi +truetype zlib"
+IUSE="alsa aplaymidi debug dedicated iconv icu lzo +openmedia +png +timidity +truetype zlib"
 RESTRICT="test"
 
 DEPEND="
@@ -37,9 +37,7 @@ DEPEND="
 RDEPEND="${DEPEND}
 	!dedicated? (
 		alsa? ( media-sound/alsa-utils )
-		!aplaymidi? (
-			timidity? ( media-sound/timidity++ )
-		)
+		!aplaymidi? ( timidity? ( media-sound/timidity++ ) )
 	)"
 
 PDEPEND="
@@ -62,17 +60,10 @@ src_configure() {
 
 	use debug && myopts="${myopts} --enable-debug=3"
 
-	if use midi ; then
-		if use alsa && use aplaymidi ; then
-			myopts="${myopts} --with-midi='/usr/bin/aplaymidi'"
-		else
-			myopts="${myopts} --with-midi='/usr/bin/timidity'"
-		fi
-	fi
-
 	if use dedicated ; then
 		myopts="${myopts} --enable-dedicated"
 	else
+		use alsa && use aplaymidi && myopts="${myopts} --with-midi='/usr/bin/aplaymidi'"
 		myopts="${myopts}
 			$(use_with truetype freetype)
 			$(use_with icu)
@@ -157,5 +148,19 @@ pkg_postinst() {
 	if use dedicated ; then
 		ewarn "Warning: The init script will kill all running openttd"
 		ewarn "processes when triggered, including any running client sessions!"
+	else
+		if use alsa && use aplaymidi ; then
+		elog "You have emerged with 'aplaymidi' for playing MIDI."
+		elog "This option is for those with a hardware midi device,"
+		elog "or who have set up ALSA to handle midi ports."
+		elog "You must set the environment variable ALSA_OUTPUT_PORTS."
+		elog "Available ports can be listed by using 'aplaymidi -l'."
+			if ! use openmedia ; then
+				elog "You have disabled the openmedia use flag, in-game music"
+				elog "will be unavailable unless you install games-misc/openmsx,"
+				elog "install a music set in ~/.openttd/gm, or use the in-game"
+				elog "download functionality to get a music set"
+			fi
+		fi
 	fi
 }
