@@ -11,7 +11,7 @@ SRC_URI="http://bundles.openttdcoop.org/opengfx/releases/${P}-source.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ppc ppc64 x86"
+KEYWORDS="amd64 ppc ppc64 x86"
 IUSE=""
 
 S=${WORKDIR}/${P}-source
