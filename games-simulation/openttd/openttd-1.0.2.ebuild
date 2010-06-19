@@ -17,7 +17,6 @@ LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc ~ppc64 ~x86"
 IUSE="aplaymidi debug dedicated iconv icu lzo +openmedia +png +timidity +truetype zlib"
-RESTRICT="test"
 
 DEPEND="
 	!dedicated? (
@@ -96,6 +95,10 @@ src_configure() {
 
 src_compile() {
 	emake VERBOSE=1 || die
+}
+
+src_test() {
+	emake test || die "make test failed."
 }
 
 src_install() {
