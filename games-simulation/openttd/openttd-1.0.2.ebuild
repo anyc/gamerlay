@@ -98,7 +98,7 @@ src_compile() {
 }
 
 src_test() {
-	einfo ">>> Test phase [test]: ${CATEGORY}/${PF}"
+	vecho ">>> Test phase [test]: ${CATEGORY}/${PF}"
 	emake -j1 test || die "Make test failed. See above for details."
 }
 
