@@ -98,7 +98,8 @@ src_compile() {
 }
 
 src_test() {
-	emake test || die "make test failed."
+	einfo ">>> Test phase [test]: ${CATEGORY}/${PF}"
+	emake -j1 test || die "Make test failed. See above for details."
 }
 
 src_install() {
