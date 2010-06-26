@@ -21,7 +21,7 @@ index 216ea55..278722b 100644
  ifeq ($(shell sh -c 'uname -m 2>/dev/null || echo not'),x86_64)
  	CFLAGS += -fPIC
 diff --git a/Makefile.gnu b/Makefile.gnu
-index 59a5276..da808f2 100644
+index 59a5276..67b6aea 100644
 --- a/Makefile.gnu
 +++ b/Makefile.gnu
 @@ -11,14 +11,14 @@ INSTALLDIR ?= $(DESTDIR)/usr/lib
@@ -42,13 +42,12 @@ index 59a5276..da808f2 100644
  
  ifeq ($(shell sh -c 'uname -m 2>/dev/null || echo not'),x86_64)
  	CFLAGS += -fPIC
-@@ -65,6 +65,9 @@ install:
+@@ -65,6 +65,8 @@ install:
  	install -m 644 -o root -g root $(HEADER) $(INCDIR)
  	install -m 644 -o root -g root $(STATICLIB) $(INSTALLDIR)
  	install -m 755 -o root -g root $(SHAREDLIB) $(INSTALLDIR)
 +	ln -sf $(SHAREDLIB) $(INSTALLDIR)/$(VERLIBNAME)
 +	ln -sf $(VERLIBNAME) $(INSTALLDIR)/$(LIBNAME)
-+	ldconfig
  
  clean:
  	rm -f core Dist/*.* u2dtmp* $(MODULES) $(STATICLIB) $(SHAREDLIB) $(LIBNAME)
