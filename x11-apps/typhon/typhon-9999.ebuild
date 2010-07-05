@@ -27,7 +27,7 @@ RDEPEND="media-libs/ftgl
 	glut? ( media-libs/freeglut )
 	sound? ( media-libs/sdl-mixer )"
 DEPEND="${RDEPEND}
-	>=dev-util/cmake-2.6.0"
+	>=dev-util/cmake-2.8.0"
 
 src_configure() {
 	local mycmakeargs+=(
