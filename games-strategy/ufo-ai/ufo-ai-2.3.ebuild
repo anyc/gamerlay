@@ -94,6 +94,10 @@ src_install() {
 	insinto "${GAMES_DATADIR}"/${PN/-}/base/
 	doins base/*.pk3 || die
 
+	if use doc ; then
+		dodoc src/docs/tex/ufo-manual_EN.pdf || die
+	fi
+
 	# move translations where they belong
 	mkdir "${D}/${GAMES_DATADIR_BASE}/locale/" || die
 	mv "${D}/${GAMES_DATADIR}/${PN/-}/base/i18n/"* \
