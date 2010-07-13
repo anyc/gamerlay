@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=3
+EAPI="3"
 
 inherit games cmake-utils subversion
 
@@ -11,7 +11,7 @@ HOMEPAGE="http://www.freeorion.org"
 ESVN_REPO_URI="https://${PN}.svn.sourceforge.net/svnroot/${PN}/trunk"
 ESVN_PROJECT="${PN}"
 
-LICENSE="&& ( GPL-2 CCPL-Attribution-ShareAlike-3.0 )"
+LICENSE="GPL-2 CCPL-Attribution-ShareAlike-3.0"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="debug"
@@ -20,7 +20,6 @@ RDEPEND="
 	dev-games/gigi[ogre]
 	<dev-lang/python-3
 	>=dev-libs/boost-1.36
-	dev-util/subversion
 	media-gfx/graphviz
 	media-libs/freealut
 	>=media-libs/libogg-1.1.3
