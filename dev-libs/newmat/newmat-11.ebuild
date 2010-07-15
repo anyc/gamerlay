@@ -19,8 +19,7 @@ src_compile() {
 }
 
 src_install() {
-	insinto /usr/lib
-	doins libnewmat.a
+	dolib libnewmat.a
 	dodir /usr/include/newmat
 	insinto /usr/include/newmat
 	doins *.h
