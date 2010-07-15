@@ -42,3 +42,11 @@ src_install() {
 	dodoc AUTHORS ChangeLog NEWS README Thanks
 	prepgamesdirs
 }
+
+pkg_postinst() {
+	elog "FlightGear is now installed, but to run the game you will have to"
+	elog "download fgdata as well."
+	elog "To do this use \"git clone git://mapserver.flightgear.org/fgdata\"."
+	elog "You can save fgdata anywhere, but need to set FG_ROOT to that directory or"
+	elog "create an --fg-root= entry in ~/.fgfsrc"
+}
