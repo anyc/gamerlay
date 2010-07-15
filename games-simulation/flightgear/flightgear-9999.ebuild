@@ -1,14 +1,15 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
+
 EAPI=2
 
-EGIT_HAS_SUBMODULES=true
 inherit games git autotools
 
 DESCRIPTION="Open Source Flight Simulator"
 HOMEPAGE="http://www.flightgear.org/"
 EGIT_REPO_URI="git://gitorious.org/fg/flightgear.git"
+EGIT_HAS_SUBMODULES=true
 EGIT_BRANCH="next"
 EGIT_MASTER="${EGIT_BRANCH}"
 
@@ -17,11 +18,12 @@ SLOT="0"
 KEYWORDS=""
 IUSE=""
 
-RDEPEND="dev-games/openscenegraph
+RDEPEND=">=dev-games/openscenegraph-2.9
 	=dev-games/simgear-9999
+	dev-vcs/subversion
 	virtual/glut
-	x11-libs/libXmu"
-
+	x11-libs/libXmu
+	x11-libs/libXi"
 DEPEND="${RDEPEND}"
 
 src_prepare() {

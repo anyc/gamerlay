@@ -3,7 +3,7 @@
 # $Header: $
 
 EAPI=2
-inherit flag-o-matic autotools git games
+inherit games git autotools flag-o-matic
 
 DESCRIPTION="A graphical frontend for the FlightGear Flight Simulator"
 HOMEPAGE="http://sourceforge.net/projects/fgrun"
@@ -31,15 +31,14 @@ pkg_setup() {
 }
 
 src_prepare() {
-	git_src_unpack
-	cd "${S}"
 	epatch "${FILESDIR}/${PN}"-1.5.1-fltk.patch
 	AT_M4DIR=. eautoreconf
 }
 
 src_configure() {
 	egamesconf \
-	$(use_enable nls)
+	$(use_enable nls) \
+	|| die "configure failed"
 }
 
 src_install() {
