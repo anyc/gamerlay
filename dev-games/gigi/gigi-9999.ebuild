@@ -1,4 +1,4 @@
-# Copyright 1999-2005 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -17,7 +17,7 @@ KEYWORDS="~amd64 ~x86"
 IUSE="debug devil doc ogre ois +sdl static-libs +threads"
 
 RDEPEND="
-	>=dev-libs/boost-1.34
+	dev-libs/boost:1.42
 	media-libs/freetype
 	x11-libs/libX11
 	virtual/opengl
@@ -28,7 +28,8 @@ RDEPEND="
 		media-libs/libpng
 	)
 	ogre? (
-		>=dev-games/ogre-1.4.7[threads=]
+		|| ( >=dev-games/ogre-1.4.7[threads=]
+			>=dev-games/ogre-1.7.1[boost-threads?,poco-threads?,tbb-threads?] )
 		ois? ( dev-games/ois )
 		)
 	sdl? ( >=media-libs/libsdl-1.2 )

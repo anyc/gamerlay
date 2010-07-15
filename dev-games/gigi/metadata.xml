@@ -6,4 +6,9 @@
 	<name>steffen stramm</name>
 </maintainer>
 <herd>games</herd>
+<use>
+  <flag name='devil'>Enable image loading via DevIL.</flag>
+  <flag name='ois'>Enable OIS support.</flag>
+  <flag name='ogre'>Enable OGRE support.</flag>
+</use>
 </pkgmetadata>
