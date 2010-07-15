@@ -1,0 +1,28 @@
+Index: src/osg/Texture.cpp
+===================================================================
+--- src/osg/Texture.cpp	(revision 11105)
++++ src/osg/Texture.cpp	(working copy)
+@@ -937,7 +937,7 @@
+             _wrap_s(CLAMP),
+             _wrap_t(CLAMP),
+             _wrap_r(CLAMP),
+-            _min_filter(LINEAR_MIPMAP_LINEAR), // trilinear
++            _min_filter(LINEAR),
+             _mag_filter(LINEAR),
+             _maxAnisotropy(1.0f),
+             _useHardwareMipMapGeneration(true),
+@@ -1063,12 +1063,14 @@
+ 
+ void Texture::setFilter(FilterParameter which, FilterMode filter)
+ {
++#if 0
+     switch( which )
+     {
+         case MIN_FILTER : _min_filter = filter; dirtyTextureParameters(); break;
+         case MAG_FILTER : _mag_filter = filter; dirtyTextureParameters(); break;
+         default : notify(WARN)<<"Error: invalid 'which' passed Texture::setFilter("<<(unsigned int)which<<","<<(unsigned int)filter<<")"<<std::endl; break;
+     }
++#endif
+ }
+ 
+
