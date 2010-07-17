@@ -8,7 +8,7 @@ inherit autotools git
 
 DESCRIPTION="terrain editing programs for FlightGear"
 HOMEPAGE="http://terragear.sourceforge.net/"
-EGIT_REPO_URI="git://mapserver.flightgear.org/terragear-cs"
+EGIT_REPO_URI="git://mapserver.flightgear.org/${PN}"
 
 LICENSE="GPL-2"
 SLOT="0"
