@@ -19,7 +19,7 @@ DEPEND="dev-games/simgear-cs
 	dev-libs/newmat
 	media-libs/plib
 	sci-libs/gdal
-	x11-libs/agg[gpc]
+	|| ( =x11-libs/agg-2.5 >x11-libs/agg-2.5[gpc] )
 "
 
 RDEPEND="${DEPEND}"
