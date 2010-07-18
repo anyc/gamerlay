@@ -61,6 +61,7 @@ src_configure() {
 		myopts="${myopts} --enable-dedicated"
 	else
 		use aplaymidi && myopts="${myopts} --with-midi='/usr/bin/aplaymidi'"
+		use timidity && myopts="${myopts} --with-midi='/usr/bin/timidity'"
 		myopts="${myopts}
 			$(use_with truetype freetype)
 			$(use_with icu)
