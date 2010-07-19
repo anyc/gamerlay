@@ -3,7 +3,7 @@
 # $Header: $
 EAPI=2
 
-inherit eutils versionator cmake-utils subversion
+inherit cmake-utils subversion
 
 DESCRIPTION="Open source high performance 3D graphics toolkit"
 HOMEPAGE="http://www.openscenegraph.org/projects/osg/"

@@ -4,7 +4,7 @@
 
 EAPI=2
 
-inherit autotools git eutils wxwidgets games
+inherit autotools git wxwidgets games
 
 DESCRIPTION="a taxiway editor for FlightGear and X-Plane"
 HOMEPAGE="http://taxidraw.sourceforge.net/"
