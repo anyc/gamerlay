@@ -1,0 +1,52 @@
+# Copyright 1999-2010 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: x11-apps/typhontyphon-0.91.ebuild,v 1.0 2010/06/21 09:11:11 by frostwork Exp $
+
+EAPI="2"
+
+inherit cmake-utils eutils
+
+DESCRIPTION="A slim and themeable opengl dashboard / program launcher"
+HOMEPAGE="http://www.frostworx.de/?p=1"
+SRC_URI="http://www.frostworx.de/typhon/${P/_/-}.tar.bz2"
+
+LICENSE="GPL-3"
+SLOT="0"
+KEYWORDS="~amd64 ~x86"
+IUSE="debug ffmpeg glut +sound +sysinfo +themes"
+
+S="${WORKDIR}/${P/_/-}"
+
+RDEPEND="media-libs/ftgl
+	virtual/opengl
+	media-libs/devil
+	x11-libs/libXrender
+	x11-libs/libXrandr
+	glut? ( media-libs/freeglut )
+	ffmpeg? ( media-libs/freealut media-video/ffmpeg )
+	sound? ( media-libs/sdl-mixer )"
+DEPEND="${RDEPEND}
+	>=dev-util/cmake-2.8.0"
+
+src_configure() {
+	local mycmakeargs+=(
+		$(cmake-utils_use !sound NOSOUND)
+		$(cmake-utils_use !glut NOGLUT)
+		$(cmake-utils_use !themes NOP3T)
+		$(cmake-utils_use !sysinfo NOSYSINFO)
+		$(cmake-utils_use !ffmpeg NOVIDEOPLAYER)
+		$(cmake-utils_use_enable debug DEBUG)
+	)
+
+	mycmakeargs+=(
+		"-DCMAKE_INSTALL_PREFIX=/usr"
+		"-DCMAKE_INSTALL_ICONDIR=/usr/share/pixmaps/"
+		"-DCMAKE_INSTALL_DESKTOPDIR=/usr/share/applications/"
+		"-DCMAKE_DATA_PATH=/usr/share/"
+	)
+	cmake-utils_src_configure
+}
+
+src_install() {
+	cmake-utils_src_install
+}
