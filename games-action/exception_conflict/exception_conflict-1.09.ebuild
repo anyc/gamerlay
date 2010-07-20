@@ -38,9 +38,7 @@ src_unpack() {
 
 src_prepare(){
 	cd "${S}"/src
-	epatch "${FILESDIR}"/linuxfixes-${PV}.patch
-	epatch "${FILESDIR}"/gcc-4.3-fixes-${PV}.patch
-	epatch "${FILESDIR}"/disable-netplay-${PV}.patch
+	epatch "${FILESDIR}"/${P}-*
 	sed -i -e "s:resource/:"${GAMES_DATADIR}"/"${PN}"/resource/:" -i app.cc
 	sed -i -e "s:resource/:"${GAMES_DATADIR}"/"${PN}"/resource/:" -i resource.cc
 
