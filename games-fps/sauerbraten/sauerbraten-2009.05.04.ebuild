@@ -1,4 +1,4 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header$
 
@@ -6,30 +6,28 @@ EAPI="2"
 inherit eutils games
 
 EDITION="trooper_edition"
+
+FILE_VERSION="${PV//./_}"
+#FILE_VERSION="2009_xx_xx"
 PATCH_VERSION="2009_06_19"
 
 DESCRIPTION="Cube 2: Sauerbraten is an open source game engine (Cube 2) with freeware game data (Sauerbraten)"
 HOMEPAGE="http://sauerbraten.org/"
-SRC_URI="
-	mirror://sourceforge/${PN}/${PN}_${PV//./_}_${EDITION}_linux.tar.bz2
-	mirror://sourceforge/${PN}/patch_${PATCH_VERSION}_linux.tar.bz2 -> ${PN}_${PATCH_VERSION}_patch_linux.tar.bz2
-"
-
+SRC_URI="mirror://sourceforge/${PN}/${PN}_${FILE_VERSION}_${EDITION}_linux.tar.bz2"
+[ -z "${PATCH_VERSION}" ] || SRC_URI="${SRC_URI} mirror://sourceforge/${PN}/patch_${PATCH_VERSION}_linux.tar.bz2 -> ${PN}_${PATCH_VERSION}_patch_linux.tar.bz2"
 LICENSE="ZLIB freedist"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="debug dedicated doc"
 
-RDEPEND="
+DEPEND="
 	sys-libs/zlib
+	>=net-libs/enet-1.2.2:0
 	!dedicated? (
 		media-libs/libsdl[X,opengl]
 		media-libs/sdl-mixer[vorbis]
 		media-libs/sdl-image[png,jpeg]
 	)"
-DEPEND="${RDEPEND}
-	>=net-libs/enet-1.2_p20090328
-	"
 
 S=${WORKDIR}/${PN}
 
@@ -77,7 +75,7 @@ src_install() {
 
 		# Create menu entry
 		doicon "data/cube.png" || die "doicon failed"
-		make_desktop_entry "${PN}-client" "Cube 2: Sauerbraten" cube.png "Game;ActionGame"
+		make_desktop_entry "${PN}-client" "Cube 2: Sauerbraten" cube "Game;ActionGame"
 	fi
 
 	# Install the server config files
