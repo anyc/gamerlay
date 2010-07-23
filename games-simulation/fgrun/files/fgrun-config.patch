@@ -1,0 +1,11 @@
+--- configure.ac.old	2010-07-23 16:12:34.000000000 +0200
++++ configure.ac	2010-07-23 16:13:10.000000000 +0200
+@@ -113,7 +113,7 @@
+     AC_DEFINE([HAVE_LIBZ], 1, [Define if you have the <zlib.h> header file.])
+     LIBS="$LIBS -lz"))
+ 
+-XX_PATH_PLIB(1.8.0)
++XX_PATH_PLIB=(1.8.0)
+ 
+ AC_LANG_PUSH(C++)
+ 

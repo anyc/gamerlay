@@ -32,6 +32,7 @@ pkg_setup() {
 
 src_prepare() {
 	epatch "${FILESDIR}/${PN}"-1.5.1-fltk.patch
+	epatch "${FILESDIR}/${PN}"-config.patch
 	eautoreconf
 }
 
