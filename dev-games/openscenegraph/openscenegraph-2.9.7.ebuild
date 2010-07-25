@@ -3,7 +3,7 @@
 # $Header: $
 
 EAPI=2
-inherit eutils versionator cmake-utils
+inherit eutils versionator cmake-utils flag-o-matic
 
 MY_PN="OpenSceneGraph"
 MY_P=${MY_PN}-${PV}
@@ -15,7 +15,7 @@ SRC_URI="http://www.openscenegraph.org/downloads/developer_releases/${MY_P}.zip"
 
 LICENSE="wxWinLL-3 LGPL-2.1"
 SLOT="0"
-KEYWORDS="~amd64 ~ppc ~sparc ~x86"
+KEYWORDS="~amd64 ~x86"
 IUSE="curl gif jpeg jpeg2k osgapps pdf png svg tiff truetype video_cards_radeon xine xrandr"
 
 RDEPEND="virtual/opengl
@@ -40,6 +40,11 @@ DEPEND="${RDEPEND}
 S="${WORKDIR}"/${MY_P}
 
 DOCS="AUTHORS.txt ChangeLog NEWS.txt"
+
+pkg_setup() {
+	#fix ffmpeg plugin compile error
+        append-flags -D__STDC_CONSTANT_MACROS
+}
 
 src_prepare() {
 	epatch "${FILESDIR}"/${PN}-magicoff.patch
