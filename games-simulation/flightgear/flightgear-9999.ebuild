@@ -18,7 +18,7 @@ SLOT="0"
 KEYWORDS=""
 IUSE=""
 
-RDEPEND=">=dev-games/openscenegraph-2.9
+RDEPEND=">=dev-games/openscenegraph-2.9[png]
 	=dev-games/simgear-9999
 	dev-vcs/subversion
 	virtual/glut
