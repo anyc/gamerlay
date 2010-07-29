@@ -8,7 +8,7 @@ inherit eutils games
 EDITION="justice_edition"
 
 #FILE_VERSION="${PV//./_}"
-FILE_VERSION="2010_07_21"
+FILE_VERSION="2010_07_28"
 #PATCH_VERSION="2010_xx_xx"
 
 DESCRIPTION="Cube 2: Sauerbraten is an open source game engine (Cube 2) with freeware game data (Sauerbraten)"
