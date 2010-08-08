@@ -19,7 +19,6 @@ IUSE=""
 
 RDEPEND="dev-games/openscenegraph
 	>=dev-libs/boost-1.37.0
-	>=media-libs/plib-1.8.5
 	media-libs/openal
 	media-libs/freealut"
 
