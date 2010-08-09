@@ -12,7 +12,7 @@ SRC_URI="http://binaries.openttd.org/extra/grfcodec/${MY_PV}/${PN}-${MY_PV}-sour
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="amd64 ppc ppc64 x86"
+KEYWORDS="~amd64 ~ppc ~ppc64 ~x86"
 IUSE=""
 
 S=${WORKDIR}/${PN}-${MY_PV}-source
