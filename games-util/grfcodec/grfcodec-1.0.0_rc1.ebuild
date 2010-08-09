@@ -3,7 +3,7 @@
 # $Header: /var/cvsroot/gentoo-x86/games-util/grfcodec/grfcodec-0_pre2306.ebuild,v 1.6 2010/05/28 18:14:22 josejx Exp $
 
 EAPI=2
-inherit eutils toolchain-funcs flag-o-matic
+inherit toolchain-funcs flag-o-matic
 
 MY_PV=${PV/_rc/-RC}
 DESCRIPTION="A suite of programs to modify openttd/Transport Tycoon Deluxe's GRF files"
@@ -24,7 +24,6 @@ RDEPEND=""
 src_prepare() {
 # workaround upstream workflow by setting CC to the C++ compiler and CFLAGS to ${CXXFLAGS}
 # This is actually what they do in Makefile now, we set CC = $(tc-getCC) previously.
-
 cat > Makefile.local <<-__EOF__
 		CC = $(tc-getCXX)
 		CXX = $(tc-getCXX)
