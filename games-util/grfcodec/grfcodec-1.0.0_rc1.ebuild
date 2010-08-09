@@ -5,44 +5,40 @@
 EAPI=2
 inherit eutils toolchain-funcs flag-o-matic
 
-MY_PV=${PV/0_pre/r}
+MY_PV=${PV/_rc/-RC}
 DESCRIPTION="A suite of programs to modify openttd/Transport Tycoon Deluxe's GRF files"
 HOMEPAGE="http://binaries.openttd.org/extra/grfcodec/"
-SRC_URI="http://binaries.openttd.org/extra/grfcodec/${MY_PV}/${PN}-${MY_PV}-source.tar.bz2"
+SRC_URI="http://binaries.openttd.org/extra/grfcodec/${MY_PV}/${PN}-${MY_PV}-source.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="amd64 ppc ppc64 x86"
 IUSE=""
 
-S=${WORKDIR}/${PN}-${MY_PV}
+S=${WORKDIR}/${PN}-${MY_PV}-source
 
 DEPEND="dev-lang/perl
 	dev-libs/boost"
 RDEPEND=""
 
 src_prepare() {
-	# Optimization in >=gcc-4.5.0 breaks grfcodec, causes bug #320797
-	if  [ $(gcc-fullversion) == 4.5.0 ] ; then
-		ewarn "gcc-4.5.0 found, filtering optimizations and using -O0."
-		filter-flags "-O?"
-		append-flags -O0
-	fi
+# workaround upstream workflow by setting CC to the C++ compiler and CFLAGS to ${CXXFLAGS}
+# This is actually what they do in Makefile now, we set CC = $(tc-getCC) previously.
 
-	cat > Makefile.local <<-__EOF__
-		CC = $(tc-getCC)
+cat > Makefile.local <<-__EOF__
+		CC = $(tc-getCXX)
 		CXX = $(tc-getCXX)
-		CFLAGS = ${CFLAGS}
+		CFLAGS = ${CXXFLAGS}
 		CXXFLAGS = ${CXXFLAGS}
 		LDOPT = ${LDFLAGS}
 		STRIP = :
+		UPX =
 		V = 1
 	__EOF__
-
-	epatch "${FILESDIR}"/${P}-build.patch
 }
 
 src_install() {
-	dobin ${PN} grf{diff,merge} || die
-	dodoc *.txt Changelog || die
+	dobin ${PN} grf{diff,id,merge} || die
+	doman docs/grf{codec,diff,id,merge}.1 || die
+	dodoc changelog.txt docs/*.txt || die
 }
