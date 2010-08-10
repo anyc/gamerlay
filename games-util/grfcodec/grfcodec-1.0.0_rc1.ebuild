@@ -7,7 +7,7 @@ inherit toolchain-funcs flag-o-matic
 
 MY_PV=${PV/_rc/-RC}
 DESCRIPTION="A suite of programs to modify openttd/Transport Tycoon Deluxe's GRF files"
-HOMEPAGE="http://binaries.openttd.org/extra/grfcodec/"
+HOMEPAGE="http://dev.openttdcoop.org/projects/grfcodec"
 SRC_URI="http://binaries.openttd.org/extra/${PN}/${MY_PV}/${PN}-${MY_PV}-source.tar.gz"
 
 LICENSE="GPL-2"
