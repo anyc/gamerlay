@@ -3,14 +3,13 @@
 # $Header: $
 EAPI=2
 
-EGIT_HAS_SUBMODULES=true
+EGIT_BRANCH="next"
+
 inherit git autotools
 
 DESCRIPTION="Development library for simulation games"
 HOMEPAGE="http://www.simgear.org/"
 EGIT_REPO_URI="git://gitorious.org/fg/simgear.git"
-EGIT_BRANCH="next"
-EGIT_MASTER="${EGIT_BRANCH}"
 
 LICENSE="GPL-2"
 SLOT="0"

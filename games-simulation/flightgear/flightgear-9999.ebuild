@@ -4,14 +4,13 @@
 
 EAPI=2
 
+EGIT_BRANCH="next"
+
 inherit games git autotools
 
 DESCRIPTION="Open Source Flight Simulator"
 HOMEPAGE="http://www.flightgear.org/"
 EGIT_REPO_URI="git://gitorious.org/fg/flightgear.git"
-EGIT_HAS_SUBMODULES=true
-EGIT_BRANCH="next"
-EGIT_MASTER="${EGIT_BRANCH}"
 
 LICENSE="GPL-2"
 SLOT="0"
