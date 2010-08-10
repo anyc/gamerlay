@@ -7,7 +7,7 @@ inherit toolchain-funcs
 
 MY_PV=${PV/_rc/-RC}
 DESCRIPTION="A tool checking NFO code for errors"
-HOMEPAGE="http://binaries.openttd.org/extra/nforenum/"
+HOMEPAGE="http://dev.openttdcoop.org/projects/nforenum"
 SRC_URI="http://binaries.openttd.org/extra/${PN}/${MY_PV}/${PN}-${MY_PV}-source.tar.gz"
 
 LICENSE="GPL-2"
