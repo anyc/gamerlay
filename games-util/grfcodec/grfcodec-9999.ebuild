@@ -26,6 +26,7 @@ LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS=""
 IUSE=""
+
 if [ "${PV%9999}" != "${PV}" ] ; then
 	S=${WORKDIR}/${PN}
 else
