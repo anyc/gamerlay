@@ -3,7 +3,7 @@
 # $Header: $
 
 EAPI=2
-inherit toolchain-funcs flag-o-matic
+inherit toolchain-funcs
 
 MY_PV=${PV/_rc/-RC}
 DESCRIPTION="A suite of programs to modify openttd/Transport Tycoon Deluxe's GRF files"

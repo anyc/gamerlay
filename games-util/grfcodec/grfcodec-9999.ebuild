@@ -10,7 +10,7 @@ if [ "${PV%9999}" != "${PV}" ] ; then
 	EHG_REPO_URI="http://hg.openttdcoop.org/${PN}"
 fi
 
-inherit toolchain-funcs flag-o-matic ${SCM}
+inherit toolchain-funcs ${SCM}
 
 MY_PV=${PV/_rc/-RC}
 DESCRIPTION="A suite of programs to modify openttd/Transport Tycoon Deluxe's GRF files"
