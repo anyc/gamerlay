@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/games-util/nforenum/nforenum-0_pre2309.ebuild,v 1.6 2010/06/08 20:25:36 mr_bones_ Exp $
+# $Header: $
 
 EAPI=2
 inherit toolchain-funcs
