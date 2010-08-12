@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/games-util/grfcodec/grfcodec-0_pre2306.ebuild,v 1.6 2010/05/28 18:14:22 josejx Exp $
+# $Header: $
 
 EAPI=2
 inherit toolchain-funcs flag-o-matic
