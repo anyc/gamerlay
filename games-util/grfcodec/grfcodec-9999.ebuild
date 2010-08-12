@@ -7,7 +7,7 @@ EAPI=3
 SCM=""
 if [ "${PV%9999}" != "${PV}" ] ; then
 	SCM=mercurial
-	EHG_REPO_URI="http://hg.openttdcoop.org/grfcodec"
+	EHG_REPO_URI="http://hg.openttdcoop.org/${PN}"
 fi
 
 inherit toolchain-funcs flag-o-matic ${SCM}
