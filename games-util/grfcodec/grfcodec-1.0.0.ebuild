@@ -2,35 +2,47 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=2
-inherit toolchain-funcs
+EAPI=3
+
+SCM=""
+if [ "${PV%9999}" != "${PV}" ] ; then
+	SCM=mercurial
+	EHG_REPO_URI="http://hg.openttdcoop.org/${PN}"
+fi
+
+inherit toolchain-funcs ${SCM}
 
 MY_PV=${PV/_rc/-RC}
 DESCRIPTION="A suite of programs to modify openttd/Transport Tycoon Deluxe's GRF files"
 HOMEPAGE="http://dev.openttdcoop.org/projects/grfcodec"
-SRC_URI="http://binaries.openttd.org/extra/${PN}/${MY_PV}/${PN}-${MY_PV}-source.tar.gz"
+
+if [ "${PV%9999}" != "${PV}" ] ; then
+	SRC_URI=""
+else
+	SRC_URI="http://binaries.openttd.org/extra/${PN}/${MY_PV}/${PN}-${MY_PV}-source.tar.gz"
+fi
 
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~ppc ~ppc64 ~x86"
 IUSE=""
 
-S=${WORKDIR}/${PN}-${MY_PV}-source
+if [ "${PV%9999}" != "${PV}" ] ; then
+	S=${WORKDIR}/${PN}
+else
+	S=${WORKDIR}/${PN}-${MY_PV}-source
+fi
 
 DEPEND="dev-lang/perl
 	dev-libs/boost"
 RDEPEND=""
 
 src_prepare() {
-# workaround upstream workflow by setting CC to the C++ compiler and CFLAGS to ${CXXFLAGS}
-# This is actually what they do in Makefile now, we set CC = $(tc-getCC) previously.
+# Set up Makefile.local so that we respect CXXFLAGS/LDFLAGS
 cat > Makefile.local <<-__EOF__
-		CC = $(tc-getCXX)
 		CXX = $(tc-getCXX)
-		CFLAGS = ${CXXFLAGS}
 		CXXFLAGS = ${CXXFLAGS}
 		LDOPT = ${LDFLAGS}
-		STRIP = :
 		UPX =
 		V = 1
 	__EOF__
