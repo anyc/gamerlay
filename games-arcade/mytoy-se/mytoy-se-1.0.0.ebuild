@@ -6,7 +6,7 @@ inherit eutils games
 
 DESCRIPTION="Goldberg's EyeToy clone with several sub-games"
 HOMEPAGE="http://www.happypenguin.org/show?MyToy"
-SRC_URI="http://hlukotvor.no-ip.org/${P}.tar.bz2"
+SRC_URI="http://frostworx.de/files/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
