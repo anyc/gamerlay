@@ -30,6 +30,7 @@ DEPEND="dev-util/scons
 	sys-libs/zlib
 	x11-libs/libXcursor
 	x11-libs/libXext
+	dev-games/guichan
 	opengl? ( virtual/opengl virtual/glu )"
 RDEPEND="${DEPEND}"
 
