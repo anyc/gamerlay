@@ -42,12 +42,11 @@ src_prepare() {
 
 src_configure() {
 	mycmakeargs=(
-		-DCMAKE_INSTALL_PREFIX="${GAMES_PREFIX}"
+		-DCMAKE_INSTALL_PREFIX="${GAMES_PREFIX}/${PN}"
 		-DCMAKE_DOC_DIR=/usr/share/doc/${PF}
 		-DCMAKE_MAN_DIR=/usr/share/man
 		-DCMAKE_DATA_DIR="${GAMES_DATADIR}"
 		$(cmake-utils_use_build debug)
-		-DBUILD_RELEASE=ON
 	)
 
 	cmake-utils_src_configure
