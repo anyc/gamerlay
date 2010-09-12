@@ -1,7 +1,7 @@
 Index: cmake/FindGraphviz.cmake
 ===================================================================
---- cmake/FindGraphviz.cmake	(revision 3608)
-+++ cmake/FindGraphviz.cmake	(working copy)
+--- FreeOrion/cmake/FindGraphviz.cmake	(revision 3608)
++++ FreeOrion/cmake/FindGraphviz.cmake	(working copy)
 @@ -10,7 +10,7 @@
  
  find_package(PkgConfig)
