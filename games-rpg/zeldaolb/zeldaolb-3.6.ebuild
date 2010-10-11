@@ -12,7 +12,7 @@ DESCRIPTION="The Legend of Zelda - Onilink Begins"
 HOMEPAGE="http://www.zeldaroth.fr/us/zolb.php"
 SRC_URI="http://www.zeldaroth.fr/us/files/OLB/Linux/${MY_PN}.zip"
 
-LICENSE=""
+LICENSE="public-domain"
 SLOT="0"
 KEYWORDS="~x86"
 IUSE=""

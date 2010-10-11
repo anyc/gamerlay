@@ -12,7 +12,7 @@ DESCRIPTION="The Legend of Zelda - Return of the Hylian"
 HOMEPAGE="http://www.zeldaroth.fr/us/zroth.php"
 SRC_URI="http://www.zeldaroth.fr/us/files/ROTH/Linux/${MY_PN}.zip"
 
-LICENSE=""
+LICENSE="public-domain"
 SLOT="0"
 KEYWORDS="~x86"
 IUSE=""
