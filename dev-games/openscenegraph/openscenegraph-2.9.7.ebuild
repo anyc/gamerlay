@@ -35,7 +35,7 @@ RDEPEND="
 	examples? (
 		fltk? ( x11-libs/fltk:1.1[opengl] )
 		fox? ( x11-libs/fox:1.6[opengl] )
-		glut? ( virtual/glut )
+		glut? ( media-libs/freeglut )
 		gtk? ( x11-libs/gtkglext )
 		qt4? (
 			x11-libs/qt-core:4
