@@ -18,7 +18,7 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="curl debug doc examples ffmpeg fltk fox gdal gif glut gtk jpeg jpeg2k
 openexr openinventor osgapps pdf png qt4 sdl static-libs svg tiff truetype vnc
-wxwidgets xine xrandr zlib video_cards_radeon"
+wxwidgets xine xrandr zlib"
 
 # NOTE: OpenAL (support missing)
 # TODO: COLLADA, FBX, OpenVRML, Performer, ITK, DCMTK
@@ -87,9 +87,6 @@ DOCS=(AUTHORS.txt ChangeLog NEWS.txt)
 
 src_prepare() {
 	epatch "${FILESDIR}"/${PN}-cmake.patch
-	if use video_cards_radeon; then
-	( epatch "${FILESDIR}"/${PN}-mipmapping.patch )
-	fi
 }
 
 src_configure() {

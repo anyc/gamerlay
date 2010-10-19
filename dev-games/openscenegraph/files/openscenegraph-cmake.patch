@@ -1,7 +1,6 @@
-diff -ruN ../OpenSceneGraph-2.9.7.old/CMakeLists.txt ./CMakeLists.txt
---- ../OpenSceneGraph-2.9.7.old/CMakeLists.txt	2010-02-12 12:45:00.000000000 +0100
-+++ ./CMakeLists.txt	2010-07-26 21:00:27.000000000 +0200
-@@ -322,6 +322,7 @@
+--- CMakeLists.txt.orig	2010-09-15 14:00:12.000000000 +0200
++++ CMakeLists.txt	2010-10-19 19:13:40.000000000 +0200
+@@ -340,6 +340,7 @@
  
  # INSTALL_FILES(/include/osg/ FILES "${OPENSCENEGRAPH_CONFIG_HEADER}")
  
@@ -9,7 +8,7 @@ diff -ruN ../OpenSceneGraph-2.9.7.old/CMakeLists.txt ./CMakeLists.txt
  
  ################################################################################
  # Set Version Info resource file
-@@ -348,26 +349,26 @@
+@@ -366,43 +367,43 @@
  ENDIF()
  
  # Common to all platforms:
@@ -53,9 +52,30 @@ diff -ruN ../OpenSceneGraph-2.9.7.old/CMakeLists.txt ./CMakeLists.txt
  FIND_PACKAGE(DirectShow)
 -FIND_PACKAGE(SDL)
  
- #use pkg-config to find various modues
- INCLUDE(FindPkgConfig OPTIONAL)
-@@ -376,6 +377,7 @@
+ # To select a specific version of QT define DESIRED_QT_VERSION
+ # via cmake -DDESIRED_QT_VERSION=4
+ IF  (DESIRED_QT_VERSION)
+ 
+     IF  (DESIRED_QT_VERSION MATCHES 4)
+-      FIND_PACKAGE(Qt4)
++      MACRO_OPTIONAL_FIND_PACKAGE(Qt4)
+     ELSE()
+-      FIND_PACKAGE(Qt3)
++      MACRO_OPTIONAL_FIND_PACKAGE(Qt3)
+     ENDIF()
+ 
+ ELSE()
+ 
+-    FIND_PACKAGE(Qt4)
++    MACRO_OPTIONAL_FIND_PACKAGE(Qt4)
+ 
+     IF  (NOT QT4_FOUND)
+-        FIND_PACKAGE(Qt3)
++         MACRO_OPTIONAL_FIND_PACKAGE(Qt3)
+     ENDIF()
+ 
+ ENDIF()
+@@ -414,6 +415,7 @@
  
      INCLUDE(FindPkgConfig)
  
@@ -63,7 +83,7 @@ diff -ruN ../OpenSceneGraph-2.9.7.old/CMakeLists.txt ./CMakeLists.txt
      PKG_CHECK_MODULES(GTK gtk+-2.0)
  
      IF(WIN32)
-@@ -383,10 +385,15 @@
+@@ -421,10 +423,15 @@
      ELSE()
          PKG_CHECK_MODULES(GTKGL gtkglext-x11-1.0)
      ENDIF()
@@ -81,7 +101,7 @@ diff -ruN ../OpenSceneGraph-2.9.7.old/CMakeLists.txt ./CMakeLists.txt
  
  ENDIF()
  
-@@ -395,29 +402,29 @@
+@@ -433,12 +440,13 @@
  IF   (BUILD_OSG_EXAMPLES)
  
  
@@ -91,35 +111,15 @@ diff -ruN ../OpenSceneGraph-2.9.7.old/CMakeLists.txt ./CMakeLists.txt
 +    MACRO_OPTIONAL_FIND_PACKAGE(FLTK)
 +    MACRO_OPTIONAL_FIND_PACKAGE(GLUT)
 +    MACRO_OPTIONAL_FIND_PACKAGE(FOX)
++
  
      SET(wxWidgets_USE_LIBS base core gl net)
 -    FIND_PACKAGE(wxWidgets)
 +    MACRO_OPTIONAL_FIND_PACKAGE(wxWidgets)
  
-     # To select a specific version of QT define DESIRED_QT_VERSION
-     # via cmake -DDESIRED_QT_VERSION=4
-     IF  (DESIRED_QT_VERSION)
+ ENDIF(BUILD_OSG_EXAMPLES)
  
-         IF  (DESIRED_QT_VERSION MATCHES 4)
--          FIND_PACKAGE(Qt4)
-+          MACRO_OPTIONAL_FIND_PACKAGE(Qt4)
-         ELSE()
--          FIND_PACKAGE(Qt3)
-+          MACRO_OPTIONAL_FIND_PACKAGE(Qt3)
-         ENDIF()
- 
-     ELSE()
- 
--        FIND_PACKAGE(Qt4)
-+        MACRO_OPTIONAL_FIND_PACKAGE(Qt4)
- 
-         IF  (NOT QT4_FOUND)
--            FIND_PACKAGE(Qt3)
-+            MACRO_OPTIONAL_FIND_PACKAGE(Qt3)
-         ENDIF()
- 
-     ENDIF()
-@@ -482,10 +489,10 @@
+@@ -500,10 +508,10 @@
  # Image readers/writers depend on 3rd party libraries except for OS X which
  # can use Quicktime.
  IF(NOT APPLE)
@@ -134,7 +134,7 @@ diff -ruN ../OpenSceneGraph-2.9.7.old/CMakeLists.txt ./CMakeLists.txt
  
      # QuickTime is required for OS X, but optional for Windows.
      IF(WIN32)
-@@ -776,7 +783,7 @@
+@@ -791,7 +799,7 @@
          ${PROJECT_BINARY_DIR}/doc/OpenSceneGraphReferenceDocs/osg32-32.png COPYONLY
      )
      #INSTALL(FILES ${PROJECT_BINARY_DIR}/doc/${PROJECT_NAME}ReferenceDocs-${OPENSCENEGRAPH_VERSION}.chm DESTINATION doc OPTIONAL COMPONENT openscenegraph-doc)
@@ -143,7 +143,7 @@ diff -ruN ../OpenSceneGraph-2.9.7.old/CMakeLists.txt ./CMakeLists.txt
  
      # now set up openthreads documentation generation
      IF(BUILD_REF_DOCS_TAGFILE)
-@@ -792,7 +799,7 @@
+@@ -807,7 +815,7 @@
          ${PROJECT_BINARY_DIR}/doc/OpenThreadsReferenceDocs/osg32-32.png COPYONLY
      )
      #INSTALL(FILES ${PROJECT_BINARY_DIR}/doc/${PROJECT_NAME}ReferenceDocs-${OPENSCENEGRAPH_VERSION}.chm DESTINATION doc OPTIONAL COMPONENT openscenegraph-doc)

@@ -12,7 +12,7 @@ ESVN_REPO_URI="http://www.openscenegraph.org/svn/osg/OpenSceneGraph/trunk"
 LICENSE="wxWinLL-3 LGPL-2.1"
 SLOT="0"
 KEYWORDS=""
-IUSE="curl gif jpeg jpeg2k osgapps pdf png svg tiff truetype video_cards_radeon xine xrandr"
+IUSE="curl gif jpeg jpeg2k osgapps pdf png svg tiff truetype xine xrandr"
 
 RDEPEND="virtual/opengl
 	virtual/glu
@@ -37,9 +37,6 @@ DOCS="AUTHORS.txt ChangeLog NEWS.txt"
 
 src_prepare() {
 	epatch "${FILESDIR}"/${PN}-magicoff.patch
-	if use video_cards_radeon; then
-	( epatch "${FILESDIR}"/${PN}-mipmapping.patch )
-	fi
 }
 
 src_configure() {
