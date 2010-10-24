@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=3
+EAPI="3"
 
 inherit games subversion
 
@@ -21,7 +21,7 @@ RDEPEND="media-libs/libsdl
 	media-libs/sdl-mixer"
 DEPEND="${RDEPEND}"
 
-S="${WORKDIR}/trunk"
+S=${WORKDIR}/trunk
 
 src_prepare() {
 	sed -i \
@@ -39,9 +39,14 @@ src_compile() {
 
 src_install() {
 	dogamesbin bin/openxcom
+
 	dodir "${GAMES_DATADIR}"/${PN}/DATA
 	dodoc README.txt
+
+	prepgamesdirs
+}
+
+pkg_postinst() {
 	elog "Copy the data files from X-COM: Enemy Unknown to"
 	elog "${GAMES_DATADIR}/${PN}/DATA/"
-	prepgamesdirs
 }
