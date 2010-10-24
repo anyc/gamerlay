@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+<herd>playboys</herd>
+<maintainer>
+<email>azamat.hackimov@gmail.com</email>
+<name>Azamat H. Hackimov</name>
+</maintainer>
+<longdescription lang="en">
+Open-source reimplementation of the original X-Com
+</longdescription>
+<longdescription lang="ru">
+Открытая реализация игры X-COM: Enemy Unknown
+</longdescription>
+</pkgmetadata>
