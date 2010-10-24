@@ -17,7 +17,7 @@ KEYWORDS=""
 IUSE=""
 
 RDEPEND="media-libs/libsdl
-	media-libs/sdl-gfx
+	>=media-libs/sdl-gfx-2.0.22
 	media-libs/sdl-mixer"
 DEPEND="${RDEPEND}"
 
