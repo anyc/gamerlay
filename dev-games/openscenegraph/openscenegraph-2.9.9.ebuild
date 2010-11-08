@@ -48,7 +48,7 @@ RDEPEND="
 	ffmpeg? ( media-video/ffmpeg )
 	gdal? ( sci-libs/gdal )
 	gif? ( media-libs/giflib )
-	jpeg? ( media-libs/jpeg:0 )
+	jpeg? ( virtual/jpeg )
 	jpeg2k? ( media-libs/jasper )
 	openexr? (
 		media-libs/ilmbase

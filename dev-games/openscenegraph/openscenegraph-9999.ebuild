@@ -17,7 +17,7 @@ IUSE="curl gif jpeg jpeg2k osgapps pdf png svg tiff truetype xine xrandr"
 RDEPEND="virtual/opengl
 	virtual/glu
 	png? ( media-libs/libpng )
-	jpeg? ( media-libs/jpeg )
+	jpeg? ( virtual/jpeg )
 	gif? ( media-libs/giflib )
 	tiff? ( media-libs/tiff )
 	truetype? ( media-libs/freetype:2 )
