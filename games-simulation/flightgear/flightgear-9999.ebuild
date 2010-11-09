@@ -20,7 +20,6 @@ IUSE=""
 RDEPEND=">=dev-games/openscenegraph-2.9[png]
 	=dev-games/simgear-9999
 	dev-vcs/subversion
-	media-libs/freeglut
 	media-libs/plib
 	x11-libs/libXmu
 	x11-libs/libXi"
