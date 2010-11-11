@@ -34,7 +34,7 @@ src_configure() {
 	egamesconf \
 		--disable-dependency-tracking \
 		--enable-osgviewer \
-		$(use_with subversion) \
+		$(use_with subversion libsvn) \
 		|| die "configure failed"
 }
 
