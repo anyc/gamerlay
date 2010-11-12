@@ -15,18 +15,18 @@ EGIT_REPO_URI="git://gitorious.org/fg/flightgear.git"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS=""
-IUSE=""
+IUSE="subversion"
 
 RDEPEND=">=dev-games/openscenegraph-2.9[png]
 	=dev-games/simgear-9999
-	dev-vcs/subversion
-	media-libs/freeglut
 	media-libs/plib
 	x11-libs/libXmu
-	x11-libs/libXi"
+	x11-libs/libXi
+	subversion? ( dev-vcs/subversion )"
 DEPEND="${RDEPEND}"
 
 src_prepare() {
+	epatch ${FILESDIR}/"${PN}"-configure-svn.patch
 	eautoreconf
 }
 
@@ -34,6 +34,7 @@ src_configure() {
 	egamesconf \
 		--disable-dependency-tracking \
 		--enable-osgviewer \
+		$(use_with subversion libsvn) \
 		|| die "configure failed"
 }
 
@@ -51,4 +52,7 @@ pkg_postinst() {
 	elog "To do this use \"git clone git://mapserver.flightgear.org/fgdata\"."
 	elog "You can save fgdata anywhere, but need to set FG_ROOT to that directory or"
 	elog "create an --fg-root= entry in ~/.fgfsrc"
+	elog
+	elog "Don't forget that before updating FlightGear you will most likely"
+	elog "have to update Simgear, too"
 }
