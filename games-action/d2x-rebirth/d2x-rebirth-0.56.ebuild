@@ -44,6 +44,7 @@ src_compile() {
 }
 
 src_install() {
+	edos2unix INSTALL.txt README.txt
 	dodoc INSTALL.txt README.txt
 	insinto "${GAMES_DATADIR}/d2x"
 	use linguas_de && doins "${DISTDIR}"/d2xr-briefings-ger.zip
