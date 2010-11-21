@@ -26,7 +26,6 @@ RDEPEND=">=dev-games/openscenegraph-2.9[png]
 DEPEND="${RDEPEND}"
 
 src_prepare() {
-	epatch ${FILESDIR}/"${PN}"-configure-svn.patch
 	eautoreconf
 }
 
