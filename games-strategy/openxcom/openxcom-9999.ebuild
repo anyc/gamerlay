@@ -40,7 +40,9 @@ src_compile() {
 src_install() {
 	dogamesbin bin/openxcom
 
-	dodir "${GAMES_DATADIR}"/${PN}/DATA
+	insinto "${GAMES_DATADIR}"/${PN}/DATA
+	doins bin/DATA/*.LNG
+
 	dodoc README.txt
 
 	prepgamesdirs
