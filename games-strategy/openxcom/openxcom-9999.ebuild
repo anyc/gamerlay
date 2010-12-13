@@ -16,7 +16,8 @@ SLOT="0"
 KEYWORDS=""
 IUSE=""
 
-RDEPEND="media-libs/libsdl
+RDEPEND="dev-cpp/yaml-cpp
+	media-libs/libsdl
 	>=media-libs/sdl-gfx-2.0.22
 	media-libs/sdl-mixer"
 DEPEND="${RDEPEND}"
@@ -41,7 +42,7 @@ src_install() {
 	dogamesbin bin/openxcom
 
 	insinto "${GAMES_DATADIR}"/${PN}/DATA
-	doins bin/DATA/*.LNG
+	doins -r bin/DATA/*
 
 	dodoc README.txt
 
