@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=2
+EAPI=3
 
 inherit eutils games
 
@@ -21,12 +21,12 @@ RESTRICT="mirror strip"
 PROPERTIES="interactive"
 
 RDEPEND="virtual/opengl
-    virtual/glu
-    x11-libs/libX11
-    media-libs/freetype:2
-    sys-libs/glibc
-    media-libs/openal
-    media-libs/libvorbis"
+	virtual/glu
+	x11-libs/libX11
+	media-libs/freetype:2
+	sys-libs/glibc
+	media-libs/openal
+	media-libs/libvorbis"
 DEPEND="${RDEPEND}"
 
 S=${WORKDIR}/${MY_PN}
@@ -40,7 +40,13 @@ src_install() {
 	exeinto "${dir}"
 	doexe ${MY_PN} ${MY_PN}.bin{32,64} || die "doexe"
 	dohtml readme.html
-	doins -r Fonts/ Sounds/ Textures/ Osmos-* *.cfg || die "doins failed"
+	doins -r Sounds/ Textures/ Osmos-* *.cfg || die "doins failed"
+
+	# Fix for font error
+	# See http://www.hemispheregames.com/forum/viewtopic.php?f=8&t=498&start=0
+	insinto "${dir}"/Fonts
+	doins "${FILESDIR}"/FortuneCity.ttf
+
 	newicon Icons/256x256.png ${PN}.png
 
 	games_make_wrapper ${PN} ./${MY_PN} "${dir}"
