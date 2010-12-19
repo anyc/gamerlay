@@ -33,19 +33,32 @@ S=${WORKDIR}/${MY_PN}
 
 GAMES_CHECK_LICENSE="yes"
 
+src_prepare() {
+	# Fix for font error
+	# See http://www.hemispheregames.com/forum/viewtopic.php?f=8&t=498&start=0
+	# Thanks to Martin von Gagern for proposed way and research!
+	echo -n $'\x5d\x19\xc3\x5c' | \
+		dd of=Fonts/FortuneCity.ttf bs=1 conv=notrunc seek=128 \
+		|| die "Binary patching failed"
+	echo -n $'\x80\x77' | \
+		dd of=Fonts/FortuneCity.ttf bs=1 conv=notrunc seek=138 \
+		|| die "Binary patching failed"
+}
+
 src_install() {
 	local dir="${GAMES_PREFIX_OPT}/${PN}"
 
-	insinto "${dir}"
 	exeinto "${dir}"
-	doexe ${MY_PN} ${MY_PN}.bin{32,64} || die "doexe"
+	doexe ${MY_PN}
+	if use amd64 ; then
+		doexe ${MY_PN}.bin64 || die "doexe"
+	fi
+	if use x86 ; then
+		doexe ${MY_PN}.bin32 || die "doexe"
+	fi
 	dohtml readme.html
-	doins -r Sounds/ Textures/ Osmos-* *.cfg || die "doins failed"
-
-	# Fix for font error
-	# See http://www.hemispheregames.com/forum/viewtopic.php?f=8&t=498&start=0
-	insinto "${dir}"/Fonts
-	doins "${FILESDIR}"/FortuneCity.ttf
+	insinto "${dir}"
+	doins -r Fonts/ Sounds/ Textures/ Osmos-* *.cfg || die "doins failed"
 
 	newicon Icons/256x256.png ${PN}.png
 
