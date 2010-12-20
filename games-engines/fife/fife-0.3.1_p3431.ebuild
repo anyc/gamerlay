@@ -12,12 +12,11 @@ DESCRIPTION="Flexible Isometric Free Engine"
 HOMEPAGE="http://fifengine.de/"
 
 ESVN_REPO_URI="http://fife.svn.cvsdude.com/engine/trunk"
-ESVN_PROJECT="FIFE"
 ESVN_REVISION="3431"
 
 LICENSE="LGPL-2"
 
-KEYWORDS="~x86 ~amd64"
+KEYWORDS="~amd64 ~x86"
 SLOT="0"
 IUSE="debug opengl profile"
 
@@ -62,11 +61,9 @@ src_compile() {
 		SCONS_ARGS="$SCONS_ARGS --enable-profile"
 	fi
 
-	scons --python-prefix="${D}"/$(python_get_sitedir) --prefix="${D}/usr" $SCONS_ARGS
+	scons --python-prefix="${D}/$(python_get_sitedir)" --prefix="${D}"/usr $SCONS_ARGS
 }
 
 src_install() {
-	scons install-python --python-prefix="${D}/$(python_get_sitedir)" --prefix="${D}/usr" || die 'install failed'
-	scons install-python --python-prefix="${D}"/$(python_get_sitedir) --prefix="${D}/usr"
-
+	scons install-python --python-prefix="${D}/$(python_get_sitedir)" --prefix="${D}"/usr || die "Install failed"
 }
