@@ -4,17 +4,17 @@
 
 EAPI="2"
 
+PYTHON_DEPEND="2"
+
 inherit subversion python
 
 DESCRIPTION="Flexible Isometric Free Engine"
 HOMEPAGE="http://fifengine.de/"
 
 ESVN_REPO_URI="http://fife.svn.cvsdude.com/engine/trunk"
-ESVN_PROJECT="FIFE"
 
 LICENSE="LGPL-2"
 
-KEYWORDS=""
 SLOT="0"
 IUSE="opengl debug profile"
 
@@ -59,10 +59,7 @@ src_compile() {
 		SCONS_ARGS="$SCONS_ARGS --enable-profile"
 	fi
 
-	#scons prefix="${D}/usr" ext || die 'scons ext failed'
-	#scons prefix="${D}/usr" "$SCONS_ARGS" || die 'scons failed'
-	scons --python-prefix="${D}"/$(python_get_sitedir) --prefix="${D}/usr" $SCONS_ARGS
-
+	scons --python-prefix="${D}"/$(python_get_sitedir) --prefix="${D}"/usr "$SCONS_ARGS"
 }
 
 src_install() {

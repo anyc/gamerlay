@@ -2,6 +2,8 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
+EAPI="2"
+
 PYTHON_DEPEND="2"
 
 inherit eutils python
@@ -9,13 +11,12 @@ inherit eutils python
 DESCRIPTION="Flexible Isometric Free Engine, 2D"
 HOMEPAGE="http://fifengine.de"
 SRC_URI="http://downloads.sourceforge.net/project/${PN}/active/src/${P}.tar.gz"
+
 LICENSE="GPL-2"
 
 KEYWORDS="~amd64 ~x86"
 SLOT="0"
 IUSE="opengl debug profile"
-
-EAPI="2"
 
 DEPEND="dev-util/scons
 	dev-lang/swig
@@ -58,11 +59,10 @@ src_compile() {
 	else
 		SCONS_ARGS="$SCONS_ARGS profile=0"
 	fi
-#	python_version
-	scons --python-prefix=${D}/$(python_get_sitedir) --prefix="${D}/usr" $SCONS_ARGS || die 'scons failed'
+	scons --python-prefix="${D}/$(python_get_sitedir)" --prefix="${D}/usr" "$SCONS_ARGS" || die 'scons failed'
 }
 
 src_install() {
-	scons install-python --python-prefix=${D}/$(python_get_sitedir) --prefix="${D}/usr" || die 'install failed'
+	scons install-python --python-prefix="${D}/$(python_get_sitedir)" --prefix="${D}/usr" || die 'install failed'
 }
 

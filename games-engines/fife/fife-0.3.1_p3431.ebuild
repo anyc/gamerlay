@@ -16,7 +16,6 @@ ESVN_REVISION="3431"
 
 LICENSE="LGPL-2"
 
-KEYWORDS="~amd64 ~x86"
 SLOT="0"
 IUSE="debug opengl profile"
 
@@ -61,7 +60,7 @@ src_compile() {
 		SCONS_ARGS="$SCONS_ARGS --enable-profile"
 	fi
 
-	scons --python-prefix="${D}/$(python_get_sitedir)" --prefix="${D}"/usr $SCONS_ARGS
+	scons --python-prefix="${D}/$(python_get_sitedir)" --prefix="${D}"/usr "$SCONS_ARGS"
 }
 
 src_install() {
