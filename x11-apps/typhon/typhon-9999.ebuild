@@ -15,7 +15,7 @@ HOMEPAGE="http://www.frostworx.de/?p=1"
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS=""
-IUSE="debug ffmpeg glut +sound +sysinfo +themes"
+IUSE="debug ffmpeg glut +sound +xml"
 
 S="${WORKDIR}/${P/_/-}"
 
@@ -24,6 +24,7 @@ RDEPEND="media-libs/ftgl
 	media-libs/devil
 	x11-libs/libXrender
 	x11-libs/libXrandr
+	xml? ( dev-libs/tinyxml )
 	glut? ( media-libs/freeglut )
 	ffmpeg? ( media-libs/freealut media-video/ffmpeg )
 	sound? ( media-libs/sdl-mixer )"
@@ -34,8 +35,7 @@ src_configure() {
 	local mycmakeargs+=(
 		$(cmake-utils_use !sound NOSOUND)
 		$(cmake-utils_use !glut NOGLUT)
-		$(cmake-utils_use !themes NOP3T)
-		$(cmake-utils_use !sysinfo NOSYSINFO)
+		$(cmake-utils_use xml WITHUX)
 		$(cmake-utils_use !ffmpeg NOVIDEOPLAYER)
 		$(cmake-utils_use debug DEBUG)
 	)
