@@ -13,11 +13,11 @@ ESVN_PROJECT="${PN}"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS=""
 IUSE="debug devil doc ogre ois +sdl static-libs +threads"
 
 RDEPEND="
-	dev-libs/boost:1.42
+	>=dev-libs/boost:1.44
 	media-libs/freetype
 	x11-libs/libX11
 	virtual/opengl
@@ -28,10 +28,13 @@ RDEPEND="
 		media-libs/libpng
 	)
 	ogre? (
-		|| ( >=dev-games/ogre-1.4.7[threads=]
-			>=dev-games/ogre-1.7.1[boost-threads?,poco-threads?,tbb-threads?] )
-		ois? ( dev-games/ois )
+		threads? ( ||
+			( >=dev-games/ogre-1.7.1[boost-threads]
+			>=dev-games/ogre-1.7.1[poco-threads]
+			>=dev-games/ogre-1.7.1[tbb-threads] )
 		)
+		ois? ( dev-games/ois )
+	)
 	sdl? ( >=media-libs/libsdl-1.2 )
 "
 DEPEND="${RDEPEND}
@@ -41,24 +44,19 @@ DEPEND="${RDEPEND}
 
 CMAKE_USE_DIR="${S}/GG"
 
-src_unpack() {
-	subversion_src_unpack
-}
-
-src_prepare() {
-	# remove libtool
-	cd "${CMAKE_USE_DIR}"
-	rm -rf libltdl/ || die
-	# remove cmake calls to libtool
-	epatch "${FILESDIR}/unbundle-ltdl.patch"
-	# use system headers
-	sed -i \
-		-e "s:GG/ltdl.h:ltdl.h:" \
-		GG/PluginInterface.h || die
-
-	# fix working with libpng1.4
-	epatch "${FILESDIR}/libpng-14.patch"
-}
+#src_prepare() {
+#	# remove libtool
+#	cd "${CMAKE_USE_DIR}"
+#	rm -rf libltdl/ || die
+#	# remove cmake calls to libtool
+#	epatch "${FILESDIR}/unbundle-ltdl.patch"
+#	# use system headers
+#	sed -i \
+#		-e "s:GG/ltdl.h:ltdl.h:" \
+#		GG/PluginInterface.h || die
+#	# fix working with libpng1.4
+#	epatch "${FILESDIR}/libpng-14.patch"
+#}
 
 src_configure() {
 	use ogre && use ois && mycmakeargs=( "-DBUILD_OGRE_OIS_PLUGIN=ON" ) || mycmakeargs=( "-DBUILD_OGRE_OIS_PLUGIN=OFF" )
