@@ -1,0 +1,5 @@
+# Azamat H. Hackimov <azamat.hackimov@gmailc.com> (29 Apr 2010)
+# Wait until boost-1.44, bug #320039
+dev-games/gigi
+games-strategy/freeorion
+
