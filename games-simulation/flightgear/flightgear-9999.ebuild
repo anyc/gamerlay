@@ -6,7 +6,7 @@ EAPI=2
 
 EGIT_BRANCH="next"
 
-inherit games git autotools
+inherit games cmake-utils git
 
 DESCRIPTION="Open Source Flight Simulator"
 HOMEPAGE="http://www.flightgear.org/"
@@ -25,23 +25,22 @@ RDEPEND=">=dev-games/openscenegraph-2.9[png]
 	subversion? ( dev-vcs/subversion )"
 DEPEND="${RDEPEND}"
 
-src_prepare() {
-	eautoreconf
-}
+DOCS=(AUTHORS ChangeLog NEWS README Thanks)
 
 src_configure() {
-	egamesconf \
-		--disable-dependency-tracking \
-		--enable-osgviewer \
-		$(use_with subversion libsvn) \
-		|| die "configure failed"
+	mycmakeargs=(
+	-DCMAKE_INSTALL_PREFIX=${GAMES_PREFIX}
+	-DENABLE_FGADMIN=OFF
+	$(cmake-utils_use subversion ENABLE_LIBSVN)
+	)
+
+	cmake-utils_src_configure
 }
 
 src_install() {
-	emake DESTDIR="${D}" install || die "emake install failed"
+	cmake-utils_src_install
 	newicon icons/fg-16.png ${PN}.png
 	make_desktop_entry fgfs FlightGear /usr/share/pixmaps/${PN}.png
-	dodoc AUTHORS ChangeLog NEWS README Thanks
 	prepgamesdirs
 }
 
