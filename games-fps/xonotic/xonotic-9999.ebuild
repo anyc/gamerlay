@@ -15,7 +15,7 @@ EGIT_REPO_URI="${BASE_URI}${PN}.git"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS=""
-IUSE="alsa crypt debug dedicated opengl sdl +zip"
+IUSE="alsa crypt debug dedicated +maps opengl sdl +zip"
 
 UIRDEPEND="
 	media-libs/libogg
@@ -100,6 +100,10 @@ src_unpack() {
 		git_pk3_unpack nexcompat
 	else
 		rm -rf "${S}/data/font-dejavu.pk3dir" || die "rm failed"
+	fi
+	if use maps; then
+		cd "${S}"
+		sh misc/tools/xonotic-map-compiler-autobuild download || die
 	fi
 }
 
@@ -186,7 +190,6 @@ src_compile() {
 		FTEQCCFLAGS_WATERMARK='' \
 		|| die "emake data.pk3 failed"
 	popd
-	sh misc/tools/xonotic-map-compiler-autobuild download
 }
 
 src_install() {
