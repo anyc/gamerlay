@@ -102,8 +102,11 @@ src_unpack() {
 		rm -rf "${S}/data/font-dejavu.pk3dir" || die "rm failed"
 	fi
 	if use maps; then
-		cd "${S}"
-		sh misc/tools/xonotic-map-compiler-autobuild download || die
+		cd "${S}/data"
+		wget \
+			-r -l1 --no-parent --no-directories \
+			-A "*-full.pk3" \
+			"http://beta.xonotic.org/autobuild-bsp/latest"
 	fi
 }
 
