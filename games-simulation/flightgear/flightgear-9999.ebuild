@@ -1,4 +1,4 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -18,7 +18,7 @@ KEYWORDS=""
 IUSE="subversion"
 
 RDEPEND=">=dev-games/openscenegraph-2.9[png]
-	=dev-games/simgear-9999
+	>=dev-games/simgear-9999
 	media-libs/plib
 	x11-libs/libXmu
 	x11-libs/libXi
