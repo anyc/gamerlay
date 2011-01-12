@@ -1,21 +1,21 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="2"
+EAPI=2
 
 inherit eutils games toolchain-funcs check-reqs git
 
 MY_PN="${PN^}"
 DESCRIPTION="Fork of Nexuiz, Deathmatch FPS based on DarkPlaces, an advanced Quake 1 engine"
 HOMEPAGE="http://www.xonotic.org/"
-BASE_URI="git://git.${PN}.org/${PN}/"
+BASE_URI="git://git.xonotic.org/${PN}/"
 EGIT_REPO_URI="${BASE_URI}${PN}.git"
 
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS=""
-IUSE="alsa debug dedicated opengl sdl +zip"
+IUSE="alsa crypt debug dedicated +maps opengl sdl +zip"
 
 UIRDEPEND="
 	media-libs/libogg
@@ -33,6 +33,7 @@ UIRDEPEND="
 	alsa? ( media-libs/alsa-lib )
 	sdl? ( media-libs/libsdl[X,audio,joystick,opengl,video,alsa?] )
 	"
+# s3tc? ( dev-libs/libtxc_dxtn )
 UIDEPEND="
 	x11-proto/xextproto
 	x11-proto/xf86dgaproto
@@ -44,10 +45,12 @@ RDEPEND="
 	media-libs/jpeg
 	media-libs/libpng
 	net-misc/curl
+	~dev-libs/d0_blind_id-${PV}[crypt?]
 	opengl? ( ${UIRDEPEND} )
 	!dedicated? ( !opengl? ( ${UIRDEPEND} ) )
 	"
 DEPEND="${RDEPEND}
+	~games-util/fteqcc-xonotic-9999
 	zip? ( app-arch/p7zip )
 	opengl? ( ${UIDEPEND} )
 	!dedicated? ( !opengl? ( ${UIDEPEND} ) )
@@ -70,11 +73,11 @@ pkg_setup() {
 }
 
 git_pk3_unpack() {
-	EGIT_REPO_URI="${BASE_URI}xonotic-${1}.pk3dir.git"
-	EGIT_PROJECT="${PN}-${1}.pk3dir"
-	S+="/data/${PN}-${1}.pk3dir"
+	EGIT_REPO_URI="${BASE_URI}xonotic-${1}.pk3dir.git" \
+	EGIT_PROJECT="${PN}-${1}.pk3dir" \
+	S="${S}/data/${PN}-${1}.pk3dir" \
+	EGIT_BRANCH="master" \
 	git_fetch
-	S="${WORKDIR}/${P}"
 }
 
 src_unpack() {
@@ -82,20 +85,11 @@ src_unpack() {
 	git_src_unpack
 
 	# Engine
-	EGIT_REPO_URI="${BASE_URI}darkplaces.git"
-	EGIT_PROJECT="darkplaces"
-	S+="/darkplaces"
-	# comment next line if you prefer unstable
+	EGIT_REPO_URI="${BASE_URI}darkplaces.git" \
+	EGIT_PROJECT="darkplaces" \
+	S="${S}/darkplaces" \
 	EGIT_BRANCH="div0-stable" \
 	git_fetch
-	S="${WORKDIR}/${P}"
-
-	# QC compiler
-	EGIT_REPO_URI="git://github.com/Blub/qclib.git"
-	EGIT_PROJECT="qclib"
-	S+="/fteqcc"
-	git_fetch
-	S="${WORKDIR}/${P}"
 
 	# Data
 	git_pk3_unpack data
@@ -107,11 +101,21 @@ src_unpack() {
 	else
 		rm -rf "${S}/data/font-dejavu.pk3dir" || die "rm failed"
 	fi
+	if use maps; then
+		cd "${S}/data"
+		wget \
+			-r -l1 --no-parent --no-directories \
+			-A "*-full.pk3" \
+			"http://beta.xonotic.org/autobuild-bsp/latest"
+	fi
 }
 
 src_prepare() {
-	# for darkplaces and fteqcc
+	# for darkplaces
 	tc-export CC
+
+	# use system libs
+	rm -rf misc/buildfiles/
 
 	# Engine
 	pushd darkplaces
@@ -126,26 +130,6 @@ src_prepare() {
 		sed -e "/DEFAULT_SNDAPI/s:ALSA:OSS:" \
 			-i makefile || die "sed failed"
 	fi
-
-	# rebranding, suddenly it works fine
-	for i in nexuiz.*; do
-		mv -v "${i}" "${i/nexuiz/${PN}}" || die "mv failed"
-	done
-	sed -i \
-		-e "s/nexuiz/${PN}/g" \
-		-e "s/Nexuiz/${PN^}/g" \
-		-e "s/NEXUIZ/${PN^^}/g" \
-		$(find -type f ! -name '*makefile*') || die "sed failed"
-	popd
-
-	# QC compiler
-	pushd fteqcc
-	sed -i \
-		-e '/^CC/d' \
-		-e "s: -O3 : :g" \
-		-e "s: -s : :g" \
-		-e 's/-o fteqcc.bin/$(LDFLAGS) -o fteqcc.bin/' \
-		Makefile || die "sed failed"
 	popd
 
 	# Data
@@ -202,15 +186,10 @@ src_compile() {
 	fi
 	popd
 
-	# QC compiler
-	pushd fteqcc
-	emake BASE_CFLAGS="${CFLAGS} -Wall" || die "emake fteqcc failed"
-	popd
-
 	# Data
 	pushd data/xonotic-data.pk3dir
 	emake \
-		FTEQCC="${S}/fteqcc/fteqcc.bin" \
+		FTEQCC="/usr/bin/fteqcc-xonotic" \
 		FTEQCCFLAGS_WATERMARK='' \
 		|| die "emake data.pk3 failed"
 	popd

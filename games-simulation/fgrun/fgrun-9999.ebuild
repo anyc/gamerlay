@@ -1,9 +1,10 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
 EAPI=2
-inherit games git autotools flag-o-matic
+
+inherit games git autotools
 
 DESCRIPTION="A graphical frontend for the FlightGear Flight Simulator"
 HOMEPAGE="http://sourceforge.net/projects/fgrun"
@@ -14,7 +15,8 @@ SLOT="0"
 KEYWORDS=""
 IUSE="nls"
 
-DEPEND="dev-games/simgear
+DEPEND="dev-games/openscenegraph
+	>=dev-games/simgear-9999
 	|| (
 		<x11-libs/fltk-1.1.9:1.1[opengl]
 		>=x11-libs/fltk-1.1.9:1.1[opengl,threads]
@@ -24,11 +26,7 @@ DEPEND="dev-games/simgear
 	nls? ( virtual/libintl )"
 
 RDEPEND="${DEPEND}
-	>=games-simulation/flightgear-1.9.0"
-
-pkg_setup() {
-	append-ldflags -Wl,--no-as-needed
-}
+	>=games-simulation/flightgear-9999"
 
 src_prepare() {
 	epatch "${FILESDIR}/${PN}"-1.5.1-fltk.patch
