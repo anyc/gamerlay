@@ -1,10 +1,10 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
 EAPI="3"
 
-inherit games subversion
+inherit eutils games subversion
 
 DESCRIPTION="Open-source reimplementation of the original X-Com"
 HOMEPAGE="http://openxcom.ninex.info/"
@@ -25,10 +25,7 @@ DEPEND="${RDEPEND}"
 S=${WORKDIR}/trunk
 
 src_prepare() {
-	sed -i \
-		-e "s:\(CXXFLAGS = -Wall \)-O2:\1${CXXFLAGS}:" \
-		-e "s:\(LDFLAGS = \):\1${LDFLAGS} :" \
-		"${S}"/src/Makefile || die "sed failed"
+	epatch "${FILESDIR}"/Makefile.pkg-config.patch
 	sed -i -e "s:\(#define DATA_FOLDER \)\"./DATA/\":\1\"${GAMES_DATADIR}/${PN}/DATA/\":" \
 		"${S}"/src/Menu/StartState.cpp || die "sed failed"
 }
