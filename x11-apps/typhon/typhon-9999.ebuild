@@ -21,7 +21,7 @@ S="${WORKDIR}/${P/_/-}"
 
 RDEPEND="media-libs/ftgl
 	virtual/opengl
-	media-libs/devil
+	media-libs/devil[jpeg,opengl,png]
 	x11-libs/libXrender
 	x11-libs/libXrandr
 	xml? ( dev-libs/tinyxml )
@@ -35,7 +35,6 @@ src_configure() {
 	local mycmakeargs+=(
 		$(cmake-utils_use !sound NOSOUND)
 		$(cmake-utils_use !glut NOGLUT)
-		$(cmake-utils_use xml WITHUX)
 		$(cmake-utils_use !ffmpeg NOVIDEOPLAYER)
 		$(cmake-utils_use debug DEBUG)
 	)
