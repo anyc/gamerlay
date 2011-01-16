@@ -17,10 +17,7 @@ IUSE="nls"
 
 DEPEND="dev-games/openscenegraph
 	>=dev-games/simgear-9999
-	|| (
-		<x11-libs/fltk-1.1.9:1.1[opengl]
-		>=x11-libs/fltk-1.1.9:1.1[opengl,threads]
-	)
+	x11-libs/fltk:1.1[opengl,threads]
 	x11-libs/libXi
 	x11-libs/libXmu
 	nls? ( virtual/libintl )"
