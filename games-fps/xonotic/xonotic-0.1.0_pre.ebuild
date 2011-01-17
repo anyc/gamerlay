@@ -1,4 +1,4 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -31,14 +31,14 @@ UIRDEPEND="
 	media-libs/freetype:2
 	alsa? ( media-libs/alsa-lib )
 	sdl? ( media-libs/libsdl[X,audio,joystick,opengl,video,alsa?] )
-	"
+"
 # s3tc? ( dev-libs/libtxc_dxtn )
 UIDEPEND="
 	x11-proto/xextproto
 	x11-proto/xf86dgaproto
 	x11-proto/xf86vidmodeproto
 	x11-proto/xproto
-	"
+"
 RDEPEND="
 	sys-libs/zlib
 	media-libs/jpeg
@@ -47,11 +47,11 @@ RDEPEND="
 	~dev-libs/d0_blind_id-${PV}[crypt?]
 	opengl? ( ${UIRDEPEND} )
 	!dedicated? ( !opengl? ( ${UIRDEPEND} ) )
-	"
+"
 DEPEND="${RDEPEND}
 	opengl? ( ${UIDEPEND} )
 	!dedicated? ( !opengl? ( ${UIDEPEND} ) )
-	"
+"
 
 S="${WORKDIR}/${MY_PN}"
 

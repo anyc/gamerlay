@@ -4,7 +4,7 @@
 
 EAPI=2
 
-inherit eutils games toolchain-funcs check-reqs git
+inherit eutils games toolchain-funcs git
 
 MY_PN="${PN^}"
 DESCRIPTION="Fork of Nexuiz, Deathmatch FPS based on DarkPlaces, an advanced Quake 1 engine"
@@ -15,7 +15,7 @@ EGIT_REPO_URI="${BASE_URI}${PN}.git"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS=""
-IUSE="alsa crypt debug dedicated +maps opengl sdl +zip"
+IUSE="alsa crypt debug dedicated opengl sdl"
 
 UIRDEPEND="
 	media-libs/libogg
@@ -30,55 +30,31 @@ UIRDEPEND="
 	x11-libs/libXxf86vm
 	virtual/opengl
 	media-libs/freetype:2
+	~games-fps/xonotic-data-9999[client]
 	alsa? ( media-libs/alsa-lib )
 	sdl? ( media-libs/libsdl[X,audio,joystick,opengl,video,alsa?] )
-	"
+"
 # s3tc? ( dev-libs/libtxc_dxtn )
 UIDEPEND="
 	x11-proto/xextproto
 	x11-proto/xf86dgaproto
 	x11-proto/xf86vidmodeproto
 	x11-proto/xproto
-	"
+"
 RDEPEND="
 	sys-libs/zlib
 	media-libs/jpeg
 	media-libs/libpng
 	net-misc/curl
 	~dev-libs/d0_blind_id-${PV}[crypt?]
+	~games-fps/xonotic-data-9999
 	opengl? ( ${UIRDEPEND} )
 	!dedicated? ( !opengl? ( ${UIRDEPEND} ) )
-	"
+"
 DEPEND="${RDEPEND}
-	~games-util/fteqcc-xonotic-9999
-	zip? ( app-arch/p7zip )
 	opengl? ( ${UIDEPEND} )
 	!dedicated? ( !opengl? ( ${UIDEPEND} ) )
-	"
-
-pkg_setup() {
-	ewarn "You need 1,5 Gb diskspace for distfiles."
-	if use dedicated && use !opengl; then
-		CHECKREQS_DISK_BUILD="1500"
-	else
-		if use zip; then
-			CHECKREQS_DISK_BUILD="2650"
-			CHECKREQS_DISK_USR="910"
-		else
-			CHECKREQS_DISK_BUILD="4800"
-			CHECKREQS_DISK_USR="2400"
-		fi
-	fi
-	check_reqs
-}
-
-git_pk3_unpack() {
-	EGIT_REPO_URI="${BASE_URI}xonotic-${1}.pk3dir.git" \
-	EGIT_PROJECT="${PN}-${1}.pk3dir" \
-	S="${S}/data/${PN}-${1}.pk3dir" \
-	EGIT_BRANCH="master" \
-	git_fetch
-}
+"
 
 src_unpack() {
 	# root
@@ -90,24 +66,6 @@ src_unpack() {
 	S="${S}/darkplaces" \
 	EGIT_BRANCH="div0-stable" \
 	git_fetch
-
-	# Data
-	git_pk3_unpack data
-	git_pk3_unpack maps
-	# needed only for client
-	if use opengl || use !dedicated; then
-		git_pk3_unpack music
-		git_pk3_unpack nexcompat
-	else
-		rm -rf "${S}/data/font-dejavu.pk3dir" || die "rm failed"
-	fi
-	if use maps; then
-		cd "${S}/data"
-		wget \
-			-r -l1 --no-parent --no-directories \
-			-A "*-full.pk3" \
-			"http://beta.xonotic.org/autobuild-bsp/latest"
-	fi
 }
 
 src_prepare() {
@@ -131,37 +89,6 @@ src_prepare() {
 			-i makefile || die "sed failed"
 	fi
 	popd
-
-	# Data
-	if use dedicated && use !opengl; then
-		pushd data
-		rm -rf \
-			xonotic-data.pk3dir/gfx \
-			xonotic-data.pk3dir/particles \
-			xonotic-data.pk3dir/sound/cyberparcour01/rocket.txt \
-			xonotic-data.pk3dir/textures \
-			xonotic-maps.pk3dir/textures \
-			|| die "rm failed"
-		rm -f \
-			$(find -type f -name '*.jpg') \
-			$(find -type f -name '*.png' ! -name 'sky??.png') \
-			$(find -type f -name '*.svg') \
-			$(find -type f -name '*.tga') \
-			$(find -type f -name '*.wav') \
-			$(find -type f -name '*.ogg') \
-			$(find -type f -name '*.ase') \
-			$(find -type f -name '*.map') \
-			$(find -type f -name '*.zym') \
-			$(find -type f -name '*.obj') \
-			$(find -type f -name '*.blend') \
-			|| die "rm failed"
-		find -type d \
-			-exec rmdir '{}' &>/dev/null \;
-		sed -i \
-			-e '/^qc-recursive:/s/menu.dat//' \
-			xonotic-data.pk3dir/Makefile || die "sed failed"
-		popd
-	fi
 }
 
 src_compile() {
@@ -184,14 +111,6 @@ src_compile() {
 	if use dedicated; then
 		emake sv-${ENGINEOPTS} || die "emake sv-${ENGINEOPTS} failed"
 	fi
-	popd
-
-	# Data
-	pushd data/xonotic-data.pk3dir
-	emake \
-		FTEQCC="/usr/bin/fteqcc-xonotic" \
-		FTEQCCFLAGS_WATERMARK='' \
-		|| die "emake data.pk3 failed"
 	popd
 }
 
@@ -225,28 +144,6 @@ src_install() {
 	if use dedicated; then
 		doins -r server || die "doins server failed"
 	fi
-
-	# Data
-	cd data
-	rm -rf \
-		$(find -name '.git*') \
-		$(find -type d -name '.svn') \
-		$(find -type d -name 'qcsrc') \
-		$(find -type f -name '*.sh') \
-		$(find -type f -name '*.pl') \
-		$(find -type f -name 'Makefile') \
-		|| die "rm failed"
-	if use zip; then
-		for d in *.pk3dir; do
-			pushd "${d}"
-			a="${d#xonotic-}"
-			7za a -tzip -mx=9 "../${a%dir}" . || die "zip failed"
-			popd
-			rm -rf "${d}" || die "rm failed"
-		done
-	fi
-	insinto "${GAMES_DATADIR}/${PN}/data"
-	doins -r . || die "doins data failed"
 
 	prepgamesdirs
 }

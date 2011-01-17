@@ -6,4 +6,9 @@
 		<email>nikoli@lavabit.com</email>
 		<name>Nikoli</name>
 	</maintainer>
+	<use>
+		<flag name="client">Install files for client. Disabling is experimental.</flag>
+		<flag name="maps">Download and install maps.</flag>
+		<flag name="zip">Compress resources dirs in zip archives.</flag>
+	</use>
 </pkgmetadata>
