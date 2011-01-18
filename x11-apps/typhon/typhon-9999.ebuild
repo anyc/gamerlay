@@ -1,8 +1,10 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: x11-apps/typhontyphon-0.90.ebuild,v 1.0 2010/05/19 12:51:12 by frostwork Exp $
+# $Header: x11-apps/typhontyphon-9999.ebuild,v 1.0 2011/01/18 09:21:06 by frostwork Exp $
 
 EAPI="2"
+
+CMAKE_MIN_VERSION=2.8
 
 inherit cmake-utils eutils subversion
 
@@ -28,8 +30,7 @@ RDEPEND="media-libs/ftgl
 	glut? ( media-libs/freeglut )
 	ffmpeg? ( media-libs/freealut media-video/ffmpeg )
 	sound? ( media-libs/sdl-mixer )"
-DEPEND="${RDEPEND}
-	>=dev-util/cmake-2.8.0"
+DEPEND="${RDEPEND}"
 
 src_configure() {
 	local mycmakeargs+=(
@@ -37,17 +38,8 @@ src_configure() {
 		$(cmake-utils_use !glut NOGLUT)
 		$(cmake-utils_use !ffmpeg NOVIDEOPLAYER)
 		$(cmake-utils_use debug DEBUG)
+		$(cmake-utils_use xml xml)
 	)
 
-	mycmakeargs+=(
-		"-DCMAKE_INSTALL_PREFIX=/usr"
-		"-DCMAKE_INSTALL_ICONDIR=/usr/share/pixmaps/"
-		"-DCMAKE_INSTALL_DESKTOPDIR=/usr/share/applications/"
-		"-DCMAKE_DATA_PATH=/usr/share/"
-	)
 	cmake-utils_src_configure
-}
-
-src_install() {
-	cmake-utils_src_install
 }
