@@ -1,4 +1,4 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: x11-apps/typhontyphon-9999.ebuild,v 1.0 2011/01/18 09:21:06 by frostwork Exp $
 
@@ -28,7 +28,7 @@ RDEPEND="media-libs/ftgl
 	x11-libs/libXrandr
 	xml? ( dev-libs/tinyxml )
 	glut? ( media-libs/freeglut )
-	ffmpeg? ( media-libs/freealut media-video/ffmpeg )
+	ffmpeg? ( >=media-video/ffmpeg-0.6 )
 	sound? ( media-libs/sdl-mixer )"
 DEPEND="${RDEPEND}"
 
