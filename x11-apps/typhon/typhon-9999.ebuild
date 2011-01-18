@@ -33,7 +33,7 @@ RDEPEND="media-libs/ftgl
 DEPEND="${RDEPEND}"
 
 src_configure() {
-	local mycmakeargs+=(
+	local mycmakeargs=(
 		$(cmake-utils_use !sound NOSOUND)
 		$(cmake-utils_use !glut NOGLUT)
 		$(cmake-utils_use !ffmpeg NOVIDEOPLAYER)
