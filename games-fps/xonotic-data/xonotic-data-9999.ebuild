@@ -10,6 +10,8 @@ MY_PN="${PN%-data}"
 DESCRIPTION="Xonotic data files"
 HOMEPAGE="http://www.xonotic.org/"
 BASE_URI="git://git.xonotic.org/${MY_PN}/"
+EGIT_REPO_URI="${BASE_URI}${MY_PN}.git"
+EGIT_PROJECT="${MY_PN}"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -54,6 +56,9 @@ git_pk3_unpack() {
 }
 
 src_unpack() {
+	# root
+	git_src_unpack
+
 	# Data
 	git_pk3_unpack data
 	git_pk3_unpack maps
@@ -62,7 +67,7 @@ src_unpack() {
 		git_pk3_unpack music
 		git_pk3_unpack nexcompat
 	else
-		rm -rf "${S}/data/font-dejavu.pk3dir" || die "rm failed"
+		rm -rf "${S}"/data/font-*.pk3dir || die "rm failed"
 	fi
 	if use maps; then
 		cd "${S}/data"
@@ -91,6 +96,7 @@ src_prepare() {
 			$(find -type f -name '*.tga') \
 			$(find -type f -name '*.wav') \
 			$(find -type f -name '*.ogg') \
+			$(find -type f -name '*.mp3') \
 			$(find -type f -name '*.ase') \
 			$(find -type f -name '*.map') \
 			$(find -type f -name '*.zym') \
