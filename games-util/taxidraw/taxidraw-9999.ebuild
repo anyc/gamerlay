@@ -1,10 +1,11 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
 EAPI=2
+WX_GTK_VER="2.8"
 
-inherit autotools git wxwidgets games
+inherit games autotools wxwidgets git
 
 DESCRIPTION="a taxiway editor for FlightGear and X-Plane"
 HOMEPAGE="http://taxidraw.sourceforge.net/"
@@ -12,22 +13,13 @@ EGIT_REPO_URI="git://mapserver.flightgear.org/taxidraw"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~x86 ~amd64"
+KEYWORDS=""
 IUSE=""
 
-DEPEND="=x11-libs/wxGTK-2.8*
+DEPEND="x11-libs/wxGTK:2.8
 	net-misc/curl"
 
 RDEPEND="${DEPEND}"
-
-pkg_setup() {
-	games_pkg_setup
-	WX_GTK_VER=2.8 need-wxwidgets gtk2
-}
-
-src_unpack() {
-	git_src_unpack
-}
 
 src_prepare() {
 	eautoreconf
