@@ -38,6 +38,7 @@ src_configure() {
 
 src_install() {
 	emake DESTDIR="${D}" install || die "emake install failed"
+	make_desktop_entry ${PN} "${PN}" flightgear
 	dodoc AUTHORS NEWS
 	prepgamesdirs
 }
