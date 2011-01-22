@@ -25,6 +25,8 @@ DEPEND="
 "
 
 pkg_setup() {
+	games_pkg_setup
+
 	if use !client; then
 		ewarn "You have disabled client USE flag, only files for server will be installed."
 		ewarn "This feature is experimental, if anything goes wrong, contact the maintainer."
