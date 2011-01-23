@@ -4,7 +4,7 @@
 
 EAPI=2
 
-inherit games git autotools
+inherit games cmake-utils git
 
 DESCRIPTION="A graphical frontend for the FlightGear Flight Simulator"
 HOMEPAGE="http://sourceforge.net/projects/fgrun"
@@ -25,20 +25,22 @@ DEPEND="dev-games/openscenegraph
 RDEPEND="${DEPEND}
 	>=games-simulation/flightgear-9999"
 
+DOCS=(AUTHORS NEWS)
+
 src_prepare() {
-	epatch "${FILESDIR}/${PN}"-1.5.1-fltk.patch
-	eautoreconf
+	epatch "${FILESDIR}/${PN}-1.5.1-fltk.patch"
 }
 
 src_configure() {
-	egamesconf \
-	$(use_enable nls) \
-	|| die "configure failed"
+	mycmakeargs=(
+	-DCMAKE_INSTALL_PREFIX=${GAMES_PREFIX}
+	$(cmake-utils_use nls ENABLE_NLS)
+	)
+	cmake-utils_src_configure
 }
 
 src_install() {
-	emake DESTDIR="${D}" install || die "emake install failed"
+	cmake-utils_src_install
 	make_desktop_entry ${PN} "${PN}" flightgear
-	dodoc AUTHORS NEWS
 	prepgamesdirs
 }
