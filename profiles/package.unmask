@@ -1,0 +1,4 @@
+# Christian Schmitt <chris@ilovelinux.de> (24 Jan 2011)
+# Circumvent a too strict package.mask in portage that is
+# not yet corrected
+>=games-util/taxidraw-9999
