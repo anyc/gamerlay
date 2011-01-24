@@ -1,12 +1,12 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=2
+EAPI=3
 
 inherit autotools git
 
-DESCRIPTION="terrain editing programs for FlightGear"
+DESCRIPTION="Terrain editing programs for FlightGear"
 HOMEPAGE="http://terragear.sourceforge.net/"
 EGIT_REPO_URI="git://mapserver.flightgear.org/${PN}"
 
@@ -24,10 +24,6 @@ DEPEND="dev-games/simgear-cs
 
 RDEPEND="${DEPEND}"
 
-src_unpack() {
-	git_src_unpack
-}
-
 src_prepare() {
 	epatch ${FILESDIR}/"${PN}"-setrlimit.patch
 	epatch ${FILESDIR}/"${PN}"-use-agg.patch
@@ -35,7 +31,10 @@ src_prepare() {
 }
 
 src_configure() {
-	econf --with-simgear=/usr/simgear || die
+	econf --with-simgear=/usr/simgear || die "configure failed"
+}
+
+src_compile() {
 	emake -j1 || die "emake failed"
 }
 

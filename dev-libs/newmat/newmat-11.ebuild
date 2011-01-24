@@ -1,8 +1,9 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=2
+EAPI=3
+
 inherit eutils
 
 DESCRIPTION="A C++ matrix library"
@@ -11,7 +12,7 @@ SRC_URI="http://www.robertnz.net/ftp/${PN}${PV}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64 ppc x86"
+KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 src_compile() {

@@ -1,8 +1,8 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=2
+EAPI=3
 
 inherit autotools git
 
@@ -20,10 +20,6 @@ RDEPEND="dev-games/openscenegraph
 
 DEPEND="${RDEPEND}"
 
-src_unpack() {
-	git_src_unpack
-}
-
 src_prepare() {
 	eautoreconf
 }
@@ -32,7 +28,7 @@ src_configure() {
 	econf \
 	--prefix=/usr/simgear \
 	--libdir=/usr/simgear/lib \
-	--enable-headless || die
+	--enable-headless || die "configure failed"
 }
 
 src_install() {
