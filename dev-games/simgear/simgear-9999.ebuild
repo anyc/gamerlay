@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=2
+EAPI=3
 
 EGIT_BRANCH="next"
 
@@ -15,7 +15,7 @@ EGIT_REPO_URI="git://gitorious.org/fg/simgear.git"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS=""
-IUSE=""
+IUSE="video_cards_radeon"
 
 RDEPEND=">=dev-games/openscenegraph-2.9[png]
 	dev-libs/boost
@@ -25,3 +25,9 @@ RDEPEND=">=dev-games/openscenegraph-2.9[png]
 DEPEND="${RDEPEND}"
 
 DOCS=(NEWS AUTHORS)
+
+src_prepare() {
+	if use video_cards_radeon; then
+	epatch "${FILESDIR}/simgear-radeon-fix-runway-lights.patch"
+	fi
+}
