@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<herd>no-herd</herd>
+	<maintainer>
+		<email>nikoli@lavabit.com</email>
+		<name>Nikoli</name>
+	</maintainer>
+	<use>
+		<flag name='darkplaces'>Install DarkPlaces pack</flag>
+		<flag name='nexuiz'>Install Nexuiz pack</flag>
+		<flag name='q2w'>Install Quake2World pack</flag>
+		<flag name='warsow'>Install Warsow pack</flag>
+		<flag name='xonotic'>Install Xonotic pack</flag>
+	</use>
+</pkgmetadata>
