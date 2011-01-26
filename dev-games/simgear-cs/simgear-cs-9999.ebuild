@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=3
+EAPI="4"
 
 inherit autotools git
 
@@ -28,10 +28,5 @@ src_configure() {
 	econf \
 	--prefix=/usr/simgear \
 	--libdir=/usr/simgear/lib \
-	--enable-headless || die "configure failed"
-}
-
-src_install() {
-	emake DESTDIR="${D}" install || die "make install failed"
-	dodoc NEWS AUTHORS
+	--enable-headless
 }

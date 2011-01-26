@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=3
+EAPI="4"
 
 inherit autotools git
 
@@ -31,13 +31,9 @@ src_prepare() {
 }
 
 src_configure() {
-	econf --with-simgear=/usr/simgear || die "configure failed"
+	econf --with-simgear=/usr/simgear
 }
 
 src_compile() {
-	emake -j1 || die "emake failed"
-}
-
-src_install() {
-	emake DESTDIR="${D}" install || die "emake install failed"
+	emake -j1
 }
