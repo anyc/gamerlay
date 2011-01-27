@@ -2,6 +2,12 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*netradiant-1.5.0_p20110127 (27 Jan 2011)
+
+  27 Jan 2011; Nikoli <nikoli@lavabit.com>
+  +netradiant-1.5.0_p20110127.ebuild:
+  add snapshot
+
   27 Jan 2011; Nikoli <nikoli@lavabit.com> netradiant-9999.ebuild,
   metadata.xml:
   add USE flags for radiant and every tool, gtk is optional now , add more
