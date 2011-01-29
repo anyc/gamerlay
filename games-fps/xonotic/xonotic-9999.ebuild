@@ -141,6 +141,9 @@ src_install() {
 
 	insinto "${GAMES_DATADIR}/${PN}"
 
+	# public key for d0_blind_id
+	doins key_0.d0pk || die
+
 	if use dedicated; then
 		doins -r server || die "doins server failed"
 	fi
