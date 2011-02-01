@@ -5,5 +5,9 @@
 	<email>frostworks@gmx.de</email>
 	<name>Marcel Unbehaun</name>
 </maintainer>
+<maintainer>
+    <email>azamat.hackimov@gmail.com</email>
+	<name>Azamat H. Hackimov</name>
+</maintainer>
 <herd>games</herd>
 </pkgmetadata>
