@@ -25,7 +25,11 @@ DEPEND="${RDEPEND}"
 S=${WORKDIR}/trunk
 
 src_prepare() {
-	epatch "${FILESDIR}"/Makefile.pkg-config.patch
+#	epatch "${FILESDIR}"/Makefile.pkg-config.patch
+	sed -i \
+		-e "s:\(CXXFLAGS \)=:\1+=:" \
+		-e "s:\(LDFLAGS \)=:\1+=:" \
+		"${S}"/src/Makefile || die "sed failed"
 	sed -i -e "s:\(#define DATA_FOLDER \)\"./DATA/\":\1\"${GAMES_DATADIR}/${PN}/DATA/\":" \
 		"${S}"/src/Menu/StartState.cpp || die "sed failed"
 }
