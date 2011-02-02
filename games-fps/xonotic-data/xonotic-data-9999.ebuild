@@ -23,6 +23,7 @@ DEPEND="
 	~games-util/fteqcc-xonotic-9999
 	zip? ( app-arch/p7zip )
 "
+PDEPEND="maps? ( ~games-fps/xonotic-maps-9999 )"
 
 pkg_setup() {
 	games_pkg_setup
@@ -70,13 +71,6 @@ src_unpack() {
 		git_pk3_unpack nexcompat
 	else
 		rm -rf "${S}"/data/font-*.pk3dir || die "rm failed"
-	fi
-	if use maps; then
-		cd "${S}/data"
-		wget \
-			-r -l1 --no-parent --no-directories \
-			-A "*-full.pk3" \
-			"http://beta.xonotic.org/autobuild-bsp/latest"
 	fi
 }
 
