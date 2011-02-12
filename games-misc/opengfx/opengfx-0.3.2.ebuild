@@ -1,23 +1,22 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/games-misc/opengfx/opengfx-0.2.4.ebuild,v 1.4 2010/06/06 20:55:46 mr_bones_ Exp $
+# $Header: $
 
 EAPI=2
 inherit games
 
 DESCRIPTION="OpenGFX data files for OpenTTD"
 HOMEPAGE="http://bundles.openttdcoop.org/opengfx/"
-SRC_URI="http://bundles.openttdcoop.org/opengfx/releases/${P}-source.tar.gz"
+SRC_URI="http://bundles.openttdcoop.org/opengfx/releases/${PV}/${P}-source.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="amd64 ppc ppc64 x86"
+KEYWORDS="~amd64 ~arm ~ppc ~ppc64 ~x86"
 IUSE=""
 
 S=${WORKDIR}/${P}-source
 
-DEPEND="games-util/nforenum
-	games-util/grfcodec"
+DEPEND=">=games-util/grfcodec-5.1.0"
 RDEPEND=""
 
 src_compile() {
