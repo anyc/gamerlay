@@ -24,7 +24,7 @@ fi
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="~amd64 ~ppc ~ppc64 ~x86"
 IUSE=""
 
 if [ "${PV%9999}" != "${PV}" ] ; then
