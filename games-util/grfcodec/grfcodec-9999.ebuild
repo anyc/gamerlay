@@ -1,4 +1,4 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -34,7 +34,8 @@ else
 fi
 
 DEPEND="dev-lang/perl
-	dev-libs/boost"
+	dev-libs/boost
+	media-libs/libpng"
 RDEPEND=""
 
 src_prepare() {
