@@ -33,7 +33,8 @@ else
 	S=${WORKDIR}/${PN}-${MY_PV}-source
 fi
 
-DEPEND="dev-lang/perl
+DEPEND="!games-util/nforenum
+	dev-lang/perl
 	dev-libs/boost
 	media-libs/libpng"
 RDEPEND=""
