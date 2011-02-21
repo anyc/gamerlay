@@ -24,7 +24,7 @@ RDEPEND=">=virtual/jre-1.6
 	virtual/opengl"
 DEPEND=""
 
-RESTRICT="mirror strip"
+RESTRICT="fetch strip"
 
 dir="${GAMES_PREFIX_OPT}/${MY_PN}"
 S="${WORKDIR}/${MY_PN}"
