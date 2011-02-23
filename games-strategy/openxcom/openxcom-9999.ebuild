@@ -4,11 +4,11 @@
 
 EAPI="3"
 
-inherit eutils games subversion
+inherit eutils games git
 
 DESCRIPTION="Open-source reimplementation of the original X-Com"
 HOMEPAGE="http://openxcom.ninex.info/"
-ESVN_REPO_URI="https://openxcom.svn.sourceforge.net/svnroot/openxcom/trunk/"
+EGIT_REPO_URI="https://github.com/SupSuper/OpenXcom.git"
 #SRC_URI=""
 
 LICENSE="GPL-3"
@@ -35,6 +35,7 @@ src_prepare() {
 }
 
 src_compile() {
+	mkdir obj
 	cd src
 	emake || die "make failed"
 }
