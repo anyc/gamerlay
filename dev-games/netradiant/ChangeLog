@@ -2,6 +2,10 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  26 Feb 2011; Nikoli <nikoli@lavabit.com> netradiant-9999.ebuild,
+  metadata.xml:
+  update packs
+
 *netradiant-1.5.0_p20110127 (27 Jan 2011)
 
   27 Jan 2011; Nikoli <nikoli@lavabit.com>

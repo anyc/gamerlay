@@ -16,6 +16,8 @@ HOMEPAGE="http://dev.alientrap.org/projects/netradiant"
 EGIT_REPO_URI="git://git.xonotic.org/xonotic/netradiant.git"
 BASE_ZIP_URI="http://ingar.satgnu.net/files/gtkradiant/gamepacks/"
 SRC_URI="
+	osirion? ( ${BASE_ZIP_URI}/OsirionPack.zip )
+	warsow? ( ${BASE_ZIP_URI}/WarsowPack.zip )
 	!bindist? (
 		openarena? ( ${BASE_ZIP_URI}/OpenArenaPack.zip )
 		quake? ( ${BASE_ZIP_URI}/QuakePack.zip )
@@ -27,7 +29,7 @@ SRC_URI="
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS=""
-RADIANT_GPL_PACKS="darkplaces nexuiz quake2world warsow +xonotic"
+RADIANT_GPL_PACKS="darkplaces nexuiz osirion quake2world warsow +xonotic"
 RADIANT_NONGPL_PACKS="openarena quake quake2 quake3 tremulous ufoai"
 RADIANT_TOOLS="h2data q2map q3data q3map2 qdata3"
 RADIANT_PACKS="${RADIANT_GPL_PACKS} ${RADIANT_NONGPL_PACKS}"
@@ -49,8 +51,9 @@ RDEPEND="
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig
 	darkplaces? ( ${SUBVERSION_DEPEND} )
+	osirion? ( app-arch/unzip )
 	quake2world? ( ${SUBVERSION_DEPEND} )
-	warsow? ( ${SUBVERSION_DEPEND} )
+	warsow? ( app-arch/unzip )
 	xonotic? ( net-misc/wget )
 	!bindist? (
 		openarena? ( app-arch/unzip )
@@ -104,8 +107,8 @@ src_unpack() {
 			"https://zerowing.idsoftware.com/svn/radiant.gamepacks/DarkPlacesPack/branches/1.5/"
 		radiant_svn_unpack quake2world \
 			"svn://jdolan.dyndns.org/quake2world/trunk/gtkradiant"
-		radiant_svn_unpack warsow \
-			"https://svn.bountysource.com/wswpack/trunk/netradiant/games/WarsowPack/"
+		radiant_zip_unpack Osirion
+		radiant_zip_unpack Warsow
 
 		if use nexuiz; then
 			cd "${WORKDIR}/packs/" || die

@@ -15,6 +15,7 @@
 		<flag name='darkplaces'>Install DarkPlaces pack</flag>
 		<flag name='nexuiz'>Install Nexuiz pack</flag>
 		<flag name='openarena'>Install OpenArena non GPL pack</flag>
+		<flag name='osirion'>Install Osirion pack</flag>
 		<flag name='quake'>Install Quake non GPL pack</flag>
 		<flag name='quake2'>Install Quake2 non GPL pack</flag>
 		<flag name='quake2world'>Install Quake2World pack</flag>
