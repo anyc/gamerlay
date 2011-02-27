@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=3
+EAPI=2
 
 inherit eutils games
 
@@ -11,13 +11,13 @@ MY_P="${MY_PN}_${PV}"
 
 DESCRIPTION="Play as a single-celled organism absorbing others"
 HOMEPAGE="http://www.hemispheregames.com/osmos/"
-SRC_URI="http://www.hemispheregames.com/blog/wp-content/uploads/2010/04/${MY_P}.tar.gz"
+SRC_URI="${MY_P}.tar.gz"
 
 LICENSE="OSMOS"
 SLOT="0"
 KEYWORDS="-* ~amd64 ~x86"
 IUSE=""
-RESTRICT="mirror strip"
+RESTRICT="fetch strip"
 PROPERTIES="interactive"
 
 RDEPEND="virtual/opengl
@@ -33,16 +33,8 @@ S=${WORKDIR}/${MY_PN}
 
 GAMES_CHECK_LICENSE="yes"
 
-src_prepare() {
-	# Fix for font error
-	# See http://www.hemispheregames.com/forum/viewtopic.php?f=8&t=498&start=0
-	# Thanks to Martin von Gagern for proposed way and research!
-	echo -n $'\x5d\x19\xc3\x5c' | \
-		dd of=Fonts/FortuneCity.ttf bs=1 conv=notrunc seek=128 \
-		|| die "Binary patching failed"
-	echo -n $'\x80\x77' | \
-		dd of=Fonts/FortuneCity.ttf bs=1 conv=notrunc seek=138 \
-		|| die "Binary patching failed"
+pkg_nofetch() {
+	einfo "Please download ${MY_P}.tar.gz and place it into ${DESTDIR}"
 }
 
 src_install() {
