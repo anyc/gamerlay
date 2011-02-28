@@ -34,7 +34,7 @@ S=${WORKDIR}/${MY_PN}
 GAMES_CHECK_LICENSE="yes"
 
 pkg_nofetch() {
-	einfo "Please download ${MY_P}.tar.gz and place it into ${DESTDIR}"
+	einfo "Please download ${MY_P}.tar.gz and place it into ${DISTDIR}"
 }
 
 src_install() {
