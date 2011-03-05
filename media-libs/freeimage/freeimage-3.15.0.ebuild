@@ -1,4 +1,4 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -6,11 +6,12 @@ EAPI=2
 inherit eutils flag-o-matic toolchain-funcs multilib
 
 MY_PN=FreeImage
-MY_P=${MY_PN}${PV//.}
+MY_PV=${PV//.}
 DESCRIPTION="Image library supporting many formats"
 HOMEPAGE="http://freeimage.sourceforge.net/"
-SRC_URI="mirror://sourceforge/${PN}/${MY_P}.zip
-	doc? ( mirror://sourceforge/${PN}/${MY_P}.pdf )"
+SRC_URI="mirror://sourceforge/${PN}/${MY_PN}${MY_PV}.zip
+	doc? ( mirror://sourceforge/${PN}/${MY_PN}${MY_PV}.pdf )
+	http://ftp.gentoo.ru/people/winterheart/distfiles/${MY_PN}-${MY_PV}-patches.tar.bz2"
 
 LICENSE="|| ( GPL-2 FIPL-1.0 )"
 SLOT="0"
@@ -32,7 +33,7 @@ S=${WORKDIR}/${MY_PN}
 
 src_prepare() {
 	append-cflags -std=c99 -D_POSIX_SOURCE # silence warnings from gcc
-	EPATCH_SOURCE="${FILESDIR}/${PV}" EPATCH_SUFFIX="patch" \
+	EPATCH_SOURCE="${WORKDIR}/${MY_PN}-${MY_PV}-patches" EPATCH_SUFFIX="patch" \
 		EPATCH_FORCE="yes" epatch
 }
 
