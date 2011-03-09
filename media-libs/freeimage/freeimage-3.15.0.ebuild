@@ -19,7 +19,7 @@ KEYWORDS="~amd64 ~x86"
 IUSE="cxx doc"
 
 RDEPEND="
-	media-libs/jpeg
+	virtual/jpeg
 	media-libs/libmng
 	media-libs/libpng
 	media-libs/tiff
