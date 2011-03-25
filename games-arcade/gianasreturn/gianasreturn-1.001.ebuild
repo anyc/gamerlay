@@ -14,21 +14,22 @@ SLOT="0"
 KEYWORDS="-* ~amd64 ~x86"
 IUSE=""
 RESTRICT="strip"
-RDEPEND="x86? ( media-libs/libsdl
+RDEPEND="media-libs/libsdl
 	media-libs/sdl-mixer[flac,mad,mikmod,vorbis]
-	sys-libs/zlib )
-	amd64? (
-		app-emulation/emul-linux-x86-baselibs
-		app-emulation/emul-linux-x86-sdl
-		app-emulation/emul-linux-x86-soundlibs
-	)"
+	sys-libs/zlib"
 
 S=${WORKDIR}
 
 dir=${GAMES_PREFIX_OPT}/${PN}
-bin="giana_ubuntu32"
 
 src_install() {
+	if use amd64; then
+		local bin=giana_ubuntu64
+	fi
+	if use x86; then
+		local bin=giana_ubuntu32
+	fi
+
 	insinto "${dir}"
 	doins -r data || die "doins failed"
 	exeinto "${dir}"
