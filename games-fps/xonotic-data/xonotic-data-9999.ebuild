@@ -16,17 +16,26 @@ EGIT_PROJECT="${MY_PN}"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS=""
-IUSE="+client +maps +zip"
+IUSE="+client +convert low +maps +zip"
 
 RDEPEND=""
 DEPEND="
 	~games-util/fteqcc-xonotic-9999
+	convert? (
+		media-gfx/imagemagick[jpeg,png]
+		low? ( media-sound/vorbis-tools )
+	)
 	zip? ( app-arch/p7zip )
 "
 PDEPEND="maps? ( ~games-fps/xonotic-maps-9999 )"
 
 pkg_setup() {
 	games_pkg_setup
+
+	if use convert; then
+		ewarn "cached-converter.sh will use \"xonotic-cached-converter\" subdirectory of your DISTDIR"
+		echo
+	fi
 
 	if use !client; then
 		ewarn "You have disabled client USE flag, only files for server will be installed."
@@ -110,17 +119,14 @@ src_prepare() {
 
 src_compile() {
 	# Data
-	pushd data/xonotic-data.pk3dir
+	cd data
+	pushd xonotic-data.pk3dir
 	emake \
 		FTEQCC="/usr/bin/fteqcc-xonotic" \
 		FTEQCCFLAGS_WATERMARK='' \
 		|| die "emake data.pk3 failed"
 	popd
-}
 
-src_install() {
-	# Data
-	cd data
 	rm -rf \
 		$(find -name '.git*') \
 		$(find -type d -name '.svn') \
@@ -130,6 +136,42 @@ src_install() {
 		$(find -type f -name 'Makefile') \
 		|| die "rm failed"
 
+	if use convert; then
+		# Used git.eclass,v 1.50 as example
+		: ${CACHE_STORE_DIR:="${PORTAGE_ACTUAL_DISTDIR-${DISTDIR}}/xonotic-cached-converter"}
+		# initial download, we have to create master maps storage directory and play
+		# nicely with sandbox
+		if [[ ! -d ${CACHE_STORE_DIR} ]] ; then
+			addwrite "${PORTAGE_ACTUAL_DISTDIR-${DISTDIR}}" # git.eclass was used, DISTDIR sure exists
+			mkdir -p "${CACHE_STORE_DIR}" \
+				|| die "can't mkdir ${CACHE_STORE_DIR}."
+			export SANDBOX_WRITE="${SANDBOX_WRITE%%:/}"
+		fi
+		# allow writing into CACHE_STORE_DIR
+		addwrite "${CACHE_STORE_DIR}"
+
+		if use low; then
+			export jpeg_qual_rgb=80
+			export jpeg_qual_a=97
+			export do_ogg=true
+			export ogg_qual=1
+		else
+			export jpeg_qual_rgb=97
+			export jpeg_qual_a=99
+			export do_ogg=false
+		fi
+
+		for i in data music maps nexcompat; do
+			find xonotic-${i}.pk3dir -type f -print0 |
+				git_src_repo="${S}"/data/xonotic-${i}.pk3dir \
+				CACHEDIR="${CACHE_STORE_DIR}" \
+				do_jpeg=true                 \
+				do_dds=false                 \
+				del_src=true                 \
+				xargs -0 "${S}"/misc/tools/cached-converter.sh
+		done
+	fi
+
 	if use zip; then
 		for d in *.pk3dir; do
 			pushd "${d}"
@@ -138,9 +180,12 @@ src_install() {
 			rm -rf "${d}" || die "rm failed"
 		done
 	fi
+}
 
-	insinto "${GAMES_DATADIR}/${MY_PN}/data"
-	doins -r . || die "doins data failed"
+src_install() {
+	# Data
+	insinto "${GAMES_DATADIR}/${MY_PN}"
+	doins -r data || die "doins data failed"
 
 	prepgamesdirs
 }
