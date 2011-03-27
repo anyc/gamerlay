@@ -15,7 +15,7 @@ SLOT="0"
 KEYWORDS=""
 IUSE=""
 
-DEPEND="dev-games/simgear-cs
+DEPEND="dev-games/simgear
 	dev-libs/newmat
 	media-libs/plib
 	sci-libs/gdal
@@ -28,10 +28,6 @@ src_prepare() {
 	epatch ${FILESDIR}/"${PN}"-setrlimit.patch
 	epatch ${FILESDIR}/"${PN}"-use-agg.patch
 	eautoreconf
-}
-
-src_configure() {
-	econf --with-simgear=/usr/simgear
 }
 
 src_compile() {
