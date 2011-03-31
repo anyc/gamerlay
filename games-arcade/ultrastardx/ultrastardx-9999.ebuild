@@ -23,7 +23,7 @@ RDEPEND="media-libs/sdl-image
 	media-libs/sdl-ttf
 	projectm? ( media-libs/libprojectm )
 	=media-libs/portaudio-19*
-	media-video/ffmpeg
+	virtual/ffmpeg
 	dev-db/sqlite
 	virtual/glu"
 DEPEND="${RDEPEND}
