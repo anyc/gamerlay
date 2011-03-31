@@ -26,7 +26,7 @@ RDEPEND="media-libs/ftgl
 	x11-libs/libXrandr
 	xml? ( dev-libs/tinyxml )
 	glut? ( media-libs/freeglut )
-	ffmpeg? ( >=media-video/ffmpeg-0.6 )
+	ffmpeg? ( >=virtual/ffmpeg-0.6 )
 	sound? ( media-libs/sdl-mixer )"
 DEPEND="${RDEPEND}"
 
