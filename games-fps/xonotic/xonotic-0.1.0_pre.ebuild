@@ -41,7 +41,7 @@ UIDEPEND="
 "
 RDEPEND="
 	sys-libs/zlib
-	media-libs/jpeg
+	virtual/jpeg
 	media-libs/libpng
 	net-misc/curl
 	~dev-libs/d0_blind_id-${PV}[crypt?]
