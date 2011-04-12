@@ -17,13 +17,13 @@ KEYWORDS=""
 IUSE="debug devil doc ogre ois +sdl static-libs +threads"
 
 RDEPEND="
-	>=dev-libs/boost:1.44
+	>=dev-libs/boost-1.44
 	media-libs/freetype
 	x11-libs/libX11
 	virtual/opengl
 	devil? ( >=media-libs/devil-1.6.1 )
 	!devil? (
-		media-libs/jpeg
+		virtual/jpeg
 		media-libs/tiff
 		media-libs/libpng
 	)
