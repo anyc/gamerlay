@@ -61,8 +61,8 @@ src_install() {
 		newgamesbin src/reclient ${PN} || die
 		insinto "${GAMES_DATADIR}"/${PN}
 		doins -r data
-		newicon src/site/bits/emblem.jpg ${PN}.jpg
-		make_desktop_entry ${PN} ${PN}
+		newicon src/site/bits/favicon.png ${PN}.png || die
+		make_desktop_entry ${PN} "Red Eclipse" ${PN}
 	fi
 
 	prepgamesdirs
