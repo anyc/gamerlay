@@ -1,8 +1,8 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-games/ogre/ogre-1.6.4.ebuild,v 1.3 2009/12/21 20:44:22 mr_bones_ Exp $
 
-EAPI=2
+EAPI=3
 inherit multilib eutils cmake-utils
 
 MY_PV="${PV//./-}"
@@ -33,11 +33,19 @@ RDEPEND="media-libs/freetype:2
 	zip? ( sys-libs/zlib dev-libs/zziplib )"
 DEPEND="${RDEPEND}
 	x11-proto/xf86vidmodeproto
-	dev-util/cmake
 	dev-util/pkgconfig
+	doc? ( app-doc/doxygen )
 	test? ( dev-util/cppunit )"
 
 S="${WORKDIR}/${PN}_src_v${MY_PV}"
+
+src_prepare() {
+	epatch "${FILESDIR}/${P}-gcc46.patch"
+	if use doc; then
+		sed -i -e "s:share/OGRE/docs:share/doc/${P}:" \
+			Docs/CMakeLists.txt || die "sed failed"
+	fi
+}
 
 src_configure() {
 	#-DOGRE_STATIC=ON
