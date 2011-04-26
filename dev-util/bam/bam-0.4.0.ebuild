@@ -2,9 +2,11 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/bam/bam-0.3.2.ebuild,v 1.1 2010/03/24 23:25:56 volkmar Exp $
 
-EAPI="2"
+EAPI=3
 
-inherit eutils
+PYTHON_DEPEND="2"
+
+inherit eutils python
 
 DESCRIPTION="Fast and flexible Lua-based build system"
 HOMEPAGE="http://matricks.github.com/bam/"
@@ -20,24 +22,29 @@ DEPEND="${RDEPEND}
 	doc? ( dev-lang/python )
 	test? ( dev-lang/python )"
 
+pkg_setup() {
+	python_set_active_version 2
+	python_pkg_setup
+}
+
 src_prepare() {
 	cp "${FILESDIR}"/${PV}/Makefile "${S}"/Makefile || die "cp failed"
 
-	if use test; then
-		epatch "${FILESDIR}"/${PV}/${P}-test.py.patch
-	fi
+	epatch "${FILESDIR}"/${PV}/${P}-test.py.patch
+
+	python_convert_shebangs -r 2 .
 }
 
 src_compile() {
-	emake ${PN} || die "emake failed"
+	emake ${PN} || die
 
 	if use doc; then
-		python scripts/gendocs.py || die "doc generation failed"
+		$(PYTHON) scripts/gendocs.py || die "doc generation failed"
 	fi
 }
 
 src_install() {
-	dobin ${PN} || die "dobin failed"
+	dobin ${PN} || die
 
 	if use doc; then
 		dohtml docs/${PN}{.html,_logo.png} || die "dohtml failed"
