@@ -2,7 +2,9 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/games-action/teeworlds/teeworlds-0.5.2.ebuild,v 1.2 2010/04/04 13:51:12 hwoarang Exp $
 
-EAPI=2
+EAPI=3
+
+PYTHON_DEPEND="2"
 
 inherit eutils python games
 
@@ -16,14 +18,15 @@ KEYWORDS="~amd64 ~x86"
 IUSE="debug dedicated"
 
 RDEPEND="
-	!dedicated? ( media-libs/pnglite
+	!dedicated? (
+		media-libs/pnglite
 		media-libs/libsdl[X,audio,opengl,video]
 		media-sound/wavpack
 		virtual/opengl
-		x11-libs/libX11 )
+		x11-libs/libX11
+	)
 	sys-libs/zlib"
 DEPEND="${RDEPEND}
-	=dev-lang/python-2*
 	~dev-util/bam-0.4.0"
 
 S=${WORKDIR}/${P}-source
