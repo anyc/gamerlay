@@ -16,7 +16,7 @@ IUSE=""
 
 S=${WORKDIR}/${P}-source
 
-DEPEND=">=games-util/grfcodec-5.1.0"
+DEPEND=">=games-util/grfcodec-5.1.1"
 RDEPEND=""
 
 src_compile() {
