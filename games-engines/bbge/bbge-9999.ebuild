@@ -6,7 +6,7 @@ EAPI="2"
 EHG_REPO_URI="http://hg.icculus.org/icculus/aquaria"
 EHG_PROJECT="aquaria"
 
-inherit eutils flag-o-matic cmake-utils mercurial
+inherit flag-o-matic games cmake-utils mercurial
 
 DESCRIPTION="The Bit-Blot Game Engine, used by Aquaria"
 HOMEPAGE="http://www.bit-blot.com/"
@@ -14,9 +14,9 @@ HOMEPAGE="http://www.bit-blot.com/"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS=""
-IUSE="static"
+IUSE="static-libs"
 
-RDEPEND="dev-libs/tinyxml
+RDEPEND=">=dev-libs/tinyxml-2.6.1-r1[stl]
 	media-libs/freetype:2
 	media-libs/ftgl
 	media-libs/glpng
@@ -31,11 +31,8 @@ DEPEND="${RDEPEND}"
 S="${WORKDIR}/aquaria"
 
 src_prepare() {
-	# Use /usr/share/games/<appName> for data path.
-	epatch "${FILESDIR}/gentoo-data-path.patch"
-
 	# Remove bundled stuff to ensure it's not used.
-	rm -r BBGE/{AL,freetype2,FTGL,GL,glext,glpng*,iprof,libogg-*,libvorbis-*,SDL12,tinyxml*} || die
+	rm -r BBGE/{GL,glext} || die
 
 	# Remove bundled sources.
 	# Don't build Aquaria.
@@ -45,11 +42,14 @@ src_prepare() {
 		-e '/ADD_EXECUTABLE[(]/,/[)]/d' \
 		CMakeLists.txt || die
 
+	# Set the data prefix directory.
+	echo "ADD_DEFINITIONS(-DBBGE_DATA_PREFIX=\"${GAMES_DATADIR}\")" >> CMakeLists.txt || die
+
 	# Always build shared.
 	echo 'ADD_LIBRARY(BBGE SHARED ${BBGE_SRCS})' >> CMakeLists.txt || die
 
 	# Optionally build static.
-	if use static; then
+	if use static-libs; then
 		echo 'ADD_LIBRARY(BBGE_Static STATIC ${BBGE_SRCS})' >> CMakeLists.txt || die
 		echo 'SET_TARGET_PROPERTIES(BBGE_Static PROPERTIES OUTPUT_NAME BBGE)' >> CMakeLists.txt || die
 	fi
@@ -58,7 +58,8 @@ src_prepare() {
 	echo 'TARGET_LINK_LIBRARIES(BBGE ftgl glpng openal SDL tinyxml vorbisfile z)' >> CMakeLists.txt || die
 
 	# Use system headers.
-	sed -i 's:\.\./BBGE/::' BBGE/BitmapFont.h || die
+	ln -snf ../ExternalLibs/glfont2 BBGE/glfont2 || die
+	sed -i 's:\.\./ExternalLibs/::' BBGE/*.{cpp,h} || die
 	sed -i -r 's:["<](gl[a-z]*\.h)[">]:<GL/\1>:' BBGE/Base.h BBGE/Texture.cpp || die
 	sed -i -e 's:"FTGL\.h":<FTGL/ftgl.h>:' -e '/FTGLTextureFont\.h/d' BBGE/TTFFont.h || die
 }
