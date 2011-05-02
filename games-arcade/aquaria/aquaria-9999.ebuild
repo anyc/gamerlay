@@ -1,4 +1,4 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -18,7 +18,7 @@ IUSE=""
 RESTRICT="fetch"
 
 RDEPEND="dev-lang/lua
-	>=dev-libs/tinyxml-2.6
+	>=dev-libs/tinyxml-2.6.1-r1[stl]
 	games-engines/bbge
 	media-libs/glpng
 	media-libs/libsdl"
@@ -45,22 +45,20 @@ src_unpack() {
 }
 
 src_prepare() {
-	# Remove bundled stuff to ensure it's not used.
-	rm -r Aquaria/lua-* BBGE/ || die
-
-	# Fix BBGE include paths.
+	# Fix include paths.
 	sed -i \
-		-e "s:\.\./BBGE/glpng:GL/glpng:" \
-		-e "s:\.\./BBGE/tinyxml:tinyxml:" \
+		-e "s:\.\./ExternalLibs/glpng:GL/glpng:" \
+		-e "s:\.\./ExternalLibs/::" \
 		-e "s:\.\./BBGE/:BBGE/:" \
 		Aquaria/*.{cpp,h} || die
 
-	sed -i \
-		-e "/TARGET_LINK_LIBRARIES/d" \
-		-e "/ADD_EXECUTABLE[(]/,/[)]/d" \
-		CMakeLists.txt || die
-
+	# Only build game sources.
+	rm -r BBGE/ || die
+	sed -i "/ADD_EXECUTABLE[(]/,/[)]/d" CMakeLists.txt || die
 	echo 'ADD_EXECUTABLE(aquaria ${AQUARIA_SRCS})' >> CMakeLists.txt || die
+
+	# Redefine libraries to link against.
+	sed -i "/TARGET_LINK_LIBRARIES/d" CMakeLists.txt || die
 	echo "TARGET_LINK_LIBRARIES(aquaria BBGE glpng lua pthread SDL tinyxml)" >> CMakeLists.txt || die
 }
 
@@ -73,25 +71,15 @@ src_install() {
 	dogamesbin "${CMAKE_BUILD_DIR}/${PN}" || die
 
 	cd ../data || die
-	local dir="${GAMES_DATADIR}/Aquaria"
-
-	insinto "${dir}"
+	insinto "${GAMES_DATADIR}/Aquaria"
 	doins -r *.xml */ || die
+	doins -r "${S}"/game_scripts/* || die
 
 	dodoc README-linux.txt || die
-	mv "${D}/${dir}"/docs "${D}/usr/share/doc/${PF}/html" || die
-	dosym /usr/share/doc/${PF}/html "${dir}"/docs || die
+	dohtml -r docs/* || die
 
 	doicon "${PN}.png" || die
 	make_desktop_entry "${PN}" "Aquaria" || die
 
 	prepgamesdirs
-}
-
-pkg_postinst() {
-	elog
-	elog "If you are using a joystick with rumble capability, and wish to use it"
-	elog "export the variable AQUARIA_EVENT_JOYSTICK0 defined as the path to the"
-	elog "device. Example: export AQUARIA_EVENT_JOYSTICK0=/dev/input/event6"
-	elog
 }
