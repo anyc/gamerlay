@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+<herd>no-herd</herd>
+<maintainer>
+<email>azamat.hackimov@gmail.com</email>
+<name>Azamat H. Hackimov</name>
+</maintainer>
+<longdescription lang="en">
+A port of Jagged Alliance 2 to SDL.
+</longdescription>
+<use>
+<flag name='editor'>Enable editor support</flag>
+<flag name='linguas_ru_gold'>Use Russian localization from Jagged Alliance 2: Gold edition</flag>
+</use>
+</pkgmetadata>
