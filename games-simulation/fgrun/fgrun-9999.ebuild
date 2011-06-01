@@ -4,7 +4,7 @@
 
 EAPI=2
 
-inherit games cmake-utils git
+inherit games cmake-utils git-2
 
 DESCRIPTION="A graphical frontend for the FlightGear Flight Simulator"
 HOMEPAGE="http://sourceforge.net/projects/fgrun"

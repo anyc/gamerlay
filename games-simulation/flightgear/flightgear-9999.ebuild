@@ -6,7 +6,7 @@ EAPI=2
 
 EGIT_BRANCH="next"
 
-inherit games cmake-utils git
+inherit games cmake-utils git-2
 
 DESCRIPTION="Open Source Flight Simulator"
 HOMEPAGE="http://www.flightgear.org/"

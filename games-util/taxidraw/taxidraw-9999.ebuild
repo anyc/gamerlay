@@ -5,7 +5,7 @@
 EAPI=2
 WX_GTK_VER="2.8"
 
-inherit games autotools wxwidgets git
+inherit games autotools wxwidgets git-2
 
 DESCRIPTION="a taxiway editor for FlightGear and X-Plane"
 HOMEPAGE="http://taxidraw.sourceforge.net/"

@@ -6,7 +6,7 @@ EAPI=3
 
 EGIT_BRANCH="next"
 
-inherit cmake-utils git
+inherit cmake-utils git-2
 
 DESCRIPTION="Development library for simulation games"
 HOMEPAGE="http://www.simgear.org/"
