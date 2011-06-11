@@ -13,7 +13,7 @@ SRC_URI="mirror://sourceforge/${PN}/${PN}_src_v${MY_PV}.tar.bz2"
 LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="+boost +boost-threads doc cg double-precision examples +freeimage +ois poco-threads test tbb-threads tools +zip"
+IUSE="+boost +boost-threads doc cg double-precision examples +freeimage +ois +opengl poco-threads test tbb-threads tools +zip"
 RESTRICT="test" #139905
 
 RDEPEND="media-libs/freetype:2
@@ -57,6 +57,7 @@ src_configure() {
 		$(cmake-utils_use doc OGRE_INSTALL_DOCS)
 		$(cmake-utils_use examples OGRE_INSTALL_SAMPLES)
 		$(cmake-utils_use freeimage OGRE_CONFIG_ENABLE_FREEIMAGE)
+		$(cmake-utils_use opengl OGRE_BUILD_RENDERSYSTEM_GL)
 		$(cmake-utils_use test OGRE_BUILD_TESTS)
 		$(cmake-utils_use tools OGRE_BUILD_TOOLS)
 		$(cmake-utils_use zip OGRE_CONFIG_ENABLE_ZIP)"
