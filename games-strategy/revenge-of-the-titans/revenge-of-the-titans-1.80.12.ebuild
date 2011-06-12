@@ -8,7 +8,8 @@ inherit games java-pkg-2 versionator
 
 MY_PN=revengeofthetitans
 # Divide second subversion by 10, i.e. 1.80.10 => 1810
-MY_PV=$(version_format_string '${1}$((${2} / 10))${3}')
+#MY_PV=$(version_format_string '${1}$((${2} / 10))${3}')
+MY_PV=$(delete_all_version_separators)
 
 DESCRIPTION="Defeat the returning Titan horde in a series of epic ground battles."
 HOMEPAGE="http://www.puppygames.net/revenge-of-the-titans/"
