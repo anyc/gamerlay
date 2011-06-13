@@ -4,7 +4,7 @@
 
 EAPI="3"
 
-PYTHON_DEPEND="2"
+PYTHON_DEPEND="2:2.7"
 
 inherit eutils python scons-utils versionator
 
