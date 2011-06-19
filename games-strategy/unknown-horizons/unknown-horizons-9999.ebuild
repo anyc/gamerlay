@@ -1,10 +1,10 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="2"
+EAPI="3"
 
-inherit git distutils
+inherit git-2 distutils
 
 DESCRIPTION="Anno-like real time strategy game"
 HOMEPAGE="http://unknown-horizons.org/"
@@ -19,10 +19,10 @@ SLOT="0"
 IUSE=""
 
 DEPEND="
->=dev-lang/python-2.5[sqlite]
-<dev-lang/python-3
-=games-engines/fife-9999
-dev-python/pyyaml
-dev-python/python-distutils-extra
+	>=dev-lang/python-2.5[sqlite]
+	<dev-lang/python-3
+	=games-engines/fife-9999
+	dev-python/pyyaml
+	dev-python/python-distutils-extra
 "
 RDEPEND="$DEPEND"
