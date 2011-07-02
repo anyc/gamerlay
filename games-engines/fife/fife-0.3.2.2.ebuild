@@ -47,6 +47,7 @@ src_prepare() {
 SCONSOPTS="-j1"
 
 src_compile() {
+	export CXXFLAGS="$CXXFLAGS -DBOOST_FILESYSTEM_VERSION=2"
 	escons \
 		--python-prefix="${D}/$(python_get_sitedir)" \
 		--prefix="${D}/usr" \
