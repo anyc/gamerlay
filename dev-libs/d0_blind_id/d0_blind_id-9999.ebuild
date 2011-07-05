@@ -1,12 +1,12 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=2
+EAPI="4"
 
 SCM=""
 if [ "${PV#9999}" != "${PV}" ] ; then
-	SCM="git"
+	SCM="git-2"
 fi
 inherit autotools $SCM
 
@@ -56,7 +56,7 @@ src_configure() {
 }
 
 src_install() {
-	emake DESTDIR="${D}" install || die
+	default
 
-	dodoc d0_blind_id.txt || die
+	dodoc d0_blind_id.txt
 }
