@@ -4,7 +4,7 @@
 
 EAPI=2
 
-inherit eutils games toolchain-funcs git
+inherit eutils games toolchain-funcs git-2
 
 MY_PN="${PN^}"
 DESCRIPTION="Fork of Nexuiz, Deathmatch FPS based on DarkPlaces, an advanced Quake 1 engine"
@@ -58,14 +58,14 @@ DEPEND="${RDEPEND}
 
 src_unpack() {
 	# root
-	git_src_unpack
+	git-2_src_unpack
 
 	# Engine
+	unset EGIT_MASTER EGIT_BRANCH EGIT_COMMIT EGIT_PROJECT EGIT_DIR
 	EGIT_REPO_URI="${BASE_URI}darkplaces.git" \
-	EGIT_PROJECT="darkplaces" \
-	S="${S}/darkplaces" \
+	EGIT_SOURCEDIR="${S}/darkplaces" \
 	EGIT_BRANCH="div0-stable" \
-	git_fetch
+	git-2_src_unpack
 }
 
 src_prepare() {
