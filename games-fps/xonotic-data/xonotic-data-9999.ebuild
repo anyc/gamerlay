@@ -4,13 +4,13 @@
 
 EAPI=2
 
-inherit games check-reqs git
+inherit games check-reqs git-2
 
 MY_PN="${PN%-data}"
 DESCRIPTION="Xonotic data files"
 HOMEPAGE="http://www.xonotic.org/"
-BASE_URI="git://git.xonotic.org/${MY_PN}/"
-EGIT_REPO_URI="${BASE_URI}${MY_PN}.git"
+BASE_URI="git://git.xonotic.org/${MY_PN}/${MY_PN}"
+EGIT_REPO_URI="${BASE_URI}.git"
 EGIT_PROJECT="${MY_PN}"
 
 LICENSE="GPL-2"
@@ -60,16 +60,15 @@ pkg_setup() {
 }
 
 git_pk3_unpack() {
-	EGIT_REPO_URI="${BASE_URI}xonotic-${1}.pk3dir.git" \
-	EGIT_PROJECT="${MY_PN}-${1}.pk3dir" \
-	S="${S}/data/${MY_PN}-${1}.pk3dir" \
-	EGIT_BRANCH="master" \
-	git_fetch
+	unset EGIT_MASTER EGIT_BRANCH EGIT_COMMIT EGIT_PROJECT EGIT_DIR
+	EGIT_REPO_URI="${BASE_URI}-${1}.pk3dir.git" \
+	EGIT_SOURCEDIR="${S}/data/${MY_PN}-${1}.pk3dir" \
+	git-2_src_unpack
 }
 
 src_unpack() {
 	# root
-	git_src_unpack
+	git-2_src_unpack
 
 	# Data
 	git_pk3_unpack data
