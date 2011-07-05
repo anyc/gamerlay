@@ -2,12 +2,12 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=2
+EAPI="4"
 
 ESVN_DISABLE_DEPENDENCIES="true"
 ESVN_OPTIONS="--trust-server-cert --non-interactive"
 
-inherit eutils multilib toolchain-funcs subversion git
+inherit eutils multilib toolchain-funcs subversion git-2
 
 RADIANT_MAJOR_VERSION="5"
 RADIANT_MINOR_VERSION="0"
@@ -79,7 +79,7 @@ radiant_svn_unpack() {
 radiant_zip_unpack() {
 		if use ${1,,}; then
 			cd "${WORKDIR}/packs/" || die
-			unpack "${1}Pack.zip" || die
+			unpack "${1}Pack.zip"
 			mv ${1}Pack ${1,,} || die
 		fi
 }
@@ -98,7 +98,7 @@ pkg_setup() {
 }
 
 src_unpack() {
-	git_src_unpack
+	git-2_src_unpack
 
 	if use gtk; then
 		mkdir "${WORKDIR}/packs/" || die
@@ -122,11 +122,11 @@ src_unpack() {
 		fi
 
 		if use xonotic; then
+			unset EGIT_MASTER EGIT_BRANCH EGIT_COMMIT EGIT_PROJECT EGIT_DIR
 			EGIT_REPO_URI="git://git.xonotic.org/xonotic/netradiant-xonoticpack.git" \
-			EGIT_BRANCH="master" \
 			EGIT_PROJECT="${PN}-xonotic" \
-			S="${WORKDIR}/packs/xonotic" \
-			git_fetch
+			EGIT_SOURCEDIR="${WORKDIR}/packs/xonotic" \
+			git-2_src_unpack
 
 			cd "${WORKDIR}/packs/xonotic" || die
 			ewarn "Using \"wget\" directly for downloading from http://git.xonotic.org/"
@@ -179,43 +179,42 @@ src_configure() {
 
 	# dependencies-check wants gtk
 	if use gtk; then
-		emake dependencies-check || die
+		emake dependencies-check
 	fi
 }
 
 src_compile() {
-	emake ${targets// / binaries-} || die
+	emake ${targets// / binaries-}
 }
 
 src_install() {
 	insinto /usr/$(get_libdir)/${PN}
 	doins \
-		setup/data/tools/q3data.qdt \
-		|| die
+		setup/data/tools/q3data.qdt
 
 	dodoc ChangeLog ChangeLog.idsoftware CONTRIBUTORS TODO tools/quake3/q3map2/changelog.q3map{1,2.txt}
 
 	pushd install || die
 	exeinto /usr/$(get_libdir)/${PN}
 	for i in ${targets}; do
-		doexe ${i}.x86 || die
-		dosym /usr/$(get_libdir)/${PN}/${i}.x86 /usr/bin/${i} || die
+		doexe ${i}.x86
+		dosym /usr/$(get_libdir)/${PN}/${i}.x86 /usr/bin/${i}
 	done
 
 	# radiant
 	if use gtk; then
-		dosym /usr/$(get_libdir)/${PN}/radiant.x86 /usr/bin/${PN} || die
+		dosym /usr/$(get_libdir)/${PN}/radiant.x86 /usr/bin/${PN}
 
-		newicon "${S}"/icons/radiant-src.png ${PN}.png || die
+		newicon "${S}"/icons/radiant-src.png ${PN}.png
 		make_desktop_entry ${PN} NetRadiant ${PN} "Development;GTK;"
 
 		# modules
 		insinto /usr/$(get_libdir)/${PN}/modules
-		doins modules/*.so || die
+		doins modules/*.so
 
 		# plugins
 		insinto /usr/$(get_libdir)/${PN}/plugins
-		doins plugins/*.so || die
+		doins plugins/*.so
 
 		# data
 		popd || die
@@ -229,8 +228,7 @@ src_install() {
 			setup/data/tools/gl \
 			setup/data/tools/global.xlink \
 			setup/data/tools/plugins \
-			docs \
-			|| die
+			docs
 
 		# packs
 		for x in ${MY_RADIANT_PACKS//+/}; do
@@ -245,10 +243,10 @@ src_install() {
 					-e 's/^tremulous/trem/' \
 				)"
 				insinto /usr/$(get_libdir)/${PN}
-				doins -r ${n}.game || die
+				doins -r ${n}.game
 
 				insinto /usr/$(get_libdir)/${PN}/games
-				doins games/${n}.game || die
+				doins games/${n}.game
 			fi
 		done
 	fi
