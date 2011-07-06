@@ -11,7 +11,6 @@ DESCRIPTION="Xonotic data files"
 HOMEPAGE="http://www.xonotic.org/"
 BASE_URI="git://git.xonotic.org/${MY_PN}/${MY_PN}"
 EGIT_REPO_URI="${BASE_URI}.git"
-EGIT_PROJECT="${MY_PN}"
 
 LICENSE="GPL-2"
 SLOT="0"
