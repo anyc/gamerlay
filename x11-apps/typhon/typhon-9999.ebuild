@@ -17,27 +17,24 @@ HOMEPAGE="http://www.frostworx.de/?p=1"
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS=""
-IUSE="debug ffmpeg glut mmd +sound +xml"
+IUSE="debug glut mmd +sound +xml"
 
 S="${WORKDIR}/${P/_/-}"
 
 RDEPEND="media-libs/ftgl
 	virtual/opengl
-	media-libs/devil[jpeg,opengl,png]
+	media-libs/libsfml
+	media-libs/opencv
 	x11-libs/libXrender
 	x11-libs/libXrandr
 	mmd? ( media-libs/libmmd )
 	xml? ( dev-libs/tinyxml )
-	glut? ( media-libs/freeglut )
-	ffmpeg? ( >=virtual/ffmpeg-0.6 )
-	sound? ( media-libs/sdl-mixer )"
+	glut? ( media-libs/freeglut )"
 DEPEND="${RDEPEND}"
 
 src_configure() {
 	local mycmakeargs=(
-		$(cmake-utils_use !sound NOSOUND)
 		$(cmake-utils_use !glut NOGLUT)
-		$(cmake-utils_use !ffmpeg NOVIDEOPLAYER)
 		$(cmake-utils_use debug DEBUG)
 		$(cmake-utils_use xml xml)
 		$(cmake-utils_use mmd WITHMMD)
