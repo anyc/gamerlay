@@ -31,7 +31,7 @@ RDEPEND="dev-libs/boost
 	sys-libs/zlib
 	x11-libs/libXcursor
 	x11-libs/libXext
-	dev-games/guichan
+	dev-games/guichan[sdl]
 	opengl? ( virtual/opengl virtual/glu )"
 DEPEND="${RDEPEND}
 	dev-lang/swig"
