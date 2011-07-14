@@ -37,7 +37,7 @@ src_configure() {
 		$(cmake-utils_use !glut NOGLUT)
 		$(cmake-utils_use debug DEBUG)
 		$(cmake-utils_use xml xml)
-		$(cmake-utils_use mmd WITHMMD)
+		$(cmake-utils_use !mmd NOMMD)
 	)
 
 	cmake-utils_src_configure
