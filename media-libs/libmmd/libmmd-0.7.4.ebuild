@@ -14,7 +14,7 @@ SLOT="0"
 KEYWORDS="~x86 ~amd64"
 IUSE="debug +sfml"
 
-RDEPEND="sci-physics/bullet
+RDEPEND="sci-physics/bullet[-double-precision]
 	sfml? ( media-libs/libsfml )"
 DEPEND="${RDEPEND}"
 
