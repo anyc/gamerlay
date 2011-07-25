@@ -23,8 +23,10 @@ S="${WORKDIR}/${P/_/-}"
 
 RDEPEND="media-libs/ftgl
 	virtual/opengl
+	media-libs/libpng
 	media-libs/libsfml
 	media-libs/opencv
+	sys-libs/zlib
 	x11-libs/libXrender
 	x11-libs/libXrandr
 	mmd? ( media-libs/libmmd )
