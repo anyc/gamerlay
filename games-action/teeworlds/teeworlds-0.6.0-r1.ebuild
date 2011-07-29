@@ -89,6 +89,9 @@ src_install() {
 		insinto "${GAMES_DATADIR}"/${PN}/data/maps
 		doins -r data/maps/* || die "doins failed"
 	fi
+	newinitd "${FILESDIR}"/${PN}-init.d ${PN}
+	insinto "/etc/${PN}"
+	doins "${FILESDIR}"/teeworlds_srv.cfg
 
 	dodoc readme.txt || die "dodoc failed"
 
