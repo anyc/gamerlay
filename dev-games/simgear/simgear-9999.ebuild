@@ -15,7 +15,7 @@ EGIT_REPO_URI="git://gitorious.org/fg/simgear.git"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS=""
-IUSE="video_cards_radeon"
+IUSE=""
 
 RDEPEND=">=dev-games/openscenegraph-2.9[png]
 	dev-libs/boost
@@ -25,9 +25,3 @@ RDEPEND=">=dev-games/openscenegraph-2.9[png]
 DEPEND="${RDEPEND}"
 
 DOCS=(NEWS AUTHORS)
-
-src_prepare() {
-	if use video_cards_radeon; then
-	epatch "${FILESDIR}/simgear-radeon-fix-runway-lights.patch"
-	fi
-}
