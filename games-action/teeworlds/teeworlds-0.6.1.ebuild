@@ -12,7 +12,7 @@ REVISION="b177-r50edfd37"
 
 DESCRIPTION="Online multi-player platform 2D shooter"
 HOMEPAGE="http://www.teeworlds.com/"
-SRC_URI="http://www.teeworlds.com/files/teeworlds-0.6.1-source.tar.gz"
+SRC_URI="http://www.teeworlds.com/files/${P}-source.tar.gz"
 
 LICENSE="ZLIB"
 SLOT="0"
