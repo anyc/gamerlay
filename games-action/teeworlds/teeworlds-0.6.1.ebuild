@@ -8,9 +8,11 @@ PYTHON_DEPEND="2"
 
 inherit eutils python games
 
+REVISION="b177-r50edfd37"
+
 DESCRIPTION="Online multi-player platform 2D shooter"
 HOMEPAGE="http://www.teeworlds.com/"
-SRC_URI="http://www.teeworlds.com/files/${P}-src.tar.gz"
+SRC_URI="http://www.teeworlds.com/files/teeworlds-0.6.1-source.tar.gz"
 
 LICENSE="ZLIB"
 SLOT="0"
@@ -29,7 +31,7 @@ RDEPEND="
 DEPEND="${RDEPEND}
 	~dev-util/bam-0.4.0"
 
-S=${WORKDIR}/${P}-source
+S=${WORKDIR}/${PN}-${REVISION}-source
 
 pkg_setup() {
 	python_set_active_version 2
@@ -37,11 +39,9 @@ pkg_setup() {
 }
 
 src_prepare() {
-	# 001 & 002 from pull request: https://github.com/oy/teeworlds/pull/493
-	epatch \
-		"${FILESDIR}"/${P}-001-use-system-wavpack.patch \
-		"${FILESDIR}"/${P}-002-fixed-wavpack-sound-loading.patch \
-		"${FILESDIR}"/${P}-003-use-system-pnglite.patch
+	# 01 & 02 from pull request: https://github.com/oy/teeworlds/pull/493
+	EPATCH_SOURCE="${FILESDIR}/${PV}" EPATCH_SUFFIX="patch" EPATCH_FORCE="yes" \
+		epatch
 }
 
 src_configure() {

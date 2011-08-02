@@ -1,17 +1,19 @@
-From 5a5322491704c14f5aed72148db6b134484cedec Mon Sep 17 00:00:00 2001
-From: xalduin <xalduin@gmail.com>
-Date: Sat, 12 Feb 2011 23:58:55 -0500
-Subject: [PATCH 2/3] Fixed wavpack sound loading
+Fixing wavpack sound loading. Based on Gentoo Bugzilla
 
+From: Azamat H. Hackimov <azamat.hackimov@gmail.com>
+
+https://bugs.gentoo.org/show_bug.cgi?id=363395
 ---
- src/engine/client/sound.cpp |   56 ++++++++++++++++++++++++++++++++++++++----
+
+ src/engine/client/sound.cpp |   56 ++++++++++++++++++++++++++++++++++++++-----
  1 files changed, 50 insertions(+), 6 deletions(-)
 
+
 diff --git a/src/engine/client/sound.cpp b/src/engine/client/sound.cpp
-index e38ad32..6101602 100644
+index f356e34..b55a798 100644
 --- a/src/engine/client/sound.cpp
 +++ b/src/engine/client/sound.cpp
-@@ -49,6 +49,54 @@ struct CVoice
+@@ -50,6 +50,54 @@ struct CVoice
  	int m_X, m_Y;
  } ;
  
@@ -66,7 +68,7 @@ index e38ad32..6101602 100644
  static CSample m_aSamples[NUM_SAMPLES] = { {0} };
  static CVoice m_aVoices[NUM_VOICES] = { {0} };
  static CChannel m_aChannels[NUM_CHANNELS] = { {255, 0} };
-@@ -328,14 +376,12 @@ int CSound::LoadWV(const char *pFilename)
+@@ -333,14 +381,12 @@ int CSound::LoadWV(const char *pFilename)
  	if(!m_pStorage)
  		return -1;
  
@@ -81,7 +83,7 @@ index e38ad32..6101602 100644
  
  	SampleID = AllocID();
  	if(SampleID < 0)
-@@ -345,7 +391,7 @@ int CSound::LoadWV(const char *pFilename)
+@@ -350,7 +396,7 @@ int CSound::LoadWV(const char *pFilename)
  	#ifndef WAVPACK_H
  	pContext = WavpackOpenFileInput(ReadData, aError);
  	#else
@@ -90,7 +92,7 @@ index e38ad32..6101602 100644
  	#endif
  	if (pContext)
  	{
-@@ -398,13 +444,11 @@ int CSound::LoadWV(const char *pFilename)
+@@ -404,13 +450,11 @@ int CSound::LoadWV(const char *pFilename)
  	}
  	else
  	{
@@ -105,6 +107,3 @@ index e38ad32..6101602 100644
  
  	if(g_Config.m_Debug)
  		dbg_msg("sound/wv", "loaded %s", pFilename);
--- 
-1.7.3.4
-
