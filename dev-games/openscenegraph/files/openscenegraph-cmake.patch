@@ -1,5 +1,5 @@
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index 6858e70..c4cc339 100644
+index 6858e70..3bddcf2 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
 @@ -421,6 +421,7 @@ CONFIGURE_FILE("${CMAKE_CURRENT_SOURCE_DIR}/src/osg/Version.in"
@@ -61,7 +61,7 @@ index 6858e70..c4cc339 100644
 +MACRO_OPTIONAL_FIND_PACKAGE(RSVG)
 +MACRO_OPTIONAL_FIND_PACKAGE(GtkGl)
 +FIND_PACKAGE(DirectInput)
-+FIND_PACKAGE(NVTT)
++MACRO_OPTIONAL_FIND_PACKAGE(NVTT)
  ENDIF()
  
  # Include macro utilities here

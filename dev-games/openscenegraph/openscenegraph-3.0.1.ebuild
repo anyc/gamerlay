@@ -92,6 +92,7 @@ src_configure() {
 
 	mycmakeargs=(
 		-DWITH_OpenAL=OFF # Commented out in buildsystem
+		-DWITH_NVTT=OFF #ebuild only available in overlays and buildsystem is in bad state
 		-DGENTOO_DOCDIR="/usr/share/doc/${PF}"
 		$(cmake-utils_use_with curl)
 		$(cmake-utils_use_build doc DOCUMENTATION)
