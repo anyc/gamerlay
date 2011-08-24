@@ -1,0 +1,29 @@
+diff --git a/src/Makefile b/src/Makefile
+index 5bb5259..340aec2 100644
+--- a/src/Makefile
++++ b/src/Makefile
+@@ -35,12 +35,11 @@ PLIB_PREFIX := /usr/local/src/fgfs-builder/install
+ OPENAL_PREFIX := /usr/local/src/fgfs-builder/install
+ SVNDEF := -D'SVN_REV="$(shell svnversion -n .)"'
+ INSTALL_BIN := /usr/local/bin
+-INSTALL_DIR := /usr/local/fgcom
++INSTALL_DIR := /usr/share/fgcom
+ SIMGEAR_INC := ~/tmp/simgear
+-DEBUG := -O0 -Wall -ggdb
+-CXXFLAGS := $(DEBUG) $(SVNDEF) -I $(OPENAL_PREFIX) -I ../iaxclient/lib -I $(PLIB_PREFIX)/include
++CXXFLAGS := $(CFLAGS) $(SVNDEF) -I $(OPENAL_PREFIX) -I ../iaxclient/lib -I $(PLIB_PREFIX)/include
+ CXXFLAGS += -I $(SIMGEAR_INC) -DDEFAULT_POSITIONS_FILE=\"$(INSTALL_DIR)/positions.txt\" -DSPECIAL_FREQUENCIES_FILE=\"$(INSTALL_DIR)/special_frequencies.txt\"
+-LDFLAGS := -L $(PLIB_PREFIX)/lib
++LIBS := -L $(PLIB_PREFIX)/lib
+ STATIC_LIBS := ../iaxclient/lib/libiaxclient.a -lopenal -lasound -lplibul -lplibnet -lpthread -lsgmisc -lsgdebug -lz -lm
+ INDENT := /usr/bin/indent
+ ECHO := /bin/echo -e
+@@ -78,7 +77,7 @@ iaxclient:
+ 
+ fgcomstatic: $(OFILES)
+ 	cd ../iaxclient/lib && make
+-	$(CXX) $(LDFLAGS) $(OFILES) $(STATIC_LIBS) -o fgcom
++	$(CXX) $(LDFLAGS) $(OFILES) $(LIBS) $(STATIC_LIBS) -o fgcom
+ 
+ indent:	$(CPPFILES) $(HFILES)
+ 	$(INDENT) $(IFLAGS) $(CPPFILES) $(HFILES)
