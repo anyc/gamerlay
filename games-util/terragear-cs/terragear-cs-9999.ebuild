@@ -25,6 +25,7 @@ DEPEND="dev-games/simgear
 RDEPEND="${DEPEND}"
 
 src_prepare() {
+	epatch ${FILESDIR}/"${PN}"-fix-parallel-build.patch
 	epatch ${FILESDIR}/"${PN}"-setrlimit.patch
 	epatch ${FILESDIR}/"${PN}"-use-agg.patch
 	eautoreconf
@@ -32,8 +33,4 @@ src_prepare() {
 
 src_configure() {
 	econf $(use_with gdal)
-}
-
-src_compile() {
-	emake -j1
 }
