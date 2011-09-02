@@ -8,7 +8,8 @@ inherit games
 
 DESCRIPTION="An unquestionably awesome 2D game engine"
 HOMEPAGE="http://love2d.org/"
-SRC_URI=" mirror://sourceforge/${PN}/${P}-linux-src.tar.gz"
+#SRC_URI=" mirror://sourceforge/${PN}/${P}-linux-src.tar.gz"
+SRC_URI="https://bitbucket.org/rude/${PN}/downloads/${P}-linux-src.tar.gz"
 
 LICENSE="ZLIB"
 SLOT="0"
@@ -25,4 +26,4 @@ DEPEND="dev-games/physfs
 	media-sound/mpg123"
 RDEPEND="${DEPEND}"
 
-S=${WORKDIR}/${PN}-20100303-db7cd0682883
+S=${WORKDIR}/${PN}-HEAD
