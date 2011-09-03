@@ -17,7 +17,7 @@ HOMEPAGE="http://www.frostworx.de/?p=1"
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS=""
-IUSE="debug glut mmd +sound +xml"
+IUSE="debug glut mmd opencv +sound +xml"
 
 S="${WORKDIR}/${P/_/-}"
 
@@ -25,7 +25,7 @@ RDEPEND="media-libs/ftgl
 	virtual/opengl
 	media-libs/libpng
 	media-libs/libsfml
-	media-libs/opencv
+	opencv? ( media-libs/opencv )
 	sys-libs/zlib
 	x11-libs/libXrender
 	x11-libs/libXrandr
@@ -40,6 +40,7 @@ src_configure() {
 		$(cmake-utils_use debug DEBUG)
 		$(cmake-utils_use xml xml)
 		$(cmake-utils_use !mmd NOMMD)
+		$(cmake-utils_use !opencv NOCV)		
 	)
 
 	cmake-utils_src_configure
