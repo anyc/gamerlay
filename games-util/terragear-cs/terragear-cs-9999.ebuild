@@ -15,7 +15,7 @@ SLOT="0"
 KEYWORDS=""
 IUSE="gdal"
 
-DEPEND="dev-games/simgear
+DEPEND="dev-games/simgear-cs
 	dev-libs/newmat
 	media-libs/plib
 	|| ( =x11-libs/agg-2.5 >x11-libs/agg-2.5[gpc] )
@@ -32,5 +32,7 @@ src_prepare() {
 }
 
 src_configure() {
-	econf $(use_with gdal)
+	econf \
+	--with-simgear=/usr/simgear \
+	$(use_with gdal)
 }
