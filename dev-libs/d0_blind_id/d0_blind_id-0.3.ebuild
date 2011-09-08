@@ -4,15 +4,13 @@
 
 EAPI="4"
 
-inherit autotools git-2
-
 DESCRIPTION="Blind-ID library for user identification using RSA blind signatures"
 HOMEPAGE="http://git.xonotic.org/?p=xonotic/d0_blind_id.git;a=summary"
-EGIT_REPO_URI="git://git.xonotic.org/xonotic/${PN}.git"
+SRC_URI="https://github.com/downloads/divVerent/${PN}/${P}.tar.gz"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="~amd64 ~x86"
 IUSE="crypt openssl static-libs tommath"
 REQUIRED_USE="openssl? ( !tommath )"
 
@@ -30,10 +28,6 @@ pkg_setup() {
 	use crypt || ewarn "You will have no encryption, only authentication."
 	use openssl && ewarn "OpenSSL is for Mac OS X users only, GMP is faster."
 	use tommath && ewarn "You enabled libtommath, GMP is faster."
-}
-
-src_prepare() {
-	eautoreconf
 }
 
 src_configure() {
