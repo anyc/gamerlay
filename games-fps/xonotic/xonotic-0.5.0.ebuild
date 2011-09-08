@@ -4,17 +4,16 @@
 
 EAPI=2
 
-inherit eutils games toolchain-funcs git-2
+inherit eutils games toolchain-funcs check-reqs
 
 MY_PN="${PN^}"
 DESCRIPTION="Fork of Nexuiz, Deathmatch FPS based on DarkPlaces, an advanced Quake 1 engine"
 HOMEPAGE="http://www.xonotic.org/"
-BASE_URI="git://git.xonotic.org/${PN}/"
-EGIT_REPO_URI="${BASE_URI}${PN}.git"
+SRC_URI="http://dl.xonotic.org/${P}.zip"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="~amd64 ~x86"
 IUSE="alsa crypt debug dedicated opengl +s3tc sdl"
 
 UIRDEPEND="
@@ -30,7 +29,6 @@ UIRDEPEND="
 	x11-libs/libXxf86vm
 	virtual/opengl
 	media-libs/freetype:2
-	~games-fps/xonotic-data-9999[client]
 	alsa? ( media-libs/alsa-lib )
 	s3tc? ( media-libs/libtxc_dxtn )
 	sdl? ( media-libs/libsdl[X,audio,joystick,opengl,video,alsa?] )
@@ -46,8 +44,7 @@ RDEPEND="
 	virtual/jpeg
 	media-libs/libpng
 	net-misc/curl
-	~dev-libs/d0_blind_id-${PV}[crypt?]
-	~games-fps/xonotic-data-9999
+	~dev-libs/d0_blind_id-0.3[crypt?]
 	opengl? ( ${UIRDEPEND} )
 	!dedicated? ( !opengl? ( ${UIRDEPEND} ) )
 "
@@ -56,16 +53,13 @@ DEPEND="${RDEPEND}
 	!dedicated? ( !opengl? ( ${UIDEPEND} ) )
 "
 
-src_unpack() {
-	# root
-	git-2_src_unpack
+S="${WORKDIR}/${MY_PN}"
 
-	# Engine
-	unset EGIT_MASTER EGIT_BRANCH EGIT_COMMIT EGIT_PROJECT EGIT_DIR
-	EGIT_REPO_URI="${BASE_URI}darkplaces.git" \
-	EGIT_SOURCEDIR="${S}/darkplaces" \
-	EGIT_BRANCH="div0-stable" \
-	git-2_src_unpack
+pkg_setup() {
+	ewarn "You need 943 MiB diskspace for distfiles."
+	CHECKREQS_DISK_BUILD="1960M"
+	CHECKREQS_DISK_USR="900M"
+	check-reqs_pkg_setup
 }
 
 src_prepare() {
@@ -76,7 +70,7 @@ src_prepare() {
 	rm -rf misc/buildfiles/
 
 	# Engine
-	pushd darkplaces
+	pushd source/darkplaces
 	sed -i \
 		-e "/^EXE_/s:darkplaces:${PN}:" \
 		-e "s:-O3:${CFLAGS}:" \
@@ -93,7 +87,7 @@ src_prepare() {
 
 src_compile() {
 	# Engine
-	pushd darkplaces
+	cd source/darkplaces
 	if use debug; then
 		ENGINEOPTS="debug"
 	else
@@ -111,15 +105,14 @@ src_compile() {
 	if use dedicated; then
 		emake sv-${ENGINEOPTS} || die "emake sv-${ENGINEOPTS} failed"
 	fi
-	popd
 }
 
 src_install() {
 	# Engine & docs
-	pushd darkplaces
+	pushd source/darkplaces
 	if use opengl || use !dedicated; then
 		dogamesbin ${PN}-glx || die "dogamesbin glx failed"
-		newicon ../misc/logos/${PN}_icon.svg ${PN}.svg
+		newicon ../../misc/logos/${PN}_icon.svg ${PN}.svg
 		make_desktop_entry ${PN}-glx "${MY_PN} (GLX)"
 
 		if use sdl; then
@@ -137,7 +130,7 @@ src_install() {
 	popd
 
 	dodoc Docs/*.txt
-	dohtml -r readme.html Docs
+	dohtml -r Docs
 
 	insinto "${GAMES_DATADIR}/${PN}"
 
@@ -147,6 +140,9 @@ src_install() {
 	if use dedicated; then
 		doins -r server || die "doins server failed"
 	fi
+
+	# Data
+	doins -r data || die "doins data failed"
 
 	prepgamesdirs
 }

@@ -6,4 +6,7 @@
 		<email>nikoli@lavabit.com</email>
 		<name>Nikoli</name>
 	</maintainer>
+	<use>
+		<flag name='s3tc'>Install <pkg>media-libs/libtxc_dxtn</pkg> for S3TC texture (de)compression, works with mesa drivers only</flag>
+	</use>
 </pkgmetadata>
