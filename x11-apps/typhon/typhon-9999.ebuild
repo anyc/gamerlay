@@ -17,26 +17,24 @@ HOMEPAGE="http://www.frostworx.de/?p=1"
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS=""
-IUSE="debug glut mmd opencv +sound +xml"
+IUSE="debug mmd opencv +xml"
 
 S="${WORKDIR}/${P/_/-}"
 
 RDEPEND="media-libs/ftgl
 	virtual/opengl
 	media-libs/libpng
-	media-libs/libsfml
+	>=media-libs/libsfml-2.0
 	opencv? ( media-libs/opencv )
 	sys-libs/zlib
 	x11-libs/libXrender
 	x11-libs/libXrandr
 	mmd? ( media-libs/libmmd )
-	xml? ( dev-libs/tinyxml )
-	glut? ( media-libs/freeglut )"
+	xml? ( dev-libs/tinyxml )"
 DEPEND="${RDEPEND}"
 
 src_configure() {
 	local mycmakeargs=(
-		$(cmake-utils_use !glut NOGLUT)
 		$(cmake-utils_use debug DEBUG)
 		$(cmake-utils_use xml xml)
 		$(cmake-utils_use !mmd NOMMD)
