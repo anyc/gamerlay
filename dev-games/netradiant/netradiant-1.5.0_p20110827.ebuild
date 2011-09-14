@@ -4,19 +4,14 @@
 
 EAPI="4"
 
-EGIT_NOUNPACK="true"
-ESVN_DISABLE_DEPENDENCIES="true"
-ESVN_OPTIONS="--trust-server-cert --non-interactive"
-
-inherit eutils multilib toolchain-funcs subversion git-2
+inherit eutils multilib toolchain-funcs
 
 RADIANT_MAJOR_VERSION="5"
 RADIANT_MINOR_VERSION="0"
 DESCRIPTION="NetRadiant is a fork of map editor for Q3 based games, GtkRadiant 1.5"
 HOMEPAGE="http://dev.alientrap.org/projects/netradiant"
-EGIT_REPO_URI="git://git.xonotic.org/xonotic/netradiant.git"
 BASE_ZIP_URI="http://ingar.satgnu.net/files/gtkradiant/gamepacks/"
-SRC_URI="
+SRC_URI="http://rion-overlay.googlecode.com/files/${P}.tar.xz
 	osirion? ( ${BASE_ZIP_URI}/OsirionPack.zip )
 	warsow? ( ${BASE_ZIP_URI}/WarsowPack.zip )
 	!bindist? (
@@ -29,9 +24,9 @@ SRC_URI="
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="~amd64 ~x86"
 RADIANT_GPL_PACKS="darkplaces nexuiz osirion quake2world warsow +xonotic"
-RADIANT_NONGPL_PACKS="openarena quake quake2 quake3 tremulous ufoai"
+RADIANT_NONGPL_PACKS="openarena quake quake2 tremulous"
 RADIANT_TOOLS="h2data q2map q3data q3map2 qdata3"
 RADIANT_PACKS="${RADIANT_GPL_PACKS} ${RADIANT_NONGPL_PACKS}"
 RADIANT_BINS=" ${RADIANT_TOOLS} gtk"
@@ -50,32 +45,17 @@ RDEPEND="
 	!dev-games/gtkradiant
 "
 DEPEND="${RDEPEND}
+	app-arch/xz-utils
 	dev-util/pkgconfig
-	darkplaces? ( ${SUBVERSION_DEPEND} )
 	osirion? ( app-arch/unzip )
-	quake2world? ( ${SUBVERSION_DEPEND} )
 	warsow? ( app-arch/unzip )
-	xonotic? ( net-misc/wget )
 	!bindist? (
 		openarena? ( app-arch/unzip )
 		quake? ( app-arch/unzip )
 		quake2? ( app-arch/unzip )
-		quake3? ( ${SUBVERSION_DEPEND} )
 		tremulous? ( app-arch/unzip )
-		ufoai? ( ${SUBVERSION_DEPEND} )
 	)
 "
-WGET="/usr/bin/wget -t 3 -T 60"
-
-radiant_svn_unpack() {
-	if use ${1}; then
-		cd "${WORKDIR}/packs/" || die
-		ESVN_REPO_URI="${2}" \
-		ESVN_PROJECT="${PN}-${1}" \
-		S="${WORKDIR}/packs/${1}" \
-		subversion_fetch
-	fi
-}
 
 radiant_zip_unpack() {
 		if use ${1,,}; then
@@ -99,64 +79,18 @@ pkg_setup() {
 }
 
 src_unpack() {
-	git-2_src_unpack
+	unpack ${P}.tar.xz
 
 	if use gtk; then
-		mkdir "${WORKDIR}/packs/" || die
-
-		radiant_svn_unpack darkplaces \
-			"https://zerowing.idsoftware.com/svn/radiant.gamepacks/DarkPlacesPack/branches/1.5/"
-		radiant_svn_unpack quake2world \
-			"svn://jdolan.dyndns.org/quake2world/trunk/gtkradiant"
 		radiant_zip_unpack Osirion
 		radiant_zip_unpack Warsow
 
-		if use nexuiz; then
-			cd "${WORKDIR}/packs/" || die
-			ewarn "Using \"git archive\" directly for downloading from http://git.xonotic.org/"
-			ewarn "This might be potential security risk, make sure that you know what you are doing"
-			git archive \
-				--remote="git://git.icculus.org/divverent/nexuiz.git" \
-				--prefix="nexuiz/" \
-				master:misc/netradiant-NexuizPack \
-				| tar xvf - 2>/dev/null || die
-		fi
-
-		if use xonotic; then
-			unset EGIT_MASTER EGIT_BRANCH EGIT_COMMIT EGIT_PROJECT EGIT_DIR
-			EGIT_REPO_URI="git://git.xonotic.org/xonotic/netradiant-xonoticpack.git" \
-			EGIT_PROJECT="${PN}-xonotic" \
-			EGIT_SOURCEDIR="${WORKDIR}/packs/xonotic" \
-			git-2_src_unpack
-
-			cd "${WORKDIR}/packs/xonotic" || die
-			ewarn "Using \"wget\" directly for downloading from http://git.xonotic.org/"
-			ewarn "This might be potential security risk, make sure that you know what you are doing"
-			while IFS="	" read -r FILE URL; do
-				$WGET -O "$FILE" "$URL" || die
-			done < "extra-urls.txt"
-		fi
-
 		if use !bindist; then
 			MY_RADIANT_PACKS="${RADIANT_GPL_PACKS//+/} ${RADIANT_NONGPL_PACKS}"
-			radiant_svn_unpack ufoai \
-				"https://zerowing.idsoftware.com/svn/radiant.gamepacks/UFOAIPack/branches/1.5/"
-
 			radiant_zip_unpack OpenArena
 			radiant_zip_unpack Quake
 			radiant_zip_unpack Quake2
 			radiant_zip_unpack Tremulous
-
-			if use quake3; then
-				ESVN_REPO_URI="https://zerowing.idsoftware.com/svn/radiant.gamepacks/Q3Pack/trunk/" \
-				ESVN_PROJECT="${PN}-quake3" \
-				ESVN_REVISION="29" \
-				S="${WORKDIR}/packs/quake3-tmp" \
-				subversion_fetch
-				cd "${WORKDIR}/packs/" || die
-				mv quake3-tmp/tools quake3 || die
-				rm -rf quake3-tmp || die
-			fi
 		else
 			MY_RADIANT_PACKS="${RADIANT_GPL_PACKS//+/}"
 			for i in ${RADIANT_NONGPL_PACKS}; do
@@ -251,9 +185,4 @@ src_install() {
 			fi
 		done
 	fi
-}
-
-pkg_preinst() {
-	# subversion_pkg_preinst seems broken
-	true
 }
