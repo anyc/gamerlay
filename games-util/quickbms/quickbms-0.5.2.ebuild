@@ -4,8 +4,6 @@
 
 EAPI=3
 
-#inherit games
-
 DESCRIPTION="Files extractor and reimporter, archives and file formats parser"
 HOMEPAGE="http://aluigi.altervista.org/quickbms.htm"
 SRC_URI="http://aluigi.altervista.org/papers/${PN}.zip -> ${P}.zip"
@@ -15,7 +13,9 @@ SLOT="0"
 KEYWORDS="~x86"
 IUSE=""
 
-DEPEND=""
+DEPEND="app-arch/bzip2
+	dev-libs/openssl
+	sys-libs/zlib"
 RDEPEND="app-arch/unzip"
 
 S="${WORKDIR}"
