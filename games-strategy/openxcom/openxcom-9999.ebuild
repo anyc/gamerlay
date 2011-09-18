@@ -29,15 +29,9 @@ RDEPEND=">=dev-cpp/yaml-cpp-0.2.6
 	media-libs/sdl-mixer[timidity]"
 DEPEND="${RDEPEND}"
 
-src_prepare() {
-	epatch "${FILESDIR}"/${PN}-0.3-makefile.patch
-	sed -i -e "s:/usr/share/openxcom:${GAMES_DATADIR}/${PN}:" \
-		"${S}"/src/Engine/CrossPlatform.cpp || die "sed failed"
-}
-
 src_compile() {
 	cd src
-	emake || die "make failed"
+	emake DATADIR="${GAMES_DATADIR}/${PN}/" || die "make failed"
 }
 
 src_install() {
