@@ -31,6 +31,7 @@ src_configure() {
 	mycmakeargs=(
 	-DCMAKE_INSTALL_PREFIX=${GAMES_PREFIX}
 	-DENABLE_FGADMIN=OFF
+	-DEVENT_INPUT=OFF
 	-DWITH_FGPANEL=OFF
 	$(cmake-utils_use subversion ENABLE_LIBSVN)
 	)
