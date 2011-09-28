@@ -25,7 +25,6 @@ DEPEND="dev-games/simgear-cs
 RDEPEND="${DEPEND}"
 
 src_prepare() {
-	epatch ${FILESDIR}/"${PN}"-fix-parallel-build.patch
 	epatch ${FILESDIR}/"${PN}"-setrlimit.patch
 	epatch ${FILESDIR}/"${PN}"-use-agg.patch
 	eautoreconf
