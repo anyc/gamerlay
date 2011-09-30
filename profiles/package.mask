@@ -1,8 +1,4 @@
-# Azamat H. Hackimov <azamat.hackimov@gmailc.com> (03 Aug 2011)
-# Wait until libpng-1.5, API breakage
->=media-libs/freeimage-3.15.1
-
-# Azamat H. Hackimov <azamat.hackimov@gmailc.com> (29 Apr 2010)
+# Azamat H. Hackimov <azamat.hackimov@gmail.com> (29 Apr 2010)
 # Wait until boost-1.44, bug #320039
 dev-games/gigi
 games-strategy/freeorion
