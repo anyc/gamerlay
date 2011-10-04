@@ -9,5 +9,8 @@
 <longdescription lang="en">
 A cross-platform 3D game interpreter for play LucasArts' LUA-based 3D adventures
 </longdescription>
+<use>
+	<flag name='mpeg2'>Enable mpeg2 codec for cutscenes</flag>
+</use>
 </pkgmetadata>
 
