@@ -29,10 +29,6 @@ DEPEND="${RDEPEND}
 
 OPTS="V=1 PREFIX=${GAMES_PREFIX} LIBDIR=$(games_get_libdir) BINDIR=${GAMES_BINDIR} APIDIR=/usr/include/mupen64plus/ INCDIR=/usr/include/mupen64plus/ SHAREDIR=${GAMES_DATADIR} DESTDIR=${D} COREDIR=$(games_get_libdir)/ PLUGINDIR=$(games_get_libdir)/mupen64plus/ MANDIR=/usr/share/man V=1 OPTFLAGS= INSTALL_STRIP_FLAG="
 
-src_prepare() {
-	epatch "${FILESDIR}"/${PN}-minizip.patch #383845
-}
-
 src_compile() {
 	use debug && OPTS+=" DEBUG=1 DEBUGGER=1 PLUGINDBG=1"
 	use lirc && OPTS+=" LIRC=1"
