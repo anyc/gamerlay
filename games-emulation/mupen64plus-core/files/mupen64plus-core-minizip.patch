@@ -1,0 +1,36 @@
+diff -Naur mupen64plus-core/projects/unix/Makefile mupen64plus-core-p/projects/unix/Makefile
+--- mupen64plus-core/projects/unix/Makefile	2011-10-05 17:49:30.000000000 +0200
++++ mupen64plus-core-p/projects/unix/Makefile	2011-10-05 18:08:00.828940972 +0200
+@@ -92,7 +92,7 @@
+ OPTFLAGS ?= -O3
+ CFLAGS += $(OPTFLAGS) -Wall -ffast-math -fno-strict-aliasing -fvisibility=hidden -I../../src
+ CXXFLAGS += -fvisibility-inlines-hidden
+-LDLIBS +=  -lm
++LDLIBS +=  -lm -lminizip
+ 
+ # Since we are building a shared library, we must compile with -fPIC on some architectures
+ # On 32-bit x86 systems we do not want to use -fPIC because we don't have to and it has a big performance penalty on this arch
+@@ -285,9 +285,6 @@
+ 	$(SRCDIR)/main/ini_reader.c \
+ 	$(SRCDIR)/main/savestates.c \
+ 	$(SRCDIR)/main/adler32.c \
+-	$(SRCDIR)/main/zip/ioapi.c \
+-	$(SRCDIR)/main/zip/zip.c \
+-	$(SRCDIR)/main/zip/unzip.c \
+ 	$(SRCDIR)/memory/dma.c \
+ 	$(SRCDIR)/memory/flashram.c \
+ 	$(SRCDIR)/memory/memory.c \
+diff -Naur mupen64plus-core/src/main/savestates.c mupen64plus-core-p/src/main/savestates.c
+--- mupen64plus-core/src/main/savestates.c	2011-10-05 17:49:30.000000000 +0200
++++ mupen64plus-core-p/src/main/savestates.c	2011-10-05 18:07:35.117941286 +0200
+@@ -43,8 +43,8 @@
+ #include "osal/preproc.h"
+ #include "osd/osd.h"
+ 
+-#include "main/zip/unzip.h"
+-#include "main/zip/zip.h"
++#include "minizip/unzip.h"
++#include "minizip/zip.h"
+ 
+ static const char* savestate_magic = "M64+SAVE";
+ static const int savestate_version = 0x00010000;  /* 1.0 */
