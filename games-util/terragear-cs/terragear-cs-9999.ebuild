@@ -8,14 +8,14 @@ inherit autotools git-2
 
 DESCRIPTION="Terrain editing programs for FlightGear"
 HOMEPAGE="http://terragear.sourceforge.net/"
-EGIT_REPO_URI="git://mapserver.flightgear.org/${PN}"
+EGIT_REPO_URI="git://gitorious.org/fg/${PN}.git"
 
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS=""
 IUSE="gdal"
 
-DEPEND="dev-games/simgear-cs
+DEPEND="dev-games/simgear
 	dev-libs/newmat
 	media-libs/plib
 	|| ( =x11-libs/agg-2.5 >x11-libs/agg-2.5[gpc] )
@@ -32,6 +32,5 @@ src_prepare() {
 
 src_configure() {
 	econf \
-	--with-simgear=/usr/simgear \
 	$(use_with gdal)
 }
