@@ -6,7 +6,7 @@ EAPI="2"
 
 inherit eutils games mercurial
 
-DESCRIPTION="A fork of Mupen64 Nintendo 64 emulator (rsp-z64)"
+DESCRIPTION="low-level rsp emulation for mupen64plus"
 HOMEPAGE="http://code.google.com/p/mupen64plus/"
 EHG_REPO_URI="https://bitbucket.org/wahrhaft/${PN}"
 #SRC_URI="https://bitbucket.org/wahrhaft/${PN}/downloads/${PN}-src-${PV}.tar.gz"

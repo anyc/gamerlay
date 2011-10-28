@@ -6,7 +6,7 @@ EAPI="2"
 
 inherit eutils games mercurial
 
-DESCRIPTION="A fork of Mupen64 Nintendo 64 emulator (core)"
+DESCRIPTION="plugin-based Nintendo 64 emulator, core library"
 HOMEPAGE="http://code.google.com/p/mupen64plus/"
 EHG_REPO_URI="https://bitbucket.org/richard42/${PN}"
 #SRC_URI="https://bitbucket.org/richard42/${PN}/downloads/${PN}-src-${PV}-norom.tar.gz"
@@ -21,7 +21,7 @@ RDEPEND="virtual/opengl
 	media-libs/freetype:2
 	media-libs/libpng
 	media-libs/libsdl
-	sys-libs/zlib[minizip]
+	|| ( <sys-libs/zlib-1.2.5.1-r1 >=sys-libs/zlib-1.2.5.1-r2[minizip] )
 	lirc? ( app-misc/lirc )"
 
 DEPEND="${RDEPEND}

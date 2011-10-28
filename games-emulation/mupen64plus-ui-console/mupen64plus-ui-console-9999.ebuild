@@ -6,7 +6,7 @@ EAPI="2"
 
 inherit eutils games mercurial
 
-DESCRIPTION="A fork of Mupen64 Nintendo 64 emulator (ui-console)"
+DESCRIPTION="console frontend for mupen64plus"
 HOMEPAGE="http://code.google.com/p/mupen64plus/"
 EHG_REPO_URI="https://bitbucket.org/richard42/${PN}"
 #SRC_URI="https://bitbucket.org/richard42/${PN}/downloads/${PN}-src-${PV}.tar.gz"

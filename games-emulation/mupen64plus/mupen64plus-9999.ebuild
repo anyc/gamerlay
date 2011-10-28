@@ -6,7 +6,7 @@ EAPI="2"
 
 inherit eutils
 
-DESCRIPTION="A fork of Mupen64 Nintendo 64 emulator"
+DESCRIPTION="plugin-based Nintendo 64 emulator"
 HOMEPAGE="http://code.google.com/p/mupen64plus/"
 SRC_URI=""
 
