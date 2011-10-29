@@ -12,7 +12,7 @@ SRC_URI=""
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="~x86"
 
 RDEPEND=" games-emulation/pcsx2
 	games-emulation/ps2emu-cdvdiso
