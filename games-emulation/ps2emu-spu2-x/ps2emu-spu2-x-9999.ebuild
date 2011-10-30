@@ -21,7 +21,7 @@ ESVN_PROJECT="pcsx2"
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS=""
-IUSE="debug"
+IUSE="debug soundtouch"
 if use amd64; then
 	ABI="x86"
 fi
@@ -57,11 +57,15 @@ DEPEND="dev-cpp/sparsehash
 		app-emulation/emul-linux-x86-sdl
 		app-emulation/emul-linux-x86-soundlibs
 		app-emulation/emul-linux-x86-wxGTK
-	)"
+	)
+	soundtouch? ( media-libs/libsoundtouch )	
+	"
 RDEPEND="${DEPEND}"
 
 src_prepare() {
+	if use soundtouch; then
 	sed -i -e "s:add_subdirectory(3rdparty)::g" -i CMakeLists.txt
+	fi
 	sed -i -e "s:INSTALL(FILES:#INSTALL(FILES:g" -i CMakeLists.txt
 	sed -i -e "s:add_subdirectory(locales)::g" -i CMakeLists.txt
 	sed -i -e "s:add_subdirectory(tools)::g" -i CMakeLists.txt
@@ -99,7 +103,7 @@ src_configure() {
 		-DPLUGIN_DIR=$(games_get_libdir)/pcsx2
 		-DPLUGIN_DIR_COMPILATION=$(games_get_libdir)/pcsx2
 		-DCMAKE_INSTALL_PREFIX=/usr
-		-DFORCE_INTERNAL_SOUNDTOUCH=FALSE
+		$(cmake-utils_use !soundtouch FORCE_INTERNAL_SOUNDTOUCH)
 		${wxgtk_config}
 		${cg_config}
 		"
