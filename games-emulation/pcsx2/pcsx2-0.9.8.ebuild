@@ -15,7 +15,7 @@ SRC_URI="http://forums.pcsx2.net/attachment.php?aid=28280 -> ${P}.7z"
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~x86"
-IUSE="cdvdiso cdvdlinuz cdvdnull dev9null fwnull gsdx gsnull onepad padnull spu2null spu2-x usbnull zerogs zerospu zzogl debug"
+IUSE="debug"
 
 if use amd64; then
 	ABI="x86"
@@ -51,23 +51,7 @@ DEPEND="dev-cpp/sparsehash
 		app-emulation/emul-linux-x86-sdl
 		app-emulation/emul-linux-x86-soundlibs
 		app-emulation/emul-linux-x86-wxGTK
-	)
-	cdvdiso?	( games-emulation/ps2emu-cdvdiso )
-	cdvdlinuz?	( games-emulation/ps2emu-cdvdlinuz )
-	cdvdnull?	( games-emulation/ps2emu-cdvdnull )
-	dev9null?	( games-emulation/ps2emu-dev9null )
-	fwnull?		( games-emulation/ps2emu-fwnull )
-	gsdx?		( games-emulation/ps2emu-gsdx )
-	gsnull?		( games-emulation/ps2emu-gsnull )
-	onepad?		( games-emulation/ps2emu-onepad )
-	padnull?	( games-emulation/ps2emu-padnull )
-	spu2null?	( games-emulation/ps2emu-spu2null )
-	spu2-x?		( games-emulation/ps2emu-spu2-x )
-	usbnull?	( games-emulation/ps2emu-usbnull )
-	zerogs?		( games-emulation/ps2emu-zerogs )
-	zerospu?	( games-emulation/ps2emu-zerospu )
-	zzogl?		( games-emulation/ps2emu-zzogl )	
-	"
+	)"
 RDEPEND="${DEPEND}"
 
 S=${WORKDIR}/${MY_PV}
