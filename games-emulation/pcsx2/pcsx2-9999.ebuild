@@ -6,12 +6,7 @@ EAPI=3
 
 WX_GTK_VER="2.8"
 
-# no need for amd64 as we will use precompiled wxGTK.
-if use x86; then
-	inherit wxwidgets
-fi
-
-inherit games cmake-utils subversion
+inherit games cmake-utils subversion wxwidgets
 
 DESCRIPTION="A PlayStation 2 emulator"
 HOMEPAGE="http://www.pcsx2.net"

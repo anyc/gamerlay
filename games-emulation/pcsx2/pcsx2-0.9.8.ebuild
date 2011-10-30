@@ -7,11 +7,6 @@ EAPI=3
 WX_GTK_VER="2.8"
 MY_PV=${P}-r4600-sources
 
-# no need for amd64 as we will use precompiled wxGTK.
-#if use x86; then
-#	inherit wxwidgets
-#fi
-
 inherit games cmake-utils wxwidgets
 
 DESCRIPTION="A PlayStation 2 emulator"
