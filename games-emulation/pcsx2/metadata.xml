@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+<maintainer>
+	<email>frostworks@gmx.de</email>
+	<name>Marcel Unbehaun</name>
+</maintainer>
+  <herd>games</herd>
+  <longdescription lang="en">
+the one and only ps2 emulator
+</longdescription>
+  <use>
+	<flag name="cdvdiso">enable cdvdiso plugin support</flag> 
+	<flag name="cdvdlinuz">enable cdvdlinuz plugin support</flag> 
+	<flag name="cdvdnull">enable cdvdnull plugin support</flag> 
+	<flag name="dev9null">enable dev9null plugin support</flag> 
+	<flag name="fwnull">enable fwnull plugin support</flag> 
+	<flag name="gsdx">enable gsdx plugin support</flag> 
+	<flag name="gsnull">enable gsnull plugin support</flag> 
+	<flag name="onepad">enable onepad plugin support</flag> 
+	<flag name="padnull">enable padnull plugin support</flag> 
+	<flag name="spu2null">enable spu2null plugin support</flag> 
+	<flag name="spu2-x">enable spu2-x plugin support</flag> 
+	<flag name="usbnull">enable usbnull plugin support</flag> 
+	<flag name="zerogs">enable zerogs plugin support</flag> 
+	<flag name="zerospu">enable zerospu plugin support</flag> 
+	<flag name="zzogl">enable zzogl plugin support</flag>   
+  </use>
+</pkgmetadata>
