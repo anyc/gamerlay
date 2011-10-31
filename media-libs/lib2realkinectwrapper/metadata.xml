@@ -1,0 +1,14 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<herd>games</herd>
+	<maintainer>
+		<email>frostworks@gmx.de</email>
+		<name>Marcel Unbehaun</name>
+	</maintainer>
+	<longdescription lang="en">
+_2RealKinectWrapper is an API built as a library which 
+simplifies the usage of multiple Microsoft Kinect 
+sensors for C++ programmers. 
+	</longdescription>
+</pkgmetadata>
