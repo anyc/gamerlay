@@ -9,7 +9,8 @@ inherit eutils git-2 multilib
 MY_PN="Sensor"
 DESCRIPTION="PrimeSensor Modules for OpenNI"
 HOMEPAGE="https://github.com/PrimeSense/${MY_PN}"
-EGIT_REPO_URI="git://github.com/PrimeSense/${MY_PN}.git"
+#EGIT_REPO_URI="git://github.com/PrimeSense/${MY_PN}.git"
+EGIT_REPO_URI="git://github.com/avin2/${MY_PN}Kinect.git"
 
 LICENSE="GPL-3"
 SLOT="0"
@@ -44,7 +45,8 @@ src_install() {
 	etcdir=/etc/primesense
 	dodir ${etcdir}
 	insinto ${etcdir}
-	doins Config/GlobalDefaults.ini || die
+#	doins Config/GlobalDefaults.ini || die
+	doins Config/GlobalDefaultsKinect.ini || die
 
 	insinto /usr/bin/
 	exeinto /usr/bin/
@@ -61,7 +63,8 @@ pkg_postinst() {
 	chmod a+w ${serverlogdir}
 	chown root /usr/bin/XnSensorServer
 	chmod +s /usr/bin/XnSensorServer
-	MODULES="libXnDeviceSensorV2.so libXnDeviceFile.so"
+#	MODULES="libXnDeviceSensorV2.so libXnDeviceFile.so"
+	MODULES="libXnDeviceSensorV2KM.so libXnDeviceFile.so"
 	for module in $MODULES; do
 		printf "registering module '$module'..."
 		/usr/bin/niReg -r /usr/lib/$module
