@@ -52,13 +52,13 @@ src_install() {
 	
 	serverlogdir=/var/log/primesense/XnSensorServer
 	dodir ${serverlogdir}
-	chmod a+w ${serverlogdir}
 	
 	insinto /etc/udev/rules.d
 	doins Install/55-primesense-usb.rules || die
 }
 
 pkg_postinst() {
+	chmod a+w ${serverlogdir}
 	chown root /usr/bin/XnSensorServer
 	chmod +s /usr/bin/XnSensorServer
 	MODULES="libXnDeviceSensorV2.so libXnDeviceFile.so"
