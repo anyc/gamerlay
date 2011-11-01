@@ -19,13 +19,17 @@ IUSE="doc graphviz"
 DEPEND="dev-libs/libusb
 	media-libs/freeglut
 	graphviz? ( media-gfx/graphviz )
-	doc? ( app-doc/doxygen )"
+	doc? ( app-doc/doxygen )
+	virtual/jpeg"
+#	dev-libs/tinyxml"
 RDEPEND="${DEPEND}"
 
 src_prepare() {
 	if use !doc; then
 	sed -i -e "s:execute_check(\"doxygen:#execute_check(\"doxygen:g" -i Platform/Linux-x86/CreateRedist/Redist_OpenNi.py
 	fi
+	epatch "${FILESDIR}"/${P}-system-jpg-fedora.patch
+#	epatch "${FILESDIR}"/${P}-system-tinyxml-fedora.patch
 }
 
 src_compile() {

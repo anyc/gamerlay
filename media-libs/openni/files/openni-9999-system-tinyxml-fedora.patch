@@ -1,0 +1,42 @@
+diff -Naur openni-9999/Platform/Linux-x86/Build/OpenNI/Makefile openni-9999-p/Platform/Linux-x86/Build/OpenNI/Makefile
+--- openni-9999/Platform/Linux-x86/Build/OpenNI/Makefile	2011-11-01 11:08:40.250067643 +0100
++++ openni-9999-p/Platform/Linux-x86/Build/OpenNI/Makefile	2011-11-01 11:05:23.000000000 +0100
+@@ -4,13 +4,11 @@
+ 
+ INC_DIRS = \
+ 	../../../../Include \
+-	../../../../Source \
+-	../../../../Source/External/TinyXml
++	../../../../Source
+ 
+ SRC_FILES = \
+ 	../../../../Source/OpenNI/*.cpp \
+-	../../../../Source/OpenNI/Linux-x86/*.cpp \
+-	../../../../Source/External/TinyXml/*.cpp
++	../../../../Source/OpenNI/Linux-x86/*.cpp
+ 
+ ifeq ("$(OSTYPE)","Darwin")
+ 	INC_DIRS += /opt/local/include
+@@ -19,12 +17,19 @@
+ endif
+ 
+ LIB_NAME = OpenNI
+-USED_LIBS = usb-1.0 dl pthread
++USED_LIBS = usb-1.0 dl
+ ifneq ("$(OSTYPE)","Darwin")
+-	USED_LIBS += rt 
++	USED_LIBS += rt
+ endif
+ DEFINES = XN_EXPORTS
+ 
+-include ../Common/CommonCppMakefile
++ifneq ($(wildcard /usr/include/tinyxml.h /usr/local/include/tinyxml.h),)
++  USED_LIBS += tinyxml
++else
++  INC_DIRS += ../../../../Source/External/TinyXml
++  SRC_FILES += ../../../../Source/External/TinyXml/*.cpp
++endif
++
++include ../Common/CommonCppMakefile
+ 
+ 
