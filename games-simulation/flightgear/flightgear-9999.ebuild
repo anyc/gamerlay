@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=2
+EAPI=3
 
 EGIT_BRANCH="next"
 
@@ -15,7 +15,7 @@ EGIT_REPO_URI="git://gitorious.org/fg/flightgear.git"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS=""
-IUSE="subversion"
+IUSE="+jsbsim larcsim subversion uiuc +yasim"
 
 RDEPEND=">=dev-games/openscenegraph-2.9[png]
 	>=dev-games/simgear-9999[subversion=]
@@ -33,7 +33,11 @@ src_configure() {
 	-DENABLE_FGADMIN=OFF
 	-DEVENT_INPUT=OFF
 	-DWITH_FGPANEL=OFF
+	$(cmake-utils_use_enable jsbsim)
+	$(cmake-utils_use_enable larcsim)
 	$(cmake-utils_use subversion ENABLE_LIBSVN)
+	$(cmake-utils_use_enable uiuc)
+	$(cmake-utils_use_enable yasim)
 	)
 
 	cmake-utils_src_configure
