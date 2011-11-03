@@ -4,7 +4,7 @@
 
 EAPI="3"
 
-PYTHON_DEPEND="2"
+PYTHON_DEPEND="2:2.7"
 
 inherit eutils python scons-utils versionator
 
@@ -31,22 +31,23 @@ RDEPEND="dev-libs/boost
 	sys-libs/zlib
 	x11-libs/libXcursor
 	x11-libs/libXext
-	dev-games/guichan
+	dev-games/guichan[sdl]
 	opengl? ( virtual/opengl virtual/glu )"
 DEPEND="${RDEPEND}
 	dev-lang/swig"
 
-S=${WORKDIR}/${PN}-${MY_PV}
+S=${WORKDIR}/${PN}_${PV}
 
 src_prepare() {
 	rm -r ext #delete bundled libs
 	epatch "${FILESDIR}/${P}-unbundle-libpng.patch"
 }
 
-# Can compiles only with one thread
+# Can compile only with one thread
 SCONSOPTS="-j1"
 
 src_compile() {
+	export CXXFLAGS="$CXXFLAGS -DBOOST_FILESYSTEM_VERSION=2"
 	escons \
 		--python-prefix="${D}/$(python_get_sitedir)" \
 		--prefix="${D}/usr" \
