@@ -4,7 +4,7 @@
 
 EAPI="4"
 
-inherit autotools git-2
+inherit cmake-utils git-2
 
 DESCRIPTION="Terrain editing programs for FlightGear"
 HOMEPAGE="http://terragear.sourceforge.net/"
@@ -16,8 +16,8 @@ KEYWORDS=""
 IUSE="gdal"
 
 DEPEND="dev-games/simgear
+	dev-libs/boost
 	dev-libs/newmat
-	media-libs/plib
 	|| ( =x11-libs/agg-2.5 >x11-libs/agg-2.5[gpc] )
 	gdal? ( sci-libs/gdal )
 "
@@ -25,11 +25,13 @@ DEPEND="dev-games/simgear
 RDEPEND="${DEPEND}"
 
 src_prepare() {
-	epatch ${FILESDIR}/"${PN}"-use-agg.patch
-	eautoreconf
+	sed -e "s|genpolyclip|agggpc|g" -i CMakeModules/FindGPC.cmake
 }
 
 src_configure() {
-	econf \
-	$(use_with gdal)
+	mycmakeargs=(
+	$(cmake-utils_use_enable gdal)
+	)
+
+	cmake-utils_src_configure
 }
