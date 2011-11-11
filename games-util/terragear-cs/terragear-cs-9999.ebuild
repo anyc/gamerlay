@@ -15,7 +15,7 @@ SLOT="0"
 KEYWORDS=""
 IUSE="gdal"
 
-DEPEND="dev-games/simgear
+DEPEND=">=dev-games/simgear-9999
 	dev-libs/boost
 	dev-libs/newmat
 	|| ( =x11-libs/agg-2.5 >x11-libs/agg-2.5[gpc] )
