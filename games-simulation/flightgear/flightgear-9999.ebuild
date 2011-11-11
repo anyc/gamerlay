@@ -17,8 +17,8 @@ SLOT="0"
 KEYWORDS=""
 IUSE="+jsbsim larcsim subversion uiuc +yasim"
 
-RDEPEND=">=dev-games/openscenegraph-2.9[png]
-	>=dev-games/simgear-9999[subversion=]
+RDEPEND=">=dev-games/openscenegraph-3.0[png]
+	>=dev-games/simgear-9999[subversion=,X]
 	media-libs/plib
 	x11-libs/libXmu
 	x11-libs/libXi

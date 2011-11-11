@@ -15,13 +15,13 @@ EGIT_REPO_URI="git://gitorious.org/fg/simgear.git"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS=""
-IUSE="subversion"
+IUSE="subversion X"
 
-RDEPEND=">=dev-games/openscenegraph-2.9[png]
-	dev-libs/boost
-	media-libs/openal
-	media-libs/freealut
-	subversion? ( dev-vcs/subversion )"
+RDEPEND="dev-libs/boost
+	subversion? ( dev-vcs/subversion )
+	X? (	>=dev-games/openscenegraph-3.0[png]
+		media-libs/freealut )
+"
 
 DEPEND="${RDEPEND}"
 
@@ -30,6 +30,7 @@ DOCS=(NEWS AUTHORS)
 src_configure() {
 	mycmakeargs=(
 	$(cmake-utils_use subversion ENABLE_LIBSVN)
+	$(cmake-utils_use !X SIMGEAR_HEADLESS)
 	)
 
 	cmake-utils_src_configure
