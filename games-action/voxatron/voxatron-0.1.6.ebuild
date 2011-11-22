@@ -13,13 +13,13 @@ RESTRICT="fetch"
 
 LICENSE="Voxatron"
 SLOT="0"
-KEYWORDS="~x86 ~amd64"
+KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 DEPEND=""
 RDEPEND="${DEPEND}
-x86? ( media-libs/libsdl[opengl] )
-amd64? ( app-emulation/emul-linux-x86-sdl )"
+	x86? ( media-libs/libsdl[opengl] )
+	amd64? ( app-emulation/emul-linux-x86-sdl )"
 
 pkg_nofetch() {
 	ewarn
@@ -27,21 +27,17 @@ pkg_nofetch() {
 	ewarn
 }
 
-src_configure() { :; }
-
-src_compile() { :; }
-
-src_test() { :; }
-
-dir="${GAMES_PREFIX_OPT}/${PN}"
+S="${WORKDIR}"/${PN}
 
 src_install() {
-	cd ${PN}
+	local dir="${GAMES_PREFIX_OPT}/${PN}"
 	insinto ${dir}
-	doins vox.dat vox.txt
+	doins vox.dat
 	exeinto ${dir}
 	doexe vox
+	doicon "${FILESDIR}"/voxicon.png
+	make_desktop_entry ${PN} Voxatron voxicon
 	games_make_wrapper ${PN} ./vox ${dir} ${dir}
-
+	dodoc vox.txt
 	prepgamesdirs
 }
