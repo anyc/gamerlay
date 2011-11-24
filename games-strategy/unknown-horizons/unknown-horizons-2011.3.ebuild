@@ -5,7 +5,7 @@
 EAPI="3"
 
 PYTHON_DEPEND="2:2.7"
-PYTHON_USE_WITH="sqlite"
+PYTHON_USE_WITH="sqlite berkdb"
 
 inherit distutils games
 DESCRIPTION="Anno-like real time strategy game"
@@ -19,8 +19,7 @@ SLOT="0"
 IUSE=""
 
 DEPEND="dev-python/pyyaml
-	=games-engines/fife-0.3.3-r2
-	dev-python/python-distutils-extra"
+	=games-engines/fife-0.3.3-r2"
 
 RDEPEND="$DEPEND"
 
