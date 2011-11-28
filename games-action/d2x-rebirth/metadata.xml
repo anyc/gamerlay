@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-<herd>gameboys</herd>
+<herd>no-herd</herd>
 <maintainer>
 <email>azamat.hackimov@gmail.com</email>
 <name>Azamat H. Hackimov</name>
@@ -13,6 +13,9 @@ Descent Rebirth - enhanced Descent 2 engine
 Descent Rebirth - улучшенный движок для Descent 2
 </longdescription>
 <use>
-<flag name="music">Enable enchansed music</flag>
+<flag name="editor">Enable editor (Experimental!)</flag>
+<flag name="music_awe32">Enable soundtrack recorded with the enhanced AWE32 soundfont</flag>
+<flag name="music_opl3">Enable soundtrack recorded with the Yamaha YMF262 OPL3 Soundchip</flag>
+<flag name="music_sc55">Enable soundtrack recorded with the Roland Sound Canvas SC-55</flag>
 </use>
 </pkgmetadata>
