@@ -25,7 +25,7 @@ DEPEND="media-libs/sdl-image
 	virtual/glu"
 
 src_prepare() {
-	epatch "${FILESDIR}"/${PN}-1.0-gentoo.patch || die
+	epatch "${FILESDIR}"/${P}-{gentoo,libpng}.patch || die
 	# respect ${GAMES_DATADIR}
 	for i in `find src -name *.cpp`; do sed -i "$i" -e "s:.\/images/:"${GAMES_DATADIR}"/"${PN}"/images/:g"; done
 	for i in `find src -name *.cpp`; do sed -i "$i" -e "s:data/:"${GAMES_DATADIR}"/"${PN}"/data/:g"; done
@@ -37,7 +37,7 @@ src_prepare() {
 }
 
 src_compile() {
-	emake OPT="${CFLAGS}" || die
+	emake OPT="${CFLAGS}" OPTX="${CXXFLAGS}" || die
 }
 
 src_install() {
