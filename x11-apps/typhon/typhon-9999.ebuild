@@ -21,14 +21,11 @@ IUSE="debug mmd opencv +xml"
 
 S="${WORKDIR}/${P/_/-}"
 
-RDEPEND="media-libs/ftgl
-	virtual/opengl
+RDEPEND="virtual/opengl
 	media-libs/libpng
 	>=media-libs/libsfml-2.0
 	opencv? ( media-libs/opencv )
 	sys-libs/zlib
-	x11-libs/libXrender
-	x11-libs/libXrandr
 	mmd? ( media-libs/libmmd )
 	xml? ( dev-libs/tinyxml )"
 DEPEND="${RDEPEND}"
