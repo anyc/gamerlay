@@ -1,8 +1,8 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: x11-apps/typhontyphon-9999.ebuild,v 1.0 2011/01/18 09:21:06 by frostwork Exp $
+# $Header: x11-apps/typhontyphon-9999.ebuild,v 1.1 2012/01/20 17:48:23 by frostwork Exp $
 
-EAPI="2"
+EAPI="4"
 
 CMAKE_MIN_VERSION=2.8
 
@@ -17,7 +17,7 @@ HOMEPAGE="http://www.frostworx.de/?p=1"
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS=""
-IUSE="debug mmd opencv +xml"
+IUSE="debug mmd opencv +p3t +xml"
 
 S="${WORKDIR}/${P/_/-}"
 
@@ -27,6 +27,7 @@ RDEPEND="virtual/opengl
 	opencv? ( media-libs/opencv )
 	sys-libs/zlib
 	mmd? ( media-libs/libmmd )
+	p3t? ( media-libs/libp3t )	
 	xml? ( dev-libs/tinyxml )"
 DEPEND="${RDEPEND}"
 
