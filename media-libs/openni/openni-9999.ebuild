@@ -26,33 +26,32 @@ RDEPEND="${DEPEND}"
 
 src_prepare() {
 	if use !doc; then
-	sed -i -e "s:execute_check(\"doxygen:#execute_check(\"doxygen:g" -i Platform/Linux-x86/CreateRedist/Redist_OpenNi.py
+	sed -i -e "s:execute_check(\"doxygen:#execute_check(\"doxygen:g" -i Platform/Linux/CreateRedist/Redist_OpenNi.py
 	fi
-	epatch "${FILESDIR}"/${P}-system-jpg-fedora.patch
-#	epatch "${FILESDIR}"/${P}-system-tinyxml-fedora.patch
 }
 
 src_compile() {
-	cd ${WORKDIR}/${P}/Platform/Linux-x86/Build
+	cd ${WORKDIR}/${P}/Platform/Linux/Build
 #	parallel build fails as lOpenNI is references before it exists
 	emake -j1 redist || die "emake failed"
 }
 
 src_install() {
-	cd ${WORKDIR}/${P}/Platform/Linux-x86/Redist
+	cd ${WORKDIR}/${P}/Platform/Linux/Bin/x86-Release
 	
 	libdir=$(get_libdir)
 	dodir /usr/${libdir}
 	insinto /usr/${libdir}
-	doins Lib/*.so || die
+	doins *.so || die
 	
 	insinto /usr/include/ni/
-	doins -r Include/* || die
+	doins -r ../../../../Include/* || die
 
 	insinto /usr/bin/
 	exeinto /usr/bin/
-	doexe Bin/ni* || die
-	
+	doexe ni* || die
+	doexe NiViewer* || die
+
 	dodir /var/lib/ni
 # todo mono and java?
 }
