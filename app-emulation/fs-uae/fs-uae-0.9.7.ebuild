@@ -29,14 +29,6 @@ src_prepare() {
 	epatch "${FILESDIR}"/${P}-minizip.patch
 }
 
-src_install() {
-	dogamesbin out/${PN}
-
-	local datadir="${GAMES_DATADIR}"/${PN}
-	dodir ${datadir}
-	insinto "${GAMES_DATADIR}"/${PN}
-	doins example.conf || die
-}
 
 pkg_postinst() {
 	games_pkg_postinst
