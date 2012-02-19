@@ -1,0 +1,36 @@
+diff -Naur fs-uae-0.9.8-o/libuae/zfile_archive.cpp fs-uae-0.9.8/libuae/zfile_archive.cpp
+--- fs-uae-0.9.8-o/libuae/zfile_archive.cpp	2012-02-05 10:58:47.000000000 +0100
++++ fs-uae-0.9.8/libuae/zfile_archive.cpp	2012-02-18 20:05:10.500004527 +0100
+@@ -16,7 +16,7 @@
+ 
+ #include "options.h"
+ #include "zfile.h"
+-#include "archivers/zip/unzip.h"
++#include <minizip/unzip.h>
+ #include "archivers/dms/pfile.h"
+ #include "crc32.h"
+ #include "zarchive.h"
+diff -Naur fs-uae-0.9.8-o/libuae/zfile.cpp fs-uae-0.9.8/libuae/zfile.cpp
+--- fs-uae-0.9.8-o/libuae/zfile.cpp	2012-02-10 20:03:49.000000000 +0100
++++ fs-uae-0.9.8/libuae/zfile.cpp	2012-02-18 20:05:02.910004398 +0100
+@@ -25,7 +25,7 @@
+ #include "diskutil.h"
+ #include "fdi2raw.h"
+ 
+-#include "archivers/zip/unzip.h"
++#include <minizip/unzip.h>
+ #include "archivers/dms/pfile.h"
+ #include "archivers/wrp/warp.h"
+ 
+diff -Naur fs-uae-0.9.8-o/Makefile fs-uae-0.9.8/Makefile
+--- fs-uae-0.9.8-o/Makefile	2012-02-15 21:27:08.000000000 +0100
++++ fs-uae-0.9.8/Makefile	2012-02-18 20:05:44.240005112 +0100
+@@ -43,7 +43,7 @@
+ 		-I$(libfsemu_dir)/include
+ ldflags =
+ libs = -L$(libfsemu_dir)/out -lfsemu `sdl-config --libs` \
+-		`pkg-config --libs glib-2.0 gthread-2.0` -lpng -lz
++		`pkg-config --libs glib-2.0 gthread-2.0` -lpng -lz  -lminizip
+ 
+ libuae_warnings = -Wno-unused-value -Wno-uninitialized -Wno-sign-compare
+ generate = 0
