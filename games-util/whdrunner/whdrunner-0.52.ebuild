@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: games-util/whdrunner-0.5.ebuild,v 1.0 2012/02/16 16:41:26 by frostwork Exp $
+# $Header: games-util/whdrunner-0.52.ebuild,v 1.0 2012/02/16 16:41:26 by frostwork Exp $
 
 EAPI="3"
 
@@ -34,7 +34,6 @@ src_configure() {
 }
 
 pkg_postinst() {
-	games_pkg_postinst
 	ewarn "fs-uae needs to be configured properly before whdrunner can work!"
 	ewarn "you have to install the whdrunner_dh0 datapackage (see $HOMEPAGE) manually (see README)"
 }
