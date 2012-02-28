@@ -26,7 +26,9 @@ DEPEND="$RDEPEND"
 
 src_prepare() {
 	rm -rf libuae/archivers/zip
-	epatch "${FILESDIR}"/${P}-minizip.patch
+	sed -i -e "s:lz:lz -lminizip:g" -i Makefile
+	sed -i -e "s:\"archivers/zip/unzip.h\":<minizip/unzip.h>:g" -i libuae/zfile_archive.cpp
+	sed -i -e "s:\"archivers/zip/unzip.h\":<minizip/unzip.h>:g" -i libuae/zfile.cpp
 }
 
 
