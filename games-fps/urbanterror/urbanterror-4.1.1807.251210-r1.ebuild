@@ -7,12 +7,11 @@ EAPI=2
 inherit eutils flag-o-matic games toolchain-funcs versionator
 
 DESCRIPTION="Hollywood tactical shooter based on the ioquake3 engine"
-HOMEPAGE="http://www.urbanterror.net/
-	  http://www.www0.org/w/Optimized_executable;_builds_of_ioq3_engine_for_urt"
+HOMEPAGE="http://www.urbanterror.info/home/"
 MY_VER=$(get_version_component_range 1)$(get_version_component_range 2)
 MY_PATCH=$(get_version_component_range 3)-urt-$(get_version_component_range 4)-git-nobumpy
 SRC_URI="http://xmw.de/mirror/urbanterror/ioquake3-1807.tar.bz2
-	http://www0.org/urt/ioq3-${MY_PATCH}.tar.lzma
+	http://urban-zone.org/downloads/clients/mitsu/nobumpy/linux/ioq3-${MY_PATCH}.tar.lzma
 	ftp://ftp.snt.utwente.nl/pub/games/${PN}/old/UrbanTerror_${MY_VER}_FULL.zip
 	http://upload.wikimedia.org/wikipedia/en/5/56/Urbanterror.svg -> ${PN}.svg"
 
@@ -30,7 +29,8 @@ COMMON_DEPEND="
 		vorbis? ( media-libs/libogg media-libs/libvorbis )
 	)
 	curl? ( net-misc/curl )
-	speex? ( media-libs/speex ) "
+	speex? ( media-libs/speex )
+	sys-libs/zlib[minizip] "
 DEPEND="${COMMON_DEPEND}
 	app-arch/p7zip
 	app-arch/unzip
@@ -41,9 +41,14 @@ RDEPEND="${COMMON_DEPEND}"
 S=${WORKDIR}/ioquake3
 
 src_prepare() {
+	epatch "${FILESDIR}"/${PN}-minizip.patch
 	epatch "${WORKDIR}"/ioq3-${MY_PATCH}.patch
 	use vanilla || epatch "${FILESDIR}"/${P}-server-name.patch
-
+	rm -rf code/zlib || die
+	rm code/qcommon/unzip.c  || die
+	rm code/qcommon/unzip.h  || die
+	rm code/qcommon/ioapi.c  || die
+	rm code/qcommon/ioapi.h  || die	
 	rm -rf code/{FTGL,FT2,SDL12,libs/win{32,64}} || die
 
 	sed -e '/SDL_CFLAGS=/s:--cflags sdl:--cflags freetype2 sdl:' \
@@ -81,7 +86,7 @@ src_compile() {
 }
 
 src_install() {
-	local my_arch=x86
+	local my_arch=i386
 	use amd64 && my_arch=x86_64
 
 	if use client || use server ; then # just kidding

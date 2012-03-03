@@ -1,0 +1,88 @@
+diff -Naur ioquake3-o/code/qcommon/files.c ioquake3/code/qcommon/files.c
+--- ioquake3-o/code/qcommon/files.c	2012-03-03 13:50:33.000000000 +0100
++++ ioquake3/code/qcommon/files.c	2012-03-03 13:54:20.239874028 +0100
+@@ -31,7 +31,7 @@
+ 
+ #include "q_shared.h"
+ #include "qcommon.h"
+-#include "unzip.h"
++#include <minizip/unzip.h>
+ 
+ extern cvar_t *com_quiet;
+ 
+diff -Naur ioquake3-o/Makefile ioquake3/Makefile
+--- ioquake3-o/Makefile	2012-03-03 13:50:33.000000000 +0100
++++ ioquake3/Makefile	2012-03-03 13:52:51.139874638 +0100
+@@ -385,9 +385,9 @@
+     endif
+   endif
+ 
+-  ifeq ($(USE_CODEC_VORBIS),1)
++#  ifeq ($(USE_CODEC_VORBIS),1)
+     CLIENT_LIBS += -lvorbisfile -lvorbis -logg
+-  endif
++#  endif
+ 
+   ifeq ($(USE_MUMBLE),1)
+     CLIENT_LIBS += -lrt
+@@ -1001,7 +1001,7 @@
+ else
+   LIBS += -lz
+ endif
+-
++LIBS += -lz -lminizip
+ ifdef DEFAULT_BASEDIR
+   BASE_CFLAGS += -DDEFAULT_BASEDIR=\\\"$(DEFAULT_BASEDIR)\\\"
+ endif
+@@ -1498,8 +1498,6 @@
+   $(B)/client/q_math.o \
+   $(B)/client/q_shared.o \
+   \
+-  $(B)/client/unzip.o \
+-  $(B)/client/ioapi.o \
+   $(B)/client/puff.o \
+   $(B)/client/vm.o \
+   $(B)/client/vm_interpreted.o \
+@@ -1666,16 +1664,6 @@
+ endif
+ endif
+ 
+-ifeq ($(USE_INTERNAL_ZLIB),1)
+-Q3OBJ += \
+-  $(B)/client/adler32.o \
+-  $(B)/client/crc32.o \
+-  $(B)/client/inffast.o \
+-  $(B)/client/inflate.o \
+-  $(B)/client/inftrees.o \
+-  $(B)/client/zutil.o
+-endif
+-
+ ifeq ($(HAVE_VM_COMPILED),true)
+   ifeq ($(ARCH),i386)
+     Q3OBJ += $(B)/client/vm_x86.o
+@@ -1790,8 +1778,6 @@
+   $(B)/ded/q_math.o \
+   $(B)/ded/q_shared.o \
+   \
+-  $(B)/ded/unzip.o \
+-  $(B)/ded/ioapi.o \
+   $(B)/ded/vm.o \
+   $(B)/ded/vm_interpreted.o \
+   \
+@@ -1844,16 +1830,6 @@
+       $(B)/ded/matha.o
+ endif
+ 
+-ifeq ($(USE_INTERNAL_ZLIB),1)
+-Q3DOBJ += \
+-  $(B)/ded/adler32.o \
+-  $(B)/ded/crc32.o \
+-  $(B)/ded/inffast.o \
+-  $(B)/ded/inflate.o \
+-  $(B)/ded/inftrees.o \
+-  $(B)/ded/zutil.o
+-endif
+-
+ ifeq ($(HAVE_VM_COMPILED),true)
+   ifeq ($(ARCH),i386)
+     Q3DOBJ += $(B)/ded/vm_x86.o
