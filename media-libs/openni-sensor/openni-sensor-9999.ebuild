@@ -56,7 +56,7 @@ src_install() {
 	dodir ${serverlogdir}
 	
 	insinto /etc/udev/rules.d
-	doins Install/55-primesense-usb.rules || die
+	doins ${FILESDIR}/55-primesense-usb.rules || die
 }
 
 pkg_postinst() {
