@@ -18,7 +18,7 @@ LICENSE="GPL-2"
 
 KEYWORDS="~amd64 ~x86"
 SLOT="0"
-IUSE="opengl debug profile"
+IUSE="debug profile"
 
 RDEPEND="dev-libs/boost
 	dev-python/pyyaml
@@ -31,8 +31,9 @@ RDEPEND="dev-libs/boost
 	sys-libs/zlib
 	x11-libs/libXcursor
 	x11-libs/libXext
-	dev-games/guichan[sdl]
-	opengl? ( virtual/opengl virtual/glu )"
+	dev-games/guichan[sdl,opengl]
+	virtual/opengl
+	virtual/glu"
 DEPEND="${RDEPEND}
 	dev-lang/swig"
 
@@ -43,7 +44,7 @@ src_prepare() {
 	epatch "${FILESDIR}/${P}-unbundle-libpng.patch"
 }
 
-# Can compile only with one thread
+# Compiles only with one thread
 SCONSOPTS="-j1"
 
 src_compile() {
@@ -53,7 +54,6 @@ src_compile() {
 		--prefix="${D}/usr" \
 		$(use_scons debug) \
 		$(use_scons debug log log) \
-		$(use_scons opengl) \
 		$(use_scons profile) \
 		|| die "scons failed"
 }

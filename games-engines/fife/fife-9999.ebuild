@@ -16,7 +16,7 @@ ESVN_REPO_URI="http://fife.svn.cvsdude.com/engine/trunk"
 LICENSE="LGPL-2"
 
 SLOT="0"
-IUSE="opengl debug profile"
+IUSE="debug profile"
 
 RDEPEND="dev-libs/boost
 	dev-python/pyyaml
@@ -28,8 +28,9 @@ RDEPEND="dev-libs/boost
 	media-libs/openal
 	sys-libs/zlib
 	x11-libs/libXcursor
-	opengl? ( virtual/opengl virtual/glu dev-games/guichan[opengl] )
-	dev-games/guichan[sdl]
+	virtual/opengl
+	virtual/glu
+	dev-games/guichan[sdl,opengl]
 	media-libs/libpng
 	x11-libs/libXext
 "
@@ -45,14 +46,13 @@ src_prepare() {
 	epatch "${FILESDIR}/${PN}-0.3.1-unbundle-libpng.patch"
 }
 
+# Compiles only with one thread
+SCONSOPTS="-j1"
+
 src_compile() {
 	local SCONS_ARGS=""
 	if use debug; then
 		SCONS_ARGS="$SCONS_ARGS --enable-debug"
-	fi
-
-	if ! use opengl; then
-		SCONS_ARGS="$SCONS_ARGS --disable-opengl"
 	fi
 
 	if use profile; then
