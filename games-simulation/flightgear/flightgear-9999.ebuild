@@ -1,4 +1,4 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -20,6 +20,7 @@ IUSE="+jsbsim larcsim subversion uiuc +yasim"
 RDEPEND=">=dev-games/openscenegraph-3.0[png]
 	>=dev-games/simgear-9999[subversion=,X]
 	media-libs/plib
+	sys-fs/udev
 	x11-libs/libXmu
 	x11-libs/libXi
 	subversion? ( dev-vcs/subversion )"
@@ -31,7 +32,6 @@ src_configure() {
 	mycmakeargs=(
 	-DCMAKE_INSTALL_PREFIX=${GAMES_PREFIX}
 	-DENABLE_FGADMIN=OFF
-	-DEVENT_INPUT=OFF
 	-DWITH_FGPANEL=OFF
 	$(cmake-utils_use_enable jsbsim)
 	$(cmake-utils_use_enable larcsim)
@@ -39,7 +39,6 @@ src_configure() {
 	$(cmake-utils_use_enable uiuc)
 	$(cmake-utils_use_enable yasim)
 	)
-
 	cmake-utils_src_configure
 }
 
