@@ -1,14 +1,5 @@
 --- CMakeLists.txt	2012-03-25 09:55:13.559939721 +0200
 +++ CMakeLists.txt	2012-03-25 09:46:21.000000000 +0200
-@@ -104,7 +104,7 @@
- if (MACOSX)
- 	set(BUILD_FRAMEWORKS 1) 
- endif()
--add_subdirectory("deps/SFML")
-+#add_subdirectory("deps/SFML")
- 
- 
- # Set the search directories for compiling and link editing
 @@ -148,3 +148,10 @@
  # Define the libraries sfe should link against
  target_link_libraries (${LIB_NAME} ${SFML_LIBRARIES} ${FFMPEG_LIBRARIES} ${OTHER_LIBRARIES})
@@ -18,5 +9,5 @@
 +INSTALL(TARGETS ${LIB_NAME}
 +        DESTINATION lib
 +        PERMISSIONS OWNER_READ GROUP_READ WORLD_READ)
-+INSTALL(FILES include/Movie.h DESTINATION include/${LIB_NAME})
++INSTALL(FILES include/sfeMovie/Movie.hpp DESTINATION include/sfeMovie/)
 +endif()

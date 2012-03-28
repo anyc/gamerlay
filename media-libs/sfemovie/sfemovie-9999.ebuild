@@ -22,5 +22,6 @@ RDEPEND="${DEPEND}"
 
 src_prepare() {
 	epatch ${FILESDIR}/"${PN}-install.patch"
+	epatch ${FILESDIR}/"${PN}-header.patch"
 	sed -i -e "s:add_sub:#add_sub:g" -i CMakeLists.txt
 }
