@@ -1,6 +1,6 @@
 # Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v3
-# $Header: app-emulation/e-uae/fs-uae-0.9.7.ebuild,v 1.0 2012/02/15 16:30:51 frostwork Exp $
+# $Header: app-emulation/e-uae/fs-uae-1.0.0.ebuild,v 1.0 2012/03/29 19:05:27 frostwork Exp $
 
 EAPI="2"
 
@@ -25,10 +25,11 @@ RDEPEND="virtual/opengl
 DEPEND="$RDEPEND"
 
 src_prepare() {
-	rm -rf libuae/archivers/zip
-	sed -i -e "s:lz:lz -lminizip:g" -i Makefile
-	sed -i -e "s:\"archivers/zip/unzip.h\":<minizip/unzip.h>:g" -i libuae/zfile_archive.cpp
-	sed -i -e "s:\"archivers/zip/unzip.h\":<minizip/unzip.h>:g" -i libuae/zfile.cpp
+#	rm -rf libuae/archivers/zip
+#	sed -i -e "s:lz:lz -lminizip:g" -i Makefile
+	sed -i '1i#define OF(x) x' libuae/archivers/zip/*.h
+#	sed -i -e "s:\"archivers/zip/unzip.h\":<minizip/unzip.h>:g" -i libuae/zfile_archive.cpp
+#	sed -i -e "s:\"archivers/zip/unzip.h\":<minizip/unzip.h>:g" -i libuae/zfile.cpp
 }
 
 
