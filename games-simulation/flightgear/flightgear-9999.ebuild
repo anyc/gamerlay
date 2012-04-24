@@ -10,7 +10,7 @@ inherit games cmake-utils git-2
 
 DESCRIPTION="Open Source Flight Simulator"
 HOMEPAGE="http://www.flightgear.org/"
-EGIT_REPO_URI="git://gitorious.org/fg/flightgear.git"
+EGIT_REPO_URI="git://mapserver.flightgear.org/flightgear"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -31,6 +31,7 @@ DOCS=(AUTHORS ChangeLog NEWS README Thanks)
 src_configure() {
 	mycmakeargs=(
 	-DCMAKE_INSTALL_PREFIX=${GAMES_PREFIX}
+	-DFG_DATA_DIR="${GAMES_DATADIR}"/${PN}-live
 	-DENABLE_FGADMIN=OFF
 	-DWITH_FGPANEL=OFF
 	$(cmake-utils_use_enable jsbsim)
@@ -50,12 +51,16 @@ src_install() {
 }
 
 pkg_postinst() {
-	elog "FlightGear is now installed, but to run the game you will have to"
-	elog "download fgdata as well."
-	elog "To do this use:"
-	elog "\"git clone git://gitorious.org/fg/fgdata.git\"."
-	elog "You can save fgdata anywhere, but need to set FG_ROOT to that directory or"
-	elog "create an --fg-root= entry in ~/.fgfsrc"
+	elog "FlightGear is now installed, but to run it you"
+	elog "have to download fgdata as well, which is expected under"
+	elog "${GAMES_DATADIR}/${PN}-live"
+	elog
+	elog "You can save it anywhere else but then you have to set"
+	elog "FG_ROOT to that directory or create an \"--fg-root=\" entry in ~/.fgfsrc"
+	elog
+	elog "To download fgdata, use"
+	elog "\"git clone git://mapserver.flightgear.org/fgdata/ SOMEPATH\"."
+	elog
 	elog
 	elog "Don't forget that before updating FlightGear you will most likely"
 	elog "have to update Simgear, too"
