@@ -29,15 +29,19 @@ DEPEND="${RDEPEND}"
 DOCS=(AUTHORS ChangeLog NEWS README Thanks)
 
 src_configure() {
-	mycmakeargs=(
+	if use uiuc || use larcsim; then
+		mycmakeargs=(-DENABLE_LARCSIM=ON -DENABLE_UIUC_MODEL=ON)
+	else
+		mycmakeargs=(-DENABLE_LARCSIM=OFF -DENABLE_UIUC_MODEL=OFF)
+	fi
+
+	mycmakeargs+=(
 	-DCMAKE_INSTALL_PREFIX=${GAMES_PREFIX}
 	-DFG_DATA_DIR="${GAMES_DATADIR}"/${PN}-live
 	-DENABLE_FGADMIN=OFF
 	-DWITH_FGPANEL=OFF
 	$(cmake-utils_use_enable jsbsim)
-	$(cmake-utils_use_enable larcsim)
 	$(cmake-utils_use subversion ENABLE_LIBSVN)
-	$(cmake-utils_use_enable uiuc)
 	$(cmake-utils_use_enable yasim)
 	)
 	cmake-utils_src_configure
