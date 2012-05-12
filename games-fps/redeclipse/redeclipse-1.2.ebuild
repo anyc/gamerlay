@@ -8,7 +8,8 @@ inherit games
 
 DESCRIPTION="First-person ego-shooter, built as a total conversion of Cube Engine 2"
 HOMEPAGE="http://www.redeclipse.net/"
-SRC_URI="mirror://sourceforge/${PN}/${PN}_${PV}/${PN}_${PV}_linux_bsd.tar.bz2"
+SRC_URI="mirror://sourceforge/${PN}/${PN}_${PV}/${PN}_${PV}_linux_bsd.tar.bz2
+	http://sourceforge.net/apps/trac/redeclipse/export/3683/src/site/bits/favicon.png -> ${P}-favicon.png"
 
 # According to license.txt file
 LICENSE="as-is ZLIB CCPL-Attribution-ShareAlike-3.0"
@@ -24,33 +25,41 @@ DEPEND="!dedicated? (
 		x11-libs/libX11
 	)
 	net-libs/enet:1.3
-	sys-libs/zlib
-"
+	sys-libs/zlib"
 RDEPEND="${DEPEND}"
 
-S="${WORKDIR}"/${PN}
+S=${WORKDIR}/${PN}
+
+src_unpack() {
+	unpack $A
+	einfo "Copying favicon.png into ${WORKDIR}"
+	cp "${DISTDIR}"/${P}-favicon.png "${WORKDIR}/favicon.png" || die
+}
 
 src_prepare() {
 	# Respect GAMES_DATADIR
 	sed -i -e "s:\(addpackagedir(\"\)data:\1${GAMES_DATADIR}/${PN}/data:" \
-		src/engine/server.cpp || die "sed failed"
+		src/engine/server.cpp || die
 
 	# Unbundle enet
 	sed -i \
 		-e "s:\(client\)\: libenet:\1\::" \
 		-e   "s:\(server\)\: libenet:\1\::" \
-		src/Makefile || die "sed failed"
+		src/Makefile || die
+	rm -r src/enet || die
 
-	# Remove strip
-	sed -i "/STRIP=strip/d" src/Makefile || die "sed failed"
+	#respect LDFLAGS
+	sed -e "/^client/,+1s:-o reclient:-o reclient \$(LDFLAGS):" \
+		-e "/^server/,+1s:-o reserver:-o reserver \$(LDFLAGS):" \
+		-i src/Makefile || die
 }
 
 src_compile() {
 	cd src
 	if ! use dedicated ; then
-		emake CXXFLAGS="${CXXFLAGS}" client server || die "Make failed"
+		emake CXXFLAGS="${CXXFLAGS}" STRIP= client server || die "Make failed"
 	else
-		emake CXXFLAGS="${CXXFLAGS}" server
+		emake CXXFLAGS="${CXXFLAGS}" STRIPT= server
 	fi
 }
 
@@ -61,7 +70,7 @@ src_install() {
 		newgamesbin src/reclient ${PN} || die
 		insinto "${GAMES_DATADIR}"/${PN}
 		doins -r data
-		newicon src/site/bits/favicon.png ${PN}.png || die
+		newicon ${WORKDIR}/favicon.png ${PN}.png || die
 		make_desktop_entry ${PN} "Red Eclipse" ${PN}
 	fi
 

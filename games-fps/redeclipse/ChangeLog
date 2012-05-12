@@ -1,0 +1,11 @@
+# ChangeLog for games-fps/redeclipse
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*redeclipse-1.2 (12 May 2012)
+
+  12 May 2012; Michael Weber <xmw@gentoo.org> redeclipse-1.1.ebuild,
+  +redeclipse-1.2.ebuild:
+  Version bump (as suggested by Ian Stakenvicius on bug 363413), respect
+  LDFLAGS
+
