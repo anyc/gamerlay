@@ -18,6 +18,7 @@ KEYWORDS="~amd64 ~x86"
 IUSE="dedicated"
 
 DEPEND="!dedicated? (
+		media-libs/freetype:2
 		media-libs/libsdl[opengl]
 		media-libs/sdl-image[jpeg,png]
 		media-libs/sdl-mixer[mp3,vorbis]
@@ -30,28 +31,41 @@ RDEPEND="${DEPEND}"
 
 S=${WORKDIR}/${PN}
 
-src_unpack() {
-	unpack $A
-	einfo "Copying favicon.png into ${WORKDIR}"
-	cp "${DISTDIR}"/${P}-favicon.png "${WORKDIR}/favicon.png" || die
-}
-
 src_prepare() {
 	# Respect GAMES_DATADIR
 	sed -i -e "s:\(addpackagedir(\"\)data:\1${GAMES_DATADIR}/${PN}/data:" \
 		src/engine/server.cpp || die
 
 	# Unbundle enet
-	sed -i \
-		-e "s:\(client\)\: libenet:\1\::" \
-		-e   "s:\(server\)\: libenet:\1\::" \
-		src/Makefile || die
+	sed	-e "s:\(client\)\: libenet:\1\::" \
+		-e "s:\(server\)\: libenet:\1\::" \
+		-i src/Makefile || die
 	rm -r src/enet || die
 
 	#respect LDFLAGS
 	sed -e "/^client/,+1s:-o reclient:-o reclient \$(LDFLAGS):" \
 		-e "/^server/,+1s:-o reserver:-o reserver \$(LDFLAGS):" \
 		-i src/Makefile || die
+
+	# Menu and mans
+	sed -e "s:@REDECLIPSE@:${PN}:" \
+		src/install/nix/redeclipse.desktop.am \
+		> src/install/nix/redeclipse.desktop || die
+
+	sed -e "s:@LIBEXECDIR@:$(games_get_libdir):g" \
+		-e "s:@DATADIR@:${GAMES_DATADIR}:g" \
+		-e "s:@DOCDIR@:${GAMES_DATADIR_BASE}/doc/${PF}:" \
+		-e "s:@REDECLIPSE@:${PN}:g" \
+		src/install/nix/redeclipse.6.am \
+		> src/install/nix/redeclipse.6 || die
+
+	sed -e "s:@LIBEXECDIR@:$(games_get_libdir):g" \
+		-e "s:@DATADIR@:${GAMES_DATADIR}:g" \
+		-e "s:@DOCDIR@:${GAMES_DATADIR_BASE}/doc/${PF}:" \
+		-e "s:@REDECLIPSE@:${PN}:g" \
+		src/install/nix/redeclipse-server.6.am \
+		> src/install/nix/redeclipse-server.6 || die
+
 }
 
 src_compile() {
@@ -59,19 +73,24 @@ src_compile() {
 	if ! use dedicated ; then
 		emake CXXFLAGS="${CXXFLAGS}" STRIP= client server || die "Make failed"
 	else
-		emake CXXFLAGS="${CXXFLAGS}" STRIPT= server
+		emake CXXFLAGS="${CXXFLAGS}" STRIP= server || die "Make failed"
 	fi
 }
 
 src_install() {
 	newgamesbin src/reserver ${PN}-server || die
-	dodoc readme.txt
+	doman src/install/nix/redeclipse-server.6 || die
+	dodoc readme.txt data/examples/servexec.cfg data/examples/servinit.cfg
 	if ! use dedicated ; then
 		newgamesbin src/reclient ${PN} || die
+
+		# Don't include examples into datadir
+		rm data/examples/servexec.cfg data/examples/servinit.cfg
 		insinto "${GAMES_DATADIR}"/${PN}
 		doins -r data
-		newicon ${WORKDIR}/favicon.png ${PN}.png || die
-		make_desktop_entry ${PN} "Red Eclipse" ${PN}
+		newicon "${DISTDIR}/${P}-favicon.png" ${PN}.png || die
+		domenu src/install/nix/redeclipse.desktop
+		doman src/install/nix/redeclipse.6
 	fi
 
 	prepgamesdirs

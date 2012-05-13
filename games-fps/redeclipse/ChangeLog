@@ -2,6 +2,10 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  13 May 2012; Azamat H. Hackimov <azamat.hackimov@gmail.com>
+  -redeclipse-1.1.ebuild, redeclipse-1.2.ebuild, metadata.xml:
+  Removed old 1.1, added man-pages and .desktop file.
+
 *redeclipse-1.2 (12 May 2012)
 
   12 May 2012; Michael Weber <xmw@gentoo.org> redeclipse-1.1.ebuild,
