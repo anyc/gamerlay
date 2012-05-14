@@ -1,16 +1,16 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: games-puzzle/cubosphere/cubosphere0.1.ebuild frostwork Exp $
+# $Header: games-puzzle/cubosphere/cubosphere.ebuild frostwork Exp $
 
 EAPI="3"
 
-MY_PV="02"
+MY_PV="02a"
 
 inherit eutils games flag-o-matic
 
 DESCRIPTION="game similar to the PSX game Kula World / Roll Away"
 HOMEPAGE="http://cubosphere.sourceforge.net/"
-SRC_URI="mirror://sourceforge/${PN}/${PN}_beta${MY_PV}_unix_src.tar"
+SRC_URI="mirror://sourceforge/${PN}/${PN}-beta${MY_PV}_linux_src.tar"
 
 LICENSE="GPL-3"
 SLOT="0"
@@ -26,7 +26,7 @@ DEPEND="dev-lang/lua
 	virtual/opengl
 	virtual/glu"
 
-S="${WORKDIR}"/"${PN}"_beta"${MY_PV}"_unix_src
+S="${WORKDIR}"/"${PN}"-beta"${MY_PV}"
 
 src_prepare() {
 	cd "${S}"
