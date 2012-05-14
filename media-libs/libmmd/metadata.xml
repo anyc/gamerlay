@@ -10,6 +10,7 @@
 a renderlib for mikumikudance pmd model and vmd motion files
 </longdescription>
   <use>
+    <flag name="bullet">enable bullet physics</flag>
     <flag name="sfml">enable sfml texture loading</flag>
   </use>
 </pkgmetadata>
