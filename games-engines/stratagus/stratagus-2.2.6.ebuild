@@ -64,9 +64,11 @@ src_compile() {
 src_install() {
 	cmake-utils_src_install
 
-	# thanks to games.eclass we're stuck with EAPI 2
-	dodoc "${D}"/tmp/doc/*.txt || die
-	rm -f "${D}"/tmp/doc/*.txt || die
-	dohtml -r "${D}"/tmp/doc/* || die
-	rm -rf "${D}"/tmp || die
+	if use doc; then
+		# thanks to games.eclass we're stuck with EAPI 2
+		dodoc "${D}"/tmp/doc/*.txt || die
+		rm -f "${D}"/tmp/doc/*.txt || die
+		dohtml -r "${D}"/tmp/doc/* || die
+		rm -rf "${D}"/tmp || die
+	fi
 }
