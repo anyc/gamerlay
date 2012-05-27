@@ -2,8 +2,3 @@
 # Wait until boost-1.44, bug #320039
 dev-games/gigi
 games-strategy/freeorion
-
-# Michael Weber <xmw@gentoo.org> (06 May 2011)
-# crashes on escape inside game
-=games-fps/urbanterror-4.1.1807.251210
-
