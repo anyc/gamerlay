@@ -1,0 +1,54 @@
+--- CMakeLists.txt.old	2012-05-27 17:18:07.539203698 +0600
++++ CMakeLists.txt	2012-05-27 18:02:01.665294649 +0600
+@@ -124,22 +124,24 @@
+ 
+ # Fribidi
+ if(USE_FRIBIDI)
+-    FIND_PATH(FRIBIDI_INCLUDE_DIR fribidi/fribidi.h
+-      /usr/local/include
+-      /usr/include
+-      )
+-
+-    SET(FRIBIDI_NAMES ${FRIBIDI_NAMES} fribidi libfribidi)
+-    FIND_LIBRARY(FRIBIDI_LIBRARY
+-      NAMES ${FRIBIDI_NAMES}
+-      PATHS /usr/lib /usr/local/lib
+-      )
++	find_package(PkgConfig)
++	pkg_check_modules(FRIBIDI REQUIRED fribidi)
++	if (FRIBIDI_FOUND)
++		include_directories(${FRIBIDI_INCLUDE_DIRS})
++	else()
++		message(FATAL_ERROR "-- fribidi not found")
++	endif(FRIBIDI_FOUND)
+ 
+-    IF (FRIBIDI_LIBRARY AND FRIBIDI_INCLUDE_DIR)
+-        message("-- Fribidi found")
+-    else()
+-        message(FATAL_ERROR "Fribidi not found. Either install fribidi or disable bidi support with -DUSE_FRIBIDI=0 (if you don't use a right-to-left language then you don't need this).")
+-    endif()
++
++
++		#	set(FRIBIDI_LIBRARIES ${FRIBIDI_LIBRARY})
++		#	set(FRIBIDI_INCLUDE_DIRS ${FRIBIDI_INCLUDE_DIR})
++		#	include(FindPackageHandleStandardArgs)
++		#	find_package_handle_standard_args(Fribidi 
++		#		DEFAULT_MSG 
++		#		FRIBIDI_LIBRARY
++		#		FRIBIDI_INCLUDE_DIR
++		#	)
+ endif()
+    
+ # Set some compiler options
+@@ -701,9 +703,9 @@
+ 
+ if(USE_FRIBIDI)
+     if(APPLE)
+-	    target_link_libraries(supertuxkart /Library/Frameworks/fribidi.framework)
++	target_link_libraries(supertuxkart /Library/Frameworks/fribidi.framework)
+     else()
+-        target_link_libraries(supertuxkart fribidi)
++	target_link_libraries(supertuxkart ${FRIBIDI_LIBRARIES})
+     endif()
+     add_definitions(-DENABLE_BIDI=1)
+ endif()

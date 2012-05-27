@@ -1,0 +1,38 @@
+--- CMakeLists.txt.old	2012-05-27 18:28:45.355350020 +0600
++++ CMakeLists.txt	2012-05-27 18:51:19.202396766 +0600
+@@ -11,6 +11,13 @@
+ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "bin")
+ set(PROJECT_VERSION "0.7.3")
+ 
++# Additions for properly install
++set(SUPERTUXKART_DATADIR "${CMAKE_INSTALL_PREFIX}/share/games/supertuxkart"
++	CACHE PATH "")
++set(SUPERTUXKART_BINDIR "bin" CACHE PATH "")
++set(SUPERTUXKART_ICONDIR "share/pixmaps" CACHE PATH "")
++set(SUPERTUXKART_DESKTOPDIR "share/applications" CACHE PATH "")
++
+ # Tweakable values
+ if(CMAKE_BUILD_TYPE MATCHES "Debug")
+ 	set(DEBUG ON)
+@@ -684,7 +691,7 @@
+ 
+ else()
+ 
+-    add_definitions(-DSUPERTUXKART_DATADIR=\"${CMAKE_INSTALL_PREFIX}/share/games/supertuxkart\")
++    add_definitions(-DSUPERTUXKART_DATADIR=\"${SUPERTUXKART_DATADIR}\")
+ 
+     # Build the final executable
+     add_executable(supertuxkart ${SRCS})
+@@ -764,9 +771,9 @@
+ endforeach()
+ 
+ 
+-install(TARGETS supertuxkart RUNTIME DESTINATION games BUNDLE DESTINATION .)
+-install(FILES data/supertuxkart.desktop DESTINATION share/applications)
+-install(FILES data/supertuxkart_32.xpm data/supertuxkart_64.xpm DESTINATION share/pixmaps)
++install(TARGETS supertuxkart RUNTIME DESTINATION ${SUPERTUXKART_BINDIR} BUNDLE DESTINATION .)
++install(FILES data/supertuxkart.desktop DESTINATION ${SUPERTUXKART_DESKTOPDIR})
++install(FILES data/supertuxkart_32.xpm data/supertuxkart_64.xpm DESTINATION ${SUPERTUXKART_ICONDIR})
+ 
+ add_custom_target(GenerateDesktopFile
+                   COMMAND sed 's\#PREFIX\#${CMAKE_INSTALL_PREFIX}\#' ${CMAKE_CURRENT_SOURCE_DIR}/data/supertuxkart_desktop.template | sed 's\#VERSION\#${PROJECT_VERSION}\#' > ${CMAKE_CURRENT_SOURCE_DIR}/data/supertuxkart.desktop
