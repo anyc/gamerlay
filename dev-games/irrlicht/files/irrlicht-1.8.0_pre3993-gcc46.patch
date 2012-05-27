@@ -1,6 +1,8 @@
---- ./source/Irrlicht/Makefile.orig
-+++ ./source/Irrlicht/Makefile
-@@ -75,7 +75,6 @@
+Index: source/Irrlicht/Makefile
+===================================================================
+--- source/Irrlicht/Makefile	(revision 3993)
++++ source/Irrlicht/Makefile	(working copy)
+@@ -84,7 +84,6 @@
  LIB_PATH = ../../lib/$(SYSTEM)
  INSTALL_DIR = /usr/local/lib
  sharedlib install: SHARED_LIB = libIrrlicht.so
