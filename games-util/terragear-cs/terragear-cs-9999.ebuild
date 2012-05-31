@@ -15,7 +15,7 @@ SLOT="0"
 KEYWORDS=""
 IUSE=""
 
-DEPEND=">=dev-games/simgear-9999
+DEPEND=">=dev-games/simgear-2.6
 	dev-libs/boost
 	dev-libs/newmat
 	sci-libs/gdal
