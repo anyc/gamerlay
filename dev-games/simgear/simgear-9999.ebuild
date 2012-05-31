@@ -10,7 +10,7 @@ inherit cmake-utils git-2
 
 DESCRIPTION="Development library for simulation games"
 HOMEPAGE="http://www.simgear.org/"
-EGIT_REPO_URI="git://mapserver.flightgear.org/simgear"
+EGIT_REPO_URI="git://gitorious.org/fg/simgear.git"
 
 LICENSE="GPL-2"
 SLOT="0"
