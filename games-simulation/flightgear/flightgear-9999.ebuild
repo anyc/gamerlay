@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=3
+EAPI=4
 
 EGIT_BRANCH="next"
 
@@ -10,7 +10,7 @@ inherit games cmake-utils git-2
 
 DESCRIPTION="Open Source Flight Simulator"
 HOMEPAGE="http://www.flightgear.org/"
-EGIT_REPO_URI="git://mapserver.flightgear.org/flightgear"
+EGIT_REPO_URI="git://gitorious.org/fg/flightgear.git"
 
 LICENSE="GPL-2"
 SLOT="0"
