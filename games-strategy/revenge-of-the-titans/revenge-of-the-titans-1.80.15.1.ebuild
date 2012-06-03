@@ -1,8 +1,8 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=2
+EAPI=3
 
 inherit games java-pkg-2 versionator
 
@@ -13,33 +13,43 @@ MY_PV=$(delete_all_version_separators)
 
 DESCRIPTION="Defeat the returning Titan horde in a series of epic ground battles."
 HOMEPAGE="http://www.puppygames.net/revenge-of-the-titans/"
-SRC_URI="amd64? ( RevengeOfTheTitans-HIB-${MY_PV}-amd64.tar.gz )
-	x86? ( RevengeOfTheTitans-HIB-${MY_PV}-i386.tar.gz )"
+SRC_URI="hib? (
+	amd64? ( RevengeOfTheTitans-HIB-${MY_PV}-amd64.tar.gz )
+	x86? ( RevengeOfTheTitans-HIB-${MY_PV}-i386.tar.gz ) )
+	!hib? (
+	amd64? ( http://d4ec1k3inlcla.cloudfront.net/RevengeOfTheTitans-amd64.tar.gz -> ${P}-amd64.tar.gz )
+	x86? ( http://d4ec1k3inlcla.cloudfront.net/RevengeOfTheTitans-i386.tar.gz -> ${P}-i386.tar.gz )	)"
 
 LICENSE="as-is"
 SLOT="0"
 KEYWORDS="-* ~amd64 ~x86"
-IUSE=""
+IUSE="hib"
 
 RDEPEND=">=virtual/jre-1.6
 	virtual/opengl"
 DEPEND=""
 
-RESTRICT="fetch strip"
+RESTRICT="mirror strip"
 
 dir="${GAMES_PREFIX_OPT}/${MY_PN}"
 S="${WORKDIR}/${MY_PN}"
 
 pkg_nofetch() {
-	if use amd64 ; then
-		einfo "Please download RevengeOfTheTitans-HIB-${MY_PV}-amd64.tar.gz"
+	if use hib ; then
+		if use amd64 ; then
+			einfo "Please download RevengeOfTheTitans-HIB-${MY_PV}-amd64.tar.gz"
+		fi
+		if use x86 ; then
+			einfo "Please download RevengeOfTheTitans-HIB-${MY_PV}-i386.tar.gz"
+		fi
+		einfo "from your personal page in Humble Indie Bundle #2 site"
+		einfo "(http://www.humblebundle.com) and place it in ${DISTDIR}"
 	fi
-	if use x86 ; then
-		einfo "Please download RevengeOfTheTitans-HIB-${MY_PV}-i386.tar.gz"
-	fi
-	einfo "from your personal page in Humble Indie Bundle #2 site"
-	einfo "(http://www.humblebundle.com) and place it in ${DISTDIR}"
 }
+
+# nothing to do ... stubs for eclasses
+src_configure() { :; }
+src_compile() { :; }
 
 src_install() {
 	insinto "${dir}"
