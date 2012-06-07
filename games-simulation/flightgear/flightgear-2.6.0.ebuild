@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=3
+EAPI=4
 
 inherit games cmake-utils
 
@@ -13,7 +13,7 @@ SRC_URI="mirror://flightgear/Source/${P}.tar.bz2
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64"
+KEYWORDS="~amd64 ~x86"
 IUSE="+jsbsim subversion +yasim"
 
 RDEPEND=">=dev-games/openscenegraph-3.0[png]
