@@ -10,7 +10,7 @@ MY_PV=$(version_format_string '${2}${3}${1}')
 
 DESCRIPTION="A mind-bending platforming adventure from Double Fine Productions."
 HOMEPAGE="http://www.psychonauts.com/"
-SRC_URI="${PN}-linux-${MY_PV}.zip"
+SRC_URI="${PN}-linux-${MY_PV}-bin"
 
 LICENSE="Psychonauts-EULA"
 SLOT="0"
@@ -24,13 +24,22 @@ RDEPEND="virtual/opengl
 
 RESTRICT="fetch strip"
 
-S="${WORKDIR}/${PN}-linux-installer/data"
+S="${WORKDIR}/data"
 
 pkg_nofetch() {
 	einfo "Please download ${A}"
 	einfo "from your personal page in Humble Indie Bundle V site"
 	einfo "(http://www.humblebundle.com)"
 	einfo "and place it to ${DESTDIR}"
+}
+
+src_unpack() {
+	# self unpacking zip archive; unzip warns about the exe stuff
+	# (taken from lugaru ebuild)
+	local a=${DISTDIR}/${A}
+	echo ">>> Unpacking ${a} to ${PWD}"
+	unzip -q "${a}"
+	[ $? -gt 1 ] && die "unpacking failed"
 }
 
 src_install() {
