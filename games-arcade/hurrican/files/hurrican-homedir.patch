@@ -1,0 +1,105 @@
+diff -Naur src/Gameplay.cpp src/Gameplay.cpp
+--- src/Gameplay.cpp	2012-06-07 11:40:47.000000000 +0200
++++ src/Gameplay.cpp	2012-06-09 10:35:30.029915087 +0200
+@@ -33,6 +33,7 @@
+ #include "Projectiles.h"
+ #include "Tileengine.h"
+ #include "Timer.h"
++#include <sys/stat.h>
+ 
+ // --------------------------------------------------------------------------------------
+ // Gameplay Variablen
+@@ -71,6 +72,16 @@
+ 
+ int		DisplayHintNr = -1;
+ 
++// file in HOME
++
++std::string homefile(std::string file)
++{
++	std::string home=getenv("HOME");
++	std::string hurrihome=home+"/.config/hurrican/";
++	mkdir(hurrihome.c_str(), 0755);
++	return hurrihome+file;	
++}
++
+ // --------------------------------------------------------------------------------------
+ // Ein neues Spiel initialisieren
+ // --------------------------------------------------------------------------------------
+@@ -683,8 +694,8 @@
+ 	float Sound, Musik;
+ 
+ 	FILE *Datei = NULL;
+-
+-	fopen_s(&Datei, CONFIGFILE, "rb");		// versuchen Datei zu öffnen
++	
++	fopen_s(&Datei, homefile(CONFIGFILE).c_str(), "rb"); // versuchen Datei zu öffnen
+ 
+ 	if (Datei == NULL)
+ 		return false;
+@@ -769,8 +780,8 @@
+ 	float	Sound, Musik;
+ 
+ 	FILE *Datei = NULL;
+-
+-	fopen_s(&Datei, CONFIGFILE, "wb");
++	
++	fopen_s(&Datei, homefile(CONFIGFILE).c_str(), "wb");
+ 	if (Datei == NULL)
+     {
+    		Protokoll.WriteText("Config file saving failed !\n", false);
+diff -Naur src/Gameplay.h src/Gameplay.h
+--- src/Gameplay.h	2012-06-07 11:40:47.000000000 +0200
++++ src/Gameplay.h	2012-06-09 10:35:30.029915087 +0200
+@@ -86,6 +86,7 @@
+ extern const float ShockWaveY;
+ 
+ extern char	StageReihenfolge[256][100];
++extern std::string homefile(std::string file);
+ 
+ #endif
+ 
+diff -Naur src/Main.cpp src/Main.cpp
+--- src/Main.cpp	2012-06-07 11:40:48.000000000 +0200
++++ src/Main.cpp	2012-06-09 10:36:06.479914736 +0200
+@@ -102,7 +102,7 @@
+ #if defined(__AROS__)
+ Logdatei				Protokoll("T:Game_Log.txt");		// Protokoll Datei
+ #else
+-Logdatei				Protokoll("Game_Log.txt");		// Protokoll Datei
++Logdatei				Protokoll(homefile("Game_Log.txt").c_str());		// Protokoll Datei
+ #endif
+ CSoundManager			*pSoundManager =  NULL;			// Sound Manager
+ DirectGraphicsFont		*pDefaultFont = new(DirectGraphicsFont);
+@@ -559,7 +559,7 @@
+ 
+ 	// Kein Fehler im Game? Dann Logfile löschen
+ 	if (Protokoll.delLogFile == true)
+-		DeleteFile("Game_Log.txt");
++		DeleteFile(homefile("Game_Log.txt").c_str());
+ 
+ #if defined(PLATFORM_DIRECTX)
+ 	return(message.wParam);										// Rückkehr zu Windows
+diff -Naur src/Menu.cpp src/Menu.cpp
+--- src/Menu.cpp	2012-06-07 11:40:47.000000000 +0200
++++ src/Menu.cpp	2012-06-09 10:35:30.029915087 +0200
+@@ -2666,8 +2666,8 @@
+ 	// Versuchen, die Highscore Datei zu öffnen
+ 	// falls sie nicht existiert oder es eine Fehler gibt, wird die Standard
+ 	// Highscore gesetzt
+-	fopen_s(&Datei, "Hurrican.hsl", "rb");
+ 
++	fopen_s(&Datei, homefile("Hurrican.hsl").c_str(), "rb");
+ 
+ 	// Fehler beim Öffnen ? Dann standard Highscore setzen
+ 	//
+@@ -2722,7 +2722,8 @@
+ 	FILE *Datei;			// Savegame Datei
+ 
+ 	// Highscore Datei öffnen
+-	fopen_s(&Datei, "Hurrican.hsl", "wb");
++
++	fopen_s(&Datei, homefile("Hurrican.hsl").c_str(), "wb");
+ 
+ 	// Fehler beim Öffnen ? Dann standard Highscore setzen
+ 	//
