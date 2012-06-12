@@ -1,4 +1,4 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -12,9 +12,11 @@ DESCRIPTION="NetRadiant is a fork of map editor for Q3 based games, GtkRadiant 1
 HOMEPAGE="http://dev.alientrap.org/projects/netradiant"
 BASE_ZIP_URI="http://ingar.satgnu.net/files/gtkradiant/gamepacks/"
 SRC_URI="http://rion-overlay.googlecode.com/files/${P}.tar.xz
+	osirion? ( ${BASE_ZIP_URI}/OsirionPack.zip )
+	quake1? ( ${BASE_ZIP_URI}/Quake1Pack.zip )
+	warsow? ( ${BASE_ZIP_URI}/WarsowPack.zip )
 	!bindist? (
 		openarena? ( ${BASE_ZIP_URI}/OpenArenaPack.zip )
-		quake? ( ${BASE_ZIP_URI}/QuakePack.zip )
 		quake2? ( ${BASE_ZIP_URI}/Quake2Pack.zip )
 		tremulous? ( ${BASE_ZIP_URI}/TremulousPack.zip )
 	)
@@ -23,8 +25,8 @@ SRC_URI="http://rion-overlay.googlecode.com/files/${P}.tar.xz
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-RADIANT_GPL_PACKS="darkplaces nexuiz quake2world warsow +xonotic"
-RADIANT_NONGPL_PACKS="openarena quake quake2 tremulous"
+RADIANT_GPL_PACKS="darkplaces nexuiz osirion quake2world warsow +xonotic"
+RADIANT_NONGPL_PACKS="openarena quake1 quake2 tremulous"
 RADIANT_TOOLS="h2data q2map q3data q3map2 qdata3"
 RADIANT_PACKS="${RADIANT_GPL_PACKS} ${RADIANT_NONGPL_PACKS}"
 RADIANT_BINS=" ${RADIANT_TOOLS} gtk"
@@ -45,9 +47,11 @@ RDEPEND="
 DEPEND="${RDEPEND}
 	app-arch/xz-utils
 	dev-util/pkgconfig
+	osirion? ( app-arch/unzip )
+	quake1? ( app-arch/unzip )
+	warsow? ( app-arch/unzip )
 	!bindist? (
 		openarena? ( app-arch/unzip )
-		quake? ( app-arch/unzip )
 		quake2? ( app-arch/unzip )
 		tremulous? ( app-arch/unzip )
 	)
@@ -78,10 +82,13 @@ src_unpack() {
 	unpack ${P}.tar.xz
 
 	if use gtk; then
+		radiant_zip_unpack Osirion
+		radiant_zip_unpack Quake1
+		radiant_zip_unpack Warsow
+
 		if use !bindist; then
 			MY_RADIANT_PACKS="${RADIANT_GPL_PACKS//+/} ${RADIANT_NONGPL_PACKS}"
 			radiant_zip_unpack OpenArena
-			radiant_zip_unpack Quake
 			radiant_zip_unpack Quake2
 			radiant_zip_unpack Tremulous
 		else
@@ -120,7 +127,7 @@ src_install() {
 	doins \
 		setup/data/tools/q3data.qdt
 
-	dodoc ChangeLog ChangeLog.idsoftware CONTRIBUTORS TODO tools/quake3/q3map2/changelog.q3map{1,2.txt}
+	dodoc ChangeLog ChangeLog.idsoftware CONTRIBUTORS tools/quake3/q3map2/changelog.q3map{1,2.txt}
 
 	pushd install || die
 	exeinto /usr/$(get_libdir)/${PN}
@@ -165,7 +172,6 @@ src_install() {
 				# USE and dir names differ
 				n="$(echo $x | sed \
 					-e 's/^quake/q/' \
-					-e 's/^q$/q1/' \
 					-e 's/2world$/2w/' \
 					-e 's/^openarena/oa/' \
 					-e 's/^tremulous/trem/' \

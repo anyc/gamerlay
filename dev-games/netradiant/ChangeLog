@@ -1,6 +1,13 @@
 # ChangeLog for dev-games/netradiant
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+*netradiant-1.5.0_p20120515 (12 Jun 2012)
+
+  12 Jun 2012; Nikoli <nikoli@lavabit.com> -netradiant-1.5.0_p20110127.ebuild,
+  -netradiant-1.5.0_p20110827.ebuild, +netradiant-1.5.0_p20120515.ebuild,
+  netradiant-9999.ebuild, metadata.xml:
+  new snapshot, update gamepacks, remove old
 
 *netradiant-1.5.0_p20110827 (14 Sep 2011)
 

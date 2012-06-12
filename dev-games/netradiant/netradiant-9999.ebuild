@@ -1,4 +1,4 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -18,10 +18,10 @@ EGIT_REPO_URI="git://git.xonotic.org/xonotic/netradiant.git"
 BASE_ZIP_URI="http://ingar.satgnu.net/files/gtkradiant/gamepacks/"
 SRC_URI="
 	osirion? ( ${BASE_ZIP_URI}/OsirionPack.zip )
+	quake1? ( ${BASE_ZIP_URI}/Quake1Pack.zip )
 	warsow? ( ${BASE_ZIP_URI}/WarsowPack.zip )
 	!bindist? (
 		openarena? ( ${BASE_ZIP_URI}/OpenArenaPack.zip )
-		quake? ( ${BASE_ZIP_URI}/QuakePack.zip )
 		quake2? ( ${BASE_ZIP_URI}/Quake2Pack.zip )
 		tremulous? ( ${BASE_ZIP_URI}/TremulousPack.zip )
 	)
@@ -30,8 +30,8 @@ SRC_URI="
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS=""
-RADIANT_GPL_PACKS="darkplaces nexuiz osirion quake2world warsow +xonotic"
-RADIANT_NONGPL_PACKS="openarena quake quake2 quake3 tremulous ufoai"
+RADIANT_GPL_PACKS="darkplaces nexuiz osirion quake1 quake2world warsow +xonotic"
+RADIANT_NONGPL_PACKS="openarena quake2 quake3 tremulous ufoai"
 RADIANT_TOOLS="h2data q2map q3data q3map2 qdata3"
 RADIANT_PACKS="${RADIANT_GPL_PACKS} ${RADIANT_NONGPL_PACKS}"
 RADIANT_BINS=" ${RADIANT_TOOLS} gtk"
@@ -53,12 +53,12 @@ DEPEND="${RDEPEND}
 	dev-util/pkgconfig
 	darkplaces? ( ${SUBVERSION_DEPEND} )
 	osirion? ( app-arch/unzip )
+	quake1? ( app-arch/unzip )
 	quake2world? ( ${SUBVERSION_DEPEND} )
 	warsow? ( app-arch/unzip )
 	xonotic? ( net-misc/wget )
 	!bindist? (
 		openarena? ( app-arch/unzip )
-		quake? ( app-arch/unzip )
 		quake2? ( app-arch/unzip )
 		quake3? ( ${SUBVERSION_DEPEND} )
 		tremulous? ( app-arch/unzip )
@@ -105,10 +105,11 @@ src_unpack() {
 		mkdir "${WORKDIR}/packs/" || die
 
 		radiant_svn_unpack darkplaces \
-			"https://zerowing.idsoftware.com/svn/radiant.gamepacks/DarkPlacesPack/branches/1.5/"
+			"svn://svn.icculus.org/gtkradiant-gamepacks/DarkPlacesPack/branches/1.5/"
 		radiant_svn_unpack quake2world \
 			"svn://jdolan.dyndns.org/quake2world/trunk/gtkradiant"
 		radiant_zip_unpack Osirion
+		radiant_zip_unpack Quake1
 		radiant_zip_unpack Warsow
 
 		if use nexuiz; then
@@ -123,7 +124,7 @@ src_unpack() {
 		fi
 
 		if use xonotic; then
-			unset EGIT_MASTER EGIT_BRANCH EGIT_COMMIT EGIT_PROJECT EGIT_DIR
+			unset EGIT_MASTER EGIT_BRANCH EGIT_COMMIT EGIT_PROJECT
 			EGIT_REPO_URI="git://git.xonotic.org/xonotic/netradiant-xonoticpack.git" \
 			EGIT_PROJECT="${PN}-xonotic" \
 			EGIT_SOURCEDIR="${WORKDIR}/packs/xonotic" \
@@ -140,15 +141,14 @@ src_unpack() {
 		if use !bindist; then
 			MY_RADIANT_PACKS="${RADIANT_GPL_PACKS//+/} ${RADIANT_NONGPL_PACKS}"
 			radiant_svn_unpack ufoai \
-				"https://zerowing.idsoftware.com/svn/radiant.gamepacks/UFOAIPack/branches/1.5/"
+				"svn://svn.icculus.org/gtkradiant-gamepacks/UFOAIPack/branches/1.5/"
 
 			radiant_zip_unpack OpenArena
-			radiant_zip_unpack Quake
 			radiant_zip_unpack Quake2
 			radiant_zip_unpack Tremulous
 
 			if use quake3; then
-				ESVN_REPO_URI="https://zerowing.idsoftware.com/svn/radiant.gamepacks/Q3Pack/trunk/" \
+				ESVN_REPO_URI="svn://svn.icculus.org/gtkradiant-gamepacks/Q3Pack/trunk/" \
 				ESVN_PROJECT="${PN}-quake3" \
 				ESVN_REVISION="29" \
 				S="${WORKDIR}/packs/quake3-tmp" \
@@ -193,7 +193,7 @@ src_install() {
 	doins \
 		setup/data/tools/q3data.qdt
 
-	dodoc ChangeLog ChangeLog.idsoftware CONTRIBUTORS TODO tools/quake3/q3map2/changelog.q3map{1,2.txt}
+	dodoc ChangeLog ChangeLog.idsoftware CONTRIBUTORS tools/quake3/q3map2/changelog.q3map{1,2.txt}
 
 	pushd install || die
 	exeinto /usr/$(get_libdir)/${PN}
@@ -238,7 +238,6 @@ src_install() {
 				# USE and dir names differ
 				n="$(echo $x | sed \
 					-e 's/^quake/q/' \
-					-e 's/^q$/q1/' \
 					-e 's/2world$/2w/' \
 					-e 's/^openarena/oa/' \
 					-e 's/^tremulous/trem/' \
