@@ -5,12 +5,14 @@
 EAPI=4
 
 EGIT_BRANCH="next"
+EGIT_PROJECT="flightgear.git"
 
 inherit games cmake-utils git-2
 
 DESCRIPTION="Open Source Flight Simulator"
 HOMEPAGE="http://www.flightgear.org/"
-EGIT_REPO_URI="git://gitorious.org/fg/flightgear.git"
+EGIT_REPO_URI="git://mapserver.flightgear.org/flightgear/
+		git://gitorious.org/fg/flightgear.git"
 
 LICENSE="GPL-2"
 SLOT="0"
