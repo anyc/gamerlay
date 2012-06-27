@@ -51,8 +51,8 @@ src_configure() {
 
 src_install() {
 	cmake-utils_src_install
-	newicon icons/fg-16.png ${PN}.png
-	make_desktop_entry fgfs "FlightGear"
+	newicon package/${PN}.ico ${PN}.ico
+	newmenu package/${PN}.desktop ${PN}.desktop
 	prepgamesdirs
 }
 
