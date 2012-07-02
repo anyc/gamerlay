@@ -67,7 +67,12 @@ pkg_postinst() {
 	elog "To download fgdata, use"
 	elog "\"git clone git://mapserver.flightgear.org/fgdata/ SOMEPATH\"."
 	elog
-	elog
 	elog "Don't forget that before updating FlightGear you will most likely"
 	elog "have to update Simgear, too"
+	elog
+	elog
+	elog "It is recommended that you install one of the available launchers,"
+	elog "as they provide easy access to startup options:"
+	elog "* games-simulation/fgx"
+	elog "* games-simulation/fgrun"
 }

@@ -50,3 +50,10 @@ src_install() {
 	make_desktop_entry fgfs "FlightGear"
 	prepgamesdirs
 }
+
+pkg_postinst() {
+	elog "It is recommended that you install one of the available launchers,"
+	elog "as they provide easy access to startup options:"
+	elog "* games-simulation/fgx"
+	elog "* games-simulation/fgrun"
+}
