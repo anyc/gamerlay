@@ -11,7 +11,7 @@ Typhon is a slim and themeable opengl dashboard / program launcher.
 </longdescription>
   <use>
 	<flag name="mmd">enable mikumikudance model support</flag> 
-    <flag name="opencv">Add opencv support</flag>
+	<flag name="sfe">enabled shared sfemovie support</flag>
 	<flag name="p3t">enabled shared libp3t support</flag>
   </use>
 </pkgmetadata>
