@@ -21,6 +21,5 @@ DEPEND="media-libs/libsfml
 RDEPEND="${DEPEND}"
 
 src_prepare() {
-	epatch ${FILESDIR}/"${PN}-install.patch"
 	sed -i -e "s:add_sub:#add_sub:g" -i CMakeLists.txt
 }
