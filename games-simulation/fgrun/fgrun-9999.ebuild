@@ -36,6 +36,7 @@ DOCS=(AUTHORS NEWS)
 src_configure() {
 	mycmakeargs=(
 	-DCMAKE_INSTALL_PREFIX=${GAMES_PREFIX}
+	-DSIMGEAR_SHARED=ON
 	$(cmake-utils_use_enable nls)
 	)
 	cmake-utils_src_configure
