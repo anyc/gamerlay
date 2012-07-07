@@ -32,6 +32,7 @@ DOCS=(NEWS AUTHORS)
 
 src_configure() {
 	mycmakeargs=(
+	-DSIMGEAR_SHARED=ON
 	$(cmake-utils_use subversion ENABLE_LIBSVN)
 	$(cmake-utils_use !X SIMGEAR_HEADLESS)
 	)

@@ -41,6 +41,7 @@ src_configure() {
 	-DCMAKE_INSTALL_PREFIX=${GAMES_PREFIX}
 	-DFG_DATA_DIR="${GAMES_DATADIR}"/${PN}-live
 	-DENABLE_FGADMIN=OFF
+	-DSIMGEAR_SHARED=ON
 	-DWITH_FGPANEL=OFF
 	$(cmake-utils_use_enable jsbsim)
 	$(cmake-utils_use subversion ENABLE_LIBSVN)

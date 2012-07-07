@@ -28,3 +28,11 @@ RDEPEND="${DEPEND}"
 src_prepare() {
 	sed -e "s|genpolyclip|agggpc|g" -i CMakeModules/FindGPC.cmake
 }
+
+src_configure() {
+	mycmakeargs=(
+	-DSIMGEAR_SHARED=ON
+	)
+
+	cmake-utils_src_configure
+}
