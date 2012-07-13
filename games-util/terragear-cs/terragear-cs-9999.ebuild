@@ -23,7 +23,9 @@ DEPEND=">=dev-games/simgear-2.7
 	|| ( =x11-libs/agg-2.5 >x11-libs/agg-2.5[gpc] )
 "
 
-RDEPEND="${DEPEND}"
+RDEPEND="${DEPEND}
+	app-arch/unzip
+"
 
 src_prepare() {
 	sed -e "s|genpolyclip|agggpc|g" -i CMakeModules/FindGPC.cmake
