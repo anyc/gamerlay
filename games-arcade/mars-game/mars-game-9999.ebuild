@@ -21,7 +21,7 @@ DEPEND=">=media-libs/libsfml-2.0
 RDEPEND="${DEPEND}"
 
 src_prepare(){
-	epatch "${FILESDIR}"/${P}-hotfix.patch
+	epatch "${FILESDIR}"/${P}-glib.patch
 	sed -i -e "s:{CMAKE_INSTALL_PREFIX}/games:{CMAKE_INSTALL_PREFIX}/games/bin:g" -i src/CMakeLists.txt
 }
 
