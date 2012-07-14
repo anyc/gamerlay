@@ -31,6 +31,7 @@ src_prepare(){
 	epatch "${FILESDIR}"/${PN}-irrpatch.patch
 	epatch "${FILESDIR}"/${PN}-irrhack.patch
 	epatch "${FILESDIR}"/${PN}-cmake.patch
+	epatch "${FILESDIR}"/${PN}-64bit.patch
 	for i in `find projects/Puzzle -name *.cpp`; do sed -i "$i" -e "s:../projects:"${GAMES_DATADIR}"/"${PN}"/projects:g"; done
 	for i in `find projects/ConfigApp -name *.cpp`; do sed -i "$i" -e "s:../projects:"${GAMES_DATADIR}"/"${PN}"/projects:g"; done
 	sed -i -e "s:config:"${PN}-config":g" -i projects/ConfigApp/CMakeLists.txt
