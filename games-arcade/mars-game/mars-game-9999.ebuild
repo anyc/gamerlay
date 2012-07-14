@@ -17,6 +17,7 @@ KEYWORDS=""
 IUSE="debug"
 
 DEPEND=">=media-libs/libsfml-2.0
+		media-libs/taglib
 		virtual/opengl"
 RDEPEND="${DEPEND}"
 
