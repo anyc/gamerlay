@@ -14,13 +14,14 @@ SRC_URI="http://garnetgames.com/${MY_PN}Full.tar.gz
 		http://garnetgames.com/${MY_PN}Source.tar.gz
 		http://nothings.org/stb_vorbis/stb_vorbis.c"
 
-LICENSE="GPL-3"
+LICENSE="WTFPL"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-DEPEND="dev-games/ode
+RDEPEND="dev-games/ode
 		dev-games/irrlicht"
+DEPEND="${RDEPEND}"
 
 S="${WORKDIR}"/"${MY_PN}Source/Litha Engine"
 DAT="${WORKDIR}"/"${MY_PN}FullVersion"
