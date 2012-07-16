@@ -36,7 +36,7 @@ S="${WORKDIR}/${PN}"
 RESTRICT="fetch strip"
 
 pkg_nofetch() {
-	ewarn "Please place ${A} to ${DESTDIR}"
+	ewarn "Please place ${A} to ${DISTDIR}"
 }
 
 src_install() {
