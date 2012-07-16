@@ -30,7 +30,7 @@ pkg_nofetch() {
 	einfo "Please download ${A}"
 	einfo "from your personal page in Humble Indie Bundle V site"
 	einfo "(http://www.humblebundle.com)"
-	einfo "and place it to ${DESTDIR}"
+	einfo "and place it to ${DISTDIR}"
 }
 
 src_install() {
