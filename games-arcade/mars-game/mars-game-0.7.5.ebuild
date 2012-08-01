@@ -4,15 +4,15 @@
 
 EAPI=4
 
-inherit cmake-utils eutils git-2
+inherit cmake-utils eutils
 
 DESCRIPTION="M.A.R.S. a ridiculous shooter"
-HOMEPAGE="http://mars-game.sourceforge.net"
-EGIT_REPO_URI="https://github.com/thelaui/M.A.R.S..git"
+HOMEPAGE="http://mars-games.sourceforge.net"
+SRC_URI="https://github.com/downloads/thelaui/M.A.R.S./mars_source_${PV}.tar.gz"
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="~amd64 ~x86"
 IUSE="debug"
 
 DEPEND="dev-libs/fribidi
@@ -21,7 +21,9 @@ DEPEND="dev-libs/fribidi
 	virtual/opengl"
 RDEPEND="${DEPEND}"
 
-src_prepare(){
-	epatch "${FILESDIR}"/${P}-glib.patch
+S="${WORKDIR}/${PN}"
+
+src_prepare() {
+	epatch "${FILESDIR}"/${PN}-9999-glib.patch
 	sed -i -e "s:{CMAKE_INSTALL_PREFIX}/games:{CMAKE_INSTALL_PREFIX}/games/bin:g" -i src/CMakeLists.txt
 }
