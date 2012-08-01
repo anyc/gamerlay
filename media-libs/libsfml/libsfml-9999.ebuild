@@ -1,4 +1,4 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/libsfml/libsfml-9999.ebuild,v 1.2 2011/09/09 07:52:53 frostwork Exp $
 
@@ -28,5 +28,3 @@ DEPEND="media-libs/freetype:2
 	x11-libs/libX11
 	x11-libs/libXrandr"
 RDEPEND="${DEPEND}"
-
-
