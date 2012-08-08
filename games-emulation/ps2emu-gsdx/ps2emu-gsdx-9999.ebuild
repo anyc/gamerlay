@@ -70,7 +70,6 @@ src_configure() {
 		-DPLUGIN_DIR=$(games_get_libdir)/pcsx2
 		-DPLUGIN_DIR_COMPILATION=$(games_get_libdir)/pcsx2
 		-DCMAKE_INSTALL_PREFIX=/usr
-		-DFORCE_INTERNAL_SDL=1
 		"
 	cmake-utils_src_configure
 }
