@@ -1,8 +1,8 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=3
+EAPI=4
 
 inherit games
 
@@ -35,9 +35,9 @@ src_install() {
 	doins vox.dat
 	exeinto ${dir}
 	doexe vox
-	doicon "${FILESDIR}"/voxicon.png
-	make_desktop_entry ${PN} Voxatron voxicon
+	doicon lexaloffle-vox.png
+	make_desktop_entry ${PN} Voxatron lexaloffle-vox
 	games_make_wrapper ${PN} ./vox ${dir} ${dir}
-	dodoc vox.txt
+	dodoc voxatron.txt
 	prepgamesdirs
 }
