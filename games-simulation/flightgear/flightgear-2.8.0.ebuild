@@ -17,7 +17,7 @@ KEYWORDS="~amd64 ~x86"
 IUSE="+jsbsim subversion +yasim"
 
 RDEPEND=">=dev-games/openscenegraph-3.0[png]
-	>=dev-games/simgear-2.6[subversion=,X]
+	>=dev-games/simgear-2.8[subversion=,X]
 	media-libs/plib
 	sys-fs/udev
 	x11-libs/libXmu
@@ -32,12 +32,13 @@ src_configure() {
 	-DCMAKE_INSTALL_PREFIX=${GAMES_PREFIX}
 	-DFG_DATA_DIR="${GAMES_DATADIR}"/${PN}
 	-DENABLE_FGADMIN=OFF
-	-DWITH_FGPANEL=OFF
 	-DENABLE_LARCSIM=OFF
 	-DENABLE_UIUC_MODEL=OFF
+	-DSIMGEAR_SHARED=ON
+	-DWITH_FGPANEL=OFF
 	$(cmake-utils_use_enable jsbsim)
-	$(cmake-utils_use subversion ENABLE_LIBSVN)
 	$(cmake-utils_use_enable yasim)
+	$(cmake-utils_use subversion ENABLE_LIBSVN)
 	)
 	cmake-utils_src_configure
 }
@@ -46,8 +47,8 @@ src_install() {
 	cmake-utils_src_install
 	insinto "${GAMES_DATADIR}"/${PN}
 	doins -r ../data/*
-	newicon icons/fg-16.png ${PN}.png
-	make_desktop_entry fgfs "FlightGear"
+	newicon package/${PN}.ico ${PN}.ico
+	newmenu package/${PN}.desktop ${PN}.desktop
 	prepgamesdirs
 }
 
