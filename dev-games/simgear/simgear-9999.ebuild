@@ -21,7 +21,7 @@ IUSE="subversion X"
 
 RDEPEND="dev-libs/boost
 	X? (	>=dev-games/openscenegraph-3.0[png]
-		media-libs/freealut
+		media-libs/openal
 		subversion? ( dev-vcs/subversion )
 	)
 "
