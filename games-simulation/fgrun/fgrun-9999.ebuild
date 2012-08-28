@@ -22,13 +22,13 @@ COMMON_DEPEND="
 "
 
 DEPEND="${COMMON_DEPEND}
-	>=dev-games/simgear-2.7
+	>=dev-games/simgear-2.9
 	>=dev-libs/boost-1.34
 	nls? ( virtual/libintl )
 "
 
 RDEPEND="${COMMON_DEPEND}
-	>=games-simulation/flightgear-2.7
+	>=games-simulation/flightgear-2.9
 "
 
 DOCS=(AUTHORS NEWS)
