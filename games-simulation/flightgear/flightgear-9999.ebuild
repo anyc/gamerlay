@@ -17,16 +17,27 @@ EGIT_REPO_URI="git://mapserver.flightgear.org/flightgear/
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS=""
-IUSE="+jsbsim larcsim subversion uiuc +yasim"
+IUSE="debug +jsbsim larcsim +subversion test uiuc +yasim"
 
-RDEPEND=">=dev-games/openscenegraph-3.0[png]
-	>=dev-games/simgear-9999[subversion=,X]
-	media-libs/plib
+COMMON_DEPEND="
+	>=dev-games/openscenegraph-3.0[png]
+	>=dev-games/simgear-9999[subversion?,X]
+	sys-libs/zlib
 	sys-fs/udev
-	x11-libs/libXmu
-	x11-libs/libXi
-	subversion? ( dev-vcs/subversion )"
-DEPEND="${RDEPEND}"
+	virtual/opengl
+"
+
+DEPEND="${COMMON_DEPEND}
+	>=dev-libs/boost-1.37
+	media-libs/openal
+	>=media-libs/plib-1.8.5
+	subversion? (
+		dev-libs/apr
+		dev-vcs/subversion
+	)
+"
+
+RDEPEND="${COMMON_DEPEND}"
 
 DOCS=(AUTHORS ChangeLog NEWS README Thanks)
 
@@ -41,12 +52,15 @@ src_configure() {
 	-DCMAKE_INSTALL_PREFIX=${GAMES_PREFIX}
 	-DFG_DATA_DIR="${GAMES_DATADIR}"/${PN}-live
 	-DENABLE_FGADMIN=OFF
+	-DENABLE_RTI=OFF
 	-DSIMGEAR_SHARED=ON
 	-DWITH_FGPANEL=OFF
 	$(cmake-utils_use_enable jsbsim)
-	$(cmake-utils_use subversion ENABLE_LIBSVN)
+	$(cmake-utils_use_enable subversion LIBSVN)
+	$(cmake-utils_use_enable test TESTS)
 	$(cmake-utils_use_enable yasim)
 	)
+
 	cmake-utils_src_configure
 }
 
