@@ -17,25 +17,35 @@ EGIT_REPO_URI="git://mapserver.flightgear.org/simgear/
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS=""
-IUSE="subversion X"
+IUSE="debug +subversion test X"
 
-RDEPEND="dev-libs/boost
+COMMON_DEPEND="
+	sys-libs/zlib
 	X? (	>=dev-games/openscenegraph-3.0[png]
 		media-libs/openal
-		subversion? ( dev-vcs/subversion )
+		virtual/opengl
+		subversion? (
+			dev-libs/apr
+			dev-vcs/subversion
+		)
 	)
 "
 
-DEPEND="${RDEPEND}"
+DEPEND="${COMMON_DEPEND}
+	>=dev-libs/boost-1.37
+"
 
-DOCS=(NEWS AUTHORS)
+RDEPEND="${COMMON_DEPEND}"
+
+DOCS=(AUTHORS ChangeLog NEWS README Thanks)
 
 src_configure() {
-	mycmakeargs=(
-	-DSIMGEAR_SHARED=ON
-	$(cmake-utils_use subversion ENABLE_LIBSVN)
-	$(cmake-utils_use !X SIMGEAR_HEADLESS)
+	local mycmakeargs=(
+		-DENABLE_RTI=OFF
+		-DSIMGEAR_SHARED=ON
+		$(cmake-utils_use_enable subversion LIBSVN)
+		$(cmake-utils_use !X SIMGEAR_HEADLESS)
+		$(cmake-utils_use_enable test TESTS)
 	)
-
 	cmake-utils_src_configure
 }
