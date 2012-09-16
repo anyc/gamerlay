@@ -22,6 +22,7 @@ IUSE="debug +subversion test X"
 COMMON_DEPEND="
 	sys-libs/zlib
 	X? (	>=dev-games/openscenegraph-3.0[png]
+		dev-libs/expat
 		media-libs/openal
 		virtual/opengl
 		subversion? (
@@ -43,6 +44,7 @@ src_configure() {
 	local mycmakeargs=(
 		-DENABLE_RTI=OFF
 		-DSIMGEAR_SHARED=ON
+		-DSYSTEM_EXPAT=ON
 		$(cmake-utils_use_enable subversion LIBSVN)
 		$(cmake-utils_use !X SIMGEAR_HEADLESS)
 		$(cmake-utils_use_enable test TESTS)
