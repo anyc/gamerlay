@@ -11,8 +11,8 @@ inherit games cmake-utils git-2
 
 DESCRIPTION="Open Source Flight Simulator"
 HOMEPAGE="http://www.flightgear.org/"
-EGIT_REPO_URI="git://mapserver.flightgear.org/flightgear/
-		git://gitorious.org/fg/flightgear.git"
+EGIT_REPO_URI="git://gitorious.org/fg/flightgear.git
+		git://mapserver.flightgear.org/flightgear/"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -20,6 +20,7 @@ KEYWORDS=""
 IUSE="debug +jsbsim larcsim +subversion test uiuc +yasim"
 
 COMMON_DEPEND="
+	dev-db/sqlite:3
 	>=dev-games/openscenegraph-3.0[png]
 	>=dev-games/simgear-9999[subversion?,X]
 	sys-libs/zlib
@@ -54,6 +55,7 @@ src_configure() {
 	-DENABLE_FGADMIN=OFF
 	-DENABLE_RTI=OFF
 	-DSIMGEAR_SHARED=ON
+	-DSYSTEM_SQLITE=ON
 	-DWITH_FGPANEL=OFF
 	$(cmake-utils_use_enable jsbsim)
 	$(cmake-utils_use_enable subversion LIBSVN)
