@@ -2,13 +2,15 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=4
+EAPI="4"
 
 inherit games multilib unpacker-nixstaller
 
+TIMESTAMP="1347954459"
+
 DESCRIPTION="An acrobatic janitor 2d platformer"
 HOMEPAGE="http://dustforce.com"
-SRC_URI="dustforce-linux-1347954459.sh"
+SRC_URI="dustforce-linux-${TIMESTAMP}.sh"
 
 RESTRICT="fetch"
 
@@ -47,35 +49,35 @@ pkg_nofetch() {
 }
 
 src_unpack() {
+	local arch;
+	use x86 && arch="x86";
+	use amd64 && arch="x86_64";
 	nixstaller_unpack \
-		instarchive_all \
-		instarchive_linux_x86 \
-		instarchive_linux_x86_64 \
-		subarch \
-		deps/cURL/cURL_files_linux_x86{,_64}	# We need this for broken dependency
+		"instarchive_all" \
+		"instarchive_linux_${arch}" \
+		"subarch" \				#
+		"deps/cURL/cURL_files_linux_${arch}"	# We need this for broken dependency
 }
 
 src_install() {
 	local dir="${GAMES_PREFIX_OPT}/${PN}"
-	insinto ${dir}
+	insinto "${dir}"
 	doins -r content
-	exeinto ${dir}
+	exeinto "${dir}"
 
 	local exe
-	if use amd64 ; then
-		exe=${MY_PN}.bin.x86_64
-	fi
-	if use x86 ; then
-		exe=${MY_PN}.bin.x86
-	fi
-	doexe ${exe}
+	use x86   && exe="${MY_PN}.bin.x86"
+	use amd64 && exe="${MY_PN}.bin.x86_64"
+
+	doexe "${exe}"
 
 	# Broken dep
-	exeinto ${dir}/$(get_libdir)
-	doexe $(get_libdir)/libcurl.so.3
-	doicon ${MY_PN}.png
-	make_desktop_entry ${PN} ${MY_PN} ${MY_PN}
-	games_make_wrapper ${PN} ./${exe} ${dir} ${dir}
+	insinto "${dir}/$(get_libdir)"
+	doins "$(get_libdir)/libcurl.so.3"
+	doicon "${MY_PN}.png"
+	make_desktop_entry "${PN}" "${MY_PN}" "${MY_PN}"
+	games_make_wrapper "${PN}" "./${exe}" "${dir}" "${dir}/$(get_libdir)"
 
 	dodoc README.linux
+	prepgamesdirs
 }

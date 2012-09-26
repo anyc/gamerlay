@@ -2,13 +2,15 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=4
+EAPI="4"
 
 inherit games unpacker-nixstaller
 
+TIMESTAMP="1347954459"
+
 DESCRIPTION="Retro-inspired brick-breaking game"
 HOMEPAGE="http://www.shattergame.com"
-SRC_URI="shatter-linux-1347954459.sh"
+SRC_URI="shatter-linux-${TIMESTAMP}.sh"
 
 RESTRICT="fetch"
 
@@ -54,23 +56,25 @@ src_unpack() {
 
 src_install() {
 	local dir="${GAMES_PREFIX_OPT}/${PN}"
-	insinto ${dir}
+	insinto "${dir}"
 	doins -r data pkcmn.pak
 
-	exeinto ${dir}
+	exeinto "${dir}"
 	doexe SettingsEditor.bin.x86 Shatter.bin.x86
 
 	# Broken dep
-	exeinto ${dir}/lib
-	doexe lib/libfmod{event,eventnet,ex}-4.36.21.so
+	insinto "${dir}/lib"
+	doins lib/libfmod{event,eventnet,ex}-4.36.21.so
 	# Only for AMD64
-	use amd64 && doexe lib/libCg{,GL}.so
-	doicon ${MY_PN}.png
-	newicon Settings.png ${MY_PN}-Settings.png
-	make_desktop_entry ${PN} ${MY_PN} ${MY_PN}
-	make_desktop_entry ${PN}-settings "${MY_PN} Settings" ${MY_PN}-Settings
-	games_make_wrapper ${PN} ./Shatter.bin.x86 ${dir} ${dir}
-	games_make_wrapper ${PN}-settings ./SettingsEditor.bin.x86 ${dir} ${dir}
+	use amd64 && doins lib/libCg{,GL}.so
+
+	doicon "${MY_PN}.png"
+	newicon "Settings.png" "${MY_PN}-Settings.png"
+	make_desktop_entry "${PN}" "${MY_PN}" "${MY_PN}"
+	make_desktop_entry "${PN}-settings" "${MY_PN} Settings" "${MY_PN}-Settings"
+	games_make_wrapper "${PN}" "./${MY_PN}.bin.x86" "${dir}" "${dir}/lib"
+	games_make_wrapper "${PN}-settings" "./SettingsEditor.bin.x86" "${dir}" "${dir}/lib"
 
 	dodoc README.linux
+	prepgamesdirs
 }
