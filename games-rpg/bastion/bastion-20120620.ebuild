@@ -45,7 +45,6 @@ src_install() {
 		Content \
 		Bastion.exe \
 		FMOD.dll \
-		GamepadBridge.dll \
 		Lidgren.Network.dll \
 		MonoGame.Framework.Linux.dll \
 		OpenTK.dll OpenTK.dll.config \
