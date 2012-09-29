@@ -6,19 +6,21 @@ EAPI="4"
 
 inherit games multilib
 
-TIMESTAMP="1347958759"
+#TIMESTAMP="1347958759"
 
 DESCRIPTION="A side-scrolling platformer packed with action, gravity-bending puzzles, space bandits and absurdly powerful astro-mining tools."
 HOMEPAGE="http://rochardthegame.com/"
 
 SLOT="0"
-LICENSE="as-is"
+LICENSE="Rochard-EULA"
 KEYWORDS="-* ~amd64 ~x86"
 RESTRICT="fetch"
 IUSE=""
 
-SRC_URI="x86? ( rochard-linux-${TIMESTAMP}-${PV//[._-]}-32bit.tar.gz )
-	amd64? ( rochard-linux-${TIMESTAMP}-${PV//[._-]}-64bit.tar.gz )"
+SRC_URI="x86? ( rochard-linux-20120927_131RC1_Linux32bit-1348771540.tar.gz )
+	amd64? ( rochard-linux-20120927_131RC1_Linux64bit-1348771540.tar.gz )"
+# They're crazy on new distfiles name, so, I just mask old one
+#	amd64? ( rochard-linux-${TIMESTAMP}-${PV//[._-]}-64bit.tar.gz )"
 
 RDEPEND="virtual/opengl
 	app-arch/gzip
@@ -49,12 +51,12 @@ src_install() {
 	insinto "${dir}"
 	doins -r "Rochard_Data"
 	exeinto "${dir}"
-	newexe "Rochard.app" "${MY_PN}"
+	doexe "${MY_PN}"
 
 	games_make_wrapper "${PN}" "./${MY_PN}" "${dir}" "${dir}"
 	newicon "${FILESDIR}/${MY_PN}.png" "${PN}.png" || die
 	make_desktop_entry "${PN}" "${MY_PN}" "${MY_PN}"
 
-	dodoc README.linux
+	dodoc README changelog.txt
 	prepgamesdirs
 }
