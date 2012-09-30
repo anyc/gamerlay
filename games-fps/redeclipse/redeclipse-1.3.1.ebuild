@@ -2,14 +2,15 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=3
+EAPI=4
 
-inherit games
+inherit games versionator
+
+MAJOR_VERSION=$(get_version_component_range 1-2)
 
 DESCRIPTION="First-person ego-shooter, built as a total conversion of Cube Engine 2"
 HOMEPAGE="http://www.redeclipse.net/"
-SRC_URI="mirror://sourceforge/${PN}/${PN}_${PV}/${PN}_${PV}_linux_bsd.tar.bz2
-	http://sourceforge.net/apps/trac/redeclipse/export/3683/src/site/bits/favicon.png -> ${P}-favicon.png"
+SRC_URI="mirror://sourceforge/${PN}/${PN}_${MAJOR_VERSION}/${PN}_${PV}_nix_bsd.tar.bz2"
 
 # According to license.txt file
 LICENSE="as-is ZLIB CCPL-Attribution-ShareAlike-3.0"
@@ -34,63 +35,61 @@ S=${WORKDIR}/${PN}
 src_prepare() {
 	# Respect GAMES_DATADIR
 	sed -i -e "s:\(addpackagedir(\"\)data:\1${GAMES_DATADIR}/${PN}/data:" \
-		src/engine/server.cpp || die
+		src/engine/server.cpp
 
 	# Unbundle enet
 	sed	-e "s:\(client\)\: libenet:\1\::" \
 		-e "s:\(server\)\: libenet:\1\::" \
-		-i src/Makefile || die
-	rm -r src/enet || die
+		-i src/Makefile
+	rm -r src/enet
 
 	#respect LDFLAGS
 	sed -e "/^client/,+1s:-o reclient:-o reclient \$(LDFLAGS):" \
 		-e "/^server/,+1s:-o reserver:-o reserver \$(LDFLAGS):" \
-		-i src/Makefile || die
+		-i src/Makefile
 
 	# Menu and mans
-	sed -e "s:@REDECLIPSE@:${PN}:" \
+	sed -e "s:@APPNAME@:${PN}:" \
 		src/install/nix/redeclipse.desktop.am \
-		> src/install/nix/redeclipse.desktop || die
+		> src/install/nix/redeclipse.desktop
 
 	sed -e "s:@LIBEXECDIR@:$(games_get_libdir):g" \
 		-e "s:@DATADIR@:${GAMES_DATADIR}:g" \
 		-e "s:@DOCDIR@:${GAMES_DATADIR_BASE}/doc/${PF}:" \
 		-e "s:@REDECLIPSE@:${PN}:g" \
-		src/install/nix/redeclipse.6.am \
-		> src/install/nix/redeclipse.6 || die
+		doc/man/redeclipse.6.am \
+		> doc/man/redeclipse.6
 
 	sed -e "s:@LIBEXECDIR@:$(games_get_libdir):g" \
 		-e "s:@DATADIR@:${GAMES_DATADIR}:g" \
 		-e "s:@DOCDIR@:${GAMES_DATADIR_BASE}/doc/${PF}:" \
 		-e "s:@REDECLIPSE@:${PN}:g" \
-		src/install/nix/redeclipse-server.6.am \
-		> src/install/nix/redeclipse-server.6 || die
+		doc/man/redeclipse-server.6.am \
+		> doc/man/redeclipse-server.6
 
 }
 
 src_compile() {
 	cd src
 	if ! use dedicated ; then
-		emake CXXFLAGS="${CXXFLAGS}" STRIP= client server || die "Make failed"
+		emake CXXFLAGS="${CXXFLAGS}" STRIP= client server
 	else
-		emake CXXFLAGS="${CXXFLAGS}" STRIP= server || die "Make failed"
+		emake CXXFLAGS="${CXXFLAGS}" STRIP= server
 	fi
 }
 
 src_install() {
-	newgamesbin src/reserver ${PN}-server || die
-	doman src/install/nix/redeclipse-server.6 || die
-	dodoc readme.txt data/examples/servexec.cfg data/examples/servinit.cfg
+	newgamesbin src/reserver ${PN}-server
+	doman doc/man/redeclipse-server.6
+	dodoc readme.txt doc/examples/serv{exec,init}.cfg
 	if ! use dedicated ; then
-		newgamesbin src/reclient ${PN} || die
+		newgamesbin src/reclient ${PN}
 
-		# Don't include examples into datadir
-		rm data/examples/servexec.cfg data/examples/servinit.cfg
 		insinto "${GAMES_DATADIR}"/${PN}
 		doins -r data
-		newicon "${DISTDIR}/${P}-favicon.png" ${PN}.png || die
+		newicon src/install/nix/${PN}_x128.png ${PN}.png
 		domenu src/install/nix/redeclipse.desktop
-		doman src/install/nix/redeclipse.6
+		doman doc/man/redeclipse.6
 	fi
 
 	prepgamesdirs
