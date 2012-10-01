@@ -12,7 +12,7 @@ DESCRIPTION="Retro-inspired brick-breaking game"
 HOMEPAGE="http://www.shattergame.com"
 SRC_URI="shatter-linux-${TIMESTAMP}.sh"
 
-RESTRICT="fetch"
+RESTRICT="fetch strip"
 
 LICENSE="as-is"
 SLOT="0"
@@ -41,6 +41,11 @@ RDEPEND="x86? (	virtual/opengl
 
 S="${WORKDIR}"
 MY_PN=Shatter
+
+QA_TEXTRELS="
+	opt/shatter/lib/libfmodex-4.36.21.so
+	opt/shatter/lib/libfmodeventnet-4.36.21.so
+	opt/shatter/lib/libfmodevent-4.36.21.so"
 
 pkg_nofetch() {
 	ewarn
