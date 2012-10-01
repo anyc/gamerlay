@@ -55,8 +55,10 @@ src_unpack() {
 	nixstaller_unpack \
 		"instarchive_all" \
 		"instarchive_linux_${arch}" \
-		"subarch" \				#
-		"deps/cURL/cURL_files_linux_${arch}"	# We need this for broken dependency
+		"subarch" \
+		"deps/cURL/cURL_files_linux_${arch}"
+		# FIXME: We need last two lines only due to broken dependency.
+		# May be it will be good to report it to upstream?
 }
 
 src_install() {
