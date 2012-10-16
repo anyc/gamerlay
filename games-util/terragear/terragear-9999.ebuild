@@ -15,7 +15,7 @@ SLOT="0"
 KEYWORDS=""
 IUSE=""
 
-DEPEND=">=dev-games/simgear-2.7
+DEPEND=">=dev-games/simgear-2.9
 	dev-libs/boost
 	dev-libs/newmat
 	dev-libs/poco
