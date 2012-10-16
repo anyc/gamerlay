@@ -51,6 +51,7 @@ RDEPEND="
 "
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig
+	dev-vcs/subversion
 	darkplaces? ( ${SUBVERSION_DEPEND} )
 	osirion? ( app-arch/unzip )
 	quake1? ( app-arch/unzip )

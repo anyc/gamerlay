@@ -47,6 +47,7 @@ RDEPEND="
 DEPEND="${RDEPEND}
 	app-arch/xz-utils
 	dev-util/pkgconfig
+	dev-vcs/subversion
 	osirion? ( app-arch/unzip )
 	quake1? ( app-arch/unzip )
 	warsow? ( app-arch/unzip )
