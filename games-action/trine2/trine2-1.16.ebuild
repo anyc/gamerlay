@@ -13,7 +13,7 @@ RESTRICT="fetch strip"
 LICENSE="frozenbyte-eula"
 SLOT="0"
 KEYWORDS="-* ~amd64 ~x86"
-IUSE=""
+IUSE="gtk"
 
 DEPEND=""
 RDEPEND="x86? (
@@ -31,7 +31,6 @@ RDEPEND="x86? (
 		virtual/opengl
 		x11-libs/cairo
 		x11-libs/gdk-pixbuf
-		x11-libs/gtk+
 		x11-libs/libdrm
 		x11-libs/libICE
 		x11-libs/libSM
@@ -51,14 +50,21 @@ RDEPEND="x86? (
 		x11-libs/libXxf86vm
 		x11-libs/pango
 		x11-libs/pixman
+		gtk? (
+			x11-libs/gtk+
+		)
 	)
 	amd64? (
 		app-emulation/emul-linux-x86-baselibs
 		app-emulation/emul-linux-x86-sdl
 		app-emulation/emul-linux-x86-xlibs
 		app-emulation/emul-linux-x86-opengl
-		app-emulation/emul-linux-x86-gtklibs
+		gtk? (
+			app-emulation/emul-linux-x86-gtklibs
+		)
 	)"
+
+USE_REQUIRE="amd64? ( multilib )"
 
 S="${WORKDIR}"
 
@@ -71,8 +77,8 @@ pkg_nofetch() {
 }
 
 src_unpack() {
-        local src="${DISTDIR}/${A}"
-        dd ibs=51200 skip=1 if="${src}" | tar --no-same-owner -xzf -
+	local src="${DISTDIR}/${A}"
+	dd ibs=51200 skip=1 if="${src}" | tar --no-same-owner -xzf -
 }
 
 src_install() {
@@ -81,8 +87,11 @@ src_install() {
 	doins -r data data1.fbq datalinux1.fbq
 
 	exeinto "${dir}/bin"
-	doexe bin/*
-
+	doexe "bin/${PN}_linux_32bit"
+	use gtk && (
+		doexe "bin/${PN}_linux_launcher_32bit"
+		doexe "bin/${PN}_bin_starter.sh"
+	)
 	# PhysX
 	insinto "${dir}/lib"
 	doins lib/lib32/libPhysX*
@@ -92,8 +101,13 @@ src_install() {
 	use amd64 && doins lib/lib32/libCg{,GL}.so
 
 	doicon "${PN}.png"
-	make_desktop_entry "${PN}" "${PN}" "${PN}"
-	games_make_wrapper "${PN}" "bin/${PN}" "${dir}" "${dir}/lib"
+	make_desktop_entry "${PN}" "Trine 2 Game" "${PN}"
+	games_make_wrapper "${PN}" "bin/${PN}_linux_32bit" "${dir}" "${dir}/lib"
+
+	use gtk && (
+		make_desktop_entry "${PN}_launcher" "Trine 2 Launcher (GTK)" "${PN}"
+		games_make_wrapper "${PN}_launcher" "bin/${PN}_linux_launcher_32bit" "${dir}" "${dir}/lib"
+	)
 
 	dodoc README
 	prepgamesdirs
