@@ -1,0 +1,10 @@
+# ChangeLog for games-action/trine2
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*trine2-1.16 (21 Oct 2012)
+
+  21 Oct 2012; Misbakh-Soloviov Vadim A. <mva@gentoo.org> +trine2-1.16.ebuild,
+  +metadata.xml:
+  [games-rpg/trine2] Added 1.16 version of Trine2
+
