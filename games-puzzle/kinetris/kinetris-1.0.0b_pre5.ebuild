@@ -5,7 +5,7 @@
 EAPI="3"
 MY_PN=Kinetris
 
-inherit games qt4
+inherit games qt4-r2
 
 DESCRIPTION="a tetrominoes game (i.e.: a Tetris clone) that uses the Xbox 360 Kinect"
 HOMEPAGE="http://code.google.com/p/${PN}"
