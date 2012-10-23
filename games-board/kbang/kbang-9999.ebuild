@@ -4,7 +4,7 @@
 
 EAPI="2"
 
-inherit games qt4 subversion
+inherit games qt4-r2 subversion
 
 DESCRIPTION="KBang is an open source implementation of the popular card game Bang!"
 HOMEPAGE="http://code.google.com/p/kbang/"
