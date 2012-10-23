@@ -64,7 +64,7 @@ RDEPEND="x86? (
 		)
 	)"
 
-USE_REQUIRE="amd64? ( multilib )"
+REQUIRED_USE="amd64? ( multilib )"
 
 S="${WORKDIR}"
 
