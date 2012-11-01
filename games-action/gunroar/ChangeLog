@@ -1,0 +1,38 @@
+# ChangeLog for games-action/gunroar
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+  28 Aug 2009; Marcel Unbehaun <frostworks@gmx.de> -files/digest-gunroar-0.15,
+  -files/gunroar-0.15.diff, -files/gunroar.png:
+  rm files/digest-gunroar-0.15
+  (games-action/gunroar)  rm files/gunroar-0.15.diff
+  (games-action/gunroar)  rm files/gunroar.png
+
+  28 Aug 2009; Marcel Unbehaun <frostworks@gmx.de> gunroar-0.15.ebuild:
+  using debian patches gunroar-0.15.ebuild
+  (games-action/gunroar)  new Manifest
+
+*gunroar-0.15 (21 Aug 2009)
+
+  21 Aug 2009; Romain Perier <mrpouet@gentoo.org> +files/digest-gunroar-0.15,
+  +files/gunroar-0.15.diff, +files/gunroar.png, +gunroar-0.15.ebuild,
+  +metadata.xml:
+  Moved devel/* to ./
+
+  13 Aug 2009; Tomáš Chvátal <scarabeus@gentoo.org>
+  -files/digest-gunroar-0.15, -files/gunroar-0.15.diff, -files/gunroar.png,
+  -gunroar-0.15.ebuild, -metadata.xml:
+  Move to 2 folder layout where one is for devel and one for fixed things.
+
+*gunroar-0.15 (29 Jul 2009)
+
+  29 Jul 2009; Marcel Unbehaun <frostworks@gmx.de> +files/digest-gunroar-0.15,
+  +files/gunroar-0.15.diff, +files/gunroar.png, +gunroar-0.15.ebuild,
+  +metadata.xml:
+  added Manifest
+  (games-action/gunroar)          added files/digest-gunroar-0.15
+  (games-action/gunroar)          added files/gunroar-0.15.diff
+  (games-action/gunroar)          added files/gunroar.png
+  (games-action/gunroar)          added gunroar-0.15.ebuild
+  (games-action/gunroar)          added metadata.xml
+

@@ -1,0 +1,173 @@
+# ChangeLog for games-simulation/flightgear
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+  19 Sep 2012; Christian Schmitt <chris@ilovelinux.de> flightgear-9999.ebuild:
+  now depends on SQLite, use system copy instead of bundled version.
+  Change order of GIT repos
+
+  28 Aug 2012; Christian Schmitt <chris@ilovelinux.de> flightgear-9999.ebuild:
+  9999] sync with portage
+
+  28 Aug 2012; Christian Schmitt <chris@ilovelinux.de>
+  -flightgear-2.8.0.ebuild:
+  Remove simgear-2.8 and flightgear-2.8. Both in tree now
+
+*flightgear-2.8.0 (17 Aug 2012)
+
+  17 Aug 2012; Christian Schmitt <chris@ilovelinux.de>
+  -flightgear-2.6.0.ebuild, +flightgear-2.8.0.ebuild:
+  version bump to 2.8.0.
+  Uses dynamic linking now
+
+  07 Jul 2012; Christian Schmitt <chris@ilovelinux.de> flightgear-9999.ebuild:
+  [dev-games/simgear,games-simulation/flightgear,games-utils/terragear-cs]
+  compile with dynamic linking.
+  Only for the live versions for now.
+
+  02 Jul 2012; Christian Schmitt <chris@ilovelinux.de>
+  flightgear-2.6.0.ebuild, flightgear-9999.ebuild:
+  add an elog informing about launchers
+
+  27 Jun 2012; Christian Schmitt <chris@ilovelinux.de> flightgear-9999.ebuild:
+  9999] use own .desktop file
+
+  12 Jun 2012; Christian Schmitt <chris@ilovelinux.de> flightgear-9999.ebuild:
+  9999 and deps] add a second git server
+  as fallback and set the name of the local clone to make sure the same
+  directory is used for both server checkouts
+
+  07 Jun 2012; Christian Schmitt <chris@ilovelinux.de>
+  flightgear-2.6.0.ebuild:
+  [dev-games/simgear-2.6.0, games-simulation/flightgear-2.6.0] mark ~x86,
+  according to feedback,
+  move FG to EAPI 4
+
+  31 May 2012; Christian Schmitt <chris@ilovelinux.de> flightgear-9999.ebuild:
+  9999] switch to EAPI4 and back to official GIT url
+
+  10 May 2012; Christian Schmitt <chris@ilovelinux.de> flightgear-9999.ebuild:
+  9999] larcsim/UIUC FDMs depend on each other. so get this right.
+
+  25 Apr 2012; Christian Schmitt <chris@ilovelinux.de>
+  flightgear-2.6.0.ebuild:
+  2.6.0] remove larcsim and UIUC FDM useflags
+  and disable them. They don't compile and are in the live ebuild only for
+  the sake of completeness.
+  Also, change the SRC_URI to use the mirror infrastructure. Thanks repoman :)
+
+*flightgear-2.6.0 (24 Apr 2012)
+
+  24 Apr 2012; Christian Schmitt <chris@ilovelinux.de>
+  +flightgear-2.6.0.ebuild:
+  dev-games/simgear]: new ebuilds for version 2.6.0
+
+  Based on the live ebuilds (thus tested already). Hope this gets into
+  portage soon.
+
+  24 Apr 2012; Christian Schmitt <chris@ilovelinux.de> flightgear-9999.ebuild:
+  9999] Clarify post-install message and change
+  to a git mirror. Also set default datadir to prevent potential
+  conflicts with stable FG package.
+
+  26 Mar 2012; Christian Schmitt <chris@ilovelinux.de> flightgear-9999.ebuild:
+  add udev as a dependency
+
+  11 Nov 2011; Christian Schmitt <chris@ilovelinux.de> flightgear-9999.ebuild:
+  [dev-games/simgear, games-simulation/flightgear]: support headless mode
+  in simgear, some fixes to flightgear
+
+  02 Nov 2011; Christian Schmitt <chris@ilovelinux.de>
+  -flightgear-2.4.0.ebuild:
+  [dev-games/simgear,games-simulation/flightgear] remove 2.4.0 versions (in
+  tree)
+
+  02 Nov 2011; Christian Schmitt <chris@ilovelinux.de> flightgear-9999.ebuild,
+  metadata.xml:
+  9999] Add useflags for the flight dynamics models
+
+  22 Sep 2011; Christian Schmitt <chris@ilovelinux.de> flightgear-9999.ebuild:
+  9999] disable HAL dep
+
+*flightgear-2.4.0 (24 Aug 2011)
+
+  24 Aug 2011; Christian Schmitt <chris@ilovelinux.de>
+  +flightgear-2.4.0.ebuild:
+  [simgear, flightgear] add version 2.4.0 to the tree.
+
+  10 Aug 2011; Christian Schmitt <chris@ilovelinux.de> flightgear-9999.ebuild:
+  [simgear, flightgear] fix subversion handling and dependency
+
+  28 Jul 2011; Christian Schmitt <chris@ilovelinux.de> flightgear-9999.ebuild:
+  disable fgpanel. This should be made an
+  optional dep as soon as I figure out what it depends on.
+
+  01 Jun 2011; Christian Schmitt <chris@ilovelinux.de> flightgear-9999.ebuild:
+  migrate flightgear stuff to git-2 eclass
+
+  25 Jan 2011; Christian Schmitt <chris@ilovelinux.de> flightgear-9999.ebuild:
+  [games-simulation/{flightgear,fgrun}] move back to eapi 2
+
+  24 Jan 2011; Christian Schmitt <chris@ilovelinux.de> flightgear-9999.ebuild:
+  cleanup the Flightgear family and move to EAPI3 :)
+
+  22 Jan 2011; Christian Schmitt <chris@ilovelinux.de> flightgear-9999.ebuild:
+  [games-simulation/{flightgear,fgrun}] desktop files
+
+  install a desktop file for fgrun, too and fix the process
+  for FG a bit.
+
+  16 Jan 2011; Christian Schmitt <chris@ilovelinux.de> flightgear-9999.ebuild,
+  metadata.xml:
+  move to cmake build system
+
+  08 Jan 2011; Christian Schmitt <chris@ilovelinux.de> flightgear-9999.ebuild:
+  small dep change
+
+  21 Nov 2010; Christian Schmitt <chris@ilovelinux.de>
+  -files/flightgear-configure-svn.patch, flightgear-9999.ebuild:
+  remove svn patch which is now upstream
+
+  13 Nov 2010; Christian Schmitt <chris@ilovelinux.de> flightgear-9999.ebuild,
+  metadata.xml:
+  fix fgdata download URL
+
+  11 Nov 2010; Christian Schmitt <chris@ilovelinux.de>
+  files/flightgear-configure-svn.patch, flightgear-9999.ebuild:
+  further refine the svn patch
+
+  10 Nov 2010; Christian Schmitt <chris@ilovelinux.de>
+  +files/flightgear-configure-svn.patch, flightgear-9999.ebuild,
+  +metadata.xml:
+  add a patch to make SVN optional at compiletime
+
+  09 Nov 2010; Christian Schmitt <chris@ilovelinux.de> flightgear-9999.ebuild:
+  Remove freeglut dep. No longer needed
+
+  19 Oct 2010; Christian Schmitt <chris@ilovelinux.de> flightgear-9999.ebuild:
+  [dev-games/openscenegraph,games-simulation/flightgear] change dependencies
+  to media-libs/freeglut
+
+  10 Aug 2010; Christian Schmitt <chris@ilovelinux.de> flightgear-9999.ebuild:
+  [dev-games/simgear games-simulation/flightgear] properly use the EGIT_BRANCH
+  stuff. Thanks to Wizzleby on IRC for the hint :)
+
+  08 Aug 2010; Christian Schmitt <chris@ilovelinux.de> flightgear-9999.ebuild:
+  [dev-games/simgear] remove plib dep and move it over to FG
+
+  26 Jul 2010; Christian Schmitt <chris@ilovelinux.de> flightgear-9999.ebuild:
+  depend on OSG with png support
+
+  15 Jul 2010; Christian Schmitt <chris@ilovelinux.de> flightgear-9999.ebuild:
+  cleaned up fgrun and flightgear a bit
+
+  15 Jul 2010; Christian Schmitt <chris@ilovelinux.de> flightgear-9999.ebuild:
+  add an elog about fgdata
+
+*flightgear-9999 (15 Jul 2010)
+
+  15 Jul 2010; Christian Schmitt <chris@ilovelinux.de>
+  +flightgear-9999.ebuild:
+  This is the first revision after moving the repo to GIT. Some cleanups
+  compared to SVN
+

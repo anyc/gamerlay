@@ -1,0 +1,36 @@
+# ChangeLog for games-puzzle/polly-b-gone
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+  18 Apr 2010; Piotr Szymaniak <lazy_bum@o2.pl> polly-b-gone-1.0.ebuild:
+  polly-b-gone: Removed empty line (for testing, as some stupid app fscked up
+  my overlays).
+
+  13 Oct 2009; Marcel Unbehaun <frostworks@gmx.de> polly-b-gone-1.0.ebuild:
+  fixed depend on dev-libs/tinyxml dependpolly-b-gone-1.0.ebuild
+  (games-puzzle/polly-b-gone)     newManifest
+
+*polly-b-gone-1.0 (21 Aug 2009)
+
+  21 Aug 2009; Romain Perier <mrpouet@gentoo.org> +files/1.0-Makefile.patch,
+  +files/1.0-libs.patch, +files/polly-b-gone.png, +metadata.xml,
+  +polly-b-gone-1.0.ebuild:
+  Moved devel/* to ./
+
+  13 Aug 2009; Tomáš Chvátal <scarabeus@gentoo.org> -files/1.0-Makefile.patch,
+  -files/1.0-libs.patch, -files/polly-b-gone.png, -metadata.xml,
+  -polly-b-gone-1.0.ebuild:
+  Move to 2 folder layout where one is for devel and one for fixed things.
+
+*polly-b-gone-1.0 (29 Jul 2009)
+
+  29 Jul 2009; Marcel Unbehaun <frostworks@gmx.de> +files/1.0-Makefile.patch,
+  +files/1.0-libs.patch, +files/polly-b-gone.png, +metadata.xml,
+  +polly-b-gone-1.0.ebuild:
+  added Manifest
+  (games-puzzle/polly-b-gone)  added files/1.0-Makefile.patch
+  (games-puzzle/polly-b-gone)  added files/1.0-libs.patch
+  (games-puzzle/polly-b-gone)  added files/polly-b-gone.png
+  (games-puzzle/polly-b-gone)  added metadata.xml
+  (games-puzzle/polly-b-gone)  added polly-b-gone-1.0.ebuild
+

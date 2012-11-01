@@ -1,0 +1,26 @@
+# ChangeLog for games-emulation/pcsx2
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+  30 Oct 2011; Marcel Unbehaun <marcel@frostworx.de> metadata.xml,
+  pcsx2-0.9.8.ebuild, pcsx2-9999.ebuild:
+  meta]   moved plugin use into -meta
+
+  30 Oct 2011; Marcel Unbehaun <marcel@frostworx.de> pcsx2-0.9.8.ebuild,
+  pcsx2-9999.ebuild:
+  changed inherit wxwidgets
+
+  30 Oct 2011; Marcel Unbehaun <marcel@frostworx.de> +metadata.xml,
+  pcsx2-0.9.8.ebuild, pcsx2-9999.ebuild:
+  added plugin useflags, dropped pcsx2-meta
+
+*pcsx2-0.9.8 (29 Oct 2011)
+
+  29 Oct 2011; Marcel Unbehaun <marcel@frostworx.de> +pcsx2-0.9.8.ebuild:
+  added ebuilds for pcsx2+plugins release
+
+*pcsx2-9999 (28 Oct 2011)
+
+  28 Oct 2011; Marcel Unbehaun <marcel@frostworx.de> +pcsx2-9999.ebuild:
+  meta]   initial modular pcsx2-9999 - time was up - patches welcome!
+

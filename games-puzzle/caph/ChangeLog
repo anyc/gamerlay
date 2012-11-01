@@ -1,0 +1,16 @@
+# ChangeLog for games-puzzle/caph
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*caph-1.1 (22 Mar 2011)
+
+  22 Mar 2011; krytzz <krytzz@soylent.eu> +caph-1.1.ebuild,
+  -caph-20091231.ebuild, +files/caph-linux.patch:
+  bump, thanks jasiu
+
+*caph-20091231 (07 Feb 2010)
+
+  07 Feb 2010; krytzz <krytzz@soylent.eu> +caph-20091231.ebuild,
+  +metadata.xml:
+  [games-engines/caph] added, ebuild could be better
+

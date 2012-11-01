@@ -1,0 +1,14 @@
+# ChangeLog for games-arcade/hurrican
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+  15 Jun 2012; Marcel Unbehaun <marcel@frostworx.de>
+  files/hurrican-homedir.patch:
+  updated files/hurrican-homedir.patch
+
+*hurrican-9999 (09 Jun 2012)
+
+  09 Jun 2012; Marcel Unbehaun <marcel@frostworx.de>
+  +files/hurrican-homedir.patch, +hurrican-9999.ebuild, +metadata.xml:
+  initial and ugly hurrican-9999.ebuild
+

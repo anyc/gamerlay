@@ -1,0 +1,38 @@
+# ChangeLog for games-action/titanion
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+  28 Aug 2009; Marcel Unbehaun <frostworks@gmx.de> -files/digest-titanion-0.3,
+  -files/titanion-0.3.diff, -files/titanion.png:
+  rm /files/digest-titanion-0.3
+  (games-action/titanion) rm /files/titanion-0.3.diff
+  (games-action/titanion) rm /files/titanion.png
+
+  28 Aug 2009; Marcel Unbehaun <frostworks@gmx.de> titanion-0.3.ebuild:
+  using debian patches titanion-0.3.ebuild
+  (games-action/titanion) new /Manifest
+
+*titanion-0.3 (21 Aug 2009)
+
+  21 Aug 2009; Romain Perier <mrpouet@gentoo.org> +files/digest-titanion-0.3,
+  +files/titanion-0.3.diff, +files/titanion.png, +metadata.xml,
+  +titanion-0.3.ebuild:
+  Moved devel/* to ./
+
+  13 Aug 2009; Tomáš Chvátal <scarabeus@gentoo.org>
+  -files/digest-titanion-0.3, -files/titanion-0.3.diff, -files/titanion.png,
+  -metadata.xml, -titanion-0.3.ebuild:
+  Move to 2 folder layout where one is for devel and one for fixed things.
+
+*titanion-0.3 (29 Jul 2009)
+
+  29 Jul 2009; Marcel Unbehaun <frostworks@gmx.de> +files/digest-titanion-0.3,
+  +files/titanion-0.3.diff, +files/titanion.png, +metadata.xml,
+  +titanion-0.3.ebuild:
+  added Manifest
+  (games-action/titanion)         added files/digest-titanion-0.3
+  (games-action/titanion)         added files/titanion-0.3.diff
+  (games-action/titanion)         added files/titanion.png
+  (games-action/titanion)         added metadata.xml
+  (games-action/titanion)         added titanion-0.3.ebuild
+

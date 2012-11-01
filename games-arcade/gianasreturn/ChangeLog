@@ -1,0 +1,27 @@
+# ChangeLog for games-arcade/gianasreturn
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+  25 Mar 2011; Azamat H. Hackimov <azamat.hackimov@gmail.com>
+  gianasreturn-1.001.ebuild:
+  Using native 64bit executable.
+
+*gianasreturn-1.001 (23 Mar 2011)
+
+  23 Mar 2011; Azamat H. Hackimov <azamat.hackimov@gmail.com>
+  -gianasreturn-1.0.ebuild, +gianasreturn-1.001.ebuild:
+  version bump to 1.001
+
+  01 Feb 2011; Azamat H. Hackimov <azamat.hackimov@gmail.com>
+  gianasreturn-1.0.ebuild, metadata.xml:
+  Upstream released quickfix with same tarball name, fixing checksums.
+  Some cleanup, RDEPEND, Desktop entry (yay, icons!)
+
+*gianasreturn-1.0 (12 Jan 2011)
+
+  12 Jan 2011; Marcel Unbehaun <frostworks@gmx.de> +gianasreturn-1.0.ebuild,
+  +metadata.xml:
+  initial gianasreturn-1.0.ebuild
+  [games-arcade/gianasreturn]     Manifest
+  [games-arcade/gianasreturn]     metadata.xml
+

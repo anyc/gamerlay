@@ -1,0 +1,11 @@
+# ChangeLog for games-engines/residualvm
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*residualvm-9999 (16 Apr 2012)
+
+  16 Apr 2012; Azamat H. Hackimov <azamat.hackimov@gmail.com> +metadata.xml,
+  +residualvm-9999.ebuild:
+  pkgmove games-engines/residual to games-engines/residualvm
+  Major ebuild enchancement.
+

@@ -1,0 +1,13 @@
+# ChangeLog for games-arcade/edgar
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+  09 Feb 2010; krytzz <krytzz@soylent.eu> edgar-0.25.ebuild:
+  fixed description
+
+*edgar-0.25 (21 Aug 2009)
+
+  21 Aug 2009; Romain Perier <mrpouet@gentoo.org> +edgar-0.25.ebuild,
+  +metadata.xml:
+  Moved devel/* to ./
+

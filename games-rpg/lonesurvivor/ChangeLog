@@ -1,0 +1,19 @@
+# ChangeLog for games-rpg/lonesurvivor
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+  16 Jul 2012; Azamat H. Hackimov <azamat.hackimov@gmail.com>
+  lonesurvivor-1.11d_p1.ebuild:
+  Change from DESTDIR to DISTDIR
+
+  19 Jun 2012; Azamat H. Hackimov <azamat.hackimov@gmail.com>
+  lonesurvivor-1.11d_p1.ebuild:
+  EAPI=4, nothing more.
+
+*lonesurvivor-1.11d_p1 (09 Jun 2012)
+
+  09 Jun 2012; Azamat H. Hackimov <azamat.hackimov@gmail.com>
+  +lonesurvivor-1.11d_p1.ebuild, +metadata.xml:
+  2D sidescrolling psychological survival adventure game.
+  Taken from HIB V.
+

@@ -1,0 +1,18 @@
+# ChangeLog for games-puzzle/puzzlemoppet
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+  14 Jul 2012; Marcel Unbehaun <marcel@frostworx.de>
+  +files/puzzlemoppet-64bit.patch, puzzlemoppet-1.0.ebuild:
+  64bit hack puzzlemoppet-1.0.ebuild
+
+  14 Jul 2012; Marcel Unbehaun <marcel@frostworx.de> puzzlemoppet-1.0.ebuild:
+  updated license - puzzlemoppet-1.0.ebuild
+
+*puzzlemoppet-1.0 (14 Jul 2012)
+
+  14 Jul 2012; Marcel Unbehaun <marcel@frostworx.de>
+  +files/puzzlemoppet-cmake.patch, +files/puzzlemoppet-irrhack.patch,
+  +files/puzzlemoppet-irrpatch.patch, +puzzlemoppet-1.0.ebuild:
+  initial dirty puzzlemoppet-1.0.ebuild
+

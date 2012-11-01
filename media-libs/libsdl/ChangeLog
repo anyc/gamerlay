@@ -1,0 +1,16 @@
+# ChangeLog for media-libs/libsdl
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*libsdl-1.2.14-r3 (01 Jul 2010)
+
+  01 Jul 2010; Locke Shinseiko <wizzleby@gmail.com>
+  +files/libsdl-1.2.13-sdl-config.patch, +files/libsdl-1.2.14-click.patch,
+  +files/libsdl-1.2.14-disappearingcursor.diff, +libsdl-1.2.14-r3.ebuild,
+  +metadata.xml:
+  1.2.14-r3] Sync from tree, revbump, add patch to fix bug #
+          patch added: libsdl-1.2.14-disappearingcursor.diff, from debian
+  patch tracker,
+          fixes the bug introduced by libsdl-1.2.14-click.patch (also from
+  debian)
+

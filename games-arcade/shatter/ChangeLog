@@ -1,0 +1,21 @@
+# ChangeLog for games-arcade/shatter
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+  01 Oct 2012; Azamat H. Hackimov <azamat.hackimov@gmail.com>
+  shatter-1.0.20120917.ebuild:
+  Ebuild improvements as suggested by Jared Breland via email.
+
+  26 Sep 2012; Vadim A. Misbakh-Soloviov <mva@mva.name>
+  shatter-1.0.20120917.ebuild:
+  some cosmetic fixes to dustforce and shatter + new games: rochard, bastion,
+  torchlight
+
+  Signed-off-by: Vadim A. Misbakh-Soloviov <mva@mva.name>
+
+*shatter-1.0.20120917 (23 Sep 2012)
+
+  23 Sep 2012; Azamat H. Hackimov <azamat.hackimov@gmail.com> +metadata.xml,
+  +shatter-1.0.20120917.ebuild:
+  Shatter from HIB 6.
+

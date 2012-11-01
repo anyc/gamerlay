@@ -1,0 +1,43 @@
+# ChangeLog for games-action/area2048
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+  16 Nov 2009; Marcel Unbehaun <frostworks@gmx.de> area2048-1.03.ebuild,
+  files/area2048-1.03-import.patch:
+  good to see noone cared that src_uri was broken area2048-1.03.ebuild
+  (games-action/area2048) new Manifest
+  (games-action/area2048) good to see noone cared that diff-path was broken
+  files/area2048-1.03-import.patch
+
+  29 Aug 2009; Marcel Unbehaun <frostworks@gmx.de> area2048-1.03.ebuild,
+  +files/area2048-1.03-homedir.patch, +files/area2048-1.03-import.patch,
+  +files/area2048-1.03-makefile.patch, +files/area2048-1.03-src.patch,
+  -files/area2048-1.03.diff:
+  new /Manifest
+  (games-action/area2048)         updated /area2048-1.03.ebuild
+  (games-action/area2048)         added /files/area2048-1.03-homedir.patch
+  (games-action/area2048)         added /files/area2048-1.03-import.patch
+  (games-action/area2048)         added /files/area2048-1.03-makefile.patch
+  (games-action/area2048)         added /files/area2048-1.03-src.patch
+  (games-action/area2048)         removed /files/area2048-1.03.diff
+
+*area2048-1.03 (21 Aug 2009)
+
+  21 Aug 2009; Romain Perier <mrpouet@gentoo.org> +area2048-1.03.ebuild,
+  +files/area2048-1.03.diff, +files/area2048.png, +metadata.xml:
+  Moved devel/* to ./
+
+  13 Aug 2009; Tomáš Chvátal <scarabeus@gentoo.org> -area2048-1.03.ebuild,
+  -files/area2048-1.03.diff, -files/area2048.png, -metadata.xml:
+  Move to 2 folder layout where one is for devel and one for fixed things.
+
+*area2048-1.03 (29 Jul 2009)
+
+  29 Jul 2009; Marcel Unbehaun <frostworks@gmx.de> +area2048-1.03.ebuild,
+  +files/area2048-1.03.diff, +files/area2048.png, +metadata.xml:
+  added Manifest
+  (games-action/area2048)         added area2048-1.03.ebuild
+  (games-action/area2048)         added files/area2048-1.03.diff
+  (games-action/area2048)         added files/area2048.png
+  (games-action/area2048)         added metadata.xml
+

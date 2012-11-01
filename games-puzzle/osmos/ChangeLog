@@ -1,0 +1,29 @@
+# ChangeLog for games-puzzle/osmos
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+  28 Feb 2011; Christian Schmitt <chris@ilovelinux.de> osmos-1.6.1.ebuild:
+  fix a typo
+
+*osmos-1.6.1 (27 Feb 2011)
+
+  27 Feb 2011; Azamat H. Hackimov <azamat.hackimov@gmail.com>
+  -osmos-1.6.0.ebuild, +osmos-1.6.1.ebuild:
+  New version 1.6.1, removing old.
+  Font glitch is now fixed.
+
+  19 Dec 2010; Azamat H. Hackimov <azamat.hackimov@gmail.com>
+  -files/FortuneCity.ttf, osmos-1.6.0.ebuild:
+  New way to fix font error - using echo && dd for patching.
+
+  15 Dec 2010; Azamat H. Hackimov <azamat.hackimov@gmail.com>
+  +files/FortuneCity.ttf, +metadata.xml, osmos-1.6.0.ebuild:
+  fixed font rendering
+  See http://www.hemispheregames.com/forum/viewtopic.php?f=8&t=498&start=0
+  for more info
+
+*osmos-1.6.0 (03 May 2010)
+
+  03 May 2010; Piotr Szymaniak <lazy_bum@o2.pl> +osmos-1.6.0.ebuild:
+  osmos: New package.
+

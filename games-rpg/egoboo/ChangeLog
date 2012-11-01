@@ -1,0 +1,20 @@
+# ChangeLog for games-rpg/egoboo
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*egoboo-2.7.7 (21 Aug 2009)
+
+  21 Aug 2009; Romain Perier <mrpouet@gentoo.org> +egoboo-2.7.7.ebuild,
+  +metadata.xml:
+  Moved devel/* to ./
+
+  13 Aug 2009; Tomáš Chvátal <scarabeus@gentoo.org> -egoboo-2.7.7.ebuild,
+  -metadata.xml:
+  Move to 2 folder layout where one is for devel and one for fixed things.
+
+*egoboo-2.7.7 (28 Jul 2009)
+
+  28 Jul 2009; Tomáš Chvátal <scarabeus@gentoo.org> +egoboo-2.7.7.ebuild,
+  +metadata.xml:
+  Initial commit of few games that i had prepared in mine overlay
+

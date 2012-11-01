@@ -1,0 +1,45 @@
+# ChangeLog for games-fps/sauerbraten
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*sauerbraten-2010.07.19-r1 (29 Jul 2010)
+
+  29 Jul 2010; Jon Severinsson <jon@severinsson.net>
+  -sauerbraten-2010.07.19.ebuild, +sauerbraten-2010.07.19-r1.ebuild:
+  Update with new upstream tarball
+
+  22 Jul 2010; Jon Severinsson <jon@severinsson.net>
+  sauerbraten-2009.05.04.ebuild:
+  Update trooper edition to work with current net-libs/enet.
+  This is a retrofitted sauerbraten-2010.07.19.ebuild, so carries a few other
+  minor improvements.
+
+*sauerbraten-2010.07.19 (22 Jul 2010)
+
+  22 Jul 2010; Jon Severinsson <jon@severinsson.net>
+  +files/sauerbraten-2010.07.19-system-enet.diff,
+  +sauerbraten-2010.07.19.ebuild:
+  New upstream release
+
+*sauerbraten-2009.05.04 (21 Aug 2009)
+
+  21 Aug 2009; Romain Perier <mrpouet@gentoo.org>
+  +files/sauerbraten-2009.05.04-system-enet.diff, +files/sauerbraten-master,
+  +files/sauerbraten.conf, +files/sauerbraten.init, +metadata.xml,
+  +sauerbraten-2009.05.04.ebuild:
+  Moved stable/* to ./
+
+  13 Aug 2009; Tomáš Chvátal <scarabeus@gentoo.org>
+  -files/sauerbraten-2009.05.04-system-enet.diff, -files/sauerbraten-master,
+  -files/sauerbraten.conf, -files/sauerbraten.init, -metadata.xml,
+  -sauerbraten-2009.05.04.ebuild:
+  Move to 2 folder layout where one is for devel and one for fixed things.
+
+*sauerbraten-2009.05.04 (28 Jul 2009)
+
+  28 Jul 2009; Tomáš Chvátal <scarabeus@gentoo.org>
+  +files/sauerbraten-2009.05.04-system-enet.diff, +files/sauerbraten-master,
+  +files/sauerbraten.conf, +files/sauerbraten.init, +metadata.xml,
+  +sauerbraten-2009.05.04.ebuild:
+  Initial commit of few games that i had prepared in mine overlay
+

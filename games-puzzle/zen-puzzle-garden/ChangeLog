@@ -1,0 +1,11 @@
+# ChangeLog for games-puzzle/zen-puzzle-garden
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*zen-puzzle-garden-1.29 (27 Nov 2011)
+
+  27 Nov 2011; Azamat H. Hackimov <azamat.hackimov@gmail.com> +metadata.xml,
+  +zen-puzzle-garden-1.29.ebuild:
+  Puzzle in zen garden from HIB Voxatron Debut.
+  This ebuild is quit similar to voxatron game.
+

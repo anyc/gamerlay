@@ -1,0 +1,11 @@
+# ChangeLog for games-rpg/doukutsu-bin
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*doukutsu-bin-1.01 (29 Oct 2009)
+
+  29 Oct 2009; Daniel Johnson <ComputerDruid@gmail.com>
+  +doukutsu-bin-1.01.ebuild:
+  new doukutsu-bin-1.01.ebuild
+  (games-rpg/doukutsu-bin)  new Manifest
+

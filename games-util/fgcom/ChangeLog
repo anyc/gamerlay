@@ -1,0 +1,14 @@
+# ChangeLog for games-util/fgcom
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+  13 Jul 2012; Christian Schmitt <chris@ilovelinux.de> fgcom-9999.ebuild,
+  -files/fgcom-makefile.patch:
+  move to new git repo, switch to cmake
+
+*fgcom-9999 (24 Aug 2011)
+
+  24 Aug 2011; Christian Schmitt <chris@ilovelinux.de> +fgcom-9999.ebuild,
+  +files/fgcom-makefile.patch, +metadata.xml:
+  new ebuild
+

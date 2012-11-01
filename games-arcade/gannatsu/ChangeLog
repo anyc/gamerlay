@@ -1,0 +1,15 @@
+# ChangeLog for games-arcade/gannatsu
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*gannatsu-104 (31 Oct 2009)
+
+  31 Oct 2009; Marcel Unbehaun <frostworks@gmx.de>
+  +files/gannatsu-104-homedir.patch, +files/gannatsu-104-makefile.patch,
+  +gannatsu-104.ebuild, +metadata.xml:
+  initial gannatsu-104.ebuild
+  (games-arcade/gannatsu)         new Manifest
+  (games-arcade/gannatsu)         new files/gannatsu-104-homedir.patch
+  (games-arcade/gannatsu)         new files/gannatsu-104-makefile.patch
+  (games-arcade/gannatsu)         new metadata.xml
+

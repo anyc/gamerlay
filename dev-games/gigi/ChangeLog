@@ -1,0 +1,27 @@
+# ChangeLog for dev-games/gigi
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+  12 Apr 2011; krytzz <krytzz@soylent.eu> gigi-9999.ebuild:
+  use virtual/jpeg and boost dep as version instead of
+  slat
+
+  29 Dec 2010; Azamat H. Hackimov <azamat.hackimov@gmail.com>
+  gigi-9999.ebuild, metadata.xml:
+  Updating ebuild
+  Some improvements taken from bug 349367.
+  Still not working since gigi requires now boost-1.44.
+
+  15 Jul 2010; Azamat H. Hackimov <azamat.hackimov@gmail.com>
+  gigi-9999.ebuild, metadata.xml:
+  Fixing more dependencies
+  Now boost-1.42 is required; added experimental support ogre-1.7 in
+  dependency.
+  And make repoman more happy.
+
+*gigi-9999 (28 May 2010)
+
+  28 May 2010; krytzz <krytzz@soylent.eu> +files/libpng-14.patch,
+  +files/unbundle-ltdl.patch, +gigi-9999.ebuild, +metadata.xml:
+  rather fits in this category
+

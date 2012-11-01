@@ -1,0 +1,18 @@
+# ChangeLog for games-arcade/alex4
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*alex4-1.1 (26 Mar 2010)
+
+  26 Mar 2010; Marcel Unbehaun <frostworks@gmx.de> +alex4-1.1.ebuild,
+  +files/alex4-1.1-config.patch, +files/alex4-1.1-debian-allegro-4.2.patch,
+  +files/alex4-1.1-homepath.patch, +files/alex4-1.1-linuxfixes.patch,
+  +metadata.xml:
+  initial alex4-1.1.ebuild
+  [games-arcade/alex4]    new Manifest
+  [games-arcade/alex4]    new files/alex4-1.1-config.patch
+  [games-arcade/alex4]    new files/alex4-1.1-debian-allegro-4.2.patch
+  [games-arcade/alex4]    new files/alex4-1.1-homepath.patch
+  [games-arcade/alex4]    new files/alex4-1.1-linuxfixes.patch
+  [games-arcade/alex4]    new metadata.xml
+

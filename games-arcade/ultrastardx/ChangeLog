@@ -1,0 +1,15 @@
+# ChangeLog for games-arcade/ultrastardx
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+  31 Mar 2011; krytzz <krytzz@soylent.eu> ultrastardx-9999.ebuild:
+  switch to virtual/ffmpeg
+
+*ultrastardx-9999 (15 Jun 2010)
+
+  15 Jun 2010; Marcel Unbehaun <frostworks@gmx.de> +metadata.xml,
+  +ultrastardx-9999.ebuild:
+  initial ultrastardx-9999.ebuild
+  [games-arcade/ultrastardx]      new Manifest
+  [games-arcade/ultrastardx]      new metadata.xml
+

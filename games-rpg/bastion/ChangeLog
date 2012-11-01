@@ -2,9 +2,18 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
-*bastion-20120529_p2 (05 Jun 2012)
+  28 Sep 2012; Vadim A. Misbakh-Soloviov <mva@mva.name>
+  bastion-20120620.ebuild:
+  fixed Bastion ebuild, since distfile don't ship GamePadBridge.dll anymore
 
-  05 Jun 2012; Vadim A. Misbakh-Soloviov <mva@mva.name>
-  +bastion-20120529_p2.ebuild, +metadata.xml:
-  Nginx fixes + uhub + some fixes
+  Signed-off-by: Vadim A. Misbakh-Soloviov <mva@mva.name>
+
+*bastion-20120620 (26 Sep 2012)
+
+  26 Sep 2012; Vadim A. Misbakh-Soloviov <mva@mva.name>
+  +bastion-20120620.ebuild, +metadata.xml:
+  some cosmetic fixes to dustforce and shatter + new games: rochard, bastion,
+  torchlight
+
+  Signed-off-by: Vadim A. Misbakh-Soloviov <mva@mva.name>
 

@@ -1,0 +1,11 @@
+# ChangeLog for games-engines/residualvm-tools
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*residualvm-tools-9999 (16 Apr 2012)
+
+  16 Apr 2012; Azamat H. Hackimov <azamat.hackimov@gmail.com> +metadata.xml,
+  +residualvm-tools-9999.ebuild:
+  pkgmove residual-tools to residualvm-tools
+  Updates to homepage and SRC_URI.
+

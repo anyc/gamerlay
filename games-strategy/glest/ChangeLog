@@ -1,0 +1,23 @@
+# ChangeLog for games-strategy/glest
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*glest-3.2.2-r1 (21 Aug 2009)
+
+  21 Aug 2009; Romain Perier <mrpouet@gentoo.org>
+  +files/glest-3.2.2-gentoo.patch, +files/glest-3.2.2-xerces-c.patch,
+  +glest-3.2.2-r1.ebuild, +metadata.xml:
+  Moved stable/* to ./
+
+  13 Aug 2009; Tomáš Chvátal <scarabeus@gentoo.org>
+  -files/glest-3.2.2-gentoo.patch, -files/glest-3.2.2-xerces-c.patch,
+  -glest-3.2.2-r1.ebuild, -metadata.xml:
+  Move to 2 folder layout where one is for devel and one for fixed things.
+
+*glest-3.2.2-r1 (28 Jul 2009)
+
+  28 Jul 2009; Tomáš Chvátal <scarabeus@gentoo.org>
+  +files/glest-3.2.2-gentoo.patch, +files/glest-3.2.2-xerces-c.patch,
+  +glest-3.2.2-r1.ebuild, +metadata.xml:
+  Initial commit of few games that i had prepared in mine overlay
+

@@ -1,0 +1,40 @@
+# ChangeLog for games-action/parsec47
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+  28 Aug 2009; Marcel Unbehaun <frostworks@gmx.de> -files/digest-parsec47-0.2,
+  -files/p47.prf, -files/parsec47-0.2.diff, -files/parsec47.png:
+  rm /files/digest-parsec47-0.2
+  (games-action/parsec47) rm /files/p47.prf
+  (games-action/parsec47) rm /files/parsec47-0.2.diff
+  (games-action/parsec47) rm /files/parsec47.png
+
+  28 Aug 2009; Marcel Unbehaun <frostworks@gmx.de> parsec47-0.2.ebuild:
+  using debian patches parsec47-0.2.ebuild
+  (games-action/parsec47) new Manifest
+
+*parsec47-0.2 (21 Aug 2009)
+
+  21 Aug 2009; Romain Perier <mrpouet@gentoo.org> +files/digest-parsec47-0.2,
+  +files/p47.prf, +files/parsec47-0.2.diff, +files/parsec47.png,
+  +metadata.xml, +parsec47-0.2.ebuild:
+  Moved devel/* to ./
+
+  13 Aug 2009; Tomáš Chvátal <scarabeus@gentoo.org>
+  -files/digest-parsec47-0.2, -files/p47.prf, -files/parsec47-0.2.diff,
+  -files/parsec47.png, -metadata.xml, -parsec47-0.2.ebuild:
+  Move to 2 folder layout where one is for devel and one for fixed things.
+
+*parsec47-0.2 (29 Jul 2009)
+
+  29 Jul 2009; Marcel Unbehaun <frostworks@gmx.de> +files/digest-parsec47-0.2,
+  +files/p47.prf, +files/parsec47-0.2.diff, +files/parsec47.png,
+  +metadata.xml, +parsec47-0.2.ebuild:
+  added Manifest
+  (games-action/parsec47)         added files/digest-parsec47-0.2
+  (games-action/parsec47)         added files/p47.prf
+  (games-action/parsec47)         added files/parsec47-0.2.diff
+  (games-action/parsec47)         added files/parsec47.png
+  (games-action/parsec47)         added metadata.xml
+  (games-action/parsec47)         added parsec47-0.2.ebuild
+

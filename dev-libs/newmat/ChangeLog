@@ -1,0 +1,17 @@
+# ChangeLog for dev-libs/newmat
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+  24 Jan 2011; Christian Schmitt <chris@ilovelinux.de> +metadata.xml,
+  newmat-11.ebuild:
+  cleanup the Flightgear family and move to EAPI3 :)
+
+  15 Jul 2010; Christian Schmitt <chris@ilovelinux.de> newmat-11.ebuild:
+  use dolib for lib install. thx scarabeus :)
+
+*newmat-11 (15 Jul 2010)
+
+  15 Jul 2010; Christian Schmitt <chris@ilovelinux.de> +newmat-11.ebuild:
+  This is the first revision after moving the repo to GIT. Some cleanups
+  compared to SVN
+

@@ -1,0 +1,21 @@
+# ChangeLog for games-action/supertuxkart
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*supertuxkart-0.7.3 (27 May 2012)
+
+  27 May 2012; Azamat H. Hackimov <azamat.hackimov@gmail.com>
+  -files/supertuxkart-0.7.2.patch,
+  +files/supertuxkart-0.7.3-fribidi-cmake.patch,
+  +files/supertuxkart-0.7.3-install-rules-cmake.patch,
+  +files/supertuxkart-0.7.3-irrlicht-fix.patch, metadata.xml,
+  -supertuxkart-0.7.2.ebuild, +supertuxkart-0.7.3.ebuild:
+  New version 0.7.3
+  Now with CMake buildsystem.
+
+*supertuxkart-0.7.2 (29 Jul 2011)
+
+  29 Jul 2011; Azamat H. Hackimov <azamat.hackimov@gmail.com>
+  +files/supertuxkart-0.7.2.patch, +metadata.xml, +supertuxkart-0.7.2.ebuild:
+  0.7.2 from Egor Y. Egorov (#376855)
+

@@ -1,0 +1,48 @@
+# ChangeLog for games-util/nforenum
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*nforenum-4.0.0 (15 Aug 2010)
+
+  15 Aug 2010; Locke Shinseiko <wizzleby@gmail.com>
+  -nforenum-4.0.0_rc1.ebuild, +nforenum-4.0.0.ebuild:
+  Bump 4.0.0_rc1 to released 4.0.0.
+
+*nforenum-9999 (12 Aug 2010)
+
+  12 Aug 2010; Locke Shinseiko <wizzleby@gmail.com> +nforenum-9999.ebuild:
+  [games-util/grfcodec-9999] Added live ebuild to track upstream development,
+  minor cleanups.
+
+  12 Aug 2010; Locke Shinseiko <wizzleby@gmail.com> nforenum-4.0.0_rc1.ebuild:
+  4.0.0_rc1] Fix header: strip gentoo-x86 upload string.
+
+  10 Aug 2010; Locke Shinseiko <wizzleby@gmail.com> nforenum-4.0.0_rc1.ebuild:
+  Change HOMEPAGE to better location wrt upstream suggestion.
+
+*nforenum-4.0.0_rc1 (09 Aug 2010)
+
+  09 Aug 2010; Locke Shinseiko <wizzleby@gmail.com> +metadata.xml,
+  +nforenum-4.0.0_rc1.ebuild:
+  Add 4.0.0_rc1 with cleanups.
+
+  15 Apr 2010; Locke Shinseiko <wizzleby@gmail.com> -metadata.xml,
+  -nforenum-0_pre2309.ebuild:
+  [games-util/catcodec] Removed from overlay (inTree)
+  [games-util/nforenum] Removed from overlay (inTree)
+
+  Signed-off-by: Locke Shinseiko <wizzleby@gmail.com>
+
+*nforenum-0_pre2309 (16 Mar 2010)
+
+  16 Mar 2010; Locke Shinseiko <wizzleby@gmail.com> +metadata.xml,
+  +nforenum-0_pre2309.ebuild:
+  [games-simulation/openttd] initial openttd-1.0.0_rc2 and deps
+  [games-misc/opengfx] opengfx-0.2.1
+  [games-misc/opensfx] opensfx-0.2.1
+  [games-util/catcodec] catcodec-1.0.0
+  [games-util/grfcodec] grfcodec-0_pre2306
+  [games-util/nforenum] nforenum-0_pre2309.ebuild
+
+  Signed-off-by: Locke Shinseiko <wizzleby@gmail.com>
+

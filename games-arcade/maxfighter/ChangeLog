@@ -1,0 +1,14 @@
+# ChangeLog for games-arcade/maxfighter
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*maxfighter-1.0 (28 Sep 2009)
+
+  28 Sep 2009; Marcel Unbehaun <frostworks@gmx.de> +maxfighter-1.0.ebuild:
+  new maxfighter-1.0.ebuild based on Paul Bredbury's ebuild from bug 147013
+  (games-arcade/maxfighter)       Manifest
+  (media-libs/mysdl)              Manifest
+  (media-libs/mysdl)              patch files/mysdl_1.0-gcc4.patch
+  (media-libs/mysdl)              patch files/mysdl_1.0-pnghack.patch
+  (media-libs/mysdl)              new mysdl-1.0.ebuild
+

@@ -1,0 +1,24 @@
+# ChangeLog for games-arcade/openggs
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+  25 Oct 2009; Marcel Unbehaun <frostworks@gmx.de>
+  -files/openggs-0.111-writeconfig.patch:
+  really removed files/openggs-0.111-writeconfig.patch
+
+  25 Oct 2009; Marcel Unbehaun <frostworks@gmx.de> openggs-0.111.ebuild:
+  updated openggs-0.111.ebuild
+  (games-arcade/openggs)  updated Manifest
+  (games-arcade/openggs)  deleted /files/openggs-0.111-writeconfig.patch
+
+*openggs-0.111 (25 Oct 2009)
+
+  25 Oct 2009; Marcel Unbehaun <frostworks@gmx.de>
+  +files/openggs-0.111-writeconfig.patch, +metadata.xml,
+  +openggs-0.111.ebuild:
+  initial openggs-0.111.ebuild
+  (games-arcade/openggs)          new Manifest
+  (games-arcade/openggs)          temp patch for this version
+  files/openggs-0.111-writeconfig.patch
+  (games-arcade/openggs)          new metadata.xml
+

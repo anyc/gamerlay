@@ -1,0 +1,23 @@
+# ChangeLog for games-strategy/freeorion
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+  12 Sep 2010; Azamat H. Hackimov <azamat.hackimov@gmail.com>
+  freeorion-9999.ebuild:
+  Fixed some my errors
+
+  12 Sep 2010; Azamat H. Hackimov <azamat.hackimov@gmail.com>
+  files/fix_graphviz.patch, +files/freeorion-cmake-zlib.patch,
+  freeorion-9999.ebuild:
+  Fixing compilation for freeorion
+  Still need more working - files placed in wrong dirs, game not runs
+
+  13 Jul 2010; Alexey Shvetsov <alexxy@gentoo.org> freeorion-9999.ebuild:
+  Freeorion update deps
+
+*freeorion-9999 (28 May 2010)
+
+  28 May 2010; Tomas Chvatal <scarabeus@gentoo.org> +files/fix_graphviz.patch,
+  +freeorion-9999.ebuild, +metadata.xml:
+  Initial ebuild.
+

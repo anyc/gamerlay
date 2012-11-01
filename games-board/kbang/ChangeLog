@@ -1,0 +1,40 @@
+# ChangeLog for games-board/kbang
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+  23 Oct 2012; Marcel Unbehaun <marcel@frostworx.de> -kbang-0.1.3.ebuild,
+  kbang-9999.ebuild:
+  fixed qt4 eclass name and dropped invalid 0.1.3 version
+
+*kbang-9999 (13 Sep 2009)
+
+  13 Sep 2009; Přemysl Vohout <premek@vohnout.cz> kbang-0.1.3.ebuild,
+  +kbang-9999.ebuild:
+  Added 9999 ebuild
+
+*kbang-0.1.3 (21 Aug 2009)
+
+  21 Aug 2009; Romain Perier <mrpouet@gentoo.org> +kbang-0.1.3.ebuild,
+  +metadata.xml:
+  Moved stable/* to ./
+
+  13 Aug 2009; Tomáš Chvátal <scarabeus@gentoo.org> -kbang-0.1.3.ebuild,
+  -metadata.xml:
+  Move to 2 folder layout where one is for devel and one for fixed things.
+
+  31 Jul 2009; Romain Perier <mrpouet@gentoo.org> metadata.xml:
+  Ooops update description
+
+  31 Jul 2009; Romain Perier <mrpouet@gentoo.org> metadata.xml:
+  Regen broken metadata.xml using metagen.
+          - Describe 'server' local USE flag into metadata.xml
+            (this is a fix for repoman full)
+
+  30 Jul 2009; Přemysl Vohout <premek@vohnout.cz> +metadata.xml:
+  Added missing metadata.xml
+
+*kbang-0.1.3 (30 Jul 2009)
+
+  30 Jul 2009; Přemysl Vohout <premek@vohnout.cz> +kbang-0.1.3.ebuild:
+  New game
+

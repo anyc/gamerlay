@@ -1,0 +1,16 @@
+# ChangeLog for games-arcade/aquaria
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+  02 May 2011; Locke Shinseiko <wizzleby@gmail.com> aquaria-9999.ebuild,
+  +metadata.xml:
+  9999] Update ebuild from bugzilla (bug 323499)
+
+*aquaria-9999 (12 Jul 2010)
+
+  12 Jul 2010; Locke Shinseiko <wizzleby@gmail.com> +aquaria-9999.ebuild:
+  New ebuild aquaria-9999, thanks to James Le Cuirot for ebuild via bug
+  #323499
+  [games-engines/bbge] New ebuild, bbge-9999 thanks to James Le Cuirot for
+  ebuild via bug #323499
+

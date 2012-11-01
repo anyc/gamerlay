@@ -1,0 +1,11 @@
+# ChangeLog for games-simulation/fgx
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*fgx-9999 (10 Aug 2011)
+
+  10 Aug 2011; Christian Schmitt <chris@ilovelinux.de> +fgx-9999.ebuild,
+  +metadata.xml:
+  new package: Qt-based launcher for Flightgear
+  This will probably be the end of my fgrun maintenance...
+

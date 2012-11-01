@@ -1,0 +1,50 @@
+# ChangeLog for games-action/zlock
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+  28 Aug 2009; Marcel Unbehaun <frostworks@gmx.de> -files/digest-zlock-0.20,
+  -files/zlock-0.20.diff, -files/zlock-config.dat, -files/zlock-score.dat,
+  -files/zlock.png:
+  files)  rm digest-zlock-0.20
+  (games-action/zlock/files)      rm zlock-0.20.diff
+  (games-action/zlock/files)      rm zlock-config.dat
+  (games-action/zlock/files)      rm zlock-score.dat
+  (games-action/zlock/files)      rm zlock.png
+
+  28 Aug 2009; Marcel Unbehaun <frostworks@gmx.de>
+  +files/zlock-0.20-fixes.diff, +files/zlock-0.20-homedir.diff,
+  +files/zlock-0.20-imports.diff, +files/zlock-0.20-makefile.diff,
+  zlock-0.20.ebuild:
+  updated zlock-0.20.ebuild
+  (games-action/zlock)    new Manifest
+  (games-action/zlock)    new /files/zlock-0.20-fixes.diff
+  (games-action/zlock)    new /files/zlock-0.20-homedir.diff
+  (games-action/zlock)    new /files/zlock-0.20-imports.diff
+  (games-action/zlock)    new /files/zlock-0.20-makefile.diff
+
+*zlock-0.20 (21 Aug 2009)
+
+  21 Aug 2009; Romain Perier <mrpouet@gentoo.org> +files/digest-zlock-0.20,
+  +files/zlock-0.20.diff, +files/zlock-config.dat, +files/zlock-score.dat,
+  +files/zlock.png, +metadata.xml, +zlock-0.20.ebuild:
+  Moved devel/* to ./
+
+  13 Aug 2009; Tomáš Chvátal <scarabeus@gentoo.org> -files/digest-zlock-0.20,
+  -files/zlock-0.20.diff, -files/zlock-config.dat, -files/zlock-score.dat,
+  -files/zlock.png, -metadata.xml, -zlock-0.20.ebuild:
+  Move to 2 folder layout where one is for devel and one for fixed things.
+
+*zlock-0.20 (29 Jul 2009)
+
+  29 Jul 2009; Marcel Unbehaun <frostworks@gmx.de> +files/digest-zlock-0.20,
+  +files/zlock-0.20.diff, +files/zlock-config.dat, +files/zlock-score.dat,
+  +files/zlock.png, +metadata.xml, +zlock-0.20.ebuild:
+  added Manifest
+  (games-action/zlock)            added files/digest-zlock-0.20
+  (games-action/zlock)            added files/zlock-0.20.diff
+  (games-action/zlock)            added files/zlock-config.dat
+  (games-action/zlock)            added files/zlock-score.dat
+  (games-action/zlock)            added files/zlock.png
+  (games-action/zlock)            added metadata.xml
+  (games-action/zlock)            added zlock-0.20.ebuild
+

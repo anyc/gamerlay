@@ -1,0 +1,22 @@
+# ChangeLog for games-emulation/ps2emu-zerospu
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+  30 Oct 2011; Marcel Unbehaun <marcel@frostworx.de>
+  ps2emu-zerospu-0.4.6.ebuild, ps2emu-zerospu-9999.ebuild:
+  spu2-x] added soundtouch useflag to allow choosing system/internal
+  soundtouch
+
+*ps2emu-zerospu-0.4.6 (29 Oct 2011)
+
+  29 Oct 2011; Marcel Unbehaun <marcel@frostworx.de>
+  +ps2emu-zerospu-0.4.6.ebuild:
+  [games-emulation/pcsx2]         added ebuilds for pcsx2+plugins release
+
+*ps2emu-zerospu-9999 (28 Oct 2011)
+
+  28 Oct 2011; Marcel Unbehaun <marcel@frostworx.de>
+  +ps2emu-zerospu-9999.ebuild:
+  [games-emulation/pcsx2-meta]    initial modular pcsx2-9999 - time was up -
+  patches welcome!
+

@@ -1,0 +1,24 @@
+# ChangeLog for dev-games/irrlicht
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*irrlicht-1.8.0_pre3993 (27 May 2012)
+
+  27 May 2012; Azamat H. Hackimov <azamat.hackimov@gmail.com>
+  -files/irrlicht-1.7.2-gcc46.patch,
+  +files/irrlicht-1.8.0_pre3993-gcc46.patch,
+  +files/irrlicht-1.8.0_pre3993-unbundle-libs.patch,
+  -files/irrlicht-9999-config.patch, -files/irrlicht-9999-gentoo.patch,
+  -irrlicht-1.8.0_pre3843.ebuild, +irrlicht-1.8.0_pre3993.ebuild,
+  metadata.xml:
+  1.8.0_pre3993 for supertuxkart
+
+*irrlicht-1.8.0_pre3843 (29 Jul 2011)
+
+  29 Jul 2011; Azamat H. Hackimov <azamat.hackimov@gmail.com>
+  +files/irrlicht-1.7.2-gcc46.patch, +files/irrlicht-9999-config.patch,
+  +files/irrlicht-9999-demoMake.patch, +files/irrlicht-9999-gentoo.patch,
+  +irrlicht-1.8.0_pre3843.ebuild, +metadata.xml:
+  1.8.0-alpha ebuild for supertuxkart 0.7.2
+  Based on ebuild from Egor Y. Egorov (#376851)
+

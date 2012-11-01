@@ -1,0 +1,38 @@
+# ChangeLog for games-action/mucade
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+  28 Aug 2009; Marcel Unbehaun <frostworks@gmx.de> -files/digest-mucade-0.11,
+  -files/mucade-0.11.diff, -files/mucade.png:
+  rm /files/digest-mucade-0.11
+  games-action/mucade)    rm /files/mucade-0.11.diff
+  games-action/mucade)    rm /files/mucade.png
+
+  28 Aug 2009; Marcel Unbehaun <frostworks@gmx.de> mucade-0.11.ebuild:
+  debian patches - ode patch broken mucade-0.11.ebuild
+  (games-action/mucade)   new Manifest
+
+*mucade-0.11 (21 Aug 2009)
+
+  21 Aug 2009; Romain Perier <mrpouet@gentoo.org> +files/digest-mucade-0.11,
+  +files/mucade-0.11.diff, +files/mucade.png, +metadata.xml,
+  +mucade-0.11.ebuild:
+  Moved devel/* to ./
+
+  13 Aug 2009; Tomáš Chvátal <scarabeus@gentoo.org> -files/digest-mucade-0.11,
+  -files/mucade-0.11.diff, -files/mucade.png, -metadata.xml,
+  -mucade-0.11.ebuild:
+  Move to 2 folder layout where one is for devel and one for fixed things.
+
+*mucade-0.11 (29 Jul 2009)
+
+  29 Jul 2009; Marcel Unbehaun <frostworks@gmx.de> +files/digest-mucade-0.11,
+  +files/mucade-0.11.diff, +files/mucade.png, +metadata.xml,
+  +mucade-0.11.ebuild:
+  added Manifest
+  (games-action/mucade)           added files/digest-mucade-0.11
+  (games-action/mucade)           added files/mucade-0.11.diff
+  (games-action/mucade)           added files/mucade.png
+  (games-action/mucade)           added metadata.xml
+  (games-action/mucade)           added mucade-0.11.ebuild
+

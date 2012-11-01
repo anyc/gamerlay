@@ -1,0 +1,44 @@
+# ChangeLog for games-action/reflectball
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+  28 Aug 2009; Marcel Unbehaun <frostworks@gmx.de>
+  -files/digest-reflectball-0.11, -files/reflectball-0.11.diff:
+  rm /files/digest-reflectball-0.11
+  (games-action/reflectball)      rm /files/reflectball-0.11.diff
+
+  28 Aug 2009; Marcel Unbehaun <frostworks@gmx.de>
+  +files/reflectball-0.11-fixes.diff, +files/reflectball-0.11-homedir.diff,
+  +files/reflectball-0.11-import.diff, +files/reflectball-0.11-makefile.diff,
+  reflectball-0.11.ebuild:
+  new Manifest
+  (games-action/reflectball)      new files/reflectball-0.11-fixes.diff
+  (games-action/reflectball)      new files/reflectball-0.11-homedir.diff
+  (games-action/reflectball)      new files/reflectball-0.11-import.diff
+  (games-action/reflectball)      new files/reflectball-0.11-makefile.diff
+  (games-action/reflectball)      new reflectball-0.11.ebuild
+
+*reflectball-0.11 (21 Aug 2009)
+
+  21 Aug 2009; Romain Perier <mrpouet@gentoo.org>
+  +files/digest-reflectball-0.11, +files/reflectball-0.11.diff,
+  +files/reflectball.png, +metadata.xml, +reflectball-0.11.ebuild:
+  Moved devel/* to ./
+
+  13 Aug 2009; Tomáš Chvátal <scarabeus@gentoo.org>
+  -files/digest-reflectball-0.11, -files/reflectball-0.11.diff,
+  -files/reflectball.png, -metadata.xml, -reflectball-0.11.ebuild:
+  Move to 2 folder layout where one is for devel and one for fixed things.
+
+*reflectball-0.11 (29 Jul 2009)
+
+  29 Jul 2009; Marcel Unbehaun <frostworks@gmx.de>
+  +files/digest-reflectball-0.11, +files/reflectball-0.11.diff,
+  +files/reflectball.png, +metadata.xml, +reflectball-0.11.ebuild:
+  added Manifest
+  (games-action/reflectball)              added files/digest-reflectball-0.11
+  (games-action/reflectball)              added files/reflectball-0.11.diff
+  (games-action/reflectball)              added files/reflectball.png
+  (games-action/reflectball)              added metadata.xml
+  (games-action/reflectball)              added reflectball-0.11.ebuild
+

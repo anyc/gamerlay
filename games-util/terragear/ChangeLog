@@ -1,0 +1,29 @@
+# ChangeLog for games-util/terragear
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+  16 Oct 2012; Christian Schmitt <chris@ilovelinux.de> terragear-9999.ebuild:
+  bump simgear version
+
+  06 Oct 2012; Christian Schmitt <chris@ilovelinux.de> terragear-9999.ebuild:
+  latest master branch does no longer depend on GPC, but on CGAL
+
+*terragear-9999 (28 Aug 2012)
+
+  28 Aug 2012; Christian Schmitt <chris@ilovelinux.de> +metadata.xml,
+  +terragear-9999.ebuild:
+  Move games-util/terragear-cs to games-util/terragear
+
+  17 Jul 2010; Christian Schmitt <chris@ilovelinux.de>
+  -files/terragear-setrlimit.patch, -files/terragear-use-agg.patch,
+  -terragear-9999.ebuild:
+  rename to terragear-cs to be in sync with upstream naming
+
+*terragear-9999 (15 Jul 2010)
+
+  15 Jul 2010; Christian Schmitt <chris@ilovelinux.de>
+  +files/terragear-setrlimit.patch, +files/terragear-use-agg.patch,
+  +terragear-9999.ebuild:
+  This is the first revision after moving the repo to GIT. Some cleanups
+  compared to SVN
+

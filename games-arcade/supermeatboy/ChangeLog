@@ -1,0 +1,12 @@
+# ChangeLog for games-arcade/supermeatboy
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*supermeatboy-2012.06.07 (19 Jun 2012)
+
+  19 Jun 2012; Azamat H. Hackimov <azamat.hackimov@gmail.com> +metadata.xml,
+  +supermeatboy-2012.06.07.ebuild:
+  A platformer where you play as an animated cube of meat.
+  Version from HIB V, based on ebuild from #396545
+  First try to use EAPI=4 for games.
+

@@ -1,0 +1,27 @@
+# ChangeLog for media-libs/sfemovie
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+  05 Jul 2012; Marcel Unbehaun <marcel@frostworx.de>
+  -files/sfemovie-install.patch, sfemovie-9999.ebuild:
+  updated sfemovie-9999.ebuild
+
+  20 Jun 2012; Marcel Unbehaun <marcel@frostworx.de>
+  files/sfemovie-install.patch:
+  updated files/sfemovie-install.patch
+
+  29 Mar 2012; Marcel Unbehaun <marcel@frostworx.de>
+  -files/sfemovie-header.patch, sfemovie-9999.ebuild:
+  updated sfemovie-9999.ebuild
+
+  28 Mar 2012; Marcel Unbehaun <marcel@frostworx.de>
+  +files/sfemovie-header.patch, files/sfemovie-install.patch,
+  sfemovie-9999.ebuild:
+  updated sfemovie-9999.ebuild
+
+*sfemovie-9999 (25 Mar 2012)
+
+  25 Mar 2012; Marcel Unbehaun <marcel@frostworx.de>
+  +files/sfemovie-install.patch, +metadata.xml, +sfemovie-9999.ebuild:
+  added sfemovie-9999.ebuild
+

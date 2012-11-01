@@ -1,10 +1,13 @@
-# ChangeLog for games-rpg/bastion
+# ChangeLog for games-rpg/torchlight
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
-*bastion-20120529_p2 (05 Jun 2012)
+*torchlight-1.15.20120924 (26 Sep 2012)
 
-  05 Jun 2012; Vadim A. Misbakh-Soloviov <mva@mva.name>
-  +bastion-20120529_p2.ebuild, +metadata.xml:
-  Nginx fixes + uhub + some fixes
+  26 Sep 2012; Vadim A. Misbakh-Soloviov <mva@mva.name> +metadata.xml,
+  +torchlight-1.15.20120924.ebuild:
+  some cosmetic fixes to dustforce and shatter + new games: rochard, bastion,
+  torchlight
+
+  Signed-off-by: Vadim A. Misbakh-Soloviov <mva@mva.name>
 

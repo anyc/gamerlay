@@ -1,0 +1,10 @@
+# ChangeLog for games-action/hammerfight
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*hammerfight-20110812 (18 Aug 2011)
+
+  18 Aug 2011; Azamat H. Hackimov <azamat.hackimov@gmail.com>
+  +hammerfight-20110812.ebuild, +metadata.xml:
+  Import modified version if Hammerfight from bug #377321
+

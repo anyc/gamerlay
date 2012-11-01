@@ -1,0 +1,47 @@
+# ChangeLog for games-emulation/mupen64plus-video-arachnoid
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+  28 Oct 2011; Marcel Unbehaun <marcel@frostworx.de>
+  mupen64plus-video-arachnoid-9999.ebuild:
+  [games-emulation/mupen64plus]   updated mupen64plus-9999 + plugins
+
+*mupen64plus-video-arachnoid-9999 (08 Oct 2011)
+
+  08 Oct 2011; Marcel Unbehaun <marcel@frostworx.de>
+  +mupen64plus-video-arachnoid-9999.ebuild:
+  [games-emulation/mupen64plus-audio-sdl]         Manifest
+  [games-emulation/mupen64plus-audio-sdl]         mupen64plus-audio-
+  sdl-9999.ebuild
+  [games-emulation/mupen64plus-core]              Manifest
+  [games-emulation/mupen64plus-core]              files/mupen64plus-core-
+  minizip.patch
+  [games-emulation/mupen64plus-core]              mupen64plus-core-9999.ebuild
+  [games-emulation/mupen64plus-input-sdl]         Manifest
+  [games-emulation/mupen64plus-input-sdl]         mupen64plus-input-
+  sdl-9999.ebuild
+  [games-emulation/mupen64plus-rsp-hle]           Manifest
+  [games-emulation/mupen64plus-rsp-hle]           mupen64plus-rsp-
+  hle-9999.ebuild
+  [games-emulation/mupen64plus-rsp-z64]           Manifest
+  [games-emulation/mupen64plus-rsp-z64]           mupen64plus-
+  rsp-z64-9999.ebuild
+  [games-emulation/mupen64plus-ui-console]        Manifest
+  [games-emulation/mupen64plus-ui-console]        mupen64plus-ui-
+  console-9999.ebuild
+  [games-emulation/mupen64plus-video-arachnoid]   Manifest
+  [games-emulation/mupen64plus-video-arachnoid]   mupen64plus-video-
+  arachnoid-9999.ebuild
+  [games-emulation/mupen64plus-video-glide64]     Manifest
+  [games-emulation/mupen64plus-video-glide64]     mupen64plus-video-
+  glide64-9999.ebuild
+  [games-emulation/mupen64plus-video-rice]        Manifest
+  [games-emulation/mupen64plus-video-rice]        mupen64plus-video-
+  rice-9999.ebuild
+  [games-emulation/mupen64plus-video-z64]         Manifest
+  [games-emulation/mupen64plus-video-z64]         mupen64plus-
+  video-z64-9999.ebuild
+  [games-emulation/mupen64plus]                   Manifest
+  [games-emulation/mupen64plus]                   mupen64plus-9999.ebuild  bgo
+  385297
+

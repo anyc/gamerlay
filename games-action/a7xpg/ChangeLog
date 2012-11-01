@@ -1,0 +1,40 @@
+# ChangeLog for games-action/a7xpg
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+  28 Aug 2009; Marcel Unbehaun <frostworks@gmx.de> -files/a7xpg-0.11.diff,
+  -files/a7xpg.png, -files/a7xpg.prf, -files/digest-a7xpg-0.11:
+  removed files/a7xpg-0.11.diff
+  (games-action/a7xpg)    removed files/a7xpg.png
+  (games-action/a7xpg)    removed files/a7xpg.prf
+  (games-action/a7xpg)    removed files/digest-a7xpg-0.11
+
+  28 Aug 2009; Marcel Unbehaun <frostworks@gmx.de> a7xpg-0.11.ebuild:
+  using debian patches a7xpg-0.11.ebuild
+  (games-action/a7xpg)    new Manifest
+
+*a7xpg-0.11 (21 Aug 2009)
+
+  21 Aug 2009; Romain Perier <mrpouet@gentoo.org> +a7xpg-0.11.ebuild,
+  +files/a7xpg-0.11.diff, +files/a7xpg.png, +files/a7xpg.prf,
+  +files/digest-a7xpg-0.11, +metadata.xml:
+  Moved devel/* to ./
+
+  13 Aug 2009; Tomáš Chvátal <scarabeus@gentoo.org> -a7xpg-0.11.ebuild,
+  -files/a7xpg-0.11.diff, -files/a7xpg.png, -files/a7xpg.prf,
+  -files/digest-a7xpg-0.11, -metadata.xml:
+  Move to 2 folder layout where one is for devel and one for fixed things.
+
+*a7xpg-0.11 (29 Jul 2009)
+
+  29 Jul 2009; Marcel Unbehaun <frostworks@gmx.de> +a7xpg-0.11.ebuild,
+  +files/a7xpg-0.11.diff, +files/a7xpg.png, +files/a7xpg.prf,
+  +files/digest-a7xpg-0.11, +metadata.xml:
+  added Manifest
+  (games-action/a7xpg)    added a7xpg-0.11.ebuild
+  (games-action/a7xpg)    added files/a7xpg-0.11.diff
+  (games-action/a7xpg)    added files/a7xpg.png
+  (games-action/a7xpg)    added files/a7xpg.prf
+  (games-action/a7xpg)    added files/digest-a7xpg-0.11
+  (games-action/a7xpg)    added metadata.xml
+

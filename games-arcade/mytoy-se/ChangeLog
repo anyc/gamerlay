@@ -1,0 +1,21 @@
+# ChangeLog for games-arcade/mytoy-se
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+  18 Aug 2010; Marcel Unbehaun <frostworks@gmx.de> mytoy-se-1.0.0.ebuild:
+  new SRC_URI in mytoy-se-1.0.0.ebuild
+  [games-arcade/mytoy-se]         new Manifest
+
+*mytoy-se-1.0.0 (25 Nov 2009)
+
+  25 Nov 2009; Marcel Unbehaun <frostworks@gmx.de>
+  +files/mytoy-se-1.0.0-best.patch, +files/mytoy-se-1.0.0-homeandvideo.patch,
+  +metadata.xml, +mytoy-se-1.0.0.ebuild:
+  initial mytoy-se-1.0.0.ebuild
+  (games-arcade/mytoy-se)         videodevice and homedir fixes files/mytoy-
+  se-1.0.0-homeandvideo.patch
+  (games-arcade/mytoy-se)         Manifest
+  (games-arcade/mytoy-se)         hiscore picture fix files/mytoy-
+  se-1.0.0-best.patch
+  (games-arcade/mytoy-se)         new metadata.xml
+

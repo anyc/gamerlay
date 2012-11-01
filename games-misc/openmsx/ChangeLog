@@ -1,0 +1,54 @@
+# ChangeLog for games-misc/openmsx
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*openmsx-0.3.0 (25 Jul 2010)
+
+  25 Jul 2010; Locke Shinseiko <wizzleby@gmail.com> +metadata.xml,
+  +openmsx-0.3.0.ebuild:
+  Version bump from 0.2.1 to 0.3.0.
+
+  15 Apr 2010; Locke Shinseiko <wizzleby@gmail.com> -metadata.xml,
+  -openmsx-0.2.1.ebuild:
+  [games-misc/opengfx] Removed from overlay (inTree)
+  [games-misc/opensfx] Removed from overlay (inTree)
+  [games-misc/openmsx] Removed from overlay (inTree)
+  [profiles/categories] Removed games-misc
+
+  Signed-off-by: Locke Shinseiko <wizzleby@gmail.com>
+
+  07 Apr 2010; Locke Shinseiko <wizzleby@gmail.com> openmsx-0.2.1.ebuild:
+  openmsx-0.2.1: clean up quoting, inherit python, set active python version
+  to 2.
+
+  Signed-off-by: Locke Shinseiko <wizzleby@gmail.com>
+
+*openmsx-0.2.1 (27 Mar 2010)
+
+  27 Mar 2010; Locke Shinseiko <wizzleby@gmail.com> -openmsx-0.2.0.ebuild,
+  +openmsx-0.2.1.ebuild:
+  x86 keyword & version bump: openmsx-0.2.0 -> openmsx-0.2.1
+  [games-misc/opensfx] Version bump: opensfx-0.2.1 -> opensfx-0.2.2
+
+  Signed-off-by: Locke Shinseiko <wizzleby@gmail.com>
+
+  21 Mar 2010; Locke Shinseiko <wizzleby@gmail.com> openmsx-0.2.0.ebuild:
+  Do not depend on unix2dos
+
+  Signed-off-by: Locke Shinseiko <wizzleby@gmail.com>
+
+  19 Mar 2010; Locke Shinseiko <wizzleby@gmail.com> openmsx-0.2.0.ebuild:
+  properly depend on >=openttd-1.0.0_beta1[alsa] openmsx-0.2.0.ebuild
+  [games-simulation/openttd] added elog wrt music sets and games-misc/openmsx
+  for openttd-1.0.0_rc3
+
+  Signed-off-by: Locke Shinseiko <wizzleby@gmail.com>
+
+*openmsx-0.2.0 (18 Mar 2010)
+
+  18 Mar 2010; Locke Shinseiko <wizzleby@gmail.com> +metadata.xml,
+  +openmsx-0.2.0.ebuild:
+  initial commit of games-misc/openmsx-0.2.0
+          yes, I know the name is bad.
+  Signed-off-by: Locke Shinseiko <wizzleby@gmail.com>
+

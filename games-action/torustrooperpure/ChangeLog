@@ -1,0 +1,42 @@
+# ChangeLog for games-action/torustrooperpure
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+  28 Aug 2009; Marcel Unbehaun <frostworks@gmx.de>
+  -files/digest-torustrooperpure-0.2, -files/torustrooperpure-0.2.diff,
+  -files/torustrooperpure.png:
+  rm /files/digest-torustrooperpure-0.2
+  (games-action/torustrooperpure)         rm /files/torustrooperpure-0.2.diff
+  (games-action/torustrooperpure)         rm /files/torustrooperpure.png
+
+  28 Aug 2009; Marcel Unbehaun <frostworks@gmx.de>
+  torustrooperpure-0.2.ebuild:
+  using debian patches torustrooperpure-0.2.ebuild
+  (games-action/torustrooperpure)         new Manifest
+
+*torustrooperpure-0.2 (21 Aug 2009)
+
+  21 Aug 2009; Romain Perier <mrpouet@gentoo.org>
+  +files/digest-torustrooperpure-0.2, +files/torustrooperpure-0.2.diff,
+  +files/torustrooperpure.png, +metadata.xml, +torustrooperpure-0.2.ebuild:
+  Moved devel/* to ./
+
+  13 Aug 2009; Tomáš Chvátal <scarabeus@gentoo.org>
+  -files/digest-torustrooperpure-0.2, -files/torustrooperpure-0.2.diff,
+  -files/torustrooperpure.png, -metadata.xml, -torustrooperpure-0.2.ebuild:
+  Move to 2 folder layout where one is for devel and one for fixed things.
+
+*torustrooperpure-0.2 (29 Jul 2009)
+
+  29 Jul 2009; Marcel Unbehaun <frostworks@gmx.de>
+  +files/digest-torustrooperpure-0.2, +files/torustrooperpure-0.2.diff,
+  +files/torustrooperpure.png, +metadata.xml, +torustrooperpure-0.2.ebuild:
+  added Manifest
+  (games-action/torustrooperpure)         added files/digest-
+  torustrooperpure-0.2
+  (games-action/torustrooperpure)         added
+  files/torustrooperpure-0.2.diff
+  (games-action/torustrooperpure)         added files/torustrooperpure.png
+  (games-action/torustrooperpure)         added metadata.xml
+  (games-action/torustrooperpure)         added torustrooperpure-0.2.ebuild
+

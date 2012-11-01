@@ -1,0 +1,49 @@
+# ChangeLog for games-action/gradleunison
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+  28 Aug 2009; Marcel Unbehaun <frostworks@gmx.de>
+  -files/gradleunison-0.10.diff, -files/gradleunison.png, -files/gu-score.dat:
+  rm files/gradleunison-0.10.diff
+  (games-action/gradleunison)             rm files/gradleunison.png
+  (games-action/gradleunison)             rm files/gu-score.dat
+
+  28 Aug 2009; Marcel Unbehaun <frostworks@gmx.de>
+  +files/gradleunison-0.10-fixes.diff, +files/gradleunison-0.10-homedir.diff,
+  +files/gradleunison-0.10-import.diff,
+  +files/gradleunison-0.10-makefile.diff, gradleunison-0.10.ebuild:
+  updated /gradleunison-0.10.ebuild
+  (games-action/gradleunison)             new Manifest
+  (games-action/gradleunison)             new
+  files/gradleunison-0.10-fixes.diff
+  (games-action/gradleunison)             new
+  files/gradleunison-0.10-homedir.diff
+  (games-action/gradleunison)             new
+  files/gradleunison-0.10-import.diff
+  (games-action/gradleunison)             new
+  files/gradleunison-0.10-makefile.diff
+
+*gradleunison-0.10 (21 Aug 2009)
+
+  21 Aug 2009; Romain Perier <mrpouet@gentoo.org>
+  +files/gradleunison-0.10.diff, +files/gradleunison.png, +files/gu-score.dat,
+  +gradleunison-0.10.ebuild, +metadata.xml:
+  Moved devel/* to ./
+
+  13 Aug 2009; Tomáš Chvátal <scarabeus@gentoo.org>
+  -files/gradleunison-0.10.diff, -files/gradleunison.png, -files/gu-score.dat,
+  -gradleunison-0.10.ebuild, -metadata.xml:
+  Move to 2 folder layout where one is for devel and one for fixed things.
+
+*gradleunison-0.10 (29 Jul 2009)
+
+  29 Jul 2009; Marcel Unbehaun <frostworks@gmx.de>
+  +files/gradleunison-0.10.diff, +files/gradleunison.png, +files/gu-score.dat,
+  +gradleunison-0.10.ebuild, +metadata.xml:
+  added Manifest
+  (games-action/gradleunison)             added files/gradleunison-0.10.diff
+  (games-action/gradleunison)             added files/gradleunison.png
+  (games-action/gradleunison)             added files/gu-score.dat
+  (games-action/gradleunison)             added gradleunison-0.10.ebuild
+  (games-action/gradleunison)             added metadata.xml
+

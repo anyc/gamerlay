@@ -1,0 +1,10 @@
+# ChangeLog for games-mud/tf
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*tf-9999 (18 Apr 2011)
+
+  18 Apr 2011; Locke Shinseiko <wizzleby@gmail.com> +metadata.xml,
+  +tf-9999.ebuild:
+  Added tf-9999, incorporating unicode changes.
+
