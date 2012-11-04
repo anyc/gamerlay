@@ -1,0 +1,22 @@
+app-arch/unzip
+>=sys-libs/glibc-2.4 >=sys-devel/gcc-4.3.0 !amd64? ( gnome-base/libglade ) amd64? ( app-emulation/emul-linux-x86-gtklibs )
+0
+survivorUpdate1.run
+fetch strip
+http://shadowgroundsgame.com/survivor/
+frozenbyte-eula
+human survivors who battle against the ongoing alien onslaught
+-* ~amd64 ~x86
+base eutils games multilib toolchain-funcs user
+
+
+
+
+
+
+compile install nofetch postinst preinst setup unpack
+
+
+
+
+

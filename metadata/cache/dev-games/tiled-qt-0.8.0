@@ -1,0 +1,22 @@
+>=x11-libs/qt-gui-4.6 >=x11-libs/qt-core-4.6 >=x11-libs/qt-opengl-4.6
+>=x11-libs/qt-gui-4.6 >=x11-libs/qt-core-4.6 >=x11-libs/qt-opengl-4.6
+0
+mirror://sourceforge/tiled/tiled-qt-0.8.0.tar.gz
+
+http://www.mapeditor.org/
+GPL-2 LGPL-2.1 BSD
+Tiled is a general purpose tile map editor for games
+~amd64 ~x86
+base eutils multilib qt4-r2 toolchain-funcs user
+examples
+
+
+
+3
+
+compile configure install prepare unpack
+
+
+
+
+

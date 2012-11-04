@@ -1,0 +1,22 @@
+
+
+0
+http://www.robertnz.net/ftp/newmat11.tar.gz
+
+http://www.robertnz.net/nm_intro.htm
+GPL-2
+A C++ matrix library
+~amd64 ~x86
+eutils multilib toolchain-funcs user
+
+
+
+
+3
+
+compile install
+
+
+
+
+

@@ -1,0 +1,22 @@
+opengl? ( virtual/opengl alsa? ( media-libs/alsa-lib ) amd64? ( app-emulation/emul-linux-x86-xlibs[opengl] ) ) sys-devel/m4 dev-util/scons dev-vcs/git
+opengl? ( virtual/opengl alsa? ( media-libs/alsa-lib ) amd64? ( app-emulation/emul-linux-x86-xlibs[opengl] ) )
+0
+
+
+https://github.com/TTimo/doom3.gpl
+GPL-3
+3rd installment of the classic iD 3D first-person shooter
+
+base eutils games git-2 multilib scons-utils toolchain-funcs user
+alsa debug dedicated opengl
+
+
+
+3
+
+compile configure install postinst preinst prepare setup unpack
+
+
+
+
+

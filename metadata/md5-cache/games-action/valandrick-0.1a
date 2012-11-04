@@ -1,0 +1,12 @@
+DEFINED_PHASES=compile configure install postinst preinst prepare setup unpack
+DEPEND=media-libs/libsdl media-libs/mesa media-libs/sdl-mixer dev-libs/libbulletml
+DESCRIPTION=Guns, Guns, Guns! Inofficial and secret 1st version of gunroar
+EAPI=2
+HOMEPAGE=http://www.asahi-net.or.jp/~cs8k-cyu/
+KEYWORDS=~ppc ~x86
+LICENSE=BSD
+RDEPEND=media-libs/libsdl media-libs/mesa media-libs/sdl-mixer dev-libs/libbulletml
+SLOT=0
+SRC_URI=http://www.asahi-net.or.jp/~cs8k-cyu/windows/vr0_1a.zip mirror://debian/pool/main/v/val-and-rick/val-and-rick_0.1a.dfsg1-2.diff.gz
+_eclasses_=base	ec46b36a6f6fd1d0b505a33e0b74e413	d-games	1c750264f84b7d760cf868e355c685ef	eutils	d40dc948067bd3db1c8ebf7d51897313	games	e0a83e3f3f024b8c8ef7a8217d716cbf	multilib	9aa8a023e062fca0ba79362d9d0cc488	toolchain-funcs	134429b842a6c67254bfd76a8753e4d4	user	d0a4d0735a6c0183d707ca919bd72f28
+_md5_=7800e9bb98b09fbbe6712aaa4ea7a010

@@ -1,0 +1,22 @@
+dev-libs/boost dev-python/pyyaml media-libs/libsdl media-libs/sdl-ttf media-libs/sdl-image[png] media-libs/libvorbis media-libs/libogg media-libs/openal sys-libs/zlib x11-libs/libXcursor virtual/opengl virtual/glu dev-games/guichan[sdl,opengl] media-libs/libpng x11-libs/libXext dev-util/scons dev-lang/swig || ( dev-vcs/subversion[webdav-neon] dev-vcs/subversion[webdav-serf] ) net-misc/rsync =dev-lang/python-2*
+dev-libs/boost dev-python/pyyaml media-libs/libsdl media-libs/sdl-ttf media-libs/sdl-image[png] media-libs/libvorbis media-libs/libogg media-libs/openal sys-libs/zlib x11-libs/libXcursor virtual/opengl virtual/glu dev-games/guichan[sdl,opengl] media-libs/libpng x11-libs/libXext =dev-lang/python-2*
+0
+
+
+http://fifengine.de/
+LGPL-2
+Flexible Isometric Free Engine
+
+eutils multilib python subversion toolchain-funcs user
+debug profile
+
+
+
+2
+
+compile install preinst prepare unpack
+
+
+
+
+

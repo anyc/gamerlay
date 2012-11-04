@@ -1,0 +1,22 @@
+>=dev-libs/boost-1.44 media-libs/freetype x11-libs/libX11 virtual/opengl devil? ( >=media-libs/devil-1.6.1 ) !devil? ( virtual/jpeg media-libs/tiff media-libs/libpng ) ogre? ( threads? ( || ( >=dev-games/ogre-1.7.1[boost-threads] >=dev-games/ogre-1.7.1[poco-threads] >=dev-games/ogre-1.7.1[tbb-threads] ) ) ois? ( dev-games/ois ) ) sdl? ( >=media-libs/libsdl-1.2 ) dev-util/pkgconfig doc? ( app-doc/doxygen ) >=dev-util/cmake-2.8.4 userland_GNU? ( >=sys-apps/findutils-4.4.0 ) || ( dev-vcs/subversion[webdav-neon] dev-vcs/subversion[webdav-serf] ) net-misc/rsync
+>=dev-libs/boost-1.44 media-libs/freetype x11-libs/libX11 virtual/opengl devil? ( >=media-libs/devil-1.6.1 ) !devil? ( virtual/jpeg media-libs/tiff media-libs/libpng ) ogre? ( threads? ( || ( >=dev-games/ogre-1.7.1[boost-threads] >=dev-games/ogre-1.7.1[poco-threads] >=dev-games/ogre-1.7.1[tbb-threads] ) ) ois? ( dev-games/ois ) ) sdl? ( >=media-libs/libsdl-1.2 )
+0
+
+
+http://gigi.sourceforge.net
+LGPL-2.1
+GiGi is an OpenGL interface library
+
+base cmake-utils eutils flag-o-matic multilib subversion toolchain-funcs user
+debug devil doc ogre ois +sdl static-libs +threads
+
+
+
+3
+
+compile configure install preinst prepare test unpack
+
+
+
+
+

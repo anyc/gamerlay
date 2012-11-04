@@ -1,0 +1,22 @@
+media-libs/libsdl media-libs/mesa media-libs/sdl-mixer
+media-libs/libsdl media-libs/mesa media-libs/sdl-mixer
+0
+http://www.asahi-net.or.jp/~cs8k-cyu/windows/gr0_15.zip mirror://debian/pool/main/g/gunroar/gunroar_0.15.dfsg1-3.diff.gz
+
+http://www.asahi-net.or.jp/~cs8k-cyu/windows/gr_e.html
+BSD
+Guns, Guns, Guns! 360-degree gunboat shooter, 'Gunroar'
+~ppc ~x86
+base d-games eutils games multilib toolchain-funcs user
+
+
+
+
+2
+
+compile configure install postinst preinst prepare setup unpack
+
+
+
+
+

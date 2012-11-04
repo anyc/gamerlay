@@ -1,0 +1,22 @@
+sys-libs/zlib X? ( >=dev-games/openscenegraph-3.0[png] dev-libs/expat media-libs/openal virtual/opengl subversion? ( dev-libs/apr dev-vcs/subversion ) ) >=dev-libs/boost-1.37 >=dev-util/cmake-2.8.4 userland_GNU? ( >=sys-apps/findutils-4.4.0 ) dev-vcs/git
+sys-libs/zlib X? ( >=dev-games/openscenegraph-3.0[png] dev-libs/expat media-libs/openal virtual/opengl subversion? ( dev-libs/apr dev-vcs/subversion ) )
+0
+
+
+http://www.simgear.org/
+GPL-2
+Development library for simulation games
+
+base cmake-utils eutils flag-o-matic git-2 multilib toolchain-funcs user
+debug +subversion test X
+
+
+
+4
+
+compile configure install prepare test unpack
+
+
+
+
+

@@ -1,0 +1,22 @@
+games-emulation/mupen64plus-core virtual/opengl virtual/glu dev-util/pkgconfig dev-vcs/mercurial
+games-emulation/mupen64plus-core virtual/opengl virtual/glu
+0
+
+
+http://code.google.com/p/mupen64plus/
+GPL-2
+Arachnoid high-level graphics emulation for mupen64plus
+
+base eutils games mercurial multilib toolchain-funcs user
+debug pic
+
+
+
+2
+
+compile configure install postinst preinst prepare setup unpack
+
+
+
+
+

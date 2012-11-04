@@ -1,0 +1,22 @@
+dev-libs/boost dev-vcs/mercurial
+
+0
+
+
+http://dev.openttdcoop.org/projects/nforenum
+GPL-2
+A tool checking NFO code for errors
+
+eutils mercurial multilib toolchain-funcs user
+
+
+
+
+3
+
+install prepare unpack
+
+
+
+
+

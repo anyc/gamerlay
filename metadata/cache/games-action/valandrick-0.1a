@@ -1,0 +1,22 @@
+media-libs/libsdl media-libs/mesa media-libs/sdl-mixer dev-libs/libbulletml
+media-libs/libsdl media-libs/mesa media-libs/sdl-mixer dev-libs/libbulletml
+0
+http://www.asahi-net.or.jp/~cs8k-cyu/windows/vr0_1a.zip mirror://debian/pool/main/v/val-and-rick/val-and-rick_0.1a.dfsg1-2.diff.gz
+
+http://www.asahi-net.or.jp/~cs8k-cyu/
+BSD
+Guns, Guns, Guns! Inofficial and secret 1st version of gunroar
+~ppc ~x86
+base d-games eutils games multilib toolchain-funcs user
+
+
+
+
+2
+
+compile configure install postinst preinst prepare setup unpack
+
+
+
+
+

@@ -1,0 +1,22 @@
+
+media-libs/libsdl media-libs/sdl-mixer[flac,mad,mikmod,vorbis] sys-libs/zlib
+0
+http://www.gianas-return.de/gr-v1001-ubuntu.zip
+strip
+http://www.gianas-return.de/
+free-noncomm
+Unofficial sequel of The Great Giana Sisters
+-* ~amd64 ~x86
+base eutils games multilib toolchain-funcs user
+
+
+
+
+2
+
+compile configure install postinst preinst prepare setup unpack
+
+
+
+
+

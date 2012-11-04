@@ -1,0 +1,13 @@
+DEFINED_PHASES=configure setup
+DEPEND=openssl? ( !tommath? ( dev-libs/gmp ) ) openssl? ( dev-libs/openssl ) tommath? ( dev-libs/libtommath ) dev-util/pkgconfig
+DESCRIPTION=Blind-ID library for user identification using RSA blind signatures
+EAPI=4
+HOMEPAGE=http://git.xonotic.org/?p=xonotic/d0_blind_id.git;a=summary
+IUSE=crypt openssl static-libs tommath
+KEYWORDS=~amd64 ~x86
+LICENSE=BSD
+RDEPEND=openssl? ( !tommath? ( dev-libs/gmp ) ) openssl? ( dev-libs/openssl ) tommath? ( dev-libs/libtommath )
+REQUIRED_USE=openssl? ( !tommath )
+SLOT=0
+SRC_URI=https://github.com/downloads/divVerent/d0_blind_id/d0_blind_id-0.3.tar.gz
+_md5_=c00596b0a55ea7e07c75dc1c5243de74

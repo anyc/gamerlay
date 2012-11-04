@@ -1,0 +1,10 @@
+DEFINED_PHASES=postinst
+DESCRIPTION=plugin-based Nintendo 64 emulator
+EAPI=2
+HOMEPAGE=http://code.google.com/p/mupen64plus/
+IUSE=plugins
+LICENSE=GPL-2
+RDEPEND=games-emulation/mupen64plus-ui-console plugins? ( games-emulation/mupen64plus-rsp-z64 games-emulation/mupen64plus-video-arachnoid games-emulation/mupen64plus-video-glide64 games-emulation/mupen64plus-video-z64 )
+SLOT=0
+_eclasses_=eutils	d40dc948067bd3db1c8ebf7d51897313	multilib	9aa8a023e062fca0ba79362d9d0cc488	toolchain-funcs	134429b842a6c67254bfd76a8753e4d4	user	d0a4d0735a6c0183d707ca919bd72f28
+_md5_=6a75f1c67468b4d643f043dab47b2428

@@ -1,0 +1,7 @@
+# ChangeLog for games-rpg/amnesia-tdd
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+  29 Sep 2012; Randall Wald <rwald@gentoo.org> amnesia-tdd-1.2.1.ebuild:
+  Ebuild based on version from bug #343495, updated to newer source file
+

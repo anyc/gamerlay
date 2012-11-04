@@ -1,0 +1,22 @@
+games-emulation/mupen64plus-core media-libs/libsdl libsamplerate? ( media-libs/libsamplerate ) dev-util/pkgconfig dev-vcs/mercurial
+games-emulation/mupen64plus-core media-libs/libsdl libsamplerate? ( media-libs/libsamplerate )
+0
+
+
+http://code.google.com/p/mupen64plus/
+GPL-2
+sdl audio output plugin for mupen64plus
+
+base eutils games mercurial multilib toolchain-funcs user
+debug libsamplerate pic
+
+
+
+2
+
+compile configure install postinst preinst prepare setup unpack
+
+
+
+
+

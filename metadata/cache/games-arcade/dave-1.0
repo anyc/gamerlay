@@ -1,0 +1,22 @@
+virtual/opengl media-libs/libsdl media-libs/sdl-mixer media-libs/sdl-image media-libs/libogg media-libs/libvorbis media-libs/glew dev-util/cmake
+virtual/opengl media-libs/libsdl media-libs/sdl-mixer media-libs/sdl-image media-libs/libogg media-libs/libvorbis media-libs/glew
+0
+http://tyk-ry.utu.fi/~jupet/dave_sources.zip
+
+http://thykka.ath.cx/dave/?page=115
+GPL-2
+Dave - The ordinary spaceman
+~amd64 ~x86
+base eutils games multilib toolchain-funcs user
+
+
+
+
+2
+
+compile configure install postinst preinst prepare setup unpack
+
+
+
+
+

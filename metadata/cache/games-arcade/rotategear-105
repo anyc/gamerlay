@@ -1,0 +1,22 @@
+media-libs/libsdl media-libs/sdl-image media-libs/sdl-gfx media-libs/sdl-mixer[vorbis] app-arch/unzip
+media-libs/libsdl media-libs/sdl-image media-libs/sdl-gfx media-libs/sdl-mixer[vorbis]
+0
+http://www.geocities.jp/dij4121/alpha/data/rg_105.zip
+
+http://maglog.jp/alpha-secret-base/Article313069.html
+Yawaraka-flexible
+multiplatform platform puzzle game
+~x86
+base eutils games multilib toolchain-funcs user
+
+
+
+
+2
+
+compile configure install postinst preinst prepare setup unpack
+
+
+
+
+

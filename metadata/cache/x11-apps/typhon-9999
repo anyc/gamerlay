@@ -1,0 +1,22 @@
+virtual/opengl dev-libs/tinyxml media-libs/libpng >=media-libs/libsfml-2.0 sfe? ( media-libs/sfemovie ) sys-libs/zlib mmd? ( media-libs/libmmd ) p3t? ( media-libs/libp3t ) >=dev-util/cmake-2.8 userland_GNU? ( >=sys-apps/findutils-4.4.0 ) || ( dev-vcs/subversion[webdav-neon] dev-vcs/subversion[webdav-serf] ) net-misc/rsync
+virtual/opengl dev-libs/tinyxml media-libs/libpng >=media-libs/libsfml-2.0 sfe? ( media-libs/sfemovie ) sys-libs/zlib mmd? ( media-libs/libmmd ) p3t? ( media-libs/libp3t )
+0
+
+
+http://www.frostworx.de/?p=1
+GPL-3
+A slim and themeable opengl dashboard / program launcher
+
+base cmake-utils eutils flag-o-matic multilib subversion toolchain-funcs user
+debug mmd sfe +p3t
+
+
+
+4
+
+compile configure install preinst prepare test unpack
+
+
+
+
+

@@ -1,0 +1,22 @@
+media-libs/libsdl media-libs/mesa media-libs/sdl-mixer dev-libs/libbulletml
+media-libs/libsdl media-libs/mesa media-libs/sdl-mixer dev-libs/libbulletml
+0
+http://www.mb.ccnw.ne.jp/hiz/game/projectL/projectL_1001.zip mirror://debian/pool/main/p/projectl/projectl_1.001.dfsg1-2.diff.gz
+
+http://www.mb.ccnw.ne.jp/hiz/game/projectL/index_en.html
+BSD
+Sword action STG inspired by projectN developed by D.K
+~ppc ~x86
+base d-games eutils games multilib toolchain-funcs user
+
+
+
+
+2
+
+compile configure install postinst preinst prepare setup unpack
+
+
+
+
+

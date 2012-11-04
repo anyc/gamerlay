@@ -1,0 +1,22 @@
+flac? ( media-libs/flac ) mad? ( media-libs/libmad ) vorbis? ( media-libs/libvorbis ) sys-libs/zlib dev-vcs/git
+flac? ( media-libs/flac ) mad? ( media-libs/libmad ) vorbis? ( media-libs/libvorbis ) sys-libs/zlib
+0
+
+
+http://www.residualvm.org/
+LGPL-2.1
+Utilities for the GrimE game engine
+
+base eutils games git-2 multilib toolchain-funcs user
+flac mad vorbis
+
+
+
+3
+
+compile configure install postinst preinst prepare setup unpack
+
+
+
+
+

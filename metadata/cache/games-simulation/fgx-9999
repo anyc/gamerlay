@@ -1,0 +1,22 @@
+x11-libs/qt-core:4 x11-libs/qt-gui:4 x11-libs/qt-webkit:4 x11-libs/qt-xmlpatterns:4 dev-vcs/git
+x11-libs/qt-core:4 x11-libs/qt-gui:4 x11-libs/qt-webkit:4 x11-libs/qt-xmlpatterns:4
+0
+
+
+http://code.google.com/p/fgx/
+GPL-2
+Launcher for FlightGear Flight Simulator, based on Qt
+
+base eutils games git-2 multilib qt4-r2 toolchain-funcs user
+debug
+
+
+
+3
+
+compile configure install postinst preinst prepare setup unpack
+
+
+
+
+

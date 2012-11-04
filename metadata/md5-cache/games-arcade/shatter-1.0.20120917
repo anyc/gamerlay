@@ -1,0 +1,12 @@
+DEFINED_PHASES=compile configure install nofetch postinst preinst prepare setup unpack
+DESCRIPTION=Retro-inspired brick-breaking game
+EAPI=4
+HOMEPAGE=http://www.shattergame.com
+KEYWORDS=-* ~amd64 ~x86
+LICENSE=as-is
+RDEPEND=x86? ( virtual/opengl dev-libs/expat media-gfx/nvidia-cg-toolkit media-libs/fontconfig media-libs/freetype:2 media-libs/libsdl net-dns/libidn sys-libs/zlib x11-libs/libdrm x11-libs/libX11 x11-libs/libXau x11-libs/libXdmcp x11-libs/libXext x11-libs/libxcb ) amd64? ( app-emulation/emul-linux-x86-baselibs app-emulation/emul-linux-x86-sdl app-emulation/emul-linux-x86-xlibs )
+RESTRICT=fetch strip
+SLOT=0
+SRC_URI=shatter-linux-1347954459.sh
+_eclasses_=base	ec46b36a6f6fd1d0b505a33e0b74e413	eutils	d40dc948067bd3db1c8ebf7d51897313	games	e0a83e3f3f024b8c8ef7a8217d716cbf	multilib	9aa8a023e062fca0ba79362d9d0cc488	toolchain-funcs	134429b842a6c67254bfd76a8753e4d4	unpacker	50e1227854e96469a19a63f053496328	unpacker-nixstaller	177b5b108fd5a1721534013197fd8f27	user	d0a4d0735a6c0183d707ca919bd72f28
+_md5_=74e8d404aef876da94de3c48bd26d9e5

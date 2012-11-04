@@ -1,0 +1,22 @@
+media-libs/openni graphviz? ( media-gfx/graphviz ) doc? ( app-doc/doxygen ) dev-vcs/git
+media-libs/openni graphviz? ( media-gfx/graphviz ) doc? ( app-doc/doxygen )
+0
+
+
+https://github.com/PrimeSense/Sensor
+GPL-3
+PrimeSensor Modules for OpenNI
+
+eutils git-2 multilib toolchain-funcs user
+doc graphviz
+
+
+
+4
+
+compile install postinst prepare unpack
+
+
+
+
+

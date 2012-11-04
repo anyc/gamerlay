@@ -1,0 +1,22 @@
+media-libs/sdl-image media-libs/libsdl[opengl] media-libs/sdl-mixer media-libs/sdl-ttf projectm? ( media-libs/libprojectm ) =media-libs/portaudio-19* virtual/ffmpeg dev-db/sqlite virtual/glu dev-util/pkgconfig >=dev-lang/fpc-2.2.0 || ( dev-vcs/subversion[webdav-neon] dev-vcs/subversion[webdav-serf] ) net-misc/rsync
+media-libs/sdl-image media-libs/libsdl[opengl] media-libs/sdl-mixer media-libs/sdl-ttf projectm? ( media-libs/libprojectm ) =media-libs/portaudio-19* virtual/ffmpeg dev-db/sqlite virtual/glu
+0
+
+
+http://ultrastardx.sourceforge.net/
+GPL-2
+A free and open source karaoke game
+
+base eutils flag-o-matic games multilib subversion toolchain-funcs user
++projectm
+
+
+
+2
+
+compile configure install postinst preinst prepare setup unpack
+
+
+
+
+

@@ -1,0 +1,11 @@
+DEFINED_PHASES=compile configure install postinst preinst prepare setup unpack
+DEPEND=virtual/opengl virtual/glu media-libs/freetype:2 media-libs/libpng media-libs/libsdl || ( <sys-libs/zlib-1.2.5.1-r1 >=sys-libs/zlib-1.2.5.1-r2[minizip] ) lirc? ( app-misc/lirc ) dev-util/pkgconfig dev-vcs/mercurial
+DESCRIPTION=plugin-based Nintendo 64 emulator, core library
+EAPI=2
+HOMEPAGE=http://code.google.com/p/mupen64plus/
+IUSE=debug lirc pic profile
+LICENSE=GPL-2
+RDEPEND=virtual/opengl virtual/glu media-libs/freetype:2 media-libs/libpng media-libs/libsdl || ( <sys-libs/zlib-1.2.5.1-r1 >=sys-libs/zlib-1.2.5.1-r2[minizip] ) lirc? ( app-misc/lirc )
+SLOT=0
+_eclasses_=base	ec46b36a6f6fd1d0b505a33e0b74e413	eutils	d40dc948067bd3db1c8ebf7d51897313	games	e0a83e3f3f024b8c8ef7a8217d716cbf	mercurial	add64e64d758a9618d46a08a95f77483	multilib	9aa8a023e062fca0ba79362d9d0cc488	toolchain-funcs	134429b842a6c67254bfd76a8753e4d4	user	d0a4d0735a6c0183d707ca919bd72f28
+_md5_=4905206cfcd7d4d165114eff16f55520

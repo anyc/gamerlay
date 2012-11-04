@@ -1,0 +1,22 @@
+virtual/opengl virtual/glu media-libs/libsdl media-libs/devil =media-libs/fmod-3*
+virtual/opengl virtual/glu media-libs/libsdl media-libs/devil =media-libs/fmod-3*
+0
+http://xout.blackened-interactive.com/dump/new/LD10.zip
+
+http://xout.blackened-interactive.com/OldGames.html
+public-domain
+laser game entry for ludum dare 10
+~x86
+base eutils games multilib toolchain-funcs user
+
+
+
+
+2
+
+compile configure install postinst preinst prepare setup unpack
+
+
+
+
+

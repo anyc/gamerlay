@@ -1,0 +1,12 @@
+DEFINED_PHASES=compile configure install postinst preinst prepare setup test unpack
+DEPEND=>=media-libs/glew-1.5 >=media-libs/libsdl-1.2[joystick] sys-libs/readline x11-libs/libXext ao? ( media-libs/libao ) alsa? ( media-libs/alsa-lib ) bluetooth? ( net-wireless/bluez ) encode? ( media-video/ffmpeg[encode] ) lzo? ( dev-libs/lzo ) openal? ( media-libs/openal ) opengl? ( virtual/opengl ) portaudio? ( media-libs/portaudio ) pulseaudio? ( media-sound/pulseaudio ) wxwidgets? ( x11-libs/wxGTK:2.8 ) xrandr? ( x11-libs/libXrandr ) dev-util/cmake dev-util/pkgconfig media-gfx/nvidia-cg-toolkit >=dev-util/cmake-2.8.4 userland_GNU? ( >=sys-apps/findutils-4.4.0 ) >=dev-vcs/git-1.6
+DESCRIPTION=Free. open source emulator for Nintendo GameCube and Wii
+EAPI=3
+HOMEPAGE=http://www.dolphin-emu.com/
+IUSE=alsa ao bluetooth doc encode +lzo openal opengl portaudio pulseaudio +wxwidgets +xrandr
+KEYWORDS=~x86 amd64 ~ppc ~ppc64
+LICENSE=GPL-2
+RDEPEND=>=media-libs/glew-1.5 >=media-libs/libsdl-1.2[joystick] sys-libs/readline x11-libs/libXext ao? ( media-libs/libao ) alsa? ( media-libs/alsa-lib ) bluetooth? ( net-wireless/bluez ) encode? ( media-video/ffmpeg[encode] ) lzo? ( dev-libs/lzo ) openal? ( media-libs/openal ) opengl? ( virtual/opengl ) portaudio? ( media-libs/portaudio ) pulseaudio? ( media-sound/pulseaudio ) wxwidgets? ( x11-libs/wxGTK:2.8 ) xrandr? ( x11-libs/libXrandr )
+SLOT=0
+_eclasses_=base	ec46b36a6f6fd1d0b505a33e0b74e413	cmake-utils	1f7278c51de5e0898f73c97fbf622701	eutils	d40dc948067bd3db1c8ebf7d51897313	flag-o-matic	2c938a1fe61ea9899a2b97ea1e065f5f	games	e0a83e3f3f024b8c8ef7a8217d716cbf	git	5acadd6c91a0024edac0640c151599a1	multilib	9aa8a023e062fca0ba79362d9d0cc488	pax-utils	0ace932c4045349c7fc1af0fe7091acf	toolchain-funcs	134429b842a6c67254bfd76a8753e4d4	user	d0a4d0735a6c0183d707ca919bd72f28	wxwidgets	fb1a306837717dfa2af841ecdf929565
+_md5_=8565c4c46e275eff05f7a332f59f2b35

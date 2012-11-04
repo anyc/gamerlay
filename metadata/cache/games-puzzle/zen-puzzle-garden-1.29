@@ -1,0 +1,22 @@
+
+x86? ( media-libs/libsdl ) amd64? ( app-emulation/emul-linux-x86-sdl )
+0
+zen-puzzle-garden_1.29-1_i386.tar.gz
+fetch
+http://www.lexaloffle.com/zen.htm
+Voxatron
+Try to solve seemingly impossible puzzles that take place in a relaxing zen garden.
+~amd64 ~x86
+base eutils games multilib toolchain-funcs user
+
+
+
+
+3
+
+compile configure install nofetch postinst preinst prepare setup unpack
+
+
+
+
+

@@ -1,0 +1,22 @@
+media-libs/libsdl media-libs/mesa media-libs/sdl-mixer <dev-games/ode-10.1 dev-libs/libbulletml
+media-libs/libsdl media-libs/mesa media-libs/sdl-mixer <dev-games/ode-10.1 dev-libs/libbulletml
+0
+http://www.asahi-net.or.jp/~cs8k-cyu/windows/mcd0_11.zip mirror://debian/pool/main/m/mu-cade/mu-cade_0.11.dfsg1-4.diff.gz
+
+http://www.asahi-net.or.jp/~cs8k-cyu/windows/mcd_e.html
+BSD
+The Physics Centipede Invasion. Smashup waggly shmup, 'Mu-cade'.
+~ppc ~x86
+base d-games eutils games multilib toolchain-funcs user
+
+
+
+
+2
+
+compile configure install postinst preinst prepare setup unpack
+
+
+
+
+

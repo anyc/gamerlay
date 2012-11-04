@@ -1,0 +1,22 @@
+!openssl? ( dev-libs/gmp ) openssl? ( dev-libs/openssl ) dev-util/pkgconfig || ( >=sys-devel/automake-1.11.1:1.11 >=sys-devel/automake-1.12:1.12 ) >=sys-devel/autoconf-2.68 sys-devel/libtool
+!openssl? ( dev-libs/gmp ) openssl? ( dev-libs/openssl )
+0
+http://git.xonotic.org/?p=xonotic/d0_blind_id.git;a=snapshot;h=xonotic-v0.1.0preview;sf=zip -> d0_blind_id-0.1.0_pre.zip
+
+http://git.xonotic.org/?p=xonotic/d0_blind_id.git;a=summary
+BSD
+Blind-ID library for user identification using RSA blind signatures
+~amd64 ~x86
+autotools libtool multilib multiprocessing toolchain-funcs
+crypt openssl static-libs
+
+
+
+2
+
+configure install prepare setup
+
+
+
+
+

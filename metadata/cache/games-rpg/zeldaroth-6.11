@@ -1,0 +1,22 @@
+
+media-libs/libsdl media-libs/sdl-gfx media-libs/sdl-image media-libs/sdl-mixer[midi]
+0
+http://www.zeldaroth.fr/us/files/ROTH/Linux/ZeldaROTH_US-src-linux.zip
+
+http://www.zeldaroth.fr/us/zroth.php
+public-domain
+The Legend of Zelda - Return of the Hylian
+~x86
+base eutils games multilib toolchain-funcs user
+
+
+
+
+2
+
+compile configure install postinst preinst prepare setup unpack
+
+
+
+
+

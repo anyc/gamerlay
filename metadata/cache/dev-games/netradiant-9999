@@ -1,0 +1,22 @@
+dev-libs/glib:2 dev-libs/libxml2 >=media-libs/libpng-1.2 >=sys-libs/zlib-1.2 gtk? ( >=x11-libs/gtk+-2.4:2 >=x11-libs/gtkglext-1 x11-libs/pango ) !dev-games/gtkradiant dev-util/pkgconfig dev-vcs/subversion darkplaces? ( ) osirion? ( app-arch/unzip ) quake1? ( app-arch/unzip ) quake2world? ( ) warsow? ( app-arch/unzip ) xonotic? ( net-misc/wget ) !bindist? ( openarena? ( app-arch/unzip ) quake2? ( app-arch/unzip ) quake3? ( ) tremulous? ( app-arch/unzip ) ufoai? ( ) ) || ( dev-vcs/subversion[webdav-neon] dev-vcs/subversion[webdav-serf] ) net-misc/rsync dev-vcs/git
+dev-libs/glib:2 dev-libs/libxml2 >=media-libs/libpng-1.2 >=sys-libs/zlib-1.2 gtk? ( >=x11-libs/gtk+-2.4:2 >=x11-libs/gtkglext-1 x11-libs/pango ) !dev-games/gtkradiant
+0
+osirion? ( http://ingar.satgnu.net/files/gtkradiant/gamepacks//OsirionPack.zip ) quake1? ( http://ingar.satgnu.net/files/gtkradiant/gamepacks//Quake1Pack.zip ) warsow? ( http://ingar.satgnu.net/files/gtkradiant/gamepacks//WarsowPack.zip ) !bindist? ( openarena? ( http://ingar.satgnu.net/files/gtkradiant/gamepacks//OpenArenaPack.zip ) quake2? ( http://ingar.satgnu.net/files/gtkradiant/gamepacks//Quake2Pack.zip ) tremulous? ( http://ingar.satgnu.net/files/gtkradiant/gamepacks//TremulousPack.zip ) )
+
+http://dev.alientrap.org/projects/netradiant
+GPL-2
+NetRadiant is a fork of map editor for Q3 based games, GtkRadiant 1.5
+
+eutils git-2 multilib subversion toolchain-funcs user
+darkplaces nexuiz osirion quake1 quake2world warsow +xonotic openarena quake2 quake3 tremulous ufoai +h2data +q2map +q3data +q3map2 +qdata3 +gtk bindist
+
+
+
+4
+
+compile configure install preinst prepare setup unpack
+
+
+
+
+

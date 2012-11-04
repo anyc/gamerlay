@@ -1,0 +1,11 @@
+DEFINED_PHASES=compile configure install postinst preinst prepare setup unpack
+DEPEND=media-libs/libsdl media-libs/sdl-image[png] media-libs/sdl-ttf x11-libs/libX11 dev-libs/box2d sys-libs/zlib || ( dev-vcs/subversion[webdav-neon] dev-vcs/subversion[webdav-serf] ) net-misc/rsync
+DESCRIPTION=a drawing puzzle game in the spirit of Crayon Physics using the same excellent Box2D engine
+EAPI=2
+HOMEPAGE=http://numptyphysics.garage.maemo.org/
+KEYWORDS=~amd64 ~x86
+LICENSE=GPL-3
+RDEPEND=media-libs/libsdl media-libs/sdl-image[png] media-libs/sdl-ttf x11-libs/libX11 dev-libs/box2d sys-libs/zlib
+SLOT=0
+_eclasses_=base	ec46b36a6f6fd1d0b505a33e0b74e413	eutils	d40dc948067bd3db1c8ebf7d51897313	games	e0a83e3f3f024b8c8ef7a8217d716cbf	multilib	9aa8a023e062fca0ba79362d9d0cc488	subversion	877d251a42b69543c01f6a36b4707b3b	toolchain-funcs	134429b842a6c67254bfd76a8753e4d4	user	d0a4d0735a6c0183d707ca919bd72f28
+_md5_=badcaf0fb2a8aca3d55a4773f2cc7612

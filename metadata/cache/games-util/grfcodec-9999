@@ -1,0 +1,22 @@
+!games-util/nforenum dev-lang/perl dev-libs/boost media-libs/libpng dev-vcs/mercurial
+
+0
+
+
+http://dev.openttdcoop.org/projects/grfcodec
+GPL-2
+A suite of programs to modify openttd/Transport Tycoon Deluxe's GRF files
+
+eutils mercurial multilib toolchain-funcs user
+
+
+
+
+3
+
+install prepare unpack
+
+
+
+
+

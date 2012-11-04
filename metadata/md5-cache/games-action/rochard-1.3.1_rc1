@@ -1,0 +1,13 @@
+DEFINED_PHASES=compile configure install postinst preinst prepare setup unpack
+DEPEND=virtual/opengl app-arch/gzip x11-libs/libdrm x11-libs/libX11 x11-libs/libXau x11-libs/libxcb x11-libs/libXdamage x11-libs/libXdmcp x11-libs/libXext x11-libs/libXfixes x11-libs/libXxf86vm
+DESCRIPTION=A side-scrolling platformer packed with action, gravity-bending puzzles, space bandits and absurdly powerful astro-mining tools.
+EAPI=4
+HOMEPAGE=http://rochardthegame.com/
+KEYWORDS=-* ~amd64 ~x86
+LICENSE=Rochard-EULA
+RDEPEND=virtual/opengl app-arch/gzip x11-libs/libdrm x11-libs/libX11 x11-libs/libXau x11-libs/libxcb x11-libs/libXdamage x11-libs/libXdmcp x11-libs/libXext x11-libs/libXfixes x11-libs/libXxf86vm
+RESTRICT=fetch
+SLOT=0
+SRC_URI=x86? ( rochard-linux-20120927_131RC1_Linux32bit-1348771540.tar.gz ) amd64? ( rochard-linux-20120927_131RC1_Linux64bit-1348771540.tar.gz )
+_eclasses_=base	ec46b36a6f6fd1d0b505a33e0b74e413	eutils	d40dc948067bd3db1c8ebf7d51897313	games	e0a83e3f3f024b8c8ef7a8217d716cbf	multilib	9aa8a023e062fca0ba79362d9d0cc488	toolchain-funcs	134429b842a6c67254bfd76a8753e4d4	user	d0a4d0735a6c0183d707ca919bd72f28
+_md5_=9f34dd3a05b0ee1de5679727e2aa4025

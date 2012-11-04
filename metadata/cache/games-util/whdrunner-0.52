@@ -1,0 +1,22 @@
+app-arch/unzip app-emulation/fs-uae dev-libs/tinyxml >=dev-util/cmake-2.8 userland_GNU? ( >=sys-apps/findutils-4.4.0 )
+app-arch/unzip app-emulation/fs-uae dev-libs/tinyxml
+0
+http://www.frostworx.de/files/whdrunner/whdrunner-0.52.tar.gz
+
+http://www.frostworx.de/?p=432
+GPL-3
+an easy to use amiga whdload launcher
+~x86
+base cmake-utils eutils flag-o-matic multilib toolchain-funcs user
+debug
+
+
+
+3
+
+compile configure install postinst prepare test unpack
+
+
+
+
+

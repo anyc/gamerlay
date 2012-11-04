@@ -1,0 +1,22 @@
+media-libs/libsdl media-libs/sdl-mixer media-libs/sdl-pango media-libs/sdl-ttf
+media-libs/libsdl media-libs/sdl-mixer media-libs/sdl-pango media-libs/sdl-ttf
+0
+mirror://sourceforge/hexahop/hex-a-hop/1.1.0/hex-a-hop-1.1.0.tar.gz
+
+http://hexahop.sourceforge.net/
+GPL-2
+a hexagonal tile-based puzzle game
+~amd64 ~x86
+base eutils games multilib toolchain-funcs user
+
+
+
+
+2
+
+compile configure install postinst preinst prepare setup unpack
+
+
+
+
+

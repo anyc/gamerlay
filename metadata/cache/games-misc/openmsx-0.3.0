@@ -1,0 +1,22 @@
+|| ( =dev-lang/python-2.7* =dev-lang/python-2.6* )
+|| ( =dev-lang/python-2.7* =dev-lang/python-2.6* )
+0
+http://bundles.openttdcoop.org/openmsx/releases/0.3.0/openmsx-0.3.0-source.tar.gz
+
+http://bundles.openttdcoop.org/openmsx/
+|| ( GPL-2 CCPL-Sampling-Plus-1.0 )
+An ambiguously named music replacement set for OpenTTD
+amd64 ppc ppc64 x86
+base eutils games multilib python toolchain-funcs user
+
+
+
+
+2
+
+compile configure install postinst preinst prepare setup unpack
+
+
+
+
+

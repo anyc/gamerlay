@@ -1,0 +1,22 @@
+>=dev-java/java-config-2.1.9-r1
+>=virtual/jre-1.6 virtual/opengl >=dev-java/java-config-2.1.9-r1
+0
+hib? ( amd64? ( RevengeOfTheTitans-HIB-180151-amd64.tar.gz ) x86? ( RevengeOfTheTitans-HIB-180151-i386.tar.gz ) ) !hib? ( amd64? ( http://d4ec1k3inlcla.cloudfront.net/RevengeOfTheTitans-amd64.tar.gz -> revenge-of-the-titans-1.80.15.1-amd64.tar.gz ) x86? ( http://d4ec1k3inlcla.cloudfront.net/RevengeOfTheTitans-i386.tar.gz -> revenge-of-the-titans-1.80.15.1-i386.tar.gz ) )
+mirror strip
+http://www.puppygames.net/revenge-of-the-titans/
+as-is
+Defeat the returning Titan horde in a series of epic ground battles.
+-* ~amd64 ~x86
+base eutils games java-pkg-2 java-utils-2 multilib toolchain-funcs user versionator
+hib elibc_FreeBSD
+
+
+
+3
+
+compile configure install nofetch postinst preinst prepare setup unpack
+
+
+
+
+

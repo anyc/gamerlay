@@ -1,0 +1,22 @@
+app-arch/unzip
+media-libs/libsdl[audio,joystick,video] media-libs/openal
+0
+hf-linux-08122011-bin
+fetch
+http://www.koshutin.com/
+as-is
+2D battles of flying machines equipped with various slashing, piercing and blunt weaponry
+~amd64 ~x86
+base eutils games multilib toolchain-funcs user
+linguas_ru
+
+
+
+3
+
+compile configure install nofetch postinst preinst prepare setup unpack
+
+
+
+
+

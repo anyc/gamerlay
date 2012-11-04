@@ -1,0 +1,22 @@
+media-libs/sdl-image[png] media-libs/sdl-ttf media-libs/openal dev-lang/lua media-libs/libsndfile dev-games/physfs[zip] >=dev-util/cmake-2.8.4 userland_GNU? ( >=sys-apps/findutils-4.4.0 ) || ( dev-vcs/subversion[webdav-neon] dev-vcs/subversion[webdav-serf] ) net-misc/rsync
+media-libs/sdl-image[png] media-libs/sdl-ttf media-libs/openal dev-lang/lua media-libs/libsndfile dev-games/physfs[zip] app-arch/zip
+0
+
+
+http://www.zelda-solarus.com
+GPL-3
+Zelda Mystery of Solarus DX
+
+base cmake-utils eutils flag-o-matic games multilib subversion toolchain-funcs user
+debug
+
+
+
+2
+
+compile configure install postinst preinst prepare setup test unpack
+
+
+
+
+

@@ -1,0 +1,22 @@
+>=media-libs/glew-1.5 >=media-libs/libsdl-1.2[joystick] sys-libs/readline x11-libs/libXext ao? ( media-libs/libao ) alsa? ( media-libs/alsa-lib ) bluetooth? ( net-wireless/bluez ) encode? ( media-video/ffmpeg[encode] ) lzo? ( dev-libs/lzo ) openal? ( media-libs/openal ) opengl? ( virtual/opengl ) portaudio? ( media-libs/portaudio ) pulseaudio? ( media-sound/pulseaudio ) wxwidgets? ( x11-libs/wxGTK:2.8 ) xrandr? ( x11-libs/libXrandr ) dev-util/cmake dev-util/pkgconfig media-gfx/nvidia-cg-toolkit >=dev-util/cmake-2.8.4 userland_GNU? ( >=sys-apps/findutils-4.4.0 ) >=dev-vcs/git-1.6
+>=media-libs/glew-1.5 >=media-libs/libsdl-1.2[joystick] sys-libs/readline x11-libs/libXext ao? ( media-libs/libao ) alsa? ( media-libs/alsa-lib ) bluetooth? ( net-wireless/bluez ) encode? ( media-video/ffmpeg[encode] ) lzo? ( dev-libs/lzo ) openal? ( media-libs/openal ) opengl? ( virtual/opengl ) portaudio? ( media-libs/portaudio ) pulseaudio? ( media-sound/pulseaudio ) wxwidgets? ( x11-libs/wxGTK:2.8 ) xrandr? ( x11-libs/libXrandr )
+0
+
+
+http://www.dolphin-emu.com/
+GPL-2
+Free. open source emulator for Nintendo GameCube and Wii
+~x86 amd64 ~ppc ~ppc64
+base cmake-utils eutils flag-o-matic games git multilib pax-utils toolchain-funcs user wxwidgets
+alsa ao bluetooth doc encode +lzo openal opengl portaudio pulseaudio +wxwidgets +xrandr
+
+
+
+3
+
+compile configure install postinst preinst prepare setup test unpack
+
+
+
+
+

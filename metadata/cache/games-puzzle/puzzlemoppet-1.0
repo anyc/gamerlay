@@ -1,0 +1,22 @@
+dev-games/ode dev-games/irrlicht >=dev-util/cmake-2.8.4 userland_GNU? ( >=sys-apps/findutils-4.4.0 )
+dev-games/ode dev-games/irrlicht
+0
+http://garnetgames.com/PuzzleMoppetFull.tar.gz http://garnetgames.com/PuzzleMoppetSource.tar.gz http://nothings.org/stb_vorbis/stb_vorbis.c
+
+http://http://garnetgames.com/puzzlemoppet
+WTFPL
+a serenely peaceful yet devilishly challenging 3D puzzle game
+~amd64 ~x86
+base cmake-utils eutils flag-o-matic games multilib toolchain-funcs user
+
+
+
+
+3
+
+compile configure install postinst preinst prepare setup test unpack
+
+
+
+
+

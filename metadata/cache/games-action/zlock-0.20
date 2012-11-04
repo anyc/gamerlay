@@ -1,0 +1,22 @@
+media-libs/libsdl media-libs/mesa media-libs/sdl-mixer dev-libs/libbulletml
+media-libs/libsdl media-libs/mesa media-libs/sdl-mixer dev-libs/libbulletml
+0
+http://homepage2.nifty.com/isshiki/z-lock.zip
+
+http://homepage2.nifty.com/isshiki/prog_win_d.html
+BSD
+jumpei isshiki's HelloWorldProject (2006/09/09)
+~ppc ~x86
+base d-games eutils games multilib toolchain-funcs user
+
+
+
+
+2
+
+compile configure install postinst preinst prepare setup unpack
+
+
+
+
+

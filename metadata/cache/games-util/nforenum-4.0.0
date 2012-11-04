@@ -1,0 +1,22 @@
+dev-libs/boost
+
+0
+http://binaries.openttd.org/extra/nforenum/4.0.0/nforenum-4.0.0-source.tar.gz
+
+http://dev.openttdcoop.org/projects/nforenum
+GPL-2
+A tool checking NFO code for errors
+~amd64 ~ppc ~ppc64 ~x86
+multilib toolchain-funcs
+
+
+
+
+3
+
+install prepare
+
+
+
+
+

@@ -1,0 +1,13 @@
+DEFINED_PHASES=compile configure install postinst preinst prepare setup unpack
+DEPEND=x11-libs/gtk+:2 gnome-base/libglade dev-lang/perl virtual/libintl spell? ( app-text/gtkspell ) gnutls? ( net-libs/gnutls ) sys-devel/gettext dev-util/pkgconfig
+DESCRIPTION=Powerful MUD client with a built-in PERL interpreter
+EAPI=3
+HOMEPAGE=http://kildclient.sourceforge.net
+IUSE=doc gnutls spell
+KEYWORDS=~x86 ~amd64
+LICENSE=GPL-3
+RDEPEND=x11-libs/gtk+:2 gnome-base/libglade dev-lang/perl virtual/libintl spell? ( app-text/gtkspell ) gnutls? ( net-libs/gnutls )
+SLOT=0
+SRC_URI=mirror://sourceforge/kildclient/kildclient-2.11.0.tar.gz
+_eclasses_=base	ec46b36a6f6fd1d0b505a33e0b74e413	eutils	d40dc948067bd3db1c8ebf7d51897313	games	e0a83e3f3f024b8c8ef7a8217d716cbf	multilib	9aa8a023e062fca0ba79362d9d0cc488	toolchain-funcs	134429b842a6c67254bfd76a8753e4d4	user	d0a4d0735a6c0183d707ca919bd72f28
+_md5_=5388346a5342bfb46d4638555fd40dd2

@@ -1,0 +1,12 @@
+DEFINED_PHASES=compile configure install postinst preinst prepare setup unpack
+DEPEND=virtual/opengl media-libs/libsdl media-libs/sdl-mixer media-libs/sdl-image media-libs/libogg media-libs/libvorbis media-libs/glew dev-util/cmake
+DESCRIPTION=Dave - The ordinary spaceman
+EAPI=2
+HOMEPAGE=http://thykka.ath.cx/dave/?page=115
+KEYWORDS=~amd64 ~x86
+LICENSE=GPL-2
+RDEPEND=virtual/opengl media-libs/libsdl media-libs/sdl-mixer media-libs/sdl-image media-libs/libogg media-libs/libvorbis media-libs/glew
+SLOT=0
+SRC_URI=http://tyk-ry.utu.fi/~jupet/dave_sources.zip
+_eclasses_=base	ec46b36a6f6fd1d0b505a33e0b74e413	eutils	d40dc948067bd3db1c8ebf7d51897313	games	e0a83e3f3f024b8c8ef7a8217d716cbf	multilib	9aa8a023e062fca0ba79362d9d0cc488	toolchain-funcs	134429b842a6c67254bfd76a8753e4d4	user	d0a4d0735a6c0183d707ca919bd72f28
+_md5_=78abf500af04a91d953c25f855eec477

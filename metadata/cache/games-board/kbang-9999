@@ -1,0 +1,22 @@
+>x11-libs/qt-gui-4.4 || ( dev-vcs/subversion[webdav-neon] dev-vcs/subversion[webdav-serf] ) net-misc/rsync
+>x11-libs/qt-gui-4.4
+0
+
+
+http://code.google.com/p/kbang/
+GPL-2
+KBang is an open source implementation of the popular card game Bang!
+
+base eutils games multilib qt4-r2 subversion toolchain-funcs user
+server
+
+
+
+2
+
+compile configure install postinst preinst prepare setup unpack
+
+
+
+
+

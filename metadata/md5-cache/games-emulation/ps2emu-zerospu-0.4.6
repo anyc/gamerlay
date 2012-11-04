@@ -1,0 +1,13 @@
+DEFINED_PHASES=compile configure install postinst preinst prepare setup test unpack
+DEPEND=soundtouch? ( media-libs/libsoundtouch ) x86? ( media-libs/alsa-lib media-libs/portaudio media-libs/libsoundtouch ) amd64? ( app-emulation/emul-linux-x86-soundlibs ) >=dev-util/cmake-2.8.4 userland_GNU? ( >=sys-apps/findutils-4.4.0 )
+DESCRIPTION=SPU2-x plugin for pcsx2
+EAPI=3
+HOMEPAGE=http://www.pcsx2.net
+IUSE=debug soundtouch
+KEYWORDS=~x86
+LICENSE=GPL-3
+RDEPEND=soundtouch? ( media-libs/libsoundtouch ) x86? ( media-libs/alsa-lib media-libs/portaudio media-libs/libsoundtouch ) amd64? ( app-emulation/emul-linux-x86-soundlibs )
+SLOT=0
+SRC_URI=http://forums.pcsx2.net/attachment.php?aid=28280 -> pcsx2-0.9.8.7z
+_eclasses_=base	ec46b36a6f6fd1d0b505a33e0b74e413	cmake-utils	1f7278c51de5e0898f73c97fbf622701	eutils	d40dc948067bd3db1c8ebf7d51897313	flag-o-matic	2c938a1fe61ea9899a2b97ea1e065f5f	games	e0a83e3f3f024b8c8ef7a8217d716cbf	multilib	9aa8a023e062fca0ba79362d9d0cc488	toolchain-funcs	134429b842a6c67254bfd76a8753e4d4	user	d0a4d0735a6c0183d707ca919bd72f28
+_md5_=3a13d029797c9f3906f4be15c7537d4e

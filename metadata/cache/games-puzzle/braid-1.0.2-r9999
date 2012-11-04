@@ -1,0 +1,22 @@
+app-arch/unzip
+media-libs/libsdl[audio,joystick,video] x11-libs/libX11 x11-libs/libXau x11-libs/libxcb x11-libs/libXdmcp x11-libs/libXext virtual/opengl media-gfx/nvidia-cg-toolkit
+0
+braid-linux-build2.run.bin linguas_ru? ( braid-rus.tar.bz2 )
+strip fetch
+http://braid-game.com
+Arphic MIT
+Platform game where you manipulate flow of time
+~amd64 ~x86
+base eutils games multilib toolchain-funcs user versionator
+linguas_ru
+
+
+
+4
+
+compile configure install nofetch postinst preinst prepare setup unpack
+
+
+
+
+

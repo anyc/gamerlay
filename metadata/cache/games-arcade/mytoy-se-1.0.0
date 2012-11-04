@@ -1,0 +1,22 @@
+media-libs/libsdl media-libs/opencv media-libs/mesa media-libs/sdl-image media-libs/sdl-mixer
+media-libs/libsdl media-libs/opencv media-libs/mesa media-libs/sdl-image media-libs/sdl-mixer
+0
+http://frostworx.de/files/mytoy-se-1.0.0.tar.bz2
+
+http://www.happypenguin.org/show?MyToy
+GPL-2
+Goldberg's EyeToy clone with several sub-games
+~x86
+base eutils games multilib toolchain-funcs user
+
+
+
+
+
+
+compile install postinst preinst setup unpack
+
+
+
+
+

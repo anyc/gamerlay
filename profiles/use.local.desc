@@ -1,0 +1,97 @@
+# This file is deprecated as per GLEP 56 in favor of metadata.xml. Please add
+# your descriptions to your package's metadata.xml ONLY.
+# * generated automatically using egencache *
+
+dev-games/clanlib:gui - Build within the ClanGUI module
+dev-games/clanlib:network - Build within the ClanNetwork module
+dev-games/gigi:devil - Enable image loading via DevIL.
+dev-games/gigi:ogre - Enable OGRE support.
+dev-games/gigi:ois - Enable OIS support.
+dev-games/netradiant:darkplaces - Install DarkPlaces pack
+dev-games/netradiant:h2data - Install h2data tool
+dev-games/netradiant:nexuiz - Install Nexuiz pack
+dev-games/netradiant:openarena - Install OpenArena non GPL pack
+dev-games/netradiant:osirion - Install Osirion pack
+dev-games/netradiant:q2map - Install q2map tool
+dev-games/netradiant:q3data - Install q3data tool
+dev-games/netradiant:q3map2 - Install q3map2 tool
+dev-games/netradiant:qdata3 - Install qdata3 tool
+dev-games/netradiant:quake1 - Install Quake non GPL pack
+dev-games/netradiant:quake2 - Install Quake2 non GPL pack
+dev-games/netradiant:quake2world - Install Quake2World pack
+dev-games/netradiant:quake3 - Install Quake3 non GPL pack
+dev-games/netradiant:tremulous - Install Tremulous non GPL pack
+dev-games/netradiant:ufoai - Install UFO: Alien Invasion non GPL pack
+dev-games/netradiant:warsow - Install Warsow pack
+dev-games/netradiant:xonotic - Install Xonotic pack
+dev-games/ogre:boost - Add support for boost
+dev-games/ogre:boost-threads - Build with boost as threads provider
+dev-games/ogre:cg - NVIDIA toolkit plugin
+dev-games/ogre:double-precision - more precise calculations at the expense of speed
+dev-games/ogre:freeimage - freeimage plugin
+dev-games/ogre:ois - OIS plugin
+dev-games/ogre:poco-threads - Build with poco as threads provider
+dev-games/ogre:tbb-threads - Build with tbb as threads provider
+dev-games/ogre:tools - Build Ogre's command line tools
+dev-games/ogre:zip - zip plugin
+dev-games/simgear:X - Build non-headless version of simgear (full version)
+dev-games/simgear:subversion - Compile with libsvn support
+dev-libs/d0_blind_id:openssl - Use OpenSSL instead of GMP (beware of the OpenSSL license), for Mac OS X users only, GMP is faster.
+dev-libs/d0_blind_id:tommath - Use libtommath instead of GMP (slow, but WTFPL)
+games-action/d2x-rebirth:editor - Enable editor (Experimental!)
+games-action/d2x-rebirth:music_awe32 - Enable soundtrack recorded with the enhanced AWE32 soundfont
+games-action/d2x-rebirth:music_opl3 - Enable soundtrack recorded with the Yamaha YMF262 OPL3 Soundchip
+games-action/d2x-rebirth:music_sc55 - Enable soundtrack recorded with the Roland Sound Canvas SC-55
+games-arcade/myman:internal - Use internal display engine. Instead of ncurses/slang
+games-arcade/openggs:editor - useflag for the optional leveleditor
+games-arcade/smw:editor - useflag for the optional leveleditor
+games-arcade/ultrastardx:projectm - enable visuals
+games-board/kbang:server - Compile and install server compotents
+games-emulation/pcsx2-meta:cdvdiso - enable cdvdiso plugin support
+games-emulation/pcsx2-meta:cdvdlinuz - enable cdvdlinuz plugin support
+games-emulation/pcsx2-meta:cdvdnull - enable cdvdnull plugin support
+games-emulation/pcsx2-meta:dev9null - enable dev9null plugin support
+games-emulation/pcsx2-meta:fwnull - enable fwnull plugin support
+games-emulation/pcsx2-meta:gsdx - enable gsdx plugin support
+games-emulation/pcsx2-meta:gsnull - enable gsnull plugin support
+games-emulation/pcsx2-meta:onepad - enable onepad plugin support
+games-emulation/pcsx2-meta:padnull - enable padnull plugin support
+games-emulation/pcsx2-meta:spu2-x - enable spu2-x plugin support
+games-emulation/pcsx2-meta:spu2null - enable spu2null plugin support
+games-emulation/pcsx2-meta:usbnull - enable usbnull plugin support
+games-emulation/pcsx2-meta:zerogs - enable zerogs plugin support
+games-emulation/pcsx2-meta:zerospu - enable zerospu plugin support
+games-emulation/pcsx2-meta:zzogl - enable zzogl plugin support
+games-engines/residualvm:faad - Enable faad codec support
+games-engines/residualvm:fluidsynth - Enable fluidsynth support
+games-engines/residualvm:mpeg2 - Enable mpeg2 codec for cutscenes
+games-engines/residualvm:nasm - Enable nasm assebler inlines
+games-fps/dhewm3:roe - Adds support for the Resurrection of Evil expansion
+games-fps/xonotic:s3tc - Install media-libs/libtxc_dxtn for S3TC texture (de)compression, works with mesa drivers only
+games-fps/xonotic-data:client - Install files for client. Disabling is experimental.
+games-fps/xonotic-data:convert - Use cached-converter.sh for converting tga to jpeg
+games-fps/xonotic-data:low - Use low preset of cached-converter.sh: compress wav to ogg, lower jpeg quality.
+games-fps/xonotic-data:maps - Download and install maps.
+games-fps/xonotic-data:zip - Compress resources dirs in zip archives.
+games-fps/xonotic-maps:unofficial - Install unofficial maps. May be incomplete, unstable or broken.
+games-simulation/flightgear:jsbsim - Enable the JSBSim flight dynamics model
+games-simulation/flightgear:larcsim - Enable the LaRCsim flight dynamics model
+games-simulation/flightgear:subversion - Enable Flightgear's Terrasync to link against libsvn
+games-simulation/flightgear:uiuc - Enable the UIUC flight dynamics model
+games-simulation/flightgear:yasim - Enable the YASim flight dynamics model
+games-simulation/openttd:aplaymidi - Enables midi music in game, using aplaymidi as an external player
+games-simulation/openttd:dedicated - Build only the openttd server, and not the client.
+games-simulation/openttd:lzo - Enables LZO compression for savegames. This is only needed to load extremely old savegames. (versions before 0.2)
+games-simulation/openttd:openmedia - Enables the free open media sets: OpenGFX, OpenSFX, OpenMSX, removing the requirement for proprietary TTD assets to play OpenTTD.
+games-strategy/revenge-of-the-titans:hib - Install game from Humble Indie Bundle package
+media-libs/libmmd:bullet - enable bullet physics
+media-libs/libmmd:sfml - enable sfml texture loading
+media-libs/libsdl:audio - Control audio support (disable at your own risk)
+media-libs/libsdl:joystick - Control joystick support (disable at your own risk)
+media-libs/libsdl:ps3 - Build the PS3 video driver
+media-libs/libsdl:tslib - Build with tslib support for touchscreen devices
+media-libs/libsdl:video - Control video support (disable at your own risk)
+x11-apps/dunan:fmod - Add sound support (fmod)
+x11-apps/typhon:mmd - enable mikumikudance model support
+x11-apps/typhon:p3t - enabled shared libp3t support
+x11-apps/typhon:sfe - enabled shared sfemovie support

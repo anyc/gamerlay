@@ -1,0 +1,22 @@
+media-libs/libsfml virtual/ffmpeg >=dev-util/cmake-2.8.4 userland_GNU? ( >=sys-apps/findutils-4.4.0 ) dev-vcs/git
+media-libs/libsfml virtual/ffmpeg
+0
+
+
+https://github.com/Yalir/sfeMovie
+as-is
+ffmpeg based movie library for SFML
+
+base cmake-utils eutils flag-o-matic git-2 multilib toolchain-funcs user
+
+
+
+
+4
+
+compile configure install prepare test unpack
+
+
+
+
+

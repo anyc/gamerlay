@@ -1,0 +1,22 @@
+dev-python/pyyaml =games-engines/fife-0.3.2.2 dev-python/python-distutils-extra =dev-lang/python-2.7* =dev-lang/python-2.7*[sqlite]
+dev-python/pyyaml =games-engines/fife-0.3.2.2 dev-python/python-distutils-extra =dev-lang/python-2.7* =dev-lang/python-2.7*[sqlite]
+0
+mirror://sourceforge/unknownhorizons/unknown-horizons-2011.1a.tar.xz
+
+http://www.unknown-horizons.org/
+GPL-2
+Anno-like real time strategy game
+~amd64 ~x86
+base distutils eutils games multilib python toolchain-funcs user
+
+
+
+
+3
+
+compile configure install postinst postrm preinst prepare setup unpack
+
+
+
+
+

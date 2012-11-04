@@ -1,0 +1,22 @@
+
+media-libs/libsdl[opengl] >=sys-devel/gcc-4.6
+0
+jtownlinux_1_0_1_1324610248.zip
+fetch
+http://www.finalformgames.com/jamestown/
+Jamestown
+A neo-classical top-down shooter for up to four players set on 17th-century British Colonial Mars.
+~amd64 ~x86
+base eutils games multilib toolchain-funcs user versionator
+
+
+
+
+3
+
+compile configure install nofetch postinst preinst prepare setup unpack
+
+
+
+
+

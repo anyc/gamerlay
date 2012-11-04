@@ -1,0 +1,22 @@
+dev-vcs/git
+
+0
+
+test
+http://git.xonotic.org/?p=xonotic/fteqcc.git;a=summary
+GPL-2
+QC compiler for Xonotic
+
+eutils git-2 multilib toolchain-funcs user
+
+
+
+
+4
+
+compile install prepare unpack
+
+
+
+
+

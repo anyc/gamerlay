@@ -1,0 +1,22 @@
+media-libs/mysdl
+media-libs/mysdl
+0
+http://source.musgit.com/files/maxfighter_1.0.tar.bz2
+
+http://maxfighter.musgit.com/
+CCPL-Attribution-ShareAlike-NonCommercial-2.5 GPL-2
+Vertically-scrolling asteroids-style shoot-em-up
+~x86
+base eutils games multilib toolchain-funcs user
+
+
+
+
+2
+
+compile configure install postinst preinst prepare setup unpack
+
+
+
+
+
