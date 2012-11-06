@@ -19,7 +19,7 @@ DEPEND=">=dev-games/simgear-2.9
 	dev-libs/boost
 	dev-libs/poco
 	sci-libs/gdal
-	>=sci-mathematics/cgal-4.0
+	>=sci-mathematics/cgal-4.0[gmp]
 "
 
 RDEPEND="${DEPEND}
