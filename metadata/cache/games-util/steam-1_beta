@@ -1,0 +1,22 @@
+
+x11-libs/libX11 x11-libs/libXau x11-libs/libxcb x11-libs/libXdmcp amd64? ( app-emulation/emul-linux-x86-xlibs )
+0
+http://media.steampowered.com/client/installer/steam.deb
+
+http://store.steampowered.com/
+
+Valve's Steam
+-* ~x86
+eutils multilib toolchain-funcs unpacker user
+multilib
+amd64? ( multilib )
+
+
+5
+
+install prepare unpack
+
+
+
+
+
