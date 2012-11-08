@@ -2,6 +2,10 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  08 Nov 2012; Michael Palimaka <kensington@gentoo.org>
+  netradiant-1.5.0_p20120515.ebuild, netradiant-9999.ebuild:
+  Migrate to virtual/pkgconfig. Drop obsolete .
+
   16 Oct 2012; Marcel Unbehaun <marcel@frostworx.de>
   netradiant-1.5.0_p20120515.ebuild, netradiant-9999.ebuild:
   added depend on subversion

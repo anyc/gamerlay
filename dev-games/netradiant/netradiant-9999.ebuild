@@ -50,20 +50,16 @@ RDEPEND="
 	!dev-games/gtkradiant
 "
 DEPEND="${RDEPEND}
-	dev-util/pkgconfig
 	dev-vcs/subversion
-	darkplaces? ( ${SUBVERSION_DEPEND} )
+	virtual/pkgconfig
 	osirion? ( app-arch/unzip )
 	quake1? ( app-arch/unzip )
-	quake2world? ( ${SUBVERSION_DEPEND} )
 	warsow? ( app-arch/unzip )
 	xonotic? ( net-misc/wget )
 	!bindist? (
 		openarena? ( app-arch/unzip )
 		quake2? ( app-arch/unzip )
-		quake3? ( ${SUBVERSION_DEPEND} )
 		tremulous? ( app-arch/unzip )
-		ufoai? ( ${SUBVERSION_DEPEND} )
 	)
 "
 WGET="/usr/bin/wget -t 3 -T 60"
