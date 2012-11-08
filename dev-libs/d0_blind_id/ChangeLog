@@ -1,6 +1,11 @@
 # ChangeLog for dev-libs/d0_blind_id
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+  08 Nov 2012; Michael Palimaka <kensington@gentoo.org>
+  d0_blind_id-0.1.0_pre.ebuild, d0_blind_id-0.3.ebuild,
+  d0_blind_id-9999.ebuild, metadata.xml:
+  Drop <herd>no-herd</herd>. Migrate to virtual/pkgconfig.
 
 *d0_blind_id-0.3 (08 Sep 2011)
 
