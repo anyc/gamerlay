@@ -54,9 +54,8 @@ src_install() {
 	exeinto "${dir}"
 	insinto "${dir}"
 
-	make_desktop_entry "${PN}" "EDGE" "${PN}"
+	make_desktop_entry "${PN}" "EDGE" "EDGE"
 	games_make_wrapper "${PN}" "./EDGE.bin" "${dir}"
-# "${dir}/$(get_libdir)"
 
 	dodoc "README"
 	doexe "EDGE.bin"
