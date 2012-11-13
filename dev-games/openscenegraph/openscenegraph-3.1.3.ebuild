@@ -98,6 +98,7 @@ src_configure() {
 
 	mycmakeargs=(
 		-DWITH_OpenAL=OFF # Commented out in buildsystem
+		-DWITH_NVTT=OFF #broken, just to be sure
 		-DGENTOO_DOCDIR="/usr/share/doc/${PF}"
 		$(cmake-utils_use_with curl)
 		$(cmake-utils_use_build doc DOCUMENTATION)
