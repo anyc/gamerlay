@@ -8,7 +8,7 @@ inherit games cmake-utils git-2
 
 DESCRIPTION="A graphical frontend for the FlightGear Flight Simulator"
 HOMEPAGE="http://sourceforge.net/projects/fgrun"
-EGIT_REPO_URI="git://mapserver.flightgear.org/${PN}/"
+EGIT_REPO_URI="git://gitorious.org/fg/${PN}.git"
 
 LICENSE="GPL-2"
 SLOT="0"
