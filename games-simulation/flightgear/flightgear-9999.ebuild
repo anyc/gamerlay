@@ -17,7 +17,7 @@ EGIT_REPO_URI="git://gitorious.org/fg/flightgear.git
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS=""
-IUSE="debug +jsbsim larcsim +subversion test uiuc +yasim"
+IUSE="debug fgpanel +jsbsim oldfdm +subversion test +yasim"
 
 COMMON_DEPEND="
 	dev-db/sqlite:3
@@ -32,6 +32,10 @@ DEPEND="${COMMON_DEPEND}
 	>=dev-libs/boost-1.37
 	media-libs/openal
 	>=media-libs/plib-1.8.5
+	fgpanel? (
+		media-libs/freeglut
+		media-libs/libpng
+	)
 	subversion? (
 		dev-libs/apr
 		dev-vcs/subversion
@@ -43,24 +47,21 @@ RDEPEND="${COMMON_DEPEND}"
 DOCS=(AUTHORS ChangeLog NEWS README Thanks)
 
 src_configure() {
-	if use uiuc || use larcsim; then
-		mycmakeargs=(-DENABLE_LARCSIM=ON -DENABLE_UIUC_MODEL=ON)
-	else
-		mycmakeargs=(-DENABLE_LARCSIM=OFF -DENABLE_UIUC_MODEL=OFF)
-	fi
-
-	mycmakeargs+=(
-	-DCMAKE_INSTALL_PREFIX=${GAMES_PREFIX}
-	-DFG_DATA_DIR="${GAMES_DATADIR}"/${PN}-live
-	-DENABLE_FGADMIN=OFF
-	-DENABLE_RTI=OFF
-	-DSIMGEAR_SHARED=ON
-	-DSYSTEM_SQLITE=ON
-	-DWITH_FGPANEL=OFF
-	$(cmake-utils_use_enable jsbsim)
-	$(cmake-utils_use_enable subversion LIBSVN)
-	$(cmake-utils_use_enable test TESTS)
-	$(cmake-utils_use_enable yasim)
+	local mycmakeargs=(
+		-DCMAKE_INSTALL_PREFIX=${GAMES_PREFIX}
+		-DFG_DATA_DIR="${GAMES_DATADIR}"/${PN}-live
+		-DENABLE_FGADMIN=OFF
+		-DENABLE_PROFILE=OFF
+		-DENABLE_RTI=OFF
+		-DSIMGEAR_SHARED=ON
+		-DSYSTEM_SQLITE=ON
+		$(cmake-utils_use_with fgpanel)
+		$(cmake-utils_use_enable jsbsim)
+		$(cmake-utils_use_enable oldfdm LARCSIM)
+		$(cmake-utils_use_enable oldfdm UIUC_MODEL)
+		$(cmake-utils_use_enable subversion LIBSVN)
+		$(cmake-utils_use_enable test TESTS)
+		$(cmake-utils_use_enable yasim)
 	)
 
 	cmake-utils_src_configure
