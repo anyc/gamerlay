@@ -4,7 +4,7 @@
 <herd>games</herd>
 <use>
     <flag name="subversion">Compile with libsvn support</flag>
-    <flag name="X">Build non-headless version of simgear (full version)</flag>
+    <flag name="headless">Build headless version of simgear (useful for terragear on a server)</flag>
 </use>
 <maintainer>
 <email>chris@ilovelinux.de</email>

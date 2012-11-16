@@ -17,11 +17,12 @@ EGIT_REPO_URI="git://gitorious.org/fg/simgear.git
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS=""
-IUSE="debug +subversion test X"
+IUSE="debug headless +subversion test"
 
 COMMON_DEPEND="
 	sys-libs/zlib
-	X? (	>=dev-games/openscenegraph-3.0[png]
+	!headless? (
+		>=dev-games/openscenegraph-3.0[png]
 		dev-libs/expat
 		media-libs/openal
 		virtual/opengl
@@ -46,7 +47,7 @@ src_configure() {
 		-DSIMGEAR_SHARED=ON
 		-DSYSTEM_EXPAT=ON
 		$(cmake-utils_use_enable subversion LIBSVN)
-		$(cmake-utils_use !X SIMGEAR_HEADLESS)
+		$(cmake-utils_use headless SIMGEAR_HEADLESS)
 		$(cmake-utils_use_enable test TESTS)
 	)
 	cmake-utils_src_configure

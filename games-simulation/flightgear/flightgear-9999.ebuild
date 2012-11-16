@@ -22,7 +22,7 @@ IUSE="debug fgpanel +jsbsim oldfdm +subversion test +yasim"
 COMMON_DEPEND="
 	dev-db/sqlite:3
 	>=dev-games/openscenegraph-3.0[png]
-	>=dev-games/simgear-9999[subversion?,X]
+	>=dev-games/simgear-9999[subversion?,-headless]
 	sys-libs/zlib
 	sys-fs/udev
 	virtual/opengl
@@ -89,8 +89,7 @@ pkg_postinst() {
 	elog "have to update Simgear, too"
 	elog
 	elog
-	elog "It is recommended that you install one of the available launchers,"
-	elog "as they provide easy access to startup options:"
-	elog "* games-simulation/fgx"
+	elog "It is recommended that you install a launcher,"
+	elog "as it provides easy access to startup options:"
 	elog "* games-simulation/fgrun"
 }
