@@ -1,6 +1,9 @@
-# ChangeLog for games-rpg/torchlight
+# ChangeLog for games-rpg/machinarium
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+  23 Nov 2012; Sergey Popov <pinkbyte@gentoo.org> machinarium-1.0.ebuild:
+  Add mirror restriction and description
 
 *torchlight-1.15.20120924 (26 Sep 2012)
 

@@ -6,13 +6,13 @@ EAPI="5"
 
 inherit games multilib
 
-DESCRIPTION=""
+DESCRIPTION="Point-and-click adventure about robot in steam-punk world"
 HOMEPAGE="http://machinarium.net/"
 
 SLOT="0"
 LICENSE="as-is"
 KEYWORDS="-* ~amd64 ~x86"
-RESTRICT="fetch"
+RESTRICT="fetch mirror"
 IUSE="multilib"
 
 MY_PN="${PN/ma/Ma}"
