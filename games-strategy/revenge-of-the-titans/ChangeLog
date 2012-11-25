@@ -2,6 +2,13 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*revenge-of-the-titans-1.80.18 (25 Nov 2012)
+
+  25 Nov 2012; Azamat H. Hackimov <azamat.hackimov@gmail.com>
+  -revenge-of-the-titans-1.80.15.1.ebuild,
+  +revenge-of-the-titans-1.80.18.ebuild:
+  [games-strategy/revenge-of-the-titans] Version bump to 1.80.18, remove old.
+
 *revenge-of-the-titans-1.80.15.1 (03 Jun 2012)
 
   03 Jun 2012; Azamat H. Hackimov <azamat.hackimov@gmail.com> metadata.xml,

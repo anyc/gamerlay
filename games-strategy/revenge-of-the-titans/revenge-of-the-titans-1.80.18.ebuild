@@ -2,11 +2,11 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=3
+EAPI=5
 
 inherit games java-pkg-2 versionator
 
-MY_PN=revengeofthetitans
+MY_PN=RevengeOfTheTitans
 # Divide second subversion by 10, i.e. 1.80.10 => 1810
 #MY_PV=$(version_format_string '${1}$((${2} / 10))${3}')
 MY_PV=$(delete_all_version_separators)
@@ -14,11 +14,11 @@ MY_PV=$(delete_all_version_separators)
 DESCRIPTION="Defeat the returning Titan horde in a series of epic ground battles."
 HOMEPAGE="http://www.puppygames.net/revenge-of-the-titans/"
 SRC_URI="hib? (
-	amd64? ( RevengeOfTheTitans-HIB-${MY_PV}-amd64.tar.gz )
-	x86? ( RevengeOfTheTitans-HIB-${MY_PV}-i386.tar.gz ) )
+	amd64? ( ${MY_PN}-HIB-${MY_PV}-amd64.tar.gz )
+	x86? ( ${MY_PN}-HIB-${MY_PV}-i386.tar.gz ) )
 	!hib? (
-	amd64? ( http://d4ec1k3inlcla.cloudfront.net/RevengeOfTheTitans-amd64.tar.gz -> ${P}-amd64.tar.gz )
-	x86? ( http://d4ec1k3inlcla.cloudfront.net/RevengeOfTheTitans-i386.tar.gz -> ${P}-i386.tar.gz )	)"
+	amd64? ( http://d4ec1k3inlcla.cloudfront.net/${MY_PN}-amd64.tar.gz -> ${P}-amd64.tar.gz )
+	x86? ( http://d4ec1k3inlcla.cloudfront.net/${MY_PN}-i386.tar.gz -> ${P}-i386.tar.gz )	)"
 
 LICENSE="as-is"
 SLOT="0"
@@ -32,16 +32,18 @@ DEPEND=""
 RESTRICT="mirror strip"
 
 dir="${GAMES_PREFIX_OPT}/${MY_PN}"
-S="${WORKDIR}/${MY_PN}"
+S="${WORKDIR}/revengeofthetitans"
 
 pkg_nofetch() {
 	if use hib ; then
+		local TARBALL
 		if use amd64 ; then
-			einfo "Please download RevengeOfTheTitans-HIB-${MY_PV}-amd64.tar.gz"
+			${TARBALL}=${MY_PN}-HIB-${MY_PV}-amd64.tar.gz
 		fi
 		if use x86 ; then
-			einfo "Please download RevengeOfTheTitans-HIB-${MY_PV}-i386.tar.gz"
+			${TARBALL}=${MY_PN}-HIB-${MY_PV}-i386.tar.gz
 		fi
+		einfo "Please download ${TARBALL}"
 		einfo "from your personal page in Humble Indie Bundle #2 site"
 		einfo "(http://www.humblebundle.com) and place it in ${DISTDIR}"
 	fi
