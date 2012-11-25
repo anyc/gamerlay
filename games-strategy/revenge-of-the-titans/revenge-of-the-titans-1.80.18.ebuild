@@ -38,10 +38,10 @@ pkg_nofetch() {
 	if use hib ; then
 		local TARBALL
 		if use amd64 ; then
-			${TARBALL}=${MY_PN}-HIB-${MY_PV}-amd64.tar.gz
+			TARBALL="${MY_PN}-HIB-${MY_PV}-amd64.tar.gz"
 		fi
 		if use x86 ; then
-			${TARBALL}=${MY_PN}-HIB-${MY_PV}-i386.tar.gz
+			TARBALL="${MY_PN}-HIB-${MY_PV}-i386.tar.gz"
 		fi
 		einfo "Please download ${TARBALL}"
 		einfo "from your personal page in Humble Indie Bundle #2 site"

@@ -2,6 +2,10 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  25 Nov 2012; Azamat H. Hackimov <azamat.hackimov@gmail.com>
+  revenge-of-the-titans-1.80.18.ebuild:
+  [games-strategy/revenge-of-the-titans] Silly mistake in variable.
+
 *revenge-of-the-titans-1.80.18 (25 Nov 2012)
 
   25 Nov 2012; Azamat H. Hackimov <azamat.hackimov@gmail.com>
@@ -74,4 +78,3 @@
   Version for HIB package (1.80.4).
   Supported versions for amd64 and x86.
   Enjoy with your Titans!!
-
