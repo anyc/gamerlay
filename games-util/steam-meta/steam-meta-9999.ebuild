@@ -11,20 +11,11 @@ LICENSE="metapackage"
 
 SLOT="0"
 KEYWORDS="-* ~amd64 ~x86"
-IUSE="+installer testdeps"
+IUSE="+installer"
 
 RDEPEND="
 		games-util/steam-client-meta
+		games-util/steam-games-meta
 
 		installer? ( games-util/steam-installer )
-		testdeps? (
-			media-libs/libtxc_dxtn
-			sys-apps/pciutils
-			media-libs/jasper
-			)
 		"
-
-pkg_postinst() {
-	einfo "This is a meta package that pulls in the dependencies"
-	einfo "for the steam environment."
-}
