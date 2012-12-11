@@ -24,8 +24,8 @@ COMMON_DEPEND="
 	>=dev-games/openscenegraph-3.0[png]
 	>=dev-games/simgear-9999[subversion?,-headless]
 	sys-libs/zlib
-	sys-fs/udev
 	virtual/opengl
+	virtual/udev
 "
 
 DEPEND="${COMMON_DEPEND}
