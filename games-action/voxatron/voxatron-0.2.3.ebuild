@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=4
+EAPI=5
 
 inherit games
 
@@ -27,7 +27,7 @@ pkg_nofetch() {
 	ewarn
 }
 
-S="${WORKDIR}"/${PN}
+S="${WORKDIR}/${PN}"
 
 src_install() {
 	local dir="${GAMES_PREFIX_OPT}/${PN}"
@@ -35,9 +35,9 @@ src_install() {
 	doins vox.dat
 	exeinto ${dir}
 	doexe vox
-	doicon lexaloffle-vox.png
-	make_desktop_entry ${PN} Voxatron lexaloffle-vox
+	newicon lexaloffle-vox.png ${PN}.png
+	make_desktop_entry ${PN} Voxatron ${PN}
 	games_make_wrapper ${PN} ./vox ${dir} ${dir}
-	dodoc voxatron.txt
+	dodoc ${PN}.txt
 	prepgamesdirs
 }

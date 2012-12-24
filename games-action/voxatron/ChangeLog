@@ -1,26 +1,5 @@
-# ChangeLog for games-action/voxatron
-# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: $
+*voxatron-0.2.3 (24 Dec 2012)
 
-*voxatron-0.2.1 (13 Aug 2012)
-
-  13 Aug 2012; Azamat H. Hackimov <azamat.hackimov@gmail.com>
-  -files/voxicon.png, -voxatron-0.1.6.ebuild, +voxatron-0.2.1.ebuild:
-  Version bump to 0.2.1.
-
-  22 Nov 2011; Azamat H. Hackimov <azamat.hackimov@gmail.com>
-  +files/voxicon.png, voxatron-0.1.6.ebuild:
-  Fixing digest for voxatron
-  - Some cleanup on ebuild
-  - Adding icon from deb package
-  - Adding make_desktop_entry
-
-*voxatron-0.1.6 (22 Nov 2011)
-
-  22 Nov 2011; Dan Johnson <ComputerDruid@gmail.com> +metadata.xml,
-  +voxatron-0.1.6.ebuild:
-  new ebuild
-
-  Part of the Humble Voxatron Debut, you need to have purchased the game
-  from either the bundle or the voxatron website to emerge this.
-
+  24 Dec 2012; Azamat H. Hackimov <azamat.hackimov@gmail.com>
+  +voxatron-0.2.3.ebuild, -ChangeLog, -voxatron-0.2.1.ebuild, metadata.xml:
+  [games-action/voxatron] Version bump to 0.2.3.
