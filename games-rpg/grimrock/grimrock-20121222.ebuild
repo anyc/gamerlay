@@ -2,13 +2,13 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="4"
+EAPI="5"
 
 inherit games multilib unpacker-nixstaller
 
-TIMESTAMP="2012-12-18"
+TIMESTAMP="2012-12-22"
 
-DESCRIPTION=""
+DESCRIPTION="The Ultimate dungeon crawling RPG + modding engine."
 HOMEPAGE="http://www.grimrock.net/"
 
 SLOT="0"
@@ -26,9 +26,8 @@ RDEPEND="
 	media-libs/freeimage
 	media-libs/freetype:2
 	media-libs/ilmbase
-	media-libs/jpeg
+	virtual/jpeg
 	media-libs/lcms
-	media-libs/libjpeg-turbo
 	media-libs/libogg
 	media-libs/libpng
 	media-libs/libraw
@@ -48,12 +47,12 @@ RDEPEND="
 	x11-libs/libXext
 	x11-libs/libXfixes
 	x11-libs/libXxf86vm
-	!video_cards_intel? ( media-libs/libtxc_dxtn )
-	!video_cards_nouveau? ( media-libs/libtxc_dxtn )
-	!video_cards_radeon? ( media-libs/libtxc_dxtn )
-	!video_cards_nvidia? ( x11-drivers/nvidia-drivers )
+	video_cards_intel? ( media-libs/libtxc_dxtn )
+	video_cards_nouveau? ( media-libs/libtxc_dxtn )
+	video_cards_radeon? ( media-libs/libtxc_dxtn )
+	video_cards_nvidia? ( x11-drivers/nvidia-drivers )
 "
-#=media-libs/libsdl-2.0*
+#=media-libs/libsdl-9999 (untill 2.0 will be added to the tree).
 DEPEND="${RDEPEND}"
 
 S="${WORKDIR}"
