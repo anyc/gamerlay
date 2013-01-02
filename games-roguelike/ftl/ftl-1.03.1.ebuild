@@ -1,4 +1,4 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -8,7 +8,7 @@ inherit eutils games
 
 DESCRIPTION="A spaceship simulation real-time rogue-like"
 HOMEPAGE="http://www.ftlgame.com/"
-SRC_URI="${PN}-linux-${PV}-1350405106.tar.gz"
+SRC_URI="${PN}_faster_than_light-linux-${PV}.tar.gz"
 
 LICENSE="as-is"
 SLOT="0"
@@ -17,8 +17,7 @@ IUSE=""
 RESTRICT="fetch mirror strip"
 
 RDEPEND="media-libs/freetype:2
-	media-libs/devil
-	media-libs/libpng:0
+	media-libs/devil[png]
 	media-libs/libsdl
 	sys-devel/gcc[cxx]
 	sys-libs/zlib"
