@@ -5,9 +5,10 @@
 EAPI="3"
 
 PYTHON_DEPEND="2:2.7"
-PYTHON_USE_WITH="sqlite berkdb"
+PYTHON_USE_WITH="sqlite"
 
-inherit distutils games
+inherit distutils games python
+
 DESCRIPTION="Anno-like real time strategy game"
 HOMEPAGE="http://www.unknown-horizons.org/"
 
@@ -19,6 +20,7 @@ SLOT="0"
 IUSE=""
 
 DEPEND="dev-python/pyyaml
+	dev-python/bsddb3
 	=games-engines/fife-0.3.3-r3"
 
 RDEPEND="$DEPEND"

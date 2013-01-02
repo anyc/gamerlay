@@ -4,10 +4,10 @@
 
 EAPI="3"
 
-inherit git-2 distutils
-
 PYTHON_DEPEND="2:2.7"
-PYTHON_USE_WITH="sqlite berkdb"
+PYTHON_USE_WITH="sqlite"
+
+inherit git-2 distutils python
 
 DESCRIPTION="Anno-like real time strategy game"
 HOMEPAGE="http://unknown-horizons.org/"
@@ -22,6 +22,7 @@ SLOT="0"
 IUSE=""
 
 DEPEND="
+	dev-python/bsddb3
 	=games-engines/fife-9999
 	dev-python/pyyaml
 	dev-python/python-distutils-extra
