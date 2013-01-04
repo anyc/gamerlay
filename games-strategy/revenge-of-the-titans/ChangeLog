@@ -1,6 +1,12 @@
 # ChangeLog for games-strategy/revenge-of-the-titans
-# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+*revenge-of-the-titans-1.80.20 (04 Jan 2013)
+
+  04 Jan 2013; Azamat H. Hackimov <azamat.hackimov@gmail.com>
+  +revenge-of-the-titans-1.80.20.ebuild, -revenge-of-the-titans-1.80.18.ebuild:
+  [games-strategy/revenge-of-the-titans] Bump to 1.80.20
 
   25 Nov 2012; Azamat H. Hackimov <azamat.hackimov@gmail.com>
   revenge-of-the-titans-1.80.18.ebuild:
