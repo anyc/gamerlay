@@ -2,11 +2,12 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="3"
+EAPI="4"
 
 PYTHON_DEPEND="2:2.7"
+RESTRICT_PYTHON_ABIS="3.*"
 
-inherit eutils python scons-utils versionator
+inherit eutils python scons-utils
 
 DESCRIPTION="Flexible Isometric Free Engine, 2D"
 HOMEPAGE="http://fifengine.de"
@@ -37,12 +38,20 @@ DEPEND="${RDEPEND}
 
 S=${WORKDIR}/${PN}_${PV}${PR}
 
+# just setting RESTRICT_PYTHON_ABI is not enough to install only for python2
+pkg_setup() {
+	python_set_active_version 2
+	python_pkg_setup
+}
+
 src_prepare() {
 	rm -r ext #delete bundled libs
 	epatch "${FILESDIR}/${P}-unbundle-libpng.patch"
+	# apply upstream changeset 3949 to remove memory leak warning on console
+	epatch "${FILESDIR}/${P}-fix-memory-leak.patch"
 }
 
-# Compiles only with one thread
+# Compile is only succesfull with one thread
 SCONSOPTS="-j1"
 
 src_compile() {
@@ -57,5 +66,5 @@ src_compile() {
 
 src_install() {
 	escons install-python --python-prefix="${D}/$(python_get_sitedir)" \
-		--prefix="${D}/usr" || die "install failed"
+			--prefix="${D}/usr" || die "install failed"
 }
