@@ -1,4 +1,4 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -15,7 +15,7 @@ SLOT="0"
 KEYWORDS=""
 IUSE=""
 
-DEPEND=">=dev-games/simgear-2.9
+DEPEND=">=dev-games/simgear-2.10
 	dev-libs/boost
 	sci-libs/gdal
 	>=sci-mathematics/cgal-4.0[gmp]
