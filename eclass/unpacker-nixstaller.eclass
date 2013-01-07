@@ -35,6 +35,16 @@ nixstaller_unpack() {
 	for i in $unpack_files ; do
 		unpack_banner "$i"
 		# Make sure that file exists
-		[[ -f "./$i" ]] && tar Jxf "./$i" || die "Failed to unpack $i"
+		[[ -f "./$i" ]] && (
+			local type=$(file -b ${i})
+			case ${type} in
+				data)
+					tar -xJf "./$i"
+					;;
+				gzip*)
+					tar -xzf "./$i"
+					;;
+			esac
+		) || die "Failed to unpack $i"
 	done
 }
