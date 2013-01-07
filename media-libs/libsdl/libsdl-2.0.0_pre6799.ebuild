@@ -4,13 +4,15 @@
 
 EAPI=5
 
-inherit cmake-utils mercurial
+inherit cmake-utils mercurial versionator
+
+REV="$(get_version_component_range 4)"
 
 DESCRIPTION="Simple Direct Media Layer"
 HOMEPAGE="http://www.libsdl.org/"
 #SRC_URI=""
 EHG_REPO_URI="http://hg.libsdl.org/SDL/"
-EHG_REVISION=6799
+EHG_REVISION="${REV/pre/}"
 
 LICENSE="ZLIB"
 SLOT="2"
