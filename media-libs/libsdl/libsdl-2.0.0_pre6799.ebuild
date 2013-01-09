@@ -17,7 +17,7 @@ EHG_REVISION="${REV/pre/}"
 LICENSE="ZLIB"
 SLOT="2"
 KEYWORDS="~amd64 ~x86"
-IUSE="3dnow alsa altivec +asm aqua fusionsound gles mmx nas opengl oss pulseaudio sse sse2 static-libs +threads tslib +video X xinerama xscreensaver"
+IUSE="3dnow alsa altivec +asm aqua fusionsound gles mmx nas opengl oss pulseaudio sse sse2 static-libs +threads tslib +video X +xcursor +xinput xinerama xscreensaver xrandr xvidmode"
 
 #FIXME: Replace "gles" deps with "virtual/opengles", after hitting Portage.
 RDEPEND="
