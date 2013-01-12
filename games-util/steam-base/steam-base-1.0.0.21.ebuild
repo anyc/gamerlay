@@ -51,8 +51,10 @@ src_unpack() {
 }
 
 src_prepare() {
-	# remove carriage return
-	sed -i "s/\r//g" usr/share/applications/steam.desktop
+	if [[ "${PV}" != "9999" ]] ; then
+		# remove carriage return
+		sed -i "s/\r//g" usr/share/applications/steam.desktop || die "Patching steam.desktop failed"
+	fi
 }
 
 src_install() {
@@ -70,6 +72,10 @@ src_install() {
 	doins -r usr/share/icons/
 
 	doicon usr/share/pixmaps/steam.png
+}
+
+pkg_preinst() {
+	gnome2_icon_savelist
 }
 
 pkg_postinst() {
