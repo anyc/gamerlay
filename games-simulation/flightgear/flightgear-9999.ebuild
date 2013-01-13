@@ -1,4 +1,4 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -69,7 +69,7 @@ src_configure() {
 
 src_install() {
 	cmake-utils_src_install
-	newicon package/${PN}.ico ${PN}.ico
+	newicon icons/fg-48.png ${PN}.png
 	newmenu package/${PN}.desktop ${PN}.desktop
 	prepgamesdirs
 }
