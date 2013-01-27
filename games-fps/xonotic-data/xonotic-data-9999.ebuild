@@ -1,4 +1,4 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -19,7 +19,7 @@ IUSE="+client +convert low +maps +zip"
 
 RDEPEND=""
 DEPEND="
-	~games-util/fteqcc-xonotic-9999
+	~dev-games/gmqcc-9999
 	convert? (
 		media-gfx/imagemagick[jpeg,png]
 		low? ( media-sound/vorbis-tools )
@@ -119,10 +119,7 @@ src_compile() {
 	# Data
 	cd data
 	pushd xonotic-data.pk3dir
-	emake \
-		FTEQCC="/usr/bin/fteqcc-xonotic" \
-		FTEQCCFLAGS_WATERMARK='' \
-		|| die "emake data.pk3 failed"
+	emake || die "emake data.pk3 failed"
 	popd
 
 	rm -rf \
