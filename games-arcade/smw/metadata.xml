@@ -8,5 +8,4 @@
 <use>
   <flag name="editor">useflag for the optional leveleditor</flag>
 </use>
-<herd>games</herd>
 </pkgmetadata>

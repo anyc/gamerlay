@@ -5,7 +5,6 @@
 	<email>marcel@frostworx.de</email>
 	<name>Marcel Unbehaun</name>
 </maintainer>
-  <herd>games</herd>
   <longdescription lang="en">
 a renderlib for mikumikudance pmd model and vmd motion files
 </longdescription>

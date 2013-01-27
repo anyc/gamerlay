@@ -5,7 +5,6 @@
 	<email>frostworks@gmx.de</email>
 	<name>Marcel Unbehaun</name>
 </maintainer>
-  <herd>games</herd>
   <longdescription lang="en">
 Typhon is a slim and themeable opengl dashboard / program launcher.
 </longdescription>

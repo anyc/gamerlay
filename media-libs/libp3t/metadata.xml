@@ -5,7 +5,6 @@
 	<email>marcel@frostworx.de</email>
 	<name>Marcel Unbehaun</name>
 </maintainer>
-  <herd>games</herd>
   <longdescription lang="en">
 A library to extract ps3 xmb p3t themes
 </longdescription>

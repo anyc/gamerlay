@@ -9,7 +9,6 @@
 	<email>azamat.hackimov@gmail.com</email>
 	<name>Azamat H. Hackimov</name>
 </maintainer>
-<herd>games</herd>
 <use>
 	<flag name='devil'>Enable image loading via DevIL.</flag>
 	<flag name='ois'>Enable OIS support.</flag>
