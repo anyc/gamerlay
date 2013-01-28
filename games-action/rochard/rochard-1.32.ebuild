@@ -2,11 +2,12 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="4"
+EAPI="5"
 
 inherit games multilib
 
-#TIMESTAMP="1347958759"
+TIMESTAMP="20121002"
+MY_P="${PN}-linux-${TIMESTAMP}_${PV}"
 
 DESCRIPTION="A side-scrolling platformer packed with action, gravity-bending puzzles, space bandits and absurdly powerful astro-mining tools."
 HOMEPAGE="http://rochardthegame.com/"
@@ -17,10 +18,8 @@ KEYWORDS="-* ~amd64 ~x86"
 RESTRICT="fetch"
 IUSE=""
 
-SRC_URI="x86? ( rochard-linux-20120927_131RC1_Linux32bit-1348771540.tar.gz )
-	amd64? ( rochard-linux-20120927_131RC1_Linux64bit-1348771540.tar.gz )"
-# They're crazy on new distfiles name, so, I just mask old one
-#	amd64? ( rochard-linux-${TIMESTAMP}-${PV//[._-]}-64bit.tar.gz )"
+SRC_URI="x86? ( ${MY_P}-32bit.tar.gz )
+	amd64? ( ${MY_P}-64bit.tar.gz )"
 
 RDEPEND="virtual/opengl
 	app-arch/gzip
@@ -36,7 +35,7 @@ RDEPEND="virtual/opengl
 DEPEND="${RDEPEND}"
 
 S="${WORKDIR}"
-MY_PN=Rochard
+MY_PN="Rochard"
 
 src_install() {
 	local dir="${GAMES_PREFIX_OPT}/${PN}";
@@ -45,11 +44,11 @@ src_install() {
 	use x86 && bit=32;
 	use amd64 && bit=64;
 
-	S="${WORKDIR}/ROCHARD_LINUX_${bit}_DRMFREE"
+	S="${WORKDIR}/${MY_PN}_x${bit}"
 	cd "${S}"
 
 	insinto "${dir}"
-	doins -r "Rochard_Data"
+	doins -r "${MY_PN}_Data"
 	exeinto "${dir}"
 	doexe "${MY_PN}"
 
