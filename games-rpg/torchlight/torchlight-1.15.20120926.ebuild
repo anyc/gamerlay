@@ -6,7 +6,7 @@ EAPI="4"
 
 inherit games multilib unpacker-nixstaller
 
-TIMESTAMP="2012-09-24"
+TIMESTAMP="2012-09-26"
 
 DESCRIPTION="An action role-playing game, made by the creators of Diablo"
 HOMEPAGE="http://torchlightgame.com/"
