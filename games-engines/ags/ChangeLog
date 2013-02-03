@@ -1,0 +1,5 @@
+*ags-9999 (03 Feb 2013)
+
+  03 Feb 2013; Azamat H. Hackimov <azamat.hackimov@gmail.com> +ags-9999.ebuild,
+  +metadata.xml:
+  [games-engines/ags] Adventure Game Studio engine (AGS), initial commit.
