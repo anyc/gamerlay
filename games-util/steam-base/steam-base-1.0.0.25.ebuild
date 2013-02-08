@@ -10,7 +10,7 @@ EAPI=5
 inherit eutils unpacker gnome2-utils fdo-mime
 
 DESCRIPTION="Supplementary files for Valve's Steam client for Linux"
-HOMEPAGE="https://steampowered.com"
+HOMEPAGE="http://steampowered.com"
 
 if [[ "${PV}" == "9999" ]] ; then
 	SRC_URI="http://repo.steampowered.com/steam/archive/precise/steam_latest.deb"
@@ -27,6 +27,7 @@ SLOT="0"
 IUSE=""
 
 RDEPEND="
+		app-shells/bash
 		gnome-extra/zenity
 
 		amd64? (
@@ -55,14 +56,15 @@ src_prepare() {
 		# remove carriage return
 		sed -i "s/\r//g" usr/share/applications/steam.desktop || die "Patching steam.desktop failed"
 
-		epatch "${FILESDIR}/steam-make-posix-${PV}.patch"
+		# use system libraries
+		epatch "${FILESDIR}/steam-base-1.0.0.25-disable_runtime.patch"
 	fi
 }
 
 src_install() {
-	dobin "usr/bin/steam"
+	dobin usr/bin/steam
 
-	insinto "/usr/lib/"
+	insinto /usr/lib/
 	doins -r usr/lib/steam
 
 	dodoc usr/share/doc/steam/changelog.gz
@@ -87,6 +89,10 @@ pkg_postinst() {
 	elog "Execute /usr/bin/steam to download and install the actual"
 	elog "client into your home folder. After installation, the script"
 	elog "also starts the client from your home folder."
+	elog ""
+	elog "We disable STEAM_RUNTIME in order to ignore packaged libraries"
+	elog "and use installed system libraries instead. If you have problems,"
+	elog "try starting steam with: STEAM_RUNTIME=1 steam"
 
 	ewarn "The steam client and the games are _not_ controlled by portage."
 	ewarn "Updates are handled by the client itself."
