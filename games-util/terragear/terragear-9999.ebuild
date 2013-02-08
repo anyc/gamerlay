@@ -15,7 +15,7 @@ SLOT="0"
 KEYWORDS=""
 IUSE=""
 
-DEPEND=">=dev-games/simgear-2.10
+DEPEND=">=dev-games/simgear-2.11
 	dev-libs/boost
 	sci-libs/gdal
 	>=sci-mathematics/cgal-4.0[gmp]
