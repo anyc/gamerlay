@@ -1,8 +1,8 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=4
+EAPI=5
 
 EGIT_BRANCH="next"
 EGIT_PROJECT="simgear.git"
@@ -44,6 +44,8 @@ DOCS=(AUTHORS ChangeLog NEWS README Thanks)
 src_configure() {
 	local mycmakeargs=(
 		-DENABLE_RTI=OFF
+		-DENABLE_SOUND=ON
+		-DJPEG_FACTORY=OFF
 		-DSIMGEAR_SHARED=ON
 		-DSYSTEM_EXPAT=ON
 		$(cmake-utils_use_enable subversion LIBSVN)

@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=4
+EAPI=5
 
 EGIT_BRANCH="next"
 EGIT_PROJECT="flightgear.git"
@@ -17,7 +17,7 @@ EGIT_REPO_URI="git://gitorious.org/fg/flightgear.git
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS=""
-IUSE="debug fgpanel +jsbsim oldfdm +subversion test +yasim"
+IUSE="debug fgpanel +jsbsim oldfdm +subversion test +udev +yasim"
 
 COMMON_DEPEND="
 	dev-db/sqlite:3
@@ -25,17 +25,17 @@ COMMON_DEPEND="
 	>=dev-games/simgear-9999[subversion?,-headless]
 	sys-libs/zlib
 	virtual/opengl
-	virtual/udev
+	udev? ( virtual/udev )
+	fgpanel? (
+		media-libs/freeglut
+		media-libs/libpng
+	)
 "
 
 DEPEND="${COMMON_DEPEND}
 	>=dev-libs/boost-1.37
 	media-libs/openal
 	>=media-libs/plib-1.8.5
-	fgpanel? (
-		media-libs/freeglut
-		media-libs/libpng
-	)
 	subversion? (
 		dev-libs/apr
 		dev-vcs/subversion
@@ -53,14 +53,18 @@ src_configure() {
 		-DENABLE_FGADMIN=OFF
 		-DENABLE_PROFILE=OFF
 		-DENABLE_RTI=OFF
+		-DJPEG_FACTORY=OFF
 		-DSIMGEAR_SHARED=ON
+		-DSP_FDMS=OFF
 		-DSYSTEM_SQLITE=ON
 		$(cmake-utils_use_with fgpanel)
 		$(cmake-utils_use_enable jsbsim)
 		$(cmake-utils_use_enable oldfdm LARCSIM)
 		$(cmake-utils_use_enable oldfdm UIUC_MODEL)
 		$(cmake-utils_use_enable subversion LIBSVN)
+		$(cmake-utils_use_enable test LOGGING)
 		$(cmake-utils_use_enable test TESTS)
+		$(cmake-utils_use udev EVENT_INPUT)
 		$(cmake-utils_use_enable yasim)
 	)
 
@@ -69,7 +73,7 @@ src_configure() {
 
 src_install() {
 	cmake-utils_src_install
-	newicon icons/fg-48.png ${PN}.png
+	newicon -s 48 icons/fg-48.png ${PN}.png
 	newmenu package/${PN}.desktop ${PN}.desktop
 	prepgamesdirs
 }
