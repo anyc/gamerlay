@@ -1,8 +1,8 @@
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index b436726..7e57f0d 100644
+index b6007f9..6d32675 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -432,6 +432,7 @@ CONFIGURE_FILE("${CMAKE_CURRENT_SOURCE_DIR}/src/osg/Version.in"
+@@ -463,6 +463,7 @@ CONFIGURE_FILE("${CMAKE_CURRENT_SOURCE_DIR}/src/osg/Version.in"
  
  # INSTALL_FILES(/include/osg/ FILES "${OPENSCENEGRAPH_CONFIG_HEADER}")
  
@@ -10,7 +10,7 @@ index b436726..7e57f0d 100644
  
  ################################################################################
  # Set Version Info resource file
-@@ -461,34 +462,31 @@ IF(ANDROID)
+@@ -492,36 +493,36 @@ IF(ANDROID)
      ANDROID_3RD_PARTY()
  ELSE()
  # Common to all platforms except android:
@@ -59,16 +59,20 @@ index b436726..7e57f0d 100644
 +MACRO_OPTIONAL_FIND_PACKAGE(GtkGl)
      FIND_PACKAGE(DirectInput)
 -    FIND_PACKAGE(NVTT)
--ENDIF()
--
--IF(CMAKE_MAJOR_VERSION EQUAL 2 AND CMAKE_MINOR_VERSION LESS 8)
--    FIND_PACKAGE(ITK)
+-    FIND_PACKAGE(Asio)
+-    FIND_PACKAGE(ZeroConf)
 +MACRO_OPTIONAL_FIND_PACKAGE(NVTT)
++MACRO_OPTIONAL_FIND_PACKAGE(Asio)
++MACRO_OPTIONAL_FIND_PACKAGE(ZeroConf)
+ ENDIF()
+ 
+ IF(CMAKE_MAJOR_VERSION EQUAL 2 AND CMAKE_MINOR_VERSION LESS 8)
+-    FIND_PACKAGE(ITK)
 +MACRO_OPTIONAL_FIND_PACKAGE(ITK)
  ENDIF()
  
  # Include macro utilities here
-@@ -502,17 +500,17 @@ IF(OSG_USE_QT AND NOT ANDROID)
+@@ -535,17 +536,17 @@ IF(OSG_USE_QT AND NOT ANDROID)
      IF  (DESIRED_QT_VERSION)
  
          IF  (DESIRED_QT_VERSION MATCHES 4)
@@ -90,7 +94,7 @@ index b436726..7e57f0d 100644
          ENDIF()
  
      ENDIF()
-@@ -522,12 +520,12 @@ ENDIF()
+@@ -555,12 +556,12 @@ ENDIF()
  IF   (BUILD_OSG_EXAMPLES AND NOT ANDROID)
  
  
@@ -107,7 +111,7 @@ index b436726..7e57f0d 100644
  
  ENDIF(BUILD_OSG_EXAMPLES AND NOT ANDROID)
  
-@@ -548,10 +546,10 @@ ENDIF(BUILD_OSG_EXAMPLES AND NOT ANDROID)
+@@ -581,10 +582,11 @@ ENDIF(BUILD_OSG_EXAMPLES AND NOT ANDROID)
  # can use Quicktime.
  IF(NOT ANDROID)
      IF(NOT APPLE)
@@ -119,10 +123,11 @@ index b436726..7e57f0d 100644
 +        MACRO_OPTIONAL_FIND_PACKAGE(JPEG)
 +        MACRO_OPTIONAL_FIND_PACKAGE(PNG)
 +        MACRO_OPTIONAL_FIND_PACKAGE(TIFF)
- 
++
          # QuickTime is required for OS X, but optional for Windows.
          IF(WIN32)
-@@ -903,7 +901,7 @@ IF(BUILD_DOCUMENTATION)
+             FIND_PACKAGE(QuickTime)
+@@ -943,7 +945,7 @@ IF(BUILD_DOCUMENTATION)
          ${PROJECT_BINARY_DIR}/doc/OpenSceneGraphReferenceDocs/osg32-32.png COPYONLY
      )
      #INSTALL(FILES ${PROJECT_BINARY_DIR}/doc/${PROJECT_NAME}ReferenceDocs-${OPENSCENEGRAPH_VERSION}.chm DESTINATION doc OPTIONAL COMPONENT openscenegraph-doc)
@@ -131,7 +136,7 @@ index b436726..7e57f0d 100644
  
      # now set up openthreads documentation generation
      IF(BUILD_REF_DOCS_TAGFILE)
-@@ -919,7 +917,7 @@ IF(BUILD_DOCUMENTATION)
+@@ -959,7 +961,7 @@ IF(BUILD_DOCUMENTATION)
          ${PROJECT_BINARY_DIR}/doc/OpenThreadsReferenceDocs/osg32-32.png COPYONLY
      )
      #INSTALL(FILES ${PROJECT_BINARY_DIR}/doc/${PROJECT_NAME}ReferenceDocs-${OPENSCENEGRAPH_VERSION}.chm DESTINATION doc OPTIONAL COMPONENT openscenegraph-doc)
