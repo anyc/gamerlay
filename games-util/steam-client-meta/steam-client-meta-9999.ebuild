@@ -19,6 +19,8 @@ IUSE="flash video_cards_intel windows-games"
 RDEPEND="
 		virtual/opengl
 
+		media-fonts/font-mutt-misc
+
 		windows-games? ( app-emulation/wine )
 
 		amd64? (

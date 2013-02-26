@@ -24,11 +24,18 @@ LICENSE="ValveSteamLicense"
 
 RESTRICT="bindist mirror"
 SLOT="0"
-IUSE=""
+IUSE="-steamruntime"
 
 RDEPEND="
+		app-arch/xz-utils
 		app-shells/bash
 		gnome-extra/zenity
+		net-misc/curl
+		|| (
+			x11-terms/gnome-terminal
+			x11-terms/xterm
+			kde-base/konsole
+			)
 
 		amd64? (
 			>=app-emulation/emul-linux-x86-baselibs-20121028
@@ -45,15 +52,17 @@ RDEPEND="
 			x11-libs/libXdmcp
 			)"
 
-S=${WORKDIR}/steam-${PV}/
+S=${WORKDIR}/steam/
 
 src_prepare() {
 	if [[ "${PV}" != "9999" ]] ; then
-		# use system libraries
-		sed -i -r 's/#(if \[ -z "\$STEAM_RUNTIME" \]; then)/\1/' steam
-		sed -i -r "s/#	STEAM_RUNTIME=1/ export STEAM_RUNTIME=0/" steam
-		sed -i -r "s/#(fi)/\1/" steam
-		
+		if ! use steamruntime; then
+			# use system libraries
+			sed -i -r 's/#(if \[ -z "\$STEAM_RUNTIME" \]; then)/\1/' steam
+			sed -i -r "s/#	STEAM_RUNTIME=1/ export STEAM_RUNTIME=0/" steam
+			sed -i -r "s/#(fi)/\1/" steam
+		fi
+
 		# we use our ebuild functions to install the files
 		rm Makefile
 	fi
@@ -87,10 +96,16 @@ pkg_postinst() {
 	elog "Execute /usr/bin/steam to download and install the actual"
 	elog "client into your home folder. After installation, the script"
 	elog "also starts the client from your home folder."
-	elog ""
-	elog "We disable STEAM_RUNTIME in order to ignore packaged libraries"
-	elog "and use installed system libraries instead. If you have problems,"
-	elog "try starting steam with: STEAM_RUNTIME=1 steam"
+
+	if use steamruntime; then
+		ewarn "You enabled the steam runtime environment. Steam will use bundled"
+		ewarn "libraries instead of system libraries which is _not_ supported."
+	else
+		elog ""
+		elog "We disable STEAM_RUNTIME in order to ignore bundled libraries"
+		elog "and use installed system libraries instead. If you have problems,"
+		elog "try starting steam with: STEAM_RUNTIME=1 steam"
+	fi
 
 	ewarn "The steam client and the games are _not_ controlled by portage."
 	ewarn "Updates are handled by the client itself."
