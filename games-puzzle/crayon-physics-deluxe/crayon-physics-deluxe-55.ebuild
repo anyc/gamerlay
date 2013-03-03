@@ -46,8 +46,8 @@ RDEPEND="
 		x11-libs/libXrandr
 		x11-libs/libXrender
 		x11-libs/libXxf86vm
-		x11-libs/qt-core
-		x11-libs/qt-gui
+		dev-qt/qtcore
+		dev-qt/qtgui
 	)
 	amd64? (
 		app-emulation/emul-linux-x86-baselibs

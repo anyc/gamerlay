@@ -15,10 +15,10 @@ SLOT="0"
 KEYWORDS=""
 IUSE="debug"
 
-DEPEND="x11-libs/qt-core:4
-	x11-libs/qt-gui:4
-	x11-libs/qt-webkit:4
-	x11-libs/qt-xmlpatterns:4"
+DEPEND="dev-qt/qtcore:4
+	dev-qt/qtgui:4
+	dev-qt/qtwebkit:4
+	dev-qt/qtxmlpatterns:4"
 RDEPEND="${DEPEND}"
 
 src_configure() {
