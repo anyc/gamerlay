@@ -1,0 +1,3 @@
+  06 Mar 2013; Azamat H. Hackimov <azamat.hackimov@gmail.com> +metadata.xml,
+  gmqcc-9999.ebuild:
+  [dev-games/gmqcc] Strip strict -Werror cflag, ebuild cleanup.
