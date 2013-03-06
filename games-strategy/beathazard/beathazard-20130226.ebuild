@@ -12,20 +12,13 @@ SRC_URI="${PN}-installer-022613"
 LICENSE="as-is"
 SLOT="0"
 KEYWORDS="-* ~amd64 ~x86"
-IUSE="alsa pulseaudio"
+IUSE=""
 RESTRICT="fetch strip"
 
 DEPEND="app-arch/unzip"
-RDEPEND="amd64? ( app-emulation/emul-linux-x86-sdl )
-	x86? (
-		media-libs/openal[alsa?,pulseaudio?]
-		media-libs/libsdl
-	)
-	"
+RDEPEND=""
 
 S="${WORKDIR}"/data
-
-QA_PREBUILT="opt/beathazard"
 
 src_unpack() {
 	unzip -q "${DISTDIR}/${SRC_URI}"
