@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=2
+EAPI=5
 
 inherit games check-reqs git-2
 
@@ -28,9 +28,20 @@ DEPEND="
 "
 PDEPEND="maps? ( ~games-fps/xonotic-maps-9999 )"
 
-pkg_setup() {
-	games_pkg_setup
+if use !client; then
+	CHECKREQS_DISK_BUILD="3000M"
+	CHECKREQS_DISK_USR="320M"
+else
+	if use zip; then
+		CHECKREQS_DISK_BUILD="3850M"
+		CHECKREQS_DISK_USR="1830M"
+	else
+		CHECKREQS_DISK_BUILD="7020M"
+		CHECKREQS_DISK_USR="3520M"
+	fi
+fi
 
+pkg_setup() {
 	if use convert; then
 		ewarn "cached-converter.sh will use \"xonotic-cached-converter\" subdirectory of your DISTDIR"
 		echo
@@ -41,21 +52,7 @@ pkg_setup() {
 		ewarn "This feature is experimental, if anything goes wrong, contact the maintainer."
 		echo
 	fi
-
-	ewarn "You need 1,5 Gb diskspace for distfiles."
-	if use !client; then
-		CHECKREQS_DISK_BUILD="3000"
-		CHECKREQS_DISK_USR="320"
-	else
-		if use zip; then
-			CHECKREQS_DISK_BUILD="3850"
-			CHECKREQS_DISK_USR="1830"
-		else
-			CHECKREQS_DISK_BUILD="7020"
-			CHECKREQS_DISK_USR="3520"
-		fi
-	fi
-	check_reqs
+	check-reqs_pkg_setup
 }
 
 git_pk3_unpack() {
