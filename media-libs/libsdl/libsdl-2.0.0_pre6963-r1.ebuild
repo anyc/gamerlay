@@ -4,7 +4,7 @@
 
 EAPI=5
 
-inherit cmake-utils mercurial versionator
+inherit cmake-multilib mercurial versionator
 
 REV="$(get_version_component_range 4)"
 
@@ -103,9 +103,9 @@ src_configure() {
 		$(cmake-utils_use X VIDEO_X11_XVM)
 		#$(cmake-utils_use joystick SDL_JOYSTICK)
 	)
-	cmake-utils_src_configure
+	cmake-multilib_src_configure
 }
 
 src_install() {
-	cmake-utils_src_install
+	cmake-multilib_src_install
 }
