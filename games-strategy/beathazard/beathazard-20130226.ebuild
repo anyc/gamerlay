@@ -35,7 +35,7 @@ src_install() {
 	dodoc Linux.README
 
 	games_make_wrapper "${PN}" "./all/BeatHazard_Linux2" "${dir}" "./all/hge_lib/"
-	make_desktop_entry "${PN}" "${DESCRIPTION}" "${PN}"
+	make_desktop_entry "${PN}" "BeatHazard" "${PN}"
 
 	prepgamesdirs
 }
