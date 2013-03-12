@@ -4,7 +4,7 @@
 
 EAPI=5
 
-inherit cmake-utils mercurial versionator
+inherit cmake-multilib mercurial versionator
 
 REV="$(get_version_component_range 4)"
 
@@ -66,6 +66,14 @@ DEPEND="${RDEPEND}
 
 DOCS=( BUGS CREDITS README README.HG README-SDL.txt TODO WhatsNew )
 
+src_prepare() {
+	# Currently cmake produce libsdl2.so targets,
+	# but libtool libsdl2-2.0.so, so many applications (e.g. Steam) fails to
+	# find system libsdl. This patch workaround this problem.
+	# See http://bugzilla.libsdl.org/show_bug.cgi?id=1743
+	epatch "${FILESDIR}/${PN}-add-libtool-export-cmake-v2.patch"
+}
+
 src_configure() {
 	mycmakeargs=(
 		# Disable assertion tests.
@@ -103,9 +111,9 @@ src_configure() {
 		$(cmake-utils_use X VIDEO_X11_XVM)
 		#$(cmake-utils_use joystick SDL_JOYSTICK)
 	)
-	cmake-utils_src_configure
+	cmake-multilib_src_configure
 }
 
 src_install() {
-	cmake-utils_src_install
+	cmake-multilib_src_install
 }
