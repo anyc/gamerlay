@@ -31,7 +31,7 @@ src_install() {
 	dodoc LINUX.txt
 
 	games_make_wrapper "${PN}" "./main" "${dir}/bin" "${dir}/bin"
-	make_desktop_entry "${PN}" "${DESCRIPTION}" "${PN}"
+	make_desktop_entry "${PN}" "Dinamite Jack" "${PN}"
 
 	prepgamesdirs
 }
