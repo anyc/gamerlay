@@ -20,13 +20,14 @@ RDEPEND="
 		virtual/opengl
 
 		media-fonts/font-mutt-misc
+		|| ( media-fonts/font-bitstream-100dpi media-fonts/font-adobe-100dpi )
 
 		windows-games? ( app-emulation/wine )
 
 		amd64? (
 			>=sys-devel/gcc-4.6.0[multilib]
 			>=sys-libs/glibc-2.15[multilib]
-			media-libs/libsdl:2[abi_x86_32]
+			>=media-libs/libsdl-2.0.0_pre6964:2[abi_x86_32]
 
 			flash? ( www-plugins/adobe-flash[32bit] )
 			video_cards_intel? (
@@ -57,8 +58,7 @@ RDEPEND="
 			media-libs/libjpeg-turbo
 			media-libs/libogg
 			media-libs/libpng:1.2
-			media-libs/libsdl
-			media-libs/libsdl:2
+			>=media-libs/libsdl-2.0.0_pre6964
 			media-libs/libtheora
 			media-libs/libvorbis
 			media-libs/openal

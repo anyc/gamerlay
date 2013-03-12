@@ -19,7 +19,7 @@ IUSE="s3tc testdeps video_cards_intel video_cards_fglrx video_cards_nouveau
 
 # add USE_EXPAND="${USE_EXPAND} STEAMGAMES" to your make.conf for proper
 # display of steamgames use flags
-IUSE_STEAMGAMES="dwarfs unwritten_tales tf2 trine2 journey_down"
+IUSE_STEAMGAMES="dwarfs unwritten_tales tf2 trine2 journey_down defenders_quest"
 
 for sgame in ${IUSE_STEAMGAMES}; do
 	IUSE="${IUSE} steamgames_${sgame}"
@@ -27,7 +27,10 @@ done
 
 RDEPEND="
 		s3tc? (
-			amd64? ( media-libs/libtxc_dxtn[multilib] )
+			amd64? ( || (
+				>=media-libs/libtxc_dxtn-1.0.1-r1[abi_x86_32]
+				<media-libs/libtxc_dxtn-1.0.1-r1[multilib]
+				) )
 			x86? ( media-libs/libtxc_dxtn )
 			)
 		testdeps? (
@@ -73,6 +76,9 @@ RDEPEND="
 		steamgames_trine2? (
 				x11-apps/xwininfo
 			)
+		steamgames_defenders_quest? (
+				dev-util/adobe-air-runtime
+			)
 		"
 REQUIRED_USE="
 		steamgames_tf2? (
@@ -99,4 +105,5 @@ pkg_postinst() {
 		elog "https://bugs.gentoo.org/show_bug.cgi?id=446682"
 	fi
 	elog "Ebuild development website: https://github.com/anyc/steam-overlay"
+	elog "If you have problems, please also see http://wiki.gentoo.org/wiki/Steam"
 }
