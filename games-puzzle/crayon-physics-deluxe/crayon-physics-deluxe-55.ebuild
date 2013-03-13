@@ -9,16 +9,16 @@ inherit eutils multilib games
 DESCRIPTION="2D physics puzzle / sandbox game, where your drawings would be magically transformed into real physical objects."
 HOMEPAGE="http://crayonphysics.com/"
 
-SRC_URI="amd64? ( ${PN}_${PV}_amd64.deb )
-	x86? ( ${PN}_${PV}_i386.deb )"
+SRC_URI="${PN//-/_}-linux-release${PV}.tar.gz"
 
 LICENSE="as-is"
 SLOT="0"
-KEYWORDS="-* amd64 ~x86"
-IUSE=""
+KEYWORDS="-* ~amd64 ~x86"
+IUSE="multilib"
 RESTRICT="strip fetch"
 
 RDEPEND="
+	sys-devel/gcc
 	x86? (
 		app-arch/bzip2
 		dev-libs/expat
@@ -48,61 +48,65 @@ RDEPEND="
 		x11-libs/libXxf86vm
 		dev-qt/qtcore
 		dev-qt/qtgui
+		media-libs/smpeg
+		media-libs/libvorbis
+		media-libs/libmikmod
+		media-libs/sdl-mixer
+		media-libs/sdl-image
 	)
 	amd64? (
 		app-emulation/emul-linux-x86-baselibs
 		app-emulation/emul-linux-x86-opengl
 		app-emulation/emul-linux-x86-qtlibs
 		app-emulation/emul-linux-x86-soundlibs
+		app-emulation/emul-linux-x86-sdl
 		app-emulation/emul-linux-x86-xlibs
 	)
 "
 
-S="${WORKDIR}"
+REQUIRED_USE="amd64? ( multilib )"
 
-
-src_unpack() {
-	unpack "${A}"
-	cd "${S}"
-	unpack "./data.tar.gz"
-}
+MY_PN="CrayonPhysicsDeluxe"
+S="${WORKDIR}/${MY_PN}"
 
 src_install() {
-	GAMEDIR="${GAMES_PREFIX_OPT}/${PN}"
+	( use amd64 && use multilib ) && ABI=x86
+	GAMEDIR="${GAMES_PREFIX_OPT}/${MY_PN}"
 
 	insinto "${GAMEDIR}"
 	exeinto "${GAMEDIR}"
 
 	# install icon
-	newicon opt/CrayonPhysicsDeluxe/icon.png ${PN}.png \
+	newicon "icon.png" "${PN}.png" \
 		|| die "install icon"
 
 	# install docs
-	dohtml opt/CrayonPhysicsDeluxe/readme.html
+	dohtml readme.html
 
 	# cleanup unneeded files
-	(
-		cd opt/CrayonPhysicsDeluxe
-		rm	"icon.png" \
-			"install_shortcuts.sh" \
-			"launchcrayon.sh" \
-			"launcher" \
-			"LGPL.txt" \
-			"LICENSE.txt" \
-			"log.txt" \
-			"README-CC.txt" \
-			"README-GLEW.txt" \
-			"readme.html" \
-			"README-QT.txt" \
-			"README-SDL.txt" \
-			"uninstall_shortcuts.sh" \
-			"update"
-	)
+	rm -rf "./$(get_libdir)"
+	rm \
+		"icon.png" \
+		"install_shortcuts.sh" \
+		"launchcrayon.sh" \
+		"launcher" \
+		"LGPL.txt" \
+		"LICENSE.txt" \
+		"log.txt" \
+		"README-CC.txt" \
+		"README-GLEW.txt" \
+		"readme.html" \
+		"README-QT.txt" \
+		"README-SDL.txt" \
+		"uninstall_shortcuts.sh" \
+		"update"
+
 	# install game files
-	doins -r opt/CrayonPhysicsDeluxe/* || die "doins opt"
+	doins -r * || die "doins opt"
+	doexe crayon || die "doexe failed"
 
 	# install shortcuts
-	games_make_wrapper "${PN}" "./crayon" "${GAMEDIR}" "${GAMEDIR}/$(get_libdir)" || die "install shortcut"
+	games_make_wrapper "${PN}" "./crayon" "${GAMEDIR}" || die "install shortcut"
 	make_desktop_entry "${PN}" "Crayon Physics Deluxe" "${PN}"
 
 	prepgamesdirs
