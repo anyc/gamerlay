@@ -14,7 +14,7 @@ LICENSE="metapackage"
 
 SLOT="0"
 KEYWORDS="-* ~amd64 ~x86"
-IUSE="flash video_cards_intel windows-games"
+IUSE="flash trayicon video_cards_intel"
 
 RDEPEND="
 		virtual/opengl
@@ -22,30 +22,37 @@ RDEPEND="
 		media-fonts/font-mutt-misc
 		|| ( media-fonts/font-bitstream-100dpi media-fonts/font-adobe-100dpi )
 
-		windows-games? ( app-emulation/wine )
-
 		amd64? (
 			>=sys-devel/gcc-4.6.0[multilib]
 			>=sys-libs/glibc-2.15[multilib]
 			>=media-libs/libsdl-2.0.0_pre6964:2[abi_x86_32]
 
-			flash? ( www-plugins/adobe-flash[32bit] )
-			video_cards_intel? (
-				>=app-emulation/emul-linux-x86-baselibs-20121202
-				>=app-emulation/emul-linux-x86-gtklibs-20121202
-				>=app-emulation/emul-linux-x86-opengl-20121202
-				>=app-emulation/emul-linux-x86-sdl-20121202
-				>=app-emulation/emul-linux-x86-soundlibs-20121202
+			>=app-emulation/emul-linux-x86-baselibs-20121202
+			>=app-emulation/emul-linux-x86-gtklibs-20121202
+			>=app-emulation/emul-linux-x86-opengl-20121202
+			>=app-emulation/emul-linux-x86-sdl-20121202
+			>=app-emulation/emul-linux-x86-soundlibs-20121202
+			|| (
 				>=app-emulation/emul-linux-x86-xlibs-20121202
+				(
+					x11-libs/libX11[abi_x86_32]
+					x11-libs/libXcomposite[abi_x86_32]
+					x11-libs/libXcursor[abi_x86_32]
+					x11-libs/libXdamage[abi_x86_32]
+					x11-libs/libXext[abi_x86_32]
+					x11-libs/libXfixes[abi_x86_32]
+					media-libs/fontconfig[abi_x86_32]
+					media-libs/freetype[abi_x86_32]
+					x11-libs/libXi[abi_x86_32]
+					x11-libs/libXinerama[abi_x86_32]
+					x11-libs/libXrandr[abi_x86_32]
+					x11-libs/libXrender[abi_x86_32]
 				)
-			!video_cards_intel? (
-				>=app-emulation/emul-linux-x86-baselibs-20121028
-				>=app-emulation/emul-linux-x86-gtklibs-20121028
-				>=app-emulation/emul-linux-x86-opengl-20121028
-				>=app-emulation/emul-linux-x86-sdl-20121028
-				>=app-emulation/emul-linux-x86-soundlibs-20121028
-				>=app-emulation/emul-linux-x86-xlibs-20121028
-				)
+			)
+
+			trayicon? ( >=dev-libs/libappindicator-12.10.0-r1[-gtk3,abi_x86_32] )
+
+			flash? ( www-plugins/adobe-flash[32bit] )
 			)
 		x86? (
 			dev-libs/glib:2
@@ -81,6 +88,7 @@ RDEPEND="
 			x11-libs/pango
 			>=x11-libs/pixman-0.24.4
 
+			trayicon? ( =dev-libs/libappindicator-12.10.0-r1[-gtk3] )
 			flash? ( www-plugins/adobe-flash )
 			video_cards_intel? ( >=media-libs/mesa-9 )
 			)"
@@ -88,12 +96,6 @@ RDEPEND="
 pkg_postinst() {
 	elog "This is only a meta package that pulls in the required"
 	elog "dependencies for the steam client."
-
-	if use windows-games; then
-		elog ""
-		elog "To start games automatically with wine, follow"
-		elog "https://wiki.archlinux.org/index.php/Wine#Using_Wine_as_an_interpreter_for_Win16.2FWin32_binaries"
-	fi
 
 	if use flash; then
 		elog ""
