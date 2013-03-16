@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=2
+EAPI=5
 
 inherit eutils games
 
@@ -20,16 +20,18 @@ IUSE=""
 RESTRICT="fetch strip"
 PROPERTIES="interactive"
 
-RDEPEND="virtual/opengl
+RDEPEND="
+	virtual/opengl
 	virtual/glu
 	x11-libs/libX11
 	media-libs/freetype:2
 	sys-libs/glibc
 	media-libs/openal
-	media-libs/libvorbis"
+	media-libs/libvorbis
+"
 DEPEND="${RDEPEND}"
 
-S=${WORKDIR}/${MY_PN}
+S="${WORKDIR}/${MY_PN}"
 
 GAMES_CHECK_LICENSE="yes"
 
@@ -38,24 +40,27 @@ pkg_nofetch() {
 }
 
 src_install() {
-	local dir="${GAMES_PREFIX_OPT}/${PN}"
+	local GAMEDIR="${GAMES_PREFIX_OPT}/${PN}"
+	local exe
 
-	exeinto "${dir}"
-	doexe ${MY_PN}
 	if use amd64 ; then
-		doexe ${MY_PN}.bin64 || die "doexe"
+		exe="${MY_PN}.bin64"
 	fi
 	if use x86 ; then
-		doexe ${MY_PN}.bin32 || die "doexe"
+		exe="${MY_PN}.bin32"
 	fi
+
+	exeinto "${GAMEDIR}"
+	doexe "${exe}" || die "doexe"
+
 	dohtml readme.html
-	insinto "${dir}"
+	insinto "${GAMEDIR}"
 	doins -r Fonts/ Sounds/ Textures/ Osmos-* *.cfg || die "doins failed"
 
-	newicon Icons/256x256.png ${PN}.png
+	newicon "Icons/256x256.png" "${PN}.png"
 
-	games_make_wrapper ${PN} ./${MY_PN} "${dir}"
-	make_desktop_entry ${PN} "Osmos"
+	games_make_wrapper "${PN}" "./${exe}" "${GAMEDIR}"
+	make_desktop_entry "${PN}" "Osmos"
 
 	prepgamesdirs
 }
