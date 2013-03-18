@@ -2,6 +2,13 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*libsdl-2.0.0_pre7001-r1 (18 Mar 2013)
+
+  18 Mar 2013; Azamat H. Hackimov <azamat.hackimov@gmail.com>
+  +files/libsdl-universal_sizeof_voidp.patch, +libsdl-2.0.0_pre7001-r1.ebuild:
+  [media-libs/libsdl] Fixing error with Header checksum mismatch on abi_x86_32
+  (bug #462036). Problem with media-libs/nas linking still unresolved.
+
 *libsdl-2.0.0_pre7001 (14 Mar 2013)
 
   14 Mar 2013; Azamat H. Hackimov <azamat.hackimov@gmail.com>

@@ -1,0 +1,18 @@
+diff -r fe82d15464d1 include/SDL_config.h.cmake
+--- a/include/SDL_config.h.cmake	Sun Mar 17 09:47:25 2013 -0700
++++ b/include/SDL_config.h.cmake	Mon Mar 18 20:31:51 2013 +0600
+@@ -37,7 +37,13 @@
+ #cmakedefine volatile @HAVE_VOLATILE@
+ 
+ /* C datatypes */
+-#cmakedefine SIZEOF_VOIDP @SIZEOF_VOIDP@
++/* Define SIZEOF_VOIDP for 64/32 architectures */
++#ifdef __LP64__
++#define SIZEOF_VOIDP 8
++#else
++#define SIZEOF_VOIDP 4
++#endif
++
+ #cmakedefine HAVE_GCC_ATOMICS @HAVE_GCC_ATOMICS@
+ #cmakedefine HAVE_GCC_SYNC_LOCK_TEST_AND_SET @HAVE_GCC_SYNC_LOCK_TEST_AND_SET@
+ #cmakedefine HAVE_PTHREAD_SPINLOCK @HAVE_PTHREAD_SPINLOCK@
