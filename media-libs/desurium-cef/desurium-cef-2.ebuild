@@ -10,7 +10,7 @@ unset GIT_ECLASS
 
 GITHUB_MAINTAINER="lodle"
 GITHUB_PROJECT="Desurium"
-DESURIUM_VERSION="0.8.0_rc9"
+DESURIUM_VERSION="0.8.0_rc5"
 
 # tools versions
 CEF_ARC="cef-291.tar.gz"
@@ -31,7 +31,7 @@ SRC_URI="${SRC_URI}
 	http://commondatastorage.googleapis.com/chromium-browser-official/${CHROMIUM_ARC}
 	mirror://github/${GITHUB_MAINTAINER}/${GITHUB_PROJECT}/${DEPOT_TOOLS_ARC}"
 
-inherit check-reqs cmake-utils eutils ${GIT_ECLASS} toolchain-funcs python-any-r1 games
+inherit check-reqs cmake-utils eutils ${GIT_ECLASS} python-any-r1 games
 
 CHECKREQS_DISK_BUILD="3G"
 
@@ -39,7 +39,7 @@ DESCRIPTION="highly patched CEF by desurium."
 HOMEPAGE="https://github.com/lodle/Desurium"
 LICENSE="BSD"
 SLOT="0"
-RESTRICT="bindist"
+IUSE=""
 
 if [[ ${PV} != 9999* ]]; then
 	KEYWORDS="~amd64 ~x86"
@@ -91,14 +91,12 @@ src_configure() {
 		-DDEPOT_TOOLS_URL="file://${DISTDIR}/${DEPOT_TOOLS_ARC}"
 		-DBUILD_ONLY_CEF=TRUE
 		-DRUNTIME_LIBDIR="$(games_get_libdir)"
-		-DH264_SUPPORT=TRUE
 	)
 	cmake-utils_src_configure
 }
 
 src_compile() {
-	# even autotools does not respect AR properly sometimes
-	cmake-utils_src_compile AR=$(tc-getAR)
+	cmake-utils_src_compile
 }
 
 src_install() {

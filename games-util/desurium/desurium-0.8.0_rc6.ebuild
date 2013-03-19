@@ -36,7 +36,7 @@ SRC_URI="${SRC_URI}
 		ftp://ftp.wxwidgets.org/pub/2.9.3/${WX_ARC}
 	)"
 
-inherit cmake-utils eutils ${GIT_ECLASS} gnome2-utils ${WX_ECLASS} games toolchain-funcs
+inherit cmake-utils eutils flag-o-matic ${GIT_ECLASS} gnome2-utils ${WX_ECLASS} games toolchain-funcs
 
 DESCRIPTION="Free software version of Desura game client"
 HOMEPAGE="https://github.com/lodle/Desurium"
@@ -59,7 +59,7 @@ COMMON_DEPEND="app-arch/bzip2
 	    >=dev-libs/tinyxml-2.6.2-r2
 	)
 
-	dev-lang/v8:=
+	<dev-lang/v8-3.16.5:=
 	|| (
 		net-misc/curl[adns]
 		net-misc/curl[ares]
@@ -76,7 +76,14 @@ COMMON_DEPEND="app-arch/bzip2
 	amd64? ( 32bit? (
 		sys-devel/gcc[multilib]
 	) )"
-RDEPEND=">=media-libs/desurium-cef-4
+RDEPEND="
+	x86? (
+		www-plugins/adobe-flash[32bit]
+	)
+	amd64? (
+		www-plugins/adobe-flash[64bit]
+	)
+	>=media-libs/desurium-cef-3
 	x11-misc/xdg-user-dirs
 	x11-misc/xdg-utils
 	${COMMON_DEPEND}"
@@ -103,6 +110,9 @@ src_unpack() {
 }
 
 src_configure() {
+	# on some systems -Wl,--as-needed breaks the flashplayer
+	filter-ldflags -Wl,--as-needed
+
 	# -DWITH_ARES=FALSE will use system curl, because we force curl[ares] to have ares support
 	local mycmakeargs=(
 		-DWITH_ARES=FALSE
@@ -112,7 +122,6 @@ src_configure() {
 		$(cmake-utils_use debug DEBUG)
 		$(cmake-utils_use 32bit 32BIT_SUPPORT)
 		$(cmake-utils_use tools BUILD_TOOLS)
-		-DWITH_FLASH=FALSE
 		-DCMAKE_INSTALL_PREFIX="${GAMES_PREFIX}"
 		-DBREAKPAD_URL="file://${DISTDIR}/${BREAKPAD_ARC}"
 		-DCEF_URL="file://${DISTDIR}/${CEF_ARC}"
@@ -120,9 +129,6 @@ src_configure() {
 		-DDATADIR="${GAMES_DATADIR}"
 		-DRUNTIME_LIBDIR="$(games_get_libdir)"
 		-DDESKTOPDIR="/usr/share/applications"
-		-DINSTALL_DESKTOP_FILE=TRUE
-		-DDESKTOP_EXE=desura
-		-DDESKTOP_ICON=desurium
 		$(cmake-utils_use bundled-wxgtk FORCE_BUNDLED_WXGTK)
 		$(use bundled-wxgtk && echo -DWXWIDGET_URL="file://${DISTDIR}/${WX_ARC}")
 	)
@@ -138,6 +144,7 @@ src_install() {
 	cmake-utils_src_install
 
 	newicon -s scalable "${S}/src/branding_${PN}/sources/desubot.svg" "${PN}.svg"
+	make_desktop_entry "${GAMES_BINDIR}/desura" "Desurium" "${PN}"
 
 	prepgamesdirs
 }
