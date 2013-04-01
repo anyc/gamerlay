@@ -2,6 +2,14 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*libsdl-2.0.0_pre7024 (01 Apr 2013)
+
+  01 Apr 2013; Azamat H. Hackimov <azamat.hackimov@gmail.com>
+  +libsdl-2.0.0_pre7024.ebuild, -libsdl-2.0.0_pre6963-r1.ebuild,
+  -libsdl-2.0.0_pre7001-r1.ebuild, -libsdl-2.0.0_pre7001.ebuild:
+  [media-libs/libsdl] Bump to 2.0.0_pre7024, remove old. Now we have tarballs,
+  go away, mercurial.eclass!
+
 *libsdl-2.0.0_pre7001-r1 (18 Mar 2013)
 
   18 Mar 2013; Azamat H. Hackimov <azamat.hackimov@gmail.com>

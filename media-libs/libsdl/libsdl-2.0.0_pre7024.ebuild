@@ -4,15 +4,13 @@
 
 EAPI=5
 
-inherit cmake-multilib mercurial versionator
+inherit cmake-multilib
 
-REV="$(get_version_component_range 4)"
+MY_PV=${PV/_pre/-}
 
 DESCRIPTION="Simple Direct Media Layer"
 HOMEPAGE="http://www.libsdl.org/"
-#SRC_URI=""
-EHG_REPO_URI="http://hg.libsdl.org/SDL/"
-EHG_REVISION="${REV/pre/}"
+SRC_URI="http://www.libsdl.org/tmp/SDL-${MY_PV}.tar.gz"
 
 LICENSE="ZLIB"
 SLOT="2"
@@ -21,6 +19,7 @@ IUSE="3dnow alsa altivec +asm aqua fusionsound gles mmx nas opengl oss pulseaudi
 
 #FIXME: Replace "gles" deps with "virtual/opengles", after hitting Portage.
 #FIXME: media-libs/nas no have emul-* ebuild
+#FIXME: virtual/opengl for abi_x86_32 require additional handling
 RDEPEND="
 	nas? (
 		media-libs/nas
@@ -64,6 +63,8 @@ DEPEND="${RDEPEND}
 	xinerama? ( x11-proto/xineramaproto )
 	xscreensaver? ( x11-proto/scrnsaverproto )
 "
+
+S="${WORKDIR}/SDL-${MY_PV}"
 
 DOCS=( BUGS CREDITS README README.HG README-SDL.txt TODO WhatsNew )
 
@@ -117,6 +118,6 @@ src_configure() {
 	cmake-multilib_src_configure
 }
 
-src_install() {
-	cmake-multilib_src_install
-}
+#src_install() {
+#	cmake-multilib_src_install
+#}
