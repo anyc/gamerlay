@@ -8,12 +8,12 @@ inherit eutils games
 
 DESCRIPTION="a multi-platform Amiga emulator"
 HOMEPAGE="http://fengestad.no/"${PN}""
-SRC_URI="http://fengestad.no/"${PN}"/files/"${P}".tar.gz"
+SRC_URI="http://fengestad.no/"${PN}"/stable/"${PV}"/"${P}".tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE=""
+IUSE="launcher"
 
 RDEPEND="virtual/opengl
 		media-libs/openal
