@@ -22,4 +22,5 @@ RDEPEND="${DEPEND}"
 
 src_prepare() {
 	sed -i -e "s:add_sub:#add_sub:g" -i CMakeLists.txt
+	sed -i -e 's:./cmake:${CMAKE_SOURCE_DIR}/cmake:g' -i CMakeLists.txt
 }
