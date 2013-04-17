@@ -41,7 +41,7 @@ src_install() {
 	local dir="${GAMES_PREFIX_OPT}/${PN}";
 	local bit;
 
-	use x86 && bit=32;
+	use x86 && bit=86;
 	use amd64 && bit=64;
 
 	S="${WORKDIR}/${MY_PN}_x${bit}"
