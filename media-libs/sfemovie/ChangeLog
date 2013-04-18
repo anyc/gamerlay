@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/sfemovie
-# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+  18 Apr 2013; Azamat H. Hackimov <azamat.hackimov@gmail.com> -Manifest,
+  sfemovie-9999.ebuild:
+  [media-libs/sfemovie] License is LGPL-2.1, minor change in git URL.
 
   05 Jul 2012; Marcel Unbehaun <marcel@frostworx.de>
   -files/sfemovie-install.patch, sfemovie-9999.ebuild:
@@ -24,4 +28,3 @@
   25 Mar 2012; Marcel Unbehaun <marcel@frostworx.de>
   +files/sfemovie-install.patch, +metadata.xml, +sfemovie-9999.ebuild:
   added sfemovie-9999.ebuild
-
