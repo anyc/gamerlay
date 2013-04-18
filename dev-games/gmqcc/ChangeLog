@@ -1,3 +1,9 @@
+*gmqcc-0.2.2 (18 Apr 2013)
+
+  18 Apr 2013; Azamat H. Hackimov <azamat.hackimov@gmail.com>
+  +gmqcc-0.2.2.ebuild:
+  [dev-games/gmqcc] Tagged 0.2.2 version.
+
   06 Mar 2013; Azamat H. Hackimov <azamat.hackimov@gmail.com> +metadata.xml,
   gmqcc-9999.ebuild:
   [dev-games/gmqcc] Strip strict -Werror cflag, ebuild cleanup.
