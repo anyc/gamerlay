@@ -1,4 +1,4 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -12,7 +12,7 @@ DESCRIPTION="Rally game focused on closed rally tracks with possible stunt eleme
 HOMEPAGE="http://code.google.com/p/vdrift-ogre/"
 
 SLOT="0"
-LICENSE="GPL3"
+LICENSE="GPL-3"
 IUSE="dedicated +game editor"
 
 if [[ ${PV} = 9999* ]]; then
