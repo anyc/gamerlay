@@ -4,7 +4,7 @@
 
 EAPI="4"
 
-inherit distutils
+inherit distutils eutils
 
 DESCRIPTION="Linux compatibility project for gog.com"
 HOMEPAGE="http://www.${PN}.com"
@@ -27,6 +27,7 @@ RDEPEND="gnome-base/libglade
 DEPEND="${RDEPEND}"
 
 src_prepare() {
+	epatch "${FILESDIR}/${P}-api.patch"
 	sed -e "s:/local::" -i setup.py || die
 	sed -e "s:'/man:'/share/man:" -i setup.py || die
 	sed -e "s:.svg::" -i data/gog-tux.desktop || die

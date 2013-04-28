@@ -1,0 +1,11 @@
+--- gog_utils/gog_conn.py	2013-04-28 10:52:46.000000000 +0200
++++ gog_utils/gog_conn.py	2013-04-28 10:53:21.338093791 +0200
+@@ -27,7 +27,7 @@
+         self.get_token = data["oauth_get_token"]
+         self.user_url = data["get_user_details"]
+         self.user_games = data["get_user_games"] # This does not work yet :(
+-        self.game_details = data["get_game_details"]
++        self.game_details = data["get_game_details"]+"/"
+         self.game_installer = data["get_installer_link"]
+         self.game_extras = data["get_extra_link"]
+ 
