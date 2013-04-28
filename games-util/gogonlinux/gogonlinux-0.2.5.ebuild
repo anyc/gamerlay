@@ -15,7 +15,8 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-RDEPEND="dev-python/certifi
+RDEPEND="gnome-base/libglade
+		dev-python/certifi
 		dev-python/oauth2
 		dev-python/requests
 		games-engines/scummvm
