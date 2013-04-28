@@ -21,7 +21,9 @@ RDEPEND="gnome-base/libglade
 		dev-python/requests
 		games-engines/scummvm
 		games-emulation/dosbox
-		app-emulation/wine"
+		app-emulation/wine
+		app-emulation/winetricks
+		app-arch/innoextract"
 DEPEND="${RDEPEND}"
 
 src_prepare() {
