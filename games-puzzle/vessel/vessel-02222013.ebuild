@@ -6,11 +6,9 @@ EAPI=5
 
 inherit games
 
-TS="12082012"
-
 DESCRIPTION="Platform game where you manipulate liquids."
 HOMEPAGE="http://strangeloopgames.com"
-SRC_URI="${PN}-${TS}-bin"
+SRC_URI="${P}-bin"
 
 LICENSE="as-is"
 SLOT="0"
