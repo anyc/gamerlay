@@ -28,7 +28,7 @@ RDEPEND="${DEPEND}
 	media-libs/flac
 	media-libs/glu
 	media-libs/libogg
-	media-libs/libsdl
+	media-libs/libsdl:0
 	media-libs/libsndfile
 	media-libs/libvorbis
 	virtual/opengl
