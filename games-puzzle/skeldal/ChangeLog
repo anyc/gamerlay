@@ -1,9 +1,0 @@
-# ChangeLog for games-puzzle/skeldal
-# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
-# $Header: $
-
-*skeldal-9999 (10 Mar 2011)
-
-  10 Mar 2011; Tomas Chvatal <scarabeus@gentoo.org> +skeldal-9999.ebuild:
-  Add simple live ebuild for Gates of Skeldal.
-
