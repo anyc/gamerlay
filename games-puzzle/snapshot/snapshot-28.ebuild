@@ -84,6 +84,7 @@ src_install() {
 	doins "liblua5.1.so.0"
 	doexe "${PN}.bin"
 
+	doicon "${FILESDIR}/snapshot.png"
         # install shortcuts
         games_make_wrapper "${PN}" "./${PN}.bin" "${GAMEDIR}" "${GAMEDIR}" || die "install shortcut"
         make_desktop_entry "${PN}" "${PN}" "${PN}"
