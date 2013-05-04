@@ -45,7 +45,7 @@ src_install() {
 	insinto "${dir}"
 	exeinto "${dir}"/x86
 
-	doicon "Vessel.bmp"
+	newicon "${FILESDIR}/${PN}.png" "${PN}.png"
 	dodoc "Linux.README"
 
 	rm "Vessel.bmp" "Linux.README"
