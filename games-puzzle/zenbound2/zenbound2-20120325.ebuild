@@ -81,6 +81,7 @@ src_install() {
 	rm "./${lib}/libvorbisfile.so.3"
 	rm "./${lib}/libogg.so.0"
 
+	newicon "${MY_PN}.png" "${PN}.png"
 	exeinto "${GAMEDIR}"
 	insinto "${GAMEDIR}"
 	doins -r "data_common"
