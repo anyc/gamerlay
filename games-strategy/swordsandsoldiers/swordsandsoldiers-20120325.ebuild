@@ -79,10 +79,10 @@ pkg_nofetch() {
 src_install() {
 	local dir="${GAMES_PREFIX_OPT}/${PN}"
 
-	doicon "SwordsAndSoldiers.png"
-	doicon "SwordsAndSoldiersSetup.png"
+	newicon "SwordsAndSoldiers.png" "${PN}.png"
+	newicon "SwordsAndSoldiersSetup.png" "${PN}-setup.png"
 	make_desktop_entry "${PN}" "Swords & Soldiers" "${PN}"
-	make_desktop_entry "${PN}-setup" "Swords & Soldiers (setup)" "${PN}"
+	make_desktop_entry "${PN}-setup" "Swords & Soldiers (setup)" "${PN}-setup"
 	games_make_wrapper "${PN}" "./SwordsAndSoldiers.bin" "${dir}"
 	games_make_wrapper "${PN}-setup" "./SwordsAndSoldiersSetup.bin" "${dir}"
 	exeinto "${dir}"
