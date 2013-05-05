@@ -76,7 +76,7 @@ RDEPEND="
 				x11-apps/xwininfo
 			)
 		steamgames_defenders_quest? (
-				dev-util/adobe-air-runtime
+				dev-util/adobe-air-sdk-bin
 			)
 		steamgames_shatter? (
 				amd64? ( >=media-gfx/nvidia-cg-toolkit-3.1.0013 )
