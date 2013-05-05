@@ -2,12 +2,12 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=5
+EAPI="5"
 
 inherit games unpacker
 
 DESCRIPTION="Retro-styled 2D platformer-autorunner"
-HOMEPAGE="http://thelettervsixtim.es/"
+HOMEPAGE="http://www.semisecretsoftware.com/"
 SRC_URI="Canabalt2P_AIR-1331587946.air"
 
 LICENSE="EULA"
