@@ -24,10 +24,6 @@ RDEPEND="dev-libs/jsoncpp
 		net-libs/htmlcxx"
 DEPEND="${RDEPEND}"
 
-src_prepare() {
-	epatch "${FILESDIR}/${P}-api.patch"
-}
-
 src_install() {
 	dobin bin/Release/${PN}
 }
