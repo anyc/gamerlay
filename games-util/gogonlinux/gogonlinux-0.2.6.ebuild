@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: games-util/gogonlinux-0.25.ebuild,v 1.0 2013/04/28 09:00:00 by frostwork Exp $
+# $Header: games-util/gogonlinux-0.2.6.ebuild,v 1.0 2013/05/11 08:46:00 by frostwork Exp $
 
 EAPI="4"
 
@@ -27,7 +27,6 @@ RDEPEND="gnome-base/libglade
 DEPEND="${RDEPEND}"
 
 src_prepare() {
-	epatch "${FILESDIR}/${P}-api.patch"
 	sed -e "s:/local::" -i setup.py || die
 	sed -e "s:'/man:'/share/man:" -i setup.py || die
 	sed -e "s:.svg::" -i data/gog-tux.desktop || die
