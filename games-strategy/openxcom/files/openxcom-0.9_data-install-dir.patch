@@ -1,0 +1,74 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index ed68a96..0422b09 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -9,6 +9,7 @@ option ( ENABLE_WARNING "Always show warnings (even for release builds)" OFF )
+ option ( FATAL_WARNING "Treat warnings as errors" OFF )
+ set ( MSVC_WARNING_LEVEL 3 CACHE STRING "Visual Studio warning levels" )
+ option ( FORCE_INSTALL_DATA_TO_BIN "Force installation of data to binary directory" OFF )
++set ( DATADIR "" CACHE STRING "Where to place datafiles" )
+ 
+ if ( WIN32 )
+   set ( default_deps_dir "${CMAKE_SOURCE_DIR}/deps" )
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+index 81247c6..3099f7e 100644
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -591,7 +591,12 @@ set ( install_dest RUNTIME )
+ set ( set_exec_path ON )
+ set ( install_dest_dir bin )
+ if ( UNIX AND NOT APPLE )
+-  set ( data_install_dir ${CMAKE_INSTALL_PREFIX}/share/openxcom )
++  if ( DEFINED DATADIR )
++    set ( data_install_dir ${DATADIR} )
++    add_definitions( -DDATADIR="${data_install_dir}/" )
++  else()
++    set ( data_install_dir "share/openxcom" )
++  endif()
+ endif ()
+ if ( APPLE )
+   set ( openxcom_src ${openxcom_src} ${MACOS_SDLMAIN_M_PATH} )
+@@ -603,7 +608,12 @@ if ( APPLE )
+     set ( install_dest_dir "" )
+     set ( data_install_dir bin )
+   else ()
+-    set ( data_install_dir ${CMAKE_INSTALL_PREFIX}/share/openxcom )
++    if ( DEFINED DATADIR )
++      set ( data_install_dir ${DATADIR} )
++      add_definitions( -DDATADIR="${data_install_dir}/" )
++    else()
++      set ( data_install_dir "share/openxcom" )
++    endif()
+   endif ()
+ endif ()
+ if ( set_exec_path )
+diff --git a/src/Engine/CrossPlatform.cpp b/src/Engine/CrossPlatform.cpp
+index 9ac27ba..6571938 100644
+--- a/src/Engine/CrossPlatform.cpp
++++ b/src/Engine/CrossPlatform.cpp
+@@ -153,16 +153,18 @@ std::vector<std::string> findDataFolders()
+ 			dir = strtok(0, ":");
+ 		}
+ 	}
+-	else
+-	{
+ #ifdef __APPLE__
+-		snprintf(path, MAXPATHLEN, "%s/Users/Shared/OpenXcom/data/", home);
+-		list.push_back(path);
++	snprintf(path, MAXPATHLEN, "%s/Users/Shared/OpenXcom/data/", home);
++	list.push_back(path);
+ #else
+-		list.push_back("/usr/local/share/openxcom/data/");
+-		list.push_back("/usr/share/openxcom/data/");
++	list.push_back("/usr/local/share/openxcom/data/");
++	list.push_back("/usr/share/openxcom/data/");
++#ifdef DATADIR
++	snprintf(path, MAXPATHLEN, "%s/data/", DATADIR);
++	list.push_back(path);
++#endif
++
+ #endif
+-	}
+ 	
+ 	// Get working directory
+ 	list.push_back("./data/");
