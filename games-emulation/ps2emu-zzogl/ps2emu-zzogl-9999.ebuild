@@ -16,7 +16,7 @@ ESVN_PROJECT="pcsx2"
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS=""
-IUSE="debug"
+IUSE="debug cg"
 if use amd64; then
 	ABI="x86"
 fi
@@ -34,7 +34,7 @@ DEPEND="dev-cpp/sparsehash
 		media-libs/glew
 		media-libs/libsdl
 		media-libs/portaudio
-		media-gfx/nvidia-cg-toolkit
+		cg? ( media-gfx/nvidia-cg-toolkit )
 		virtual/jpeg
 		virtual/opengl
 		x11-libs/gtk+:2
@@ -43,7 +43,7 @@ DEPEND="dev-cpp/sparsehash
 		x11-libs/libXext
 		x11-libs/wxGTK[X]
 	)
-	amd64? ( media-gfx/nvidia-cg-toolkit[multilib]
+	amd64? ( cg? ( media-gfx/nvidia-cg-toolkit[multilib] )
 		app-emulation/emul-linux-x86-baselibs
 		app-emulation/emul-linux-x86-opengl
 		app-emulation/emul-linux-x86-xlibs
@@ -55,28 +55,28 @@ DEPEND="dev-cpp/sparsehash
 RDEPEND="${DEPEND}"
 
 src_prepare() {
-	sed -i -e "s:add_subdirectory(3rdparty)::g" -i CMakeLists.txt
-	sed -i -e "s:INSTALL(FILES:#INSTALL(FILES:g" -i CMakeLists.txt
-	sed -i -e "s:add_subdirectory(locales)::g" -i CMakeLists.txt
-	sed -i -e "s:add_subdirectory(tools)::g" -i CMakeLists.txt
-#	sed -i -e "s:add_subdirectory(common/src/Utilities)::g" -i CMakeLists.txt
- 	sed -i -e "s:add_subdirectory(common/src/x86emitter)::g" -i CMakeLists.txt
-	sed -i -e "s:pcsx2_core TRUE:pcsx2_core FALSE:g" -i cmake/SelectPcsx2Plugins.cmake
-	sed -i -e "s:CDVDiso TRUE:CDVDiso FALSE:g" -i cmake/SelectPcsx2Plugins.cmake
-	sed -i -e "s:CDVDlinuz TRUE:CDVDlinuz FALSE:g" -i cmake/SelectPcsx2Plugins.cmake
-	sed -i -e "s:CDVDnull TRUE:CDVDnull FALSE:g" -i cmake/SelectPcsx2Plugins.cmake
-	sed -i -e "s:dev9null TRUE:dev9null FALSE:g" -i cmake/SelectPcsx2Plugins.cmake
-	sed -i -e "s:FWnull TRUE:FWnull FALSE:g" -i cmake/SelectPcsx2Plugins.cmake
-	sed -i -e "s:GSdx TRUE:GSdx FALSE:g" -i cmake/SelectPcsx2Plugins.cmake
-	sed -i -e "s:zerogs TRUE:zerogs FALSE:g" -i cmake/SelectPcsx2Plugins.cmake
-	sed -i -e "s:GSnull TRUE:GSnull FALSE:g" -i cmake/SelectPcsx2Plugins.cmake
-	sed -i -e "s:PadNull TRUE:PadNull FALSE:g" -i cmake/SelectPcsx2Plugins.cmake
-	sed -i -e "s:onepad TRUE:onepad FALSE:g" -i cmake/SelectPcsx2Plugins.cmake
-	sed -i -e "s:zeropad TRUE:zeropad FALSE:g" -i cmake/SelectPcsx2Plugins.cmake
-	sed -i -e "s:SPU2null TRUE:SPU2null FALSE:g" -i cmake/SelectPcsx2Plugins.cmake
-	sed -i -e "s:spu2-x TRUE:spu2-x FALSE:g" -i cmake/SelectPcsx2Plugins.cmake
-	sed -i -e "s:zerospu2 TRUE:zerospu2 FALSE:g" -i cmake/SelectPcsx2Plugins.cmake
-	sed -i -e "s:USBnull TRUE:USBnull FALSE:g" -i cmake/SelectPcsx2Plugins.cmake
+	sed -e "s:add_subdirectory(3rdparty)::g" -i CMakeLists.txt
+	sed -e "s:INSTALL(FILES:#INSTALL(FILES:g" -i CMakeLists.txt
+	sed -e "s:add_subdirectory(locales)::g" -i CMakeLists.txt
+	sed -e "s:add_subdirectory(tools)::g" -i CMakeLists.txt
+#	sed -e "s:add_subdirectory(common/src/Utilities)::g" -i CMakeLists.txt
+ 	sed -e "s:add_subdirectory(common/src/x86emitter)::g" -i CMakeLists.txt
+	sed -e "s:pcsx2_core TRUE:pcsx2_core FALSE:g" -i cmake/SelectPcsx2Plugins.cmake
+	sed -e "s:CDVDiso TRUE:CDVDiso FALSE:g" -i cmake/SelectPcsx2Plugins.cmake
+	sed -e "s:CDVDlinuz TRUE:CDVDlinuz FALSE:g" -i cmake/SelectPcsx2Plugins.cmake
+	sed -e "s:CDVDnull TRUE:CDVDnull FALSE:g" -i cmake/SelectPcsx2Plugins.cmake
+	sed -e "s:dev9null TRUE:dev9null FALSE:g" -i cmake/SelectPcsx2Plugins.cmake
+	sed -e "s:FWnull TRUE:FWnull FALSE:g" -i cmake/SelectPcsx2Plugins.cmake
+	sed -e "s:GSdx TRUE:GSdx FALSE:g" -i cmake/SelectPcsx2Plugins.cmake
+	sed -e "s:zerogs TRUE:zerogs FALSE:g" -i cmake/SelectPcsx2Plugins.cmake
+	sed -e "s:GSnull TRUE:GSnull FALSE:g" -i cmake/SelectPcsx2Plugins.cmake
+	sed -e "s:PadNull TRUE:PadNull FALSE:g" -i cmake/SelectPcsx2Plugins.cmake
+	sed -e "s:onepad TRUE:onepad FALSE:g" -i cmake/SelectPcsx2Plugins.cmake
+	sed -e "s:zeropad TRUE:zeropad FALSE:g" -i cmake/SelectPcsx2Plugins.cmake
+	sed -e "s:SPU2null TRUE:SPU2null FALSE:g" -i cmake/SelectPcsx2Plugins.cmake
+	sed -e "s:spu2-x TRUE:spu2-x FALSE:g" -i cmake/SelectPcsx2Plugins.cmake
+	sed -e "s:zerospu2 TRUE:zerospu2 FALSE:g" -i cmake/SelectPcsx2Plugins.cmake
+	sed -e "s:USBnull TRUE:USBnull FALSE:g" -i cmake/SelectPcsx2Plugins.cmake
 }
 
 src_configure() {
@@ -95,6 +95,7 @@ src_configure() {
 		-DPLUGIN_DIR_COMPILATION=$(games_get_libdir)/pcsx2
 		-DCMAKE_INSTALL_PREFIX=/usr
 		-DCMAKE_LIBRARY_PATH=$(games_get_libdir)/pcsx2
+		$(cmake-utils_use !cg GLSL_API)
 		${wxgtk_config}
 		${cg_config}
 		"
