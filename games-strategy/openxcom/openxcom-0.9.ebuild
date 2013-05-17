@@ -13,15 +13,16 @@ SRC_URI="https://github.com/SupSuper/OpenXcom/archive/v${PV}.tar.gz -> ${P}.tar.
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE=""
+IUSE="doc"
 
-DEPEND="~dev-cpp/yaml-cpp-0.3.0
+RDEPEND="~dev-cpp/yaml-cpp-0.3.0
 	media-libs/libsdl:0
 	media-libs/sdl-gfx
 	media-libs/sdl-image:0
 	media-libs/sdl-mixer
 	media-sound/timidity++"
-RDEPEND="${DEPEND}"
+DEPEND="${RDEPEND}
+	doc? ( app-doc/doxygen )"
 
 S="${WORKDIR}/OpenXcom-${PV}"
 
@@ -39,13 +40,16 @@ src_configure() {
 }
 
 src_compile() {
+	use doc && cmake-utils_src_compile doxygen
 	cmake-utils_src_compile
 }
 
-#src_install() {
-#	cmake-utils_src_install
-#	prepgamesdirs
-#}
+src_install() {
+	cmake-utils_src_install
+	use doc && dohtml -r "${CMAKE_BUILD_DIR}"/docs/html/*
+
+	prepgamesdirs
+}
 
 pkg_postinst() {
 	games_pkg_postinst
