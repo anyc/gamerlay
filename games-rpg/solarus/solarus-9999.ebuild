@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="2"
+EAPI="5"
 
 inherit cmake-utils games subversion
 
@@ -13,31 +13,44 @@ ESVN_REPO_URI="svn://svn.solarus-engine.org/solarus/trunk"
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS=""
-IUSE="debug"
+IUSE="debug luajit"
 
 DEPEND="media-libs/sdl-image[png]
 	media-libs/sdl-ttf
 	media-libs/openal
-	dev-lang/lua
+	|| ( =dev-lang/lua-5.1* dev-lang/luajit:2 )
+	luajit? ( dev-lang/luajit )
 	media-libs/libsndfile
 	dev-games/physfs[zip]"
 RDEPEND="${DEPEND}
 	app-arch/zip"
 
-src_configure()
-{
+src_prepare() {
+	use luajit && {
+		cp "${FILESDIR}/FindLuaJIT.cmake" "${S}/cmake/modules/" || die "copying failed"
+		sed \
+			-e "s#Lua51#LuaJIT#" \
+			-i "${S}/src/CMakeLists.txt" || die "luajit sed failed"
+		sed -r \
+			-e 's#(COMMAND) (luac -o) (\$\{CMAKE_CURRENT_BINARY_DIR\}/\$\{lua_source_file\}c) (\$\{lua_source_file\})#\1 luajit -b \4 \3#' \
+			-i "${S}/quests/zsdx/data/CMakeLists.txt"
+	}
+	sed \
+		-e "s#-pedantic -Wall -Werror#-Wno-error -fpermissive#" \
+		-i "${S}/src/CMakeLists.txt" || die "compilation fix sed failed"
+}
+
+src_configure() {
 	mycmakeargs="${mycmakeargs} -DDATAPATH=${GAMES_DATADIR}/${PN}"
 
 	cmake-utils_src_configure
 }
 
-src_compile()
-{
+src_compile() {
 	cmake-utils_src_compile
 }
 
-src_install()
-{
+src_install() {
 	dogamesbin "${WORKDIR}/${P}_build/src/${PN}" || die "dobin failed"
 
 	local datadir="${GAMES_DATADIR}"/"${PN}"
@@ -48,7 +61,6 @@ src_install()
 	prepgamesdirs
 }
 
-pkg_postinst()
-{
+pkg_postinst() {
 	games_pkg_postinst
 }
