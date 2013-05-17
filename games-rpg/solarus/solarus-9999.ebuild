@@ -38,6 +38,9 @@ src_prepare() {
 	sed \
 		-e "s#-pedantic -Wall -Werror#-Wno-error -fpermissive#" \
 		-i "${S}/src/CMakeLists.txt" || die "compilation fix sed failed"
+	sed \
+		-e "s%#%%g" \
+		-i "${S}/quests/zsdx/data/languages/languages.dat"
 }
 
 src_configure() {
