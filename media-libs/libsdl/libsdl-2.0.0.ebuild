@@ -10,8 +10,7 @@ MY_PV=${PV/_pre/-}
 
 DESCRIPTION="Simple Direct Media Layer"
 HOMEPAGE="http://www.libsdl.org/"
-SRC_URI="http://www.libsdl.org/tmp/SDL-${MY_PV}.tar.gz"
-
+SRC_URI="http://www.libsdl.org/tmp/release/SDL2-${MY_PV}.tar.gz"
 LICENSE="ZLIB"
 SLOT="2"
 KEYWORDS="~amd64 ~x86"
@@ -64,9 +63,9 @@ DEPEND="${RDEPEND}
 	xscreensaver? ( x11-proto/scrnsaverproto )
 "
 
-S="${WORKDIR}/SDL-${MY_PV}"
+S="${WORKDIR}/SDL2-${MY_PV}"
 
-DOCS=( BUGS CREDITS README README.HG README-SDL.txt TODO WhatsNew )
+DOCS=( BUGS.txt CREDITS.txt README.txt README-hg.txt README-SDL.txt TODO.txt WhatsNew.txt )
 
 src_prepare() {
 	# Currently cmake produce libsdl2.so targets,
@@ -117,7 +116,3 @@ src_configure() {
 	)
 	cmake-multilib_src_configure
 }
-
-#src_install() {
-#	cmake-multilib_src_install
-#}
