@@ -6,8 +6,8 @@ EAPI="5"
 
 inherit games multilib
 
-DESCRIPTION=""
-HOMEPAGE=""
+DESCRIPTION="A fast paced 2d platformer, focused on intense action and exploration."
+HOMEPAGE="http://www.capsizedgame.com/"
 SRC_URI="${PN}-${PV}-bin"
 
 LICENSE="as-is"
