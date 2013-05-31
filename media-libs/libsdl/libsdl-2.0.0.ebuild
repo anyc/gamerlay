@@ -75,6 +75,9 @@ src_prepare() {
 	epatch "${FILESDIR}/${PN}-add-libtool-export-cmake-v2.patch"
 	# Make headers more universal for 32/64 archs.
 	epatch "${FILESDIR}/${PN}-universal_sizeof_voidp.patch"
+
+	# Build failure on 64bit systems fix:
+	epatch "${FILESDIR}/${PN}-xdata32_fix.patch"
 }
 
 src_configure() {
