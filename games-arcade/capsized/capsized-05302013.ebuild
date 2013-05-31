@@ -13,7 +13,7 @@ SRC_URI="${PN}-${PV}-bin"
 LICENSE="as-is"
 SLOT="0"
 KEYWORDS="-* ~amd64 ~x86"
-IUSE=""
+IUSE="linguas_de linguas_es linguas_fr linguas_it"
 
 RESTRICT="fetch"
 
@@ -61,12 +61,15 @@ src_install() {
 		mono \
 		"${MY_PN}.bmp" \
 		NePlusUltra.exe \
-		fr it es de \
 		*.dll *.config
 
+	for lang in fr it es de; do
+		use "linguas_${lang}" && doins "${lang}"
+	done
+
+	# Installing bundled sdl2-mixer, since it is still not released [hg only]
 	insinto "${GAMEDIR}/$(get_libdir)"
 	doins "$(get_libdir)/libSDL2_mixer-2.0.so.0"
-#	doins "$(get_libdir)/libtheoraplay.so"
 
 	exeinto "${GAMEDIR}"
 	doexe "NePlusUltra.bin.${arch}"
