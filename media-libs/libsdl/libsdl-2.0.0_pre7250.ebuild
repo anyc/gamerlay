@@ -10,7 +10,7 @@ MY_PV=${PV/_pre/-}
 
 DESCRIPTION="Simple Direct Media Layer"
 HOMEPAGE="http://www.libsdl.org/"
-SRC_URI="http://www.libsdl.org/tmp/release/SDL2-${MY_PV}.tar.gz"
+SRC_URI="http://www.libsdl.org/tmp/SDL-${MY_PV}.tar.gz"
 LICENSE="ZLIB"
 SLOT="2"
 KEYWORDS="~amd64 ~x86"
@@ -63,7 +63,7 @@ DEPEND="${RDEPEND}
 	xscreensaver? ( x11-proto/scrnsaverproto )
 "
 
-S="${WORKDIR}/SDL2-${MY_PV}"
+S="${WORKDIR}/SDL-${MY_PV}"
 
 DOCS=( BUGS.txt CREDITS.txt README.txt README-hg.txt README-SDL.txt TODO.txt WhatsNew.txt )
 
@@ -76,8 +76,9 @@ src_prepare() {
 	# Make headers more universal for 32/64 archs.
 	epatch "${FILESDIR}/${PN}-universal_sizeof_voidp.patch"
 
-	# Build failure on 64bit systems fix:
-	epatch "${FILESDIR}/${PN}-xdata32_fix.patch"
+	# libX11 1.5.99.902 compilation fix
+	# See http://bugzilla.libsdl.org/show_bug.cgi?id=1769
+	epatch "${FILESDIR}/${PN}-fix-compilation-libX11.patch"
 }
 
 src_configure() {
