@@ -9,22 +9,15 @@ EAPI=5
 
 inherit eutils gnome2-utils fdo-mime
 
-DESCRIPTION="Supplementary files for Valve's Steam client for Linux"
+DESCRIPTION="Installer, launcher and supplementary files for Valve's Steam client"
 HOMEPAGE="http://steampowered.com"
+SRC_URI="http://repo.steampowered.com/steam/archive/precise/steam_${PV}.tar.gz"
 
-if [[ "${PV}" == "9999" ]] ; then
-	SRC_URI="http://repo.steampowered.com/steam/archive/precise/steam_latest.deb"
-	KEYWORDS=""
-else
-	SRC_URI="http://repo.steampowered.com/steam/archive/precise/steam_${PV}.tar.gz"
-	KEYWORDS="-* ~amd64 ~x86"
-fi
-
+KEYWORDS="-* ~amd64 ~x86"
 LICENSE="ValveSteamLicense"
 
 RESTRICT="bindist mirror"
 SLOT="0"
-IUSE="steamruntime"
 
 RDEPEND="
 		app-arch/xz-utils
@@ -61,15 +54,8 @@ RDEPEND="
 S=${WORKDIR}/steam/
 
 src_prepare() {
-	if [[ "${PV}" != "9999" ]] ; then
-		if ! use steamruntime; then
-			# use system libraries
-			sed -i -r "s/(export TEXTDOMAIN=steam)/\1\nif \[ -z \"\$STEAM_RUNTIME\" \]; then export STEAM_RUNTIME=0; fi/" steam || die
-		fi
-
-		# we use our ebuild functions to install the files
-		rm Makefile
-	fi
+	# we use our ebuild functions to install the files
+	rm Makefile
 }
 
 src_install() {
@@ -105,19 +91,6 @@ pkg_postinst() {
 	elog "client into your home folder. After installation, the script"
 	elog "also starts the client from your home folder."
 	elog ""
-
- 	if use steamruntime; then
- 		ewarn "You enabled the steam runtime environment. Steam will use bundled"
- 		ewarn "libraries instead of Gentoo's system libraries."
- 		ewarn ""
- 	else
- 		elog "We disable STEAM_RUNTIME in order to ignore bundled libraries"
- 		elog "and use installed system libraries instead. If you have problems,"
- 		elog "try starting steam with: STEAM_RUNTIME=1 steam"
-		ewarn ""
- 		ewarn "Notice: Valve only supports Steam with the runtime enabled!"
-		ewarn ""
-	fi
 
 	if ! has_version "gnome-extra/zenity"; then
 		ewarn "Valve does not provide a xterm fallback for all calls of zenity."
