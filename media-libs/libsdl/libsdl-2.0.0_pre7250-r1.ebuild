@@ -74,11 +74,15 @@ src_prepare() {
 	# See http://bugzilla.libsdl.org/show_bug.cgi?id=1743
 	epatch "${FILESDIR}/${PN}-add-libtool-export-cmake-v2.patch"
 	# Make headers more universal for 32/64 archs.
+	# See http://bugzilla.libsdl.org/show_bug.cgi?id=1893
 	epatch "${FILESDIR}/${PN}-universal_sizeof_voidp.patch"
 
 	# libX11 1.5.99.902 compilation fix
 	# See http://bugzilla.libsdl.org/show_bug.cgi?id=1769
 	epatch "${FILESDIR}/${PN}-fix-compilation-libX11.patch"
+	# Make headers more universal for 32/64 archs.
+	# http://bugzilla.libsdl.org/show_bug.cgi?id=1893
+	epatch "${FILESDIR}/${PN}-universal_xdata32_check.patch"
 }
 
 src_configure() {
