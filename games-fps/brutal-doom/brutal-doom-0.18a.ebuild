@@ -17,7 +17,7 @@ KEYWORDS="~amd64 ~x86"
 # TODO Add USEs for zdoom and skulltag
 IUSE=""
 
-RDEPEND="=games-fps/zdoom-9999"
+RDEPEND=">=games-fps/zdoom-2.7.0"
 DEPEND="app-arch/unzip"
 
 S="${WORKDIR}"
