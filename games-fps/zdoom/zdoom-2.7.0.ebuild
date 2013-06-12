@@ -1,14 +1,13 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
 EAPI=4
-inherit cmake-utils eutils games unpacker
+inherit cmake-utils eutils games versionator unpacker
 
 DESCRIPTION="ZDoom is an enhanced port of the official DOOM source code"
 HOMEPAGE="http://www.zdoom.org"
-#ESVN_REPO_URI="http://mancubus.net/svn/hosted/zdoom/zdoom/trunk"
-SRC_URI="http://www.zdoom.org/files/${PN}/2.6/${P}-src.7z"
+SRC_URI="http://www.zdoom.org/files/${PN}/$(get_version_component_range 1-2)/${P}-src.7z"
 
 LICENSE="BSD BUILD DOOM"
 SLOT="0"
