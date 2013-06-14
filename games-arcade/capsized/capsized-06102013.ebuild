@@ -27,6 +27,9 @@ RDEPEND="
 	media-libs/openal
 	media-libs/libsdl:2
 "
+#	dev-dotnet/monogame # someday
+#	dev-dotnet/monogame-theoraplay # someday
+#	media-libs/sdl-mixer # when 2.0 tarball will be released
 
 DOCS=( "Linux.README" )
 
@@ -50,31 +53,34 @@ src_unpack() {
 }
 
 src_install() {
-	local arch;
-	use x86 && arch=x86;
-	use amd64 && arch=x86_64;
-
 	insinto "${GAMEDIR}"
-	doins -r \
-		Content \
-		Properties \
-		mono \
-		"${MY_PN}.bmp" \
+	doins -r Content
+	doins   "${MY_PN}.bmp" \
 		NePlusUltra.exe \
-		*.dll *.config
+		FarseerPhysicsXNA.dll \
+		Lidgren.Network.dll \
+		MonoGame.Framework.dll \
+		ProjectMercury.dll \
+		'SDL2#'.dll \
+		'SDL2#'.dll.config \
+		'TheoraPlay#'.dll \
+		'TheoraPlay#'.dll.config
 
 	for lang in fr it es de; do
-		use "linguas_${lang}" && doins "${lang}"
+		use "linguas_${lang}" && doins -r "${lang}"
 	done
 
-	# Installing bundled sdl2-mixer, since it is still not released [hg only]
+	# Installing bundled sdl-mixer-2, since it is still not released as 
+	# tarball [hg only].
+	# btw, can be inserted in ${GAMEDIR} without subdir.
+	#
+	# Also installing bundled theoraplay, since in is no such package in
+	# portage.
 	insinto "${GAMEDIR}/$(get_libdir)"
 	doins "$(get_libdir)/libSDL2_mixer-2.0.so.0"
+	doins "$(get_libdir)/libtheoraplay.so"
 
-	exeinto "${GAMEDIR}"
-	doexe "NePlusUltra.bin.${arch}"
-
-	games_make_wrapper "${PN}" "./NePlusUltra.bin.${arch}" "${GAMEDIR}" "${GAMEDIR}/$(get_libdir)"
+	games_make_wrapper "${PN}" "mono ./NePlusUltra.exe" "${GAMEDIR}" "${GAMEDIR}/$(get_libdir)"
 	doicon "${FILESDIR}/${PN}.png"
 	make_desktop_entry "${PN}" "${MY_PN}" "${PN}"
 
