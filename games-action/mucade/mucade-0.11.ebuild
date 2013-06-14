@@ -13,7 +13,7 @@ MY_PV=${PV//./_}
 DESCRIPTION="The Physics Centipede Invasion. Smashup waggly shmup, 'Mu-cade'."
 HOMEPAGE="http://www.asahi-net.or.jp/~cs8k-cyu/windows/mcd_e.html"
 SRC_URI="http://www.asahi-net.or.jp/~cs8k-cyu/windows/${MY_PN}${MY_PV}.zip
-	mirror://debian/pool/main/m/${MY_PTCH}/${MY_PTCH}_${PV}.dfsg1-4.diff.gz"
+	mirror://debian/pool/main/m/${MY_PTCH}/${MY_PTCH}_${PV}.dfsg1-5.diff.gz"
 
 LICENSE="BSD"
 SLOT="0"
@@ -31,7 +31,7 @@ S=${WORKDIR}/${MY_PN}
 
 src_prepare(){
 	# using frostworks patches with debian's cleanups and minor patches
-	epatch "${WORKDIR}"/${MY_PTCH}_${PV}.dfsg1-4.diff
+	epatch "${WORKDIR}"/${MY_PTCH}_${PV}.dfsg1-5.diff
 	sed -i -e "s:b/::g" -i "${WORKDIR}"/${MY_PN}/${MY_PTCH}-${PV}.dfsg1/debian/patches/makefile.patch
 	sed -i -e "s:mu-cade:mucade:g" -i "${WORKDIR}"/${MY_PN}/${MY_PTCH}-${PV}.dfsg1/debian/patches/makefile.patch
 	sed -i -e "s:mu-cade:mucade:g" -i "${WORKDIR}"/${MY_PN}/${MY_PTCH}-${PV}.dfsg1/debian/patches/dotfile.patch
