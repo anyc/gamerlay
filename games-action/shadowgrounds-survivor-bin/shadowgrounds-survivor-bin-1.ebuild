@@ -2,7 +2,9 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/games-action/shadowgrounds-survivor-bin/shadowgrounds-survivor-bin-0_beta11.ebuild,v 1.2 2011/04/21 08:50:11 vapier Exp $
 
-inherit games eutils
+EAPI="5"
+
+inherit unpacker games eutils
 
 DESCRIPTION="human survivors who battle against the ongoing alien onslaught"
 HOMEPAGE="http://shadowgroundsgame.com/survivor/"
@@ -24,11 +26,11 @@ RDEPEND=">=sys-libs/glibc-2.4
 		app-emulation/emul-linux-x86-gtklibs
 	)"
 
-S=${WORKDIR}
+S="${WORKDIR}"
 
 d="${GAMES_PREFIX_OPT}/${PN}"
 QA_TEXTRELS_x86="`echo ${d#/}/lib32/lib{avcodec.so.51,avformat.so.52,avutil.so.49,FLAC.so.8}`"
-QA_TEXTRELS_amd64=${QA_TEXTRELS_x86}
+QA_TEXTRELS_amd64="${QA_TEXTRELS_x86}"
 
 pkg_nofetch() {
 	einfo "Fetch ${SRC_URI} and put it into ${DISTDIR}"
@@ -37,7 +39,7 @@ pkg_nofetch() {
 
 src_unpack() {
 	# manually run unzip as the initial seek causes it to exit(1)
-	unzip -q "${DISTDIR}/${A}"
+	unpack_zip "${A}"
 	rm lib*/lib{gcc_s,m,rt,selinux}.so.?
 }
 

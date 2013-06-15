@@ -2,9 +2,9 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=5
+EAPI="5"
 
-inherit games
+inherit unpacker games
 
 DESCRIPTION="Platform game where you manipulate liquids."
 HOMEPAGE="http://strangeloopgames.com"
@@ -31,12 +31,7 @@ pkg_nofetch() {
 }
 
 src_unpack() {
-	# self unpacking zip archive; unzip warns about the exe stuff
-	local a="${DISTDIR}/${SRC_URI}"
-	echo ">>> Unpacking ${a} to ${PWD}"
-	unzip -q "${a}"
-	[ $? -gt 1 ] && die "unpacking failed"
-
+	unpack_zip "${A}"
 }
 
 src_install() {

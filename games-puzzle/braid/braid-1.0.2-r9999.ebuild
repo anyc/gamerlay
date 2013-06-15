@@ -2,9 +2,9 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=4
+EAPI="5"
 
-inherit games versionator
+inherit unpacker games versionator
 
 MY_PV="$(get_version_component_range 3)"
 
@@ -39,11 +39,8 @@ pkg_nofetch() {
 }
 
 src_unpack() {
-	# self unpacking zip archive; unzip warns about the exe stuff
 	local a="${DISTDIR}/${PN}-linux-build${MY_PV}.run.bin"
-	echo ">>> Unpacking ${a} to ${PWD}"
-	unzip -q "${a}"
-	[ $? -gt 1 ] && die "unpacking failed"
+	unpack_zip "${a}"
 
 	if use linguas_ru; then
 		unpack "${PN}-rus.tar.bz2"

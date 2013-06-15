@@ -4,7 +4,7 @@
 
 EAPI="5"
 
-inherit games
+inherit unpacker games
 
 DESCRIPTION="An extraordinary mixture of action and strategy in a reversed tower defense formula."
 HOMEPAGE="http://www.anomalythegame.com/"
@@ -44,11 +44,7 @@ REQUIRED_USE="amd64? ( multilib )"
 S="${WORKDIR}"
 
 src_unpack() {
-        # self unpacking zip archive; unzip warns about the exe stuff
-        local a="${DISTDIR}/${A}"
-        echo ">>> Unpacking ${a} to ${PWD}"
-        unzip -q "${a}"
-        [ $? -gt 1 ] && die "unpacking failed"
+	unpack_zip "${A}"
 }
 
 pkg_nofetch() {

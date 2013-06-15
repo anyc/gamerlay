@@ -4,7 +4,7 @@
 
 EAPI="5"
 
-inherit games multilib
+inherit unpacker games multilib
 
 DESCRIPTION="A fast paced 2d platformer, focused on intense action and exploration."
 HOMEPAGE="http://www.capsizedgame.com/"
@@ -46,10 +46,7 @@ pkg_nofetch() {
 }
 
 src_unpack() {
-	local a=${DISTDIR}/${A}
-	echo ">>> Unpacking ${a} to ${PWD}"
-	unzip -q "${a}"
-	[ $? -gt 1 ] && die "unpacking failed"
+	unpack_zip "${A}"
 }
 
 src_install() {
