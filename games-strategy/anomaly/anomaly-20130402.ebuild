@@ -2,21 +2,19 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="4"
+EAPI="5"
 
 inherit games
 
 DESCRIPTION="An extraordinary mixture of action and strategy in a reversed tower defense formula."
 HOMEPAGE="http://www.anomalythegame.com/"
-SRC_URI="
-		x86? ( linux-anomaly-i386-1327984913.tar.gz )
-		amd64? ( linux-anomaly-amd64.tar.gz )
-"
+# Is it non-HiB distfile?
+SRC_URI="AnomalyWarzoneEarth-Installer_Humble_Linux_1364850491.zip"
 RESTRICT="fetch strip"
 LICENSE="as-is"
 SLOT="0"
 KEYWORDS="-* ~amd64 ~x86"
-IUSE=""
+IUSE="multilib"
 
 DEPEND=""
 RDEPEND="
@@ -38,11 +36,23 @@ RDEPEND="
 		app-emulation/emul-linux-x86-sdl
 	)
 	virtual/opengl
+	app-arch/unzip
 "
 
 REQUIRED_USE="amd64? ( multilib )"
 
-S="${WORKDIR}/Anomaly"
+S="${WORKDIR}"
+
+src_unpack() {
+	#double-zipped files, lol
+	unpack ${A}
+        # self unpacking zip archive; unzip warns about the exe stuff
+        local a="${S}/AnomalyWarzoneEarth-Installer"
+        echo ">>> Unpacking ${a} to ${PWD}"
+        unzip -q "${a}"
+        [ $? -gt 1 ] && die "unpacking failed"
+	rm "${a}" # save space
+}
 
 pkg_nofetch() {
 	ewarn
@@ -51,6 +61,7 @@ pkg_nofetch() {
 }
 
 src_install() {
+	cd "${S}/data"
 	local dir="${GAMES_PREFIX_OPT}/${PN}"
 
 	newicon "icon.png" "${PN}.png"
@@ -63,11 +74,14 @@ src_install() {
 		"libopenal.so.1" \
 		"libstdc++.so.6" \
 		"icon.png" \
-		"install.sh" \
-		"uninstall.sh" \
 		"README" \
-		"AnomalyWarzoneEarth"
-
+		"AnomalywarzoneEarth" \
+		"AnomalyWarzoneEarth" \
+		"AnomalyWarzoneEarth-old" \
+		"Copyright license Lua" \
+		"Copyright license OggVorbis" \
+		"Copyright license Theora" \
+		"Copyright license Xpm"
 	insinto "${dir}"
 	doins -r .
 
