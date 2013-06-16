@@ -2,8 +2,8 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 	<maintainer>
-		<email>leycec@gmail.com</email>
-		<name>leycec</name>
+		<email>azamat.hackimov@gmail.com</email>
+		<name>Azamat H. Hackimov</name>
 	</maintainer>
 	<longdescription>
 SDL_image is an image file loading library. It loads images as SDL surfaces, and
@@ -15,7 +15,8 @@ WEBP, XCF, XPM, XV.
 	</upstream>
 	<use>
 		<flag name="bmp">Enable BMP image format support</flag>
-		<flag name="pic">Enable PIC on x86</flag>
+		<flag name="lbm">Enable LBM image format support</flag>
+		<flag name="pcx">Enable PCX image format support</flag>
 		<flag name="pnm">Enable PNM image format support</flag>
 		<flag name="showimage">Install the "showimage" test command</flag>
 		<flag name="tga">Enable TGA image format support</flag>

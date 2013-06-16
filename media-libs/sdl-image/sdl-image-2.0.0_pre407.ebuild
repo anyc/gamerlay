@@ -1,73 +1,53 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 EAPI=5
 
-# Enable Bash strictness.
-set -e
+inherit eutils mercurial versionator
 
-inherit autotools eutils mercurial
+MY_PV=${PV/_pre/-}
+EHG_REVISION=$(get_version_component_range 4 ${MY_PV})
 
-MY_P="SDL_image-${PV}"
 DESCRIPTION="Image file loading library"
 HOMEPAGE="http://www.libsdl.org/projects/SDL_image"
 EHG_REPO_URI="http://hg.libsdl.org/SDL_image"
 
 LICENSE="ZLIB"
-SLOT="2/0.8.5"
-KEYWORDS=""
+SLOT="2"
+KEYWORDS="~amd64 ~x86"
 
 #FIXME: Add "test".
-IUSE="
-showimage static-libs
-bmp gif jpeg pnm png tiff tga webp xcf xpm
-"
+IUSE="showimage static-libs +bmp +gif +jpeg +lbm +pcx +png +pnm +tga +tiff +xcf +xv +xpm +webp"
 
 RDEPEND="
-	media-libs/libsdl:2=
-	>=sys-libs/zlib-1.2.5
+	media-libs/libsdl:2
 	jpeg? ( virtual/jpeg )
-	png?  ( >=media-libs/libpng-1.5.7 )
+	png?  ( >=media-libs/libpng-1.5.7 >=sys-libs/zlib-1.2.5 )
 	tiff? ( >=media-libs/tiff-4.0.0 )
 	webp? ( >=media-libs/libwebp-0.1.3 )
 "
 DEPEND="${RDEPEND}"
 
-S="${WORKDIR}/${MY_P}"
-
-src_prepare() {
-	# SDL_image specifically requires libpng 1.5, but attempts to compile
-	# against *ANY* libpng -- even if libpng 1.5 is not currently slotted to
-	# "libpng.so". Patch "configure" to specifically require libpng 1.5. While
-	# it's usually preferable to patch "configure.in" instead, most SDL
-	# autotools-based scripts are fundamentally, nonsensically broken. Calling
-	# eautoreconf() here with the following globally defined variables *SHOULD*
-	# produce a working "aclocal.m4" file with corresponding scripts:
-	#
-	#   AM_OPTS='--foreign --include-deps'
-    #   AT_M4DIR='acinclude'
-	#
-	# Naturally, it doesn't, failing with the usual
-	# "libtool: version mismatch error". I hate you, autotools. Since SDL itself
-	# has since moved to CMake, this really isn't worth fixing. Hack it for now.
-	sed -e 's~libpng~libpng15~' -i configure
-}
+S="${WORKDIR}/SDL_image-${MY_PV}"
 
 src_configure() {
 	local myeconfargs=(
-		# Disable support for OS X's ImageIO library.
+		# Disable support for OS X ImageIO library.
 		--disable-imageio
 		$(use_enable static-libs static)
 		$(use_enable bmp)
 		$(use_enable gif)
 		$(use_enable jpeg jpg)
-		$(use_enable pnm)
+		$(use_enable lbm)
+		$(use_enable pcx)
 		$(use_enable png)
+		$(use_enable pnm)
 		$(use_enable tga)
 		$(use_enable tiff tif)
-		$(use_enable webp)
 		$(use_enable xcf)
+		$(use_enable xv)
 		$(use_enable xpm)
+		$(use_enable webp)
 	)
 
 	# SDL_image 2.0 ships with a demonstrably horrible "configure" script. By
@@ -83,15 +63,14 @@ src_configure() {
 	#   AUTOCONF = true --run autoconf-1.10
 	#
 	# Since "true" always succeeds with zero exit status, this forces sanity.
-	# SDL, I am not happy with you.
 	MISSING=true econf "${myeconfargs[@]}"
 }
 
 src_install() {
-	default
-	dodoc CHANGES README
+	emake DESTDIR="${D}" install
+	dodoc {CHANGES,README}.txt
 	use static-libs || prune_libtool_files --all
 
 	# Prevent SDL 2.0's "showimage" from colliding with SDL 1.2's "showimage".
-	use showimage && newbin '.libs/showimage' "showimage-2"
+	use showimage && newbin '.libs/showimage' "showimage2"
 }
