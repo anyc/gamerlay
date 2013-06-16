@@ -4,7 +4,7 @@
 
 EAPI=5
 
-inherit cmake-multilib
+inherit cmake-multilib eutils
 
 MY_PV=${PV/_pre/-}
 
@@ -77,6 +77,8 @@ src_prepare() {
 	# See http://bugzilla.libsdl.org/show_bug.cgi?id=1893
 	epatch "${FILESDIR}/${PN}-universal_sizeof_voidp.patch"
 	epatch "${FILESDIR}/${PN}-universal_xdata32_check.patch"
+
+	epatch_user
 }
 
 src_configure() {
