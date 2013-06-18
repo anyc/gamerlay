@@ -1,21 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-<herd>no-herd</herd>
-<maintainer>
-<email>azamat.hackimov@gmail.com</email>
-<name>Azamat H. Hackimov</name>
-</maintainer>
-<longdescription lang="en">
-Descent Rebirth - enhanced Descent 2 engine
-</longdescription>
-<longdescription lang="ru">
-Descent Rebirth - улучшенный движок для Descent 2
-</longdescription>
-<use>
-<flag name="editor">Enable editor (Experimental!)</flag>
-<flag name="music_awe32">Enable soundtrack recorded with the enhanced AWE32 soundfont</flag>
-<flag name="music_opl3">Enable soundtrack recorded with the Yamaha YMF262 OPL3 Soundchip</flag>
-<flag name="music_sc55">Enable soundtrack recorded with the Roland Sound Canvas SC-55</flag>
-</use>
+  <herd>games</herd>
+    <longdescription>
+      Descent 2 is a classic 'tunnel shooter' released for the PC in 1996.  It
+      was developed by Parallax Software and published by Interplay.  It, along
+      with its predecessor Descent, was one of the first games to offer true
+      3-dimensional graphics, 6 degrees of freedom in movement, and the
+      capability to join multiplayer games on-the-fly.  DXX-Rebirth is a
+      modification of the Descent 2 source that was released by Parallax,
+      offering OpenGL graphics, advanced multiplayer, new features, and
+      cross-platform compatibility.
+    </longdescription>
+  <use>
+    <flag name="linguas_de">Provides German translations for the game's
+      briefings, robot descriptions, and outro of the original campaign</flag>
+    <flag name="opl3">Include alternate version of the game's music, recorded
+      with the Yamaha YMF262 OPL3 soundchip</flag>
+    <flag name="sc55">Include alternate version of the game's music, recorded
+      with the Roland Sound Canvas SC-55 MIDI module</flag>
+  </use>
 </pkgmetadata>
