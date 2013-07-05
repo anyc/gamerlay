@@ -1,14 +1,15 @@
-EAPI=5
+EAPI="5"
 
-inherit games
+inherit base games unpacker-nixstaller
 # multilib
 
-MY_P="${PN}-${PV}-1"
+MY_PN="${PN^^}"
+TS="1372878397"
+MY_P="${MY_PN}_${PV:0:4}-${PV:4:2}-${PV:6:2}_Linux_${TS}"
 
 DESCRIPTION="Develop your telekinetic strength by pushing a Cube within a geometric universe."
 HOMEPAGE="http://mobigame.net/"
-SRC_URI="amd64? ( ${MY_P}-amd64.tar.gz )
-	x86? ( ${MY_P}-i386.tar.gz )"
+SRC_URI="${MY_P}.sh"
 RESTRICT="fetch"
 
 # Bundled libs :(
@@ -46,31 +47,47 @@ pkg_nofetch() {
 	ewarn
 }
 
-S="${WORKDIR}/${PN}"
+S="${WORKDIR}"
+
+DOCS=( "README.linux" )
+
+src_unpack() {
+	local arch=x86
+	use amd64 && arch=x86_64
+	nixstaller_unpack "instarchive_all" "instarchive_all_${arch}"
+}
 
 src_install() {
 	local dir="${GAMES_PREFIX_OPT}/${PN}"
+	local arch=x86
+	use amd64 && arch=x86_64
 
 	exeinto "${dir}"
 	insinto "${dir}"
 
-	make_desktop_entry "${PN}" "EDGE" "EDGE"
-	games_make_wrapper "${PN}" "./EDGE.bin" "${dir}"
+	make_desktop_entry "${PN}" "${MY_PN}" "${MY_PN}"
+	games_make_wrapper "${PN}" "./${PN}" "${dir}"
 
-	dodoc "README"
-	doexe "EDGE.bin"
-	doicon "EDGE.png"
+	newexe "${MY_PN}.bin.${arch}" "${PN}"
+	doicon "${MY_PN}.png"
 
-	rm \
-		"EDGE.desktop.in" \
-		"EDGE.png" \
-		"EDGE.bin" \
-		"edge.in" \
-		"README" \
-		"install.sh" \
-		"uninstall.sh"
-	rm -rf lib lib64
+	doins -r \
+		"namespace.txt" \
+		"cos.bin" \
+		"font.bin" \
+		"audio" \
+		"config" \
+		"default" \
+		"effects" \
+		"images" \
+		"levels" \
+		"localization" \
+		"models" \
+		"music" \
+		"sprites" \
+		"textures"
 
-	doins -r *
 	prepgamesdirs
+
+	base_src_install_docs
 }
