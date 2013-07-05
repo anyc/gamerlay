@@ -1,7 +1,6 @@
 EAPI="5"
 
 inherit base games unpacker-nixstaller
-# multilib
 
 MY_PN="${PN^^}"
 TS="1372878397"
@@ -12,9 +11,6 @@ HOMEPAGE="http://mobigame.net/"
 SRC_URI="${MY_P}.sh"
 RESTRICT="fetch"
 
-# Bundled libs :(
-#QA_PRESTRIPPED="${GAMES_PREFIX_OPT}/${PN}/lib.*"
-
 LICENSE="as-is"
 SLOT="0"
 KEYWORDS="-* ~amd64 ~x86"
@@ -22,23 +18,9 @@ IUSE=""
 
 DEPEND=""
 RDEPEND="${DEPEND}
-	app-arch/bzip2
-	dev-libs/expat
-	media-libs/fontconfig
+	media-libs/libsdl:2
+	media-libs/openal
 	sys-libs/zlib
-	x11-libs/libdrm
-	x11-libs/libX11
-	x11-libs/libXau
-	x11-libs/libxcb
-	x11-libs/libXdamage
-	x11-libs/libXdmcp
-	x11-libs/libXext
-	x11-libs/libXfixes
-	x11-libs/libXft
-	x11-libs/libXrender
-	x11-libs/libXxf86vm
-	virtual/opengl
-	media-libs/freetype:2
 "
 
 pkg_nofetch() {
