@@ -14,11 +14,7 @@ GITHUB_PROJECT="Desurium"
 BREAKPAD_ARC="breakpad-850.tar.gz"
 CEF_ARC="cef-291.tar.gz"
 WX_ARC="wxWidgets-2.9.3.tar.bz2"
-
-if ! use bundled-wxgtk ; then
-	WX_GTK_VER="2.9"
-	WX_ECLASS="wxwidgets"
-fi
+WX_GTK_VER="2.9"
 
 if [[ ${PV} = 9999* ]]; then
 	EGIT_REPO_URI="git://github.com/${GITHUB_MAINTAINER}/${GITHUB_PROJECT}.git"
@@ -30,19 +26,19 @@ else
 	SRC_URI="http://github.com/${GITHUB_MAINTAINER}/${GITHUB_PROJECT}/tarball/${PV} -> ${DESURIUM_ARC}"
 fi
 SRC_URI="${SRC_URI}
-	mirror://github/${GITHUB_MAINTAINER}/${GITHUB_PROJECT}/${BREAKPAD_ARC}
-	mirror://github/${GITHUB_MAINTAINER}/${GITHUB_PROJECT}/${CEF_ARC}
+	mirror://sourceforge/desurium/${BREAKPAD_ARC}
+	mirror://sourceforge/desurium/${CEF_ARC}
 	bundled-wxgtk? (
 		ftp://ftp.wxwidgets.org/pub/2.9.3/${WX_ARC}
 	)"
 
-inherit cmake-utils eutils ${GIT_ECLASS} gnome2-utils ${WX_ECLASS} games toolchain-funcs
+inherit cmake-utils eutils ${GIT_ECLASS} gnome2-utils wxwidgets games toolchain-funcs
 
 DESCRIPTION="Free software version of Desura game client"
 HOMEPAGE="https://github.com/lodle/Desurium"
 LICENSE="GPL-3"
 SLOT="0"
-IUSE="+32bit +bundled-wxgtk debug tools"
+IUSE="+32bit +bundled-wxgtk debug test tools"
 
 if [[ ${PV} != 9999* ]]; then
 	KEYWORDS="~amd64 ~x86"
@@ -65,7 +61,6 @@ COMMON_DEPEND="app-arch/bzip2
 		net-misc/curl[ares]
 	)
 	>=sys-devel/gcc-4.6
-	virtual/pkgconfig
 	x11-libs/gtk+:2
 	x11-libs/libnotify
 	x11-libs/libXt
@@ -80,7 +75,8 @@ RDEPEND=">=media-libs/desurium-cef-4
 	x11-misc/xdg-user-dirs
 	x11-misc/xdg-utils
 	${COMMON_DEPEND}"
-DEPEND="${COMMON_DEPEND}"
+DEPEND="${COMMON_DEPEND}
+	virtual/pkgconfig"
 
 pkg_pretend() {
 	if [[ ${MERGE_TYPE} != binary ]]; then
@@ -108,6 +104,7 @@ src_configure() {
 		-DWITH_ARES=FALSE
 		-DFORCE_SYS_DEPS=TRUE
 		-DBUILD_CEF=FALSE
+		$(cmake-utils_use test BUILD_TESTS)
 		-BUILD_ONLY_CEF=FALSE
 		$(cmake-utils_use debug DEBUG)
 		$(cmake-utils_use 32bit 32BIT_SUPPORT)
