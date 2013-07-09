@@ -16,6 +16,7 @@ IUSE="gtk mmx"
 
 RDEPEND="app-arch/bzip2
 	media-libs/fmod
+	media-libs/libsdl:0
 	media-sound/fluidsynth
 	sys-libs/zlib
 	virtual/jpeg
