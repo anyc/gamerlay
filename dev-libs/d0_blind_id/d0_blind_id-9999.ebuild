@@ -26,13 +26,6 @@ DEPEND="${RDEPEND}
 
 DOCS=( d0_blind_id.txt )
 
-src_prepare() {
-	# fix out-of-source build
-	sed -e 's, d0_rijndael.c, "$srcdir/d0_rijndael.c",' -i configure.ac || die
-
-	autotools-utils_src_prepare
-}
-
 src_configure() {
 	local myeconfargs=(
 		--enable-rijndael

@@ -5,8 +5,4 @@
 		<email>nikoli@lavabit.com</email>
 		<name>Nikoli</name>
 	</maintainer>
-	<use>
-		<flag name='openssl'>Use OpenSSL instead of GMP (beware of the OpenSSL license), for Mac OS X users only, GMP is faster.</flag>
-		<flag name='tommath'>Use libtommath instead of GMP (slow, but WTFPL)</flag>
-	</use>
 </pkgmetadata>
