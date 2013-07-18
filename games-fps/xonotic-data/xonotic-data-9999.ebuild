@@ -19,7 +19,7 @@ IUSE="+client +convert low +maps +zip"
 
 RDEPEND=""
 DEPEND="
-	~dev-games/gmqcc-9999
+	~games-util/gmqcc-9999
 	convert? (
 		media-gfx/imagemagick[jpeg,png]
 		low? ( media-sound/vorbis-tools )
