@@ -4,17 +4,17 @@
 
 EAPI=5
 
-inherit eutils games toolchain-funcs flag-o-matic git-2
+inherit eutils games toolchain-funcs flag-o-matic check-reqs
 
+MY_PN="${PN^}"
 DESCRIPTION="Fork of Nexuiz, Deathmatch FPS based on DarkPlaces, an advanced Quake 1 engine"
 HOMEPAGE="http://www.xonotic.org/"
-BASE_URI="git://git.xonotic.org/${PN}/"
-EGIT_REPO_URI="${BASE_URI}${PN}.git"
+SRC_URI="http://dl.xonotic.org/${P}.zip"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS=""
-IUSE="alsa experimental +maps ode opengl +s3tc +sdl +server"
+KEYWORDS="~amd64 ~x86"
+IUSE="alsa ode opengl +s3tc +sdl +server"
 REQUIRED_USE="
 	|| ( opengl sdl server )
 "
@@ -27,7 +27,6 @@ UIRDEPEND="
 	x11-libs/libX11
 	virtual/opengl
 	media-libs/freetype:2
-	~games-fps/xonotic-data-9999[client]
 	s3tc? ( media-libs/libtxc_dxtn )
 "
 RDEPEND="
@@ -35,9 +34,7 @@ RDEPEND="
 	virtual/jpeg
 	media-libs/libpng:0=
 	net-misc/curl
-	~dev-libs/d0_blind_id-${PV}
-	~games-fps/xonotic-data-9999
-	maps? ( ~games-fps/xonotic-maps-9999 )
+	>=dev-libs/d0_blind_id-0.5
 	ode? ( dev-games/ode[double-precision] )
 	opengl? (
 		${UIRDEPEND}
@@ -59,13 +56,18 @@ DEPEND="${RDEPEND}
 	)
 "
 
-src_unpack() {
-	git-2_src_unpack
+S="${WORKDIR}/${MY_PN}"
 
-	use experimental || EGIT_BRANCH="div0-stable"
-	EGIT_REPO_URI="${BASE_URI}darkplaces.git" \
-	EGIT_SOURCEDIR="${S}/darkplaces" \
-	git-2_src_unpack
+CHECKREQS_DISK_BUILD="2100M"
+CHECKREQS_DISK_USR="950M"
+
+pkg_pretend() {
+	check-reqs_pkg_pretend
+}
+
+pkg_setup() {
+	check-reqs_pkg_setup
+	games_pkg_setup
 }
 
 src_prepare() {
@@ -75,17 +77,15 @@ src_prepare() {
 
 	epatch_user
 
-	sed -e 's,Version=2.5,Version=1.0,' -i misc/logos/xonotic-*.desktop || die
-
 	sed -i \
 		-e "/^EXE_/s:darkplaces:${PN}:" \
 		-e "/^OPTIM_RELEASE=/s:$: ${CFLAGS}:" \
 		-e "/^LDFLAGS_RELEASE=/s:$: ${LDFLAGS}:" \
-		darkplaces/makefile.inc || die
+		source/darkplaces/makefile.inc || die
 
 	if use !alsa; then
 		sed -e "/DEFAULT_SNDAPI/s:ALSA:OSS:" \
-			-i darkplaces/makefile || die
+			-i source/darkplaces/makefile || die
 	fi
 }
 
@@ -97,7 +97,7 @@ src_compile() {
 	use sdl && targets+=" sdl-release"
 	use server && targets+=" sv-release"
 
-	cd darkplaces || die
+	cd source/darkplaces || die
 	for i in ${targets}; do
 		emake STRIP=true \
 			DP_FS_BASEDIR="${GAMES_DATADIR}/${PN}" \
@@ -108,17 +108,17 @@ src_compile() {
 
 src_install() {
 	if use opengl; then
-		dogamesbin darkplaces/${PN}-glx
-		domenu misc/logos/xonotic-glx.desktop
+		dogamesbin source/darkplaces/${PN}-glx
+		make_desktop_entry ${PN}-glx "${MY_PN} (GLX)"
 	fi
 	if use sdl; then
-		dogamesbin darkplaces/${PN}-sdl
-		domenu misc/logos/xonotic-sdl.desktop
+		dogamesbin source/darkplaces/${PN}-sdl
+		make_desktop_entry ${PN}-sdl "${MY_PN} (SDL)"
 	fi
 	if use opengl || use sdl; then
 		newicon misc/logos/icons_png/${PN}_512.png ${PN}.png
 	fi
-	use server && dogamesbin darkplaces/${PN}-dedicated
+	use server && dogamesbin source/darkplaces/${PN}-dedicated
 
 	dodoc Docs/*.txt
 	dohtml -r Docs
@@ -129,6 +129,8 @@ src_install() {
 	doins key_0.d0pk
 
 	use server && doins -r server
+
+	doins -r data
 
 	prepgamesdirs
 }

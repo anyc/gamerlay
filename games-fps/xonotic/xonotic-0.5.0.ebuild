@@ -1,4 +1,4 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -44,7 +44,7 @@ RDEPEND="
 	virtual/jpeg
 	media-libs/libpng
 	net-misc/curl
-	~dev-libs/d0_blind_id-0.3[crypt?]
+	~dev-libs/d0_blind_id-0.5
 	opengl? ( ${UIRDEPEND} )
 	!dedicated? ( !opengl? ( ${UIRDEPEND} ) )
 "

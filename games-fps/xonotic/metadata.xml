@@ -6,6 +6,10 @@
 		<name>Nikoli</name>
 	</maintainer>
 	<use>
+		<flag name='experimental'>Use experimental master git branch instead of div0-stable</flag>
+		<flag name='maps'>Download and install maps</flag>
+		<flag name='ode'>Enable ODE physics engine support</flag>
 		<flag name='s3tc'>Install <pkg>media-libs/libtxc_dxtn</pkg> for S3TC texture (de)compression, works with mesa drivers only</flag>
+		<flag name="server">Enable compilation of server</flag>
 	</use>
 </pkgmetadata>
