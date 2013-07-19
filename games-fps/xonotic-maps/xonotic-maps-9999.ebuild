@@ -1,8 +1,8 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=2
+EAPI=5
 
 inherit games check-reqs
 
@@ -12,17 +12,28 @@ HOMEPAGE="http://www.xonotic.org/"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS=""
 IUSE="unofficial"
 
-RDEPEND="~games-fps/xonotic-data-9999"
+RDEPEND=""
 DEPEND="
 	app-arch/unzip
 	net-misc/wget
 "
 S="${WORKDIR}"
+RESTRICT="test"
+
+if use unofficial; then
+	CHECKREQS_DISK_USR="1G"
+else
+	CHECKREQS_DISK_USR="155M"
+fi
+
+pkg_pretend() {
+	check-reqs_pkg_pretend
+}
 
 pkg_setup() {
+	check-reqs_pkg_setup
 	games_pkg_setup
 
 	ewarn "Downloaded pk3 files will be stored in \"xonotic-maps\" subdirectory of your DISTDIR"
@@ -32,9 +43,6 @@ pkg_setup() {
 		ewarn "You have enabled \"unofficial\" USE flag. Incomplete, unstable or broken maps may be installed."
 		echo
 	fi
-
-	CHECKREQS_DISK_USR="350" \
-	check_reqs
 }
 
 src_unpack() {
@@ -55,107 +63,104 @@ src_unpack() {
 	local WGET="/usr/bin/wget -t 3 -T 60"
 	local base_url="http://beta.xonotic.org/autobuild-bsp/"
 
-	$WGET -O \
-		autobuild-bsp.list \
+	einfo "Downloading lists"
+	$WGET -O all_maps.html \
 		"${base_url}" || die
 
-	local OfficialMaps="$(
-		$WGET -O- \
-		'http://git.xonotic.org/?p=xonotic/xonotic-maps.pk3dir.git;a=tree;f=maps' |\
-		grep -e '\.map</a>' |\
-		sed -e 's,.*">\([^<]*\).map<\/a>.*,\1,'
-	)"
-	if [ "x${OfficialMaps}" = "x" ]; then
-		die "List of official maps is empty"
-	fi
-	local Maps="${OfficialMaps}"
+	$WGET -O official_maps.html \
+		'http://git.xonotic.org/?p=xonotic/xonotic-maps.pk3dir.git;a=tree;f=maps' || die
+
+	grep -e '\.map</a>' official_maps.html |\
+		sed -e 's,.*">\([^<]*\).map<\/a>.*,\1,' > official_maps.txt || die
+	[ -s official_maps.txt ] || die "List of official maps is empty"
+	cp official_maps.txt install_maps.txt || die
 
 	if use unofficial; then
-	# For maps not in master branch we need to download fullpk3,
-	# but some old unofficial maps have only bspk3, exclude them.
+	# For maps not in master branch we need to download fullpk3
 		# AllMaps - OfficialMaps = UnofficialMaps
-		echo "${OfficialMaps}" |\
-		sed -e 's,\(.*\),^\1$,' \
-			> OfficialMaps.grep || die
-		local UnofficialMaps="$(
-			grep autobuild-bsp.list \
-				-e '<td class="mapname">' |\
-			sed -e 's,.*="mapname">\([^<]*\)<.*,\1,' |\
-			sort -u |\
-			grep -v -e '^$' \
-				-e '^arahia$' \
-				-e '^darkzone$' \
-				-e '^facility_114$' \
-				-e '^valentine114$' \
-				-f OfficialMaps.grep |\
-			sed -e 's,$,-full,'
-		)"
-		if [ "x${UnofficialMaps}" = "x" ]; then
-			die "List of unofficial maps is empty"
-		fi
-		Maps+=" ${UnofficialMaps}"
+		grep all_maps.html \
+			-e '<td class="mapname">' |\
+		sed -e 's,.*="mapname">\([^<]*\)<.*,\1,' |\
+		sort -u |\
+		grep -v -x -e '' \
+			-f official_maps.txt |\
+		sed -e 's,$,-full,' > unofficial_maps.txt
+		[ -s unofficial_maps.txt ] || die "List of unofficial maps is empty"
+		cat unofficial_maps.txt >> install_maps.txt
 	fi
 
-	MapFiles=""
-	for i in ${Maps}; do
-		local version="$(
-			grep autobuild-bsp.list -m1 \
-				-e "href=\"${i%-full}-.*.pk3\">bspk3<" |\
-			sed -e "s,.*href=\"${i%-full}-\([^\"]*\).pk3\">bspk3<.*,\1,"
-		)"
-		local name="${i}-${version}.pk3"
-		MapFiles+=" ${name}"
-		local path="${MAPS_STORE_DIR}/${name}"
-		local url="${base_url}${name}"
-
-		if [[ ! -f "${path}" ]]; then
-			rm -f "${path}" 2> /dev/null
-			einfo "Downloading ${name}"
-			$WGET "${url}" -O "${path}" || ewarn "downloading ${url} failed"
-		fi
-	done
-
-	# Remove obsolete and broken files from MAPS_STORE_DIR
-	# If map becomes official, it changes branch and git hashes in name => no need to check both fullpk3 and bsppk3
-	for i in "${MAPS_STORE_DIR}"/*; do
-		local name="$(
-			echo "${i}" |\
-			sed -e "s,${MAPS_STORE_DIR}/\([^/]*\)-.*-.*.pk3$,\1,"
-		)"
-		local version="$(
-			echo "${i}" |\
-			sed -e "s,${MAPS_STORE_DIR}/${name}-\([^/]*\).pk3$,\1,"
-		)"
+	latest_pk3_version() {
 		# latest builds of maps are above
-		local Cversion="$(
-			grep autobuild-bsp.list -m1 \
+		latest_version="$(
+			grep all_maps.html -m1 \
 				-e "href=\"${name%-full}-.*.pk3\">bspk3<" |\
 			sed -e "s,.*href=\"${name%-full}-\([^\"]*\).pk3\">bspk3<.*,\1,"
 		)"
+	}
 
-		if [ "${version}" != "${Cversion}" ]; then
-			einfo "${i} is obsolete, removing"
-			rm -f "${i}"
-		elif [ "x${version}" = "x" ]; then
-			ewarn "${i} has incorrect name, removing"
-			rm -f "${i}"
-		elif [ "x${Cversion}" = "x" ]; then
-			ewarn "${i} is not available in ${base_url}, removing"
-			rm -f "${i}"
-		elif unzip -t "${i}" > /dev/null; then
+	validate_pk3() {
+		if unzip -t "${1}" > /dev/null; then
 			true
 		else
-			ewarn "${i} is not valid pk3 file, removing"
-			rm -f "${i}"
+			ewarn "\"${1}\" is not valid pk3 file, removing"
+			rm -f "${1}" || die
+		fi
+	}
+
+	# Remove obsolete and broken files from MAPS_STORE_DIR
+	# If map becomes official, it changes branch and git hashes in name => no need to check both fullpk3 and bsppk3
+	einfo "Cleaning \"${MAPS_STORE_DIR}\""
+	for file in "${MAPS_STORE_DIR}"/*; do
+		local name="$(
+			echo "${file}" |\
+			sed -e "s,${MAPS_STORE_DIR}/\([^/]*\)-[0-9a-f]\{40\}-[0-9a-f]\{40\}.pk3$,\1,"
+		)"
+		local version="$(
+			echo "${file}" |\
+			sed -e "s,${MAPS_STORE_DIR}/${name}-\([0-9a-f]\{40\}-[0-9a-f]\{40\}\).pk3$,\1,"
+		)"
+		latest_pk3_version
+
+		if [ "${version}" != "${latest_version}" ]; then
+			einfo "\"${file}\" is obsolete, removing"
+			rm -f "${file}" || die
+		elif [ "x${version}" = "x" ]; then
+			ewarn "\"${file}\" has incorrect name, removing"
+			rm -f "${file}" || die
+		elif [ "x${latest_version}" = "x" ]; then
+			ewarn "\"${file}\" is not available in ${base_url}, removing"
+			rm -f "${file}" || die
+		else
+			validate_pk3 "${file}"
 		fi
 	done
+
+	einfo "Downloading maps"
+	while read name; do
+		latest_pk3_version
+		local file="${name}-${latest_version}.pk3"
+		local path="${MAPS_STORE_DIR}/${file}"
+		local url="${base_url}${file}"
+
+		if [[ ! -f "${path}" ]]; then
+			rm -f "${path}" 2> /dev/null || die
+			einfo "Downloading ${file}"
+			$WGET "${url}" -O "${path}" || ewarn "downloading \"${url}\" failed"
+			validate_pk3 "${path}"
+		fi
+		echo "${file}" >> install_files.txt
+	done < install_maps.txt
 }
+
+src_prepare() { :; }
+src_configure() { :; }
+src_compile() { :; }
 
 src_install() {
 	insinto "${GAMES_DATADIR}/${MY_PN}/data"
-	for i in ${MapFiles}; do
-		doins "${MAPS_STORE_DIR}/${i}" || ewarn "installing ${i} failed"
-	done
+	while read file; do
+		nonfatal doins "${MAPS_STORE_DIR}/${file}" || ewarn "installing \"${file}\" failed"
+	done < install_files.txt
 
 	prepgamesdirs
 }
