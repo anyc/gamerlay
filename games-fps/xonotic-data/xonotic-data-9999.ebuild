@@ -15,10 +15,11 @@ EGIT_REPO_URI="${BASE_URI}.git"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS=""
-IUSE="+client +convert low +maps +zip"
+IUSE="+client +convert low +zip"
 
 RDEPEND=""
 DEPEND="
+	dev-lang/perl
 	~games-util/gmqcc-9999
 	convert? (
 		media-gfx/imagemagick[jpeg,png]
@@ -26,7 +27,7 @@ DEPEND="
 	)
 	zip? ( app-arch/p7zip )
 "
-PDEPEND="maps? ( ~games-fps/xonotic-maps-9999 )"
+RESTRICT="test"
 
 if use !client; then
 	CHECKREQS_DISK_BUILD="3000M"
@@ -41,7 +42,15 @@ else
 	fi
 fi
 
+pkg_pretend() {
+	check-reqs_pkg_pretend
+}
+
 pkg_setup() {
+	ewarn "You need at least 4 Gb diskspace for distfiles."
+	check-reqs_pkg_setup
+	games_pkg_setup
+
 	if use convert; then
 		ewarn "cached-converter.sh will use \"xonotic-cached-converter\" subdirectory of your DISTDIR"
 		echo
@@ -52,14 +61,6 @@ pkg_setup() {
 		ewarn "This feature is experimental, if anything goes wrong, contact the maintainer."
 		echo
 	fi
-	check-reqs_pkg_setup
-}
-
-git_pk3_unpack() {
-	unset EGIT_MASTER EGIT_BRANCH EGIT_COMMIT EGIT_PROJECT EGIT_DIR
-	EGIT_REPO_URI="${BASE_URI}-${1}.pk3dir.git" \
-	EGIT_SOURCEDIR="${S}/data/${MY_PN}-${1}.pk3dir" \
-	git-2_src_unpack
 }
 
 src_unpack() {
@@ -67,6 +68,11 @@ src_unpack() {
 	git-2_src_unpack
 
 	# Data
+	git_pk3_unpack() {
+		EGIT_REPO_URI="${BASE_URI}-${1}.pk3dir.git" \
+		EGIT_SOURCEDIR="${S}/data/${MY_PN}-${1}.pk3dir" \
+		git-2_src_unpack
+	}
 	git_pk3_unpack data
 	git_pk3_unpack maps
 	# needed only for client
@@ -74,21 +80,21 @@ src_unpack() {
 		git_pk3_unpack music
 		git_pk3_unpack nexcompat
 	else
-		rm -rf "${S}"/data/font-*.pk3dir || die "rm failed"
+		rm -rf "${S}"/data/font-*.pk3dir || die
 	fi
 }
 
 src_prepare() {
 	# Data
 	if use !client; then
-		pushd data
+		pushd data || die
 		rm -rf \
 			xonotic-data.pk3dir/gfx \
 			xonotic-data.pk3dir/particles \
 			xonotic-data.pk3dir/sound/cyberparcour01/rocket.txt \
 			xonotic-data.pk3dir/textures \
 			xonotic-maps.pk3dir/textures \
-			|| die "rm failed"
+			|| die
 		rm -f \
 			$(find -type f -name '*.jpg') \
 			$(find -type f -name '*.png' ! -name 'sky??.png') \
@@ -102,31 +108,24 @@ src_prepare() {
 			$(find -type f -name '*.zym') \
 			$(find -type f -name '*.obj') \
 			$(find -type f -name '*.blend') \
-			|| die "rm failed"
+			|| die
 		find -type d \
-			-exec rmdir '{}' &>/dev/null \;
+			-exec rmdir '{}' &>/dev/null \; || die
 		sed -i \
 			-e '/^qc-recursive:/s/menu.dat//' \
-			xonotic-data.pk3dir/Makefile || die "sed failed"
-		popd
+			xonotic-data.pk3dir/qcsrc/Makefile || die
+		popd || die
 	fi
 }
 
 src_compile() {
 	# Data
-	cd data
-	pushd xonotic-data.pk3dir
-	emake || die "emake data.pk3 failed"
-	popd
-
-	rm -rf \
-		$(find -name '.git*') \
-		$(find -type d -name '.svn') \
-		$(find -type d -name 'qcsrc') \
-		$(find -type f -name '*.sh') \
-		$(find -type f -name '*.pl') \
-		$(find -type f -name 'Makefile') \
-		|| die "rm failed"
+	cd data || die
+	pushd xonotic-data.pk3dir || die
+	emake \
+		QCC="${EPREFIX}/usr/bin/gmqcc" \
+		QCCFLAGS_WATERMARK=''
+	popd || die
 
 	if use convert; then
 		# Used git.eclass,v 1.50 as example
@@ -154,22 +153,34 @@ src_compile() {
 		fi
 
 		for i in data music maps nexcompat; do
+			einfo "Converting ${i}"
 			find xonotic-${i}.pk3dir -type f -print0 |
 				git_src_repo="${S}"/data/xonotic-${i}.pk3dir \
 				CACHEDIR="${CACHE_STORE_DIR}" \
 				do_jpeg=true                 \
 				do_dds=false                 \
 				del_src=true                 \
-				xargs -0 "${S}"/misc/tools/cached-converter.sh
+				xargs -0 "${S}"/misc/tools/cached-converter.sh || die
 		done
 	fi
 
+	einfo "Removing useless files"
+	rm -rvf \
+		$(find -name '.git*') \
+		$(find -type d -name '.svn') \
+		$(find -type d -name 'qcsrc') \
+		$(find -type f -name '*.sh') \
+		$(find -type f -name '*.pl') \
+		$(find -type f -name 'Makefile') \
+		|| die
+
 	if use zip; then
 		for d in *.pk3dir; do
-			pushd "${d}"
-			7za a -tzip "../${d%dir}" . || die "zip failed"
-			popd
-			rm -rf "${d}" || die "rm failed"
+			pushd "${d}" || die
+			einfo "Compressing ${d}"
+			7za a -tzip "../${d%dir}" . || die
+			popd || die
+			rm -rf "${d}" || die
 		done
 	fi
 }
@@ -177,7 +188,7 @@ src_compile() {
 src_install() {
 	# Data
 	insinto "${GAMES_DATADIR}/${MY_PN}"
-	doins -r data || die "doins data failed"
+	doins -r data
 
 	prepgamesdirs
 }
