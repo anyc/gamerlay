@@ -53,7 +53,7 @@ src_install() {
 
 pkg_postinst() {
 	games_pkg_postinst
-	elog "In order to play you need copy GEODATA, GEOGRAPH, MAPS, SOUND, TERRAIN"
-	elog "UFOGRAPH, UFOINTRO, UNITS folders from original X-COM game to"
+	elog "In order to play you need copy GEODATA, GEOGRAPH, MAPS, ROUTES, SOUND,"
+	elog "TERRAIN, UFOGRAPH, UFOINTRO, UNITS folders from original X-COM game to"
 	elog "${GAMES_DATADIR}/${PN}/data"
 }
