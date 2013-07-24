@@ -1,13 +1,14 @@
 EAPI="5"
 
 inherit base games unpacker-nixstaller
+# multilib
 
 MY_PN="${PN^^}"
 TS="1372878397"
 MY_P="${MY_PN}_${PV:0:4}-${PV:4:2}-${PV:6:2}_Linux_${TS}"
 
-DESCRIPTION="Develop your telekinetic strength by pushing a Cube within a geometric universe."
-HOMEPAGE="http://mobigame.net/"
+DESCRIPTION="A simple puzzler that’ll have you mesmerized with a synchronized swarm of brightly colored blocks."
+HOMEPAGE="http://twotribes.com/message/rush/"
 SRC_URI="${MY_P}.sh"
 RESTRICT="fetch"
 
@@ -55,19 +56,18 @@ src_install() {
 
 	doins -r \
 		"namespace.txt" \
-		"cos.bin" \
-		"font.bin" \
 		"audio" \
 		"config" \
 		"default" \
 		"effects" \
-		"images" \
-		"levels" \
-		"localization" \
-		"models" \
-		"music" \
-		"sprites" \
-		"textures"
+		"cursors" \
+		"fx" \
+		"fonts" \
+		"gameworld" \
+		"guide" \
+		"loc" \
+		"rubiks" \
+		"shared"
 
 	prepgamesdirs
 

@@ -2,12 +2,12 @@ EAPI="5"
 
 inherit base games unpacker-nixstaller
 
-MY_PN="${PN^^}"
+MY_PN="${PN^^t}"
 TS="1372878397"
 MY_P="${MY_PN}_${PV:0:4}-${PV:4:2}-${PV:6:2}_Linux_${TS}"
 
-DESCRIPTION="Develop your telekinetic strength by pushing a Cube within a geometric universe."
-HOMEPAGE="http://mobigame.net/"
+DESCRIPTION="Help a baby chicken save all the eggs."
+HOMEPAGE="http://www.tokitori.com/"
 SRC_URI="${MY_P}.sh"
 RESTRICT="fetch"
 
@@ -55,18 +55,19 @@ src_install() {
 
 	doins -r \
 		"namespace.txt" \
-		"cos.bin" \
-		"font.bin" \
+		"resourcecache.xml" \
 		"audio" \
 		"config" \
-		"default" \
-		"effects" \
-		"images" \
-		"levels" \
+		"cursors" \
+		"fx" \
+		"animdata" \
+		"credits" \
+		"ending" \
+		"input" \
 		"localization" \
-		"models" \
-		"music" \
-		"sprites" \
+		"maps" \
+		"menu" \
+		"splash" \
 		"textures"
 
 	prepgamesdirs
