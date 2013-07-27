@@ -21,7 +21,7 @@ IUSE="debug editor ipv6 linguas_de music_awe32 music_opl3 music_sc55 opengl"
 
 DEPEND="dev-games/physfs[hog,mvl,zip]
 	media-libs/libsdl:0
-	media-libs/sdl-mixer[vorbis]:0"
+	media-libs/sdl-mixer:0[vorbis]"
 RDEPEND="${DEPEND}
 	opengl? ( virtual/opengl virtual/glu )"
 

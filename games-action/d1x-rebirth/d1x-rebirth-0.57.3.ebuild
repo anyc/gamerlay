@@ -21,8 +21,8 @@ IUSE="cdinstall debug ipv6 linguas_de +opengl opl3 sc55 +textures +timidity"
 
 DEPEND="opengl? ( virtual/opengl virtual/glu )
 	dev-games/physfs[hog,zip]
-	media-libs/libsdl[audio,opengl?,video]:0
-	media-libs/sdl-mixer[timidity?]:0"
+	media-libs/libsdl:0[audio,opengl?,video]
+	media-libs/sdl-mixer:0[timidity?]"
 RDEPEND="${DEPEND}
 	cdinstall? ( games-action/descent1-data )"
 
