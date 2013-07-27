@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=2
+EAPI="5"
 inherit eutils games scons-utils
 
 DV=1
@@ -21,8 +21,8 @@ IUSE="cdinstall debug ipv6 linguas_de +opengl opl3 sc55 +textures +timidity"
 
 DEPEND="opengl? ( virtual/opengl virtual/glu )
 	dev-games/physfs[hog,zip]
-	media-libs/libsdl[audio,opengl?,video]
-	media-libs/sdl-mixer[timidity?]"
+	media-libs/libsdl[audio,opengl?,video]:0
+	media-libs/sdl-mixer[timidity?]:0"
 RDEPEND="${DEPEND}
 	cdinstall? ( games-action/descent1-data )"
 

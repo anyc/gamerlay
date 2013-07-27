@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="2"
+EAPI="5"
 
 inherit autotools eutils flag-o-matic toolchain-funcs games
 
@@ -36,10 +36,10 @@ KEYWORDS="~amd64 ~x86"
 IUSE="descent1 descent2 descent2-vertigo debug icon models openmp sounds textures"
 
 CDEPEND="media-libs/glew
-	>=media-libs/libsdl-1.2.8
-	media-libs/sdl-image
-	media-libs/sdl-mixer
-	media-libs/sdl-net
+	>=media-libs/libsdl-1.2.8:0
+	media-libs/sdl-image:0
+	media-libs/sdl-mixer:0
+	media-libs/sdl-net:0
 	net-misc/curl
 	virtual/opengl"
 

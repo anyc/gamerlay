@@ -2,6 +2,8 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
+EAPI="5"
+
 inherit cdrom eutils games
 
 DESCRIPTION="Data files for Descent 2: The Vertigo Series"
