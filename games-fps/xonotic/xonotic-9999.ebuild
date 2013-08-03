@@ -4,7 +4,7 @@
 
 EAPI=5
 
-inherit eutils games toolchain-funcs flag-o-matic git-2
+inherit eutils toolchain-funcs git-2 games
 
 DESCRIPTION="Fork of Nexuiz, Deathmatch FPS based on DarkPlaces, an advanced Quake 1 engine"
 HOMEPAGE="http://www.xonotic.org/"
@@ -14,16 +14,16 @@ EGIT_REPO_URI="${BASE_URI}${PN}.git"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS=""
-IUSE="alsa experimental +maps ode opengl +s3tc +sdl +server"
+IUSE="cdda dedicated experimental +maps +ode opengl +s3tc +sdl +server videocapture"
 REQUIRED_USE="
 	|| ( opengl sdl server )
+	dedicated? ( server !opengl !sdl )
 "
 
 UIRDEPEND="
 	media-libs/libogg
-	media-libs/libtheora[encode]
+	videocapture? ( media-libs/libtheora[encode] )
 	media-libs/libvorbis
-	media-libs/libmodplug
 	x11-libs/libX11
 	virtual/opengl
 	media-libs/freetype:2
@@ -44,11 +44,11 @@ RDEPEND="
 		x11-libs/libXext
 		x11-libs/libXpm
 		x11-libs/libXxf86vm
-		alsa? ( media-libs/alsa-lib )
+		media-libs/alsa-lib
 	)
 	sdl? (
 		${UIRDEPEND}
-		media-libs/libsdl[X,audio,joystick,opengl,video,alsa?]
+		media-libs/libsdl[X,audio,joystick,opengl,video]
 	)
 "
 DEPEND="${RDEPEND}
@@ -56,13 +56,17 @@ DEPEND="${RDEPEND}
 		x11-proto/xextproto
 		x11-proto/xf86vidmodeproto
 		x11-proto/xproto
+		cdda? ( virtual/os-headers )
 	)
 "
 
 src_unpack() {
 	git-2_src_unpack
 
-	use experimental || EGIT_BRANCH="div0-stable"
+	if use !experimental; then
+		EGIT_BRANCH="div0-stable"
+		EGIT_COMMIT=${EGIT_BRANCH}
+	fi
 	EGIT_REPO_URI="${BASE_URI}darkplaces.git" \
 	EGIT_SOURCEDIR="${S}/darkplaces" \
 	git-2_src_unpack
@@ -70,23 +74,17 @@ src_unpack() {
 
 src_prepare() {
 	tc-export CC
-	# Required for DP_PRELOAD_DEPENDENCIES=1
-	append-ldflags $(no-as-needed)
-
-	epatch_user
 
 	sed -e 's,Version=2.5,Version=1.0,' -i misc/logos/xonotic-*.desktop || die
+
+	cd darkplaces || die
+	epatch_user
 
 	sed -i \
 		-e "/^EXE_/s:darkplaces:${PN}:" \
 		-e "/^OPTIM_RELEASE=/s:$: ${CFLAGS}:" \
-		-e "/^LDFLAGS_RELEASE=/s:$: ${LDFLAGS}:" \
-		darkplaces/makefile.inc || die
-
-	if use !alsa; then
-		sed -e "/DEFAULT_SNDAPI/s:ALSA:OSS:" \
-			-i darkplaces/makefile || die
-	fi
+		-e "/^LDFLAGS_RELEASE=/s:$: -DNO_BUILD_TIMESTAMPS ${LDFLAGS}:" \
+		makefile.inc || die
 }
 
 src_compile() {
@@ -99,9 +97,16 @@ src_compile() {
 
 	cd darkplaces || die
 	for i in ${targets}; do
-		emake STRIP=true \
+		emake \
+			STRIP=true \
 			DP_FS_BASEDIR="${GAMES_DATADIR}/${PN}" \
-			DP_PRELOAD_DEPENDENCIES=1 \
+			DP_SOUND_API="ALSA" \
+			DP_LINK_ODE="shared" \
+			DP_LINK_CRYPTO="shared" \
+			$(usex cdda "" "DP_CDDA=") \
+			$(usex ode "" "LIB_ODE=") \
+			$(usex ode "" "CFLAGS_ODE=") \
+			$(usex videocapture "" "DP_VIDEO_CAPTURE=") \
 			${i}
 	done
 }
