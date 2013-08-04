@@ -4,7 +4,7 @@
 
 EAPI=5
 
-inherit eutils toolchain-funcs git-2 games
+inherit eutils toolchain-funcs flag-o-matic git-2 games
 
 DESCRIPTION="Fork of Nexuiz, Deathmatch FPS based on DarkPlaces, an advanced Quake 1 engine"
 HOMEPAGE="http://www.xonotic.org/"
@@ -14,10 +14,11 @@ EGIT_REPO_URI="${BASE_URI}${PN}.git"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS=""
-IUSE="cdda dedicated experimental +maps +ode opengl +s3tc +sdl +server videocapture"
+IUSE="cdda custom-cflags dedicated experimental +maps +ode opengl +s3tc +sdl sdl2 +server videocapture"
 REQUIRED_USE="
 	|| ( opengl sdl server )
 	dedicated? ( server !opengl !sdl )
+	sdl2? ( sdl )
 "
 
 UIRDEPEND="
@@ -48,7 +49,8 @@ RDEPEND="
 	)
 	sdl? (
 		${UIRDEPEND}
-		media-libs/libsdl[X,audio,joystick,opengl,video]
+		!sdl2? ( media-libs/libsdl:0[X,audio,joystick,opengl,video] )
+		sdl2? ( media-libs/libsdl:2[X,opengl,video] )
 	)
 "
 DEPEND="${RDEPEND}
@@ -73,12 +75,13 @@ src_unpack() {
 }
 
 src_prepare() {
-	tc-export CC
-
 	sed -e 's,Version=2.5,Version=1.0,' -i misc/logos/xonotic-*.desktop || die
 
 	cd darkplaces || die
 	epatch_user
+
+	# let upstream pick the optimization level by default
+	use custom-cflags || filter-flags -O?
 
 	sed -i \
 		-e "/^EXE_/s:darkplaces:${PN}:" \
@@ -88,27 +91,22 @@ src_prepare() {
 }
 
 src_compile() {
-	local targets=""
-	local i
-
-	use opengl && targets+=" cl-release"
-	use sdl && targets+=" sdl-release"
-	use server && targets+=" sv-release"
-
 	cd darkplaces || die
-	for i in ${targets}; do
-		emake \
-			STRIP=true \
-			DP_FS_BASEDIR="${GAMES_DATADIR}/${PN}" \
-			DP_SOUND_API="ALSA" \
-			DP_LINK_ODE="shared" \
-			DP_LINK_CRYPTO="shared" \
-			$(usex cdda "" "DP_CDDA=") \
-			$(usex ode "" "LIB_ODE=") \
-			$(usex ode "" "CFLAGS_ODE=") \
-			$(usex videocapture "" "DP_VIDEO_CAPTURE=") \
-			${i}
-	done
+	emake \
+		STRIP=true \
+		CC="$(tc-getCC)" \
+		DP_FS_BASEDIR="${GAMES_DATADIR}/${PN}" \
+		DP_SOUND_API="ALSA" \
+		DP_LINK_ODE="shared" \
+		DP_LINK_CRYPTO="shared" \
+		$(usex cdda "" "DP_CDDA=") \
+		$(usex ode "" "LIB_ODE=") \
+		$(usex ode "" "CFLAGS_ODE=") \
+		$(usex sdl2 "SDL_CONFIG=sdl2-config" "SDL_CONFIG=sdl-config") \
+		$(usex videocapture "" "DP_VIDEO_CAPTURE=") \
+		$(usex opengl cl-release "") \
+		$(usex sdl sdl-release "") \
+		$(usex server sv-release "")
 }
 
 src_install() {
