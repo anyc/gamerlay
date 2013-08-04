@@ -2,7 +2,6 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 <use>
-    <flag name="subversion">Compile with libsvn support</flag>
     <flag name="headless">Build headless version of simgear (useful for terragear on a server)</flag>
 </use>
 <maintainer>
