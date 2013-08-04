@@ -68,11 +68,6 @@ S="${WORKDIR}/SDL-${MY_PV}"
 DOCS=( BUGS.txt CREDITS.txt README.txt README-hg.txt README-SDL.txt TODO.txt WhatsNew.txt )
 
 src_prepare() {
-	# Currently cmake produce libsdl2.so targets,
-	# but libtool libsdl2-2.0.so, so many applications (e.g. Steam) fails to
-	# find system libsdl. This patch workaround this problem.
-	# See http://bugzilla.libsdl.org/show_bug.cgi?id=1743
-	epatch "${FILESDIR}/${PN}-add-libtool-export-cmake-v2.patch"
 	# Make headers more universal for 32/64 archs.
 	# See http://bugzilla.libsdl.org/show_bug.cgi?id=1893
 	epatch "${FILESDIR}/${PN}-universal_xdata32_check.patch"
@@ -110,7 +105,7 @@ src_configure() {
 		$(cmake-utils_use video VIDEO_DUMMY)
 		$(cmake-utils_use X VIDEO_X11)
 		$(cmake-utils_use X VIDEO_X11_XCURSOR)
-		$(cmake-utils_use X VIDEO_X11_XINERAMA)
+		$(cmake-utils_use xinerama VIDEO_X11_XINERAMA)
 		$(cmake-utils_use X VIDEO_X11_XINPUT)
 		$(cmake-utils_use X VIDEO_X11_XRANDR)
 		$(cmake-utils_use xscreensaver VIDEO_X11_XSCRNSAVER)
