@@ -1,21 +1,23 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="5"
+EAPI=5
 
 inherit cdrom eutils games
 
-MY_PV=${PV/./}
+# Not possible to apply official 1.2 patch under Linux, so provide our own
+# http://www.interplay.com/support/support.php?id=104
+# Should only be needed for original DOS CD-ROM release
+MY_PATCH="http://totktonada.ru/gentoo/distfiles/d2xptch12.tgz"
 
+# For GOG install
 MY_EXE="setup_descent_1_2.exe"
 
 DESCRIPTION="Data files for Descent 2"
 HOMEPAGE="http://www.interplay.com/games/support.php?id=104"
-SRC_URI="!cdinstall? ( $MY_EXE )"
-# Don't have a method of applying the ver 1.2 patch in Linux
-# http://www.interplay.com/support/product.asp?GameID=109
-# mirror://3dgamers/descent2/d2ptch${MY_PV}.exe
+SRC_URI="cdinstall? ( $MY_PATCH )
+	!cdinstall? ( $MY_EXE )"
 
 # See readme.txt
 LICENSE="${PN}"
@@ -34,6 +36,9 @@ IUSE="+cdinstall doc vertigo videos"
 RDEPEND="!<games-action/d2x-0.2.5-r3"
 DEPEND="app-arch/unarj
 	vertigo? ( games-action/descent2-vertigo )
+	cdinstall? (
+		dev-util/xdelta:3
+	)
 	!cdinstall? (
 		app-arch/innoextract
 		app-arch/unzip
@@ -93,15 +98,21 @@ pkg_setup() {
 }
 
 src_unpack() {
-	mkdir "${WORKDIR}/missions"
+	mkdir "${WORKDIR}"/{demos,missions}
+	use cdinstall && unpack ${MY_PATCH}
 
 	# Extract level data if installing from CD
 	if [ "${F_SOURCE}" == "cd" ]; then
 		unarj e "${F_ROOT}/descent2.sow" || die "unarj '${F_ROOT}/descent2.sow' failed"
 
 		# Remove files not needed by any Linux native client
-		rm -f *.{bat,dll,exe,ini,lst}
-		rm -f endnote.txt
+		rm -f *.{bat,dll,exe,ini,lst} endnote.txt
+
+		# Move missions to appropriate directory
+		mv d2-2plyr.{hog,mn2} d2chaos.{hog,mn2} missions/
+
+		# Move demos to appropriate directory
+		mv *.dem demos/
 
 	# Othwerwise, copy files if pulling from install source
 	else
@@ -109,7 +120,7 @@ src_unpack() {
 		if ! use cdinstall; then
 			einfo "Unpacking ${MY_EXE}.  This will take a while..."
 			mkdir gog && cd gog || die "mkdir failed"
-			innoextract -e -s -L "${DISTDIR}/${MY_EXE}" || die "innoextract failed"
+			innoextract -e -s -p1 -L "${DISTDIR}/${MY_EXE}" || die "innoextract failed"
 			cd ..
 		fi
 
@@ -117,9 +128,12 @@ src_unpack() {
 			copy_file "$i" "${WORKDIR}" || die "copy '${i}' failed"
 		done
 
-		# Also copy optional missions if available
+		# Also copy optional missions and demos if available
 		for i in "${F_ROOT}"/{missions,MISSIONS}/*; do
 			copy_file "$i" "${WORKDIR}/missions" || die "copy '${i}' failed"
+		done
+		for i in "${F_ROOT}"/{demos,DEMOS}/*; do
+			copy_file "$i" "${WORKDIR}/demos" || die "copy '${i}' failed"
 		done
 	fi
 
@@ -136,21 +150,44 @@ src_unpack() {
 		fi
 
 		# Also copy low resolution movie files (not available from GOG)
-		for i in "${F_ROOT}"/*-{l.mvl,L.MVL}; do
-			copy_file "$i" "${WORKDIR}" || die "copy '${i}' failed"
-		done
+		# Would anyone really want low-res videos at this point?  Probably not.
+		#for i in "${F_ROOT}"/*-{l.mvl,L.MVL}; do
+		#	copy_file "$i" "${WORKDIR}" || die "copy '${i}' failed"
+		#done
+	fi
+
+}
+
+src_prepare() {
+	# Patch to 1.2 if necessary
+	if use cdinstall; then
+		if [ "$(md5sum descent2.ham)" != "7f30c3d7d4087b8584b49012a53ce022" ]; then
+			for i in *.xdelta; do
+				xdelta3 -d -s ${i%.*} ${i} ${i%.*}.new \
+					|| die "patch ${i%.*} failed"
+				mv ${i%.*}.new ${i%.*} || die "patch ${i%.*} failed"
+			done
+		fi
+		rm *.xdelta
 	fi
 
 	mkdir doc
-	mv *.txt *.pdf doc/
+	mv *.{txt,pdf} doc/
 }
 
 src_install() {
 	insinto "${dir}"
-	doins * || die "doins * failed"
+	doins *
 
-	insinto "${dir}/missions"
-	doins missions/*
+	if [ "$(ls -A missions/)" ]; then
+		insinto "${dir}/missions"
+		doins missions/*
+	fi
+
+	if [ "$(ls -A demos/)" ]; then
+		insinto "${dir}/demos"
+		doins demos/*
+	fi
 
 	if use doc; then
 		dodoc doc/*.txt

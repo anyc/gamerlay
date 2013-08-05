@@ -1,8 +1,8 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="5"
+EAPI=5
 
 inherit cdrom eutils games
 
@@ -79,9 +79,10 @@ src_unpack() {
 		fi
 
 		# Also copy low resolution movie files (not available from GOG)
-		for i in "${F_ROOT}"/*-{l.mvl,L.MVL}; do
-			copy_file "$i" "${WORKDIR}" || die "copy '${i}' failed"
-		done
+		# Would anyone really want low-res videos at this point?  Probably not.
+		#for i in "${F_ROOT}"/*-{l.mvl,L.MVL}; do
+		#	copy_file "$i" "${WORKDIR}" || die "copy '${i}' failed"
+		#done
 	fi
 
 	mkdir doc
@@ -90,7 +91,7 @@ src_unpack() {
 
 src_install() {
 	insinto "${dir}"
-	doins * || die "doins * failed"
+	doins *
 
 	insinto "${dir}/missions"
 	doins missions/*

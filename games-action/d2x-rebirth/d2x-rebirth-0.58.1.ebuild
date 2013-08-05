@@ -10,7 +10,7 @@ DV=2
 MY_P=${PN}_v${PV}-src
 DESCRIPTION="Descent Rebirth - enhanced Descent ${DV} engine"
 HOMEPAGE="http://www.dxx-rebirth.com/"
-SRC_URI="mirror://sourceforge/dxx-rebirth/${MY_P}.tar.gz
+SRC_URI="http://www.dxx-rebirth.com/download/dxx/${MY_P}.tar.gz
 	opl3-musicpack? ( http://www.dxx-rebirth.com/download/dxx/res/d${DV}xr-opl3-music.dxa )
 	sc55-musicpack? ( http://www.dxx-rebirth.com/download/dxx/res/d${DV}xr-sc55-music.dxa )
 	linguas_de? ( http://www.dxx-rebirth.com/download/dxx/res/d${DV}xr-briefings-ger.dxa )"

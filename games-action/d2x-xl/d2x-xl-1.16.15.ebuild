@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="5"
+EAPI=5
 
 inherit autotools eutils flag-o-matic toolchain-funcs games
 
@@ -87,19 +87,17 @@ src_configure() {
 	local DEBUG_CONF="--disable-debug --enable-release"
 	use debug && DEBUG_CONF="--enable-debug --disable-release"
 
-	egamesconf ${DEBUG_CONF} --with-opengl || die
+	egamesconf ${DEBUG_CONF} --with-opengl
 }
 
 src_install() {
-	if use icon; then
-		newicon "${PN}_1_48x48x32.png" "${PN}.png" || die
-	fi
+	use icon && newicon "${PN}_1_48x48x32.png" "${PN}.png"
 
-	dogamesbin "${PN}" || die
+	dogamesbin "${PN}"
 	make_desktop_entry "${PN}" "D2X-XL" "${PN}"
 
 	# Unpack D2X-XL data files.
-	dodir "${DIR}" || die
+	dodir "${DIR}"
 	cd "${D}${DIR}" || die
 	unpack "${DATA_FILE}"
 

@@ -6,28 +6,29 @@ EAPI=5
 
 inherit eutils games scons-utils
 
-DV=2
+DV=1
 MY_P=${PN}_v${PV}-src
 DESCRIPTION="Descent Rebirth - enhanced Descent ${DV} engine"
 HOMEPAGE="http://www.dxx-rebirth.com/"
-SRC_URI="mirror://sourceforge/dxx-rebirth/${MY_P}.tar.gz
+SRC_URI="http://www.dxx-rebirth.com/download/dxx/${MY_P}.tar.gz
 	opl3-musicpack? ( http://www.dxx-rebirth.com/download/dxx/res/d${DV}xr-opl3-music.dxa )
 	sc55-musicpack? ( http://www.dxx-rebirth.com/download/dxx/res/d${DV}xr-sc55-music.dxa )
-	linguas_de? ( http://www.dxx-rebirth.com/download/dxx/res/d${DV}xr-briefings-ger.dxa )"
+	linguas_de? ( http://www.dxx-rebirth.com/download/dxx/res/d${DV}xr-briefings-ger.dxa )
+	textures? ( http://www.dxx-rebirth.com/download/dxx/res/d${DV}xr-hires.dxa )"
 
 LICENSE="D1X GPL-2 public-domain"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="+data debug ipv6 linguas_de +music +opengl opl3-musicpack sc55-musicpack"
+IUSE="+data debug ipv6 linguas_de +music +opengl opl3-musicpack sc55-musicpack +textures"
 
 REQUIRED_USE="?? ( opl3-musicpack sc55-musicpack )
 	opl3-musicpack? ( music )
 	sc55-musicpack? ( music )"
 
-RDEPEND="dev-games/physfs[hog,mvl,zip]
+RDEPEND="dev-games/physfs[hog,zip]
 	media-libs/libsdl:0[X,audio,joystick,opengl?,video]
 	music? (
-		media-libs/sdl-mixer:0[timidity,vorbis]
+		media-libs/sdl-mixer:0[timidity]
 	)
 	opengl? (
 		virtual/opengl
@@ -35,8 +36,8 @@ RDEPEND="dev-games/physfs[hog,mvl,zip]
 	)"
 DEPEND="${RDEPEND}"
 PDEPEND="data? ( || (
-	games-action/descent2-data
-	games-action/descent2-demodata
+	games-action/descent1-data
+	games-action/descent1-demodata
 ) )"
 
 S=${WORKDIR}/${MY_P}
@@ -71,6 +72,7 @@ src_install() {
 	use opl3-musicpack && doins "${DISTDIR}"/d${DV}xr-opl3-music.dxa
 	use sc55-musicpack && doins "${DISTDIR}"/d${DV}xr-sc55-music.dxa
 	use linguas_de && doins "${DISTDIR}"/d${DV}xr-briefings-ger.dxa
+	use textures && doins "${DISTDIR}"/d${DV}xr-hires.dxa
 
 	doicon "${S}/${PN}.xpm"
 

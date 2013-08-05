@@ -2,11 +2,10 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="5"
+EAPI=5
 
+CDROM_OPTIONAL="yes"
 inherit cdrom eutils games
-
-MY_PV=${PV/./}
 
 MY_EXE="setup_descent_1_2.exe"
 
@@ -14,16 +13,10 @@ DESCRIPTION="Data files for Descent 1"
 HOMEPAGE="http://www.interplay.com/games/support.php?id=263"
 SRC_URI="http://www.dxx-rebirth.com/download/dxx/res/d1datapt.zip
 	!cdinstall? ( $MY_EXE )"
-# Don't have a method of applying the ver 1.2 patch in Linux
-# http://www.interplay.com/support/product.asp?GameID=109
-# mirror://3dgamers/descent2/d2ptch${MY_PV}.exe
 
-# See readme.txt
 LICENSE="${PN}"
 SLOT="0"
 KEYWORDS="amd64 x86"
-PROPERTIES=""
-CDROM_OPTIONAL="yes"
 RESTRICT="!cdinstall? ( fetch )"
 IUSE="+cdinstall doc"
 
@@ -36,7 +29,8 @@ DEPEND="app-arch/unzip
 S=${WORKDIR}
 dir=${GAMES_DATADIR}/d1x
 
-# Function to handle copying and renaming files from installation directory
+# Function to handle copying and renaming files from installation directory;
+# Allows support of installation sources using capitalized file names
 copy_file() {
 	local dest="${2}"
 	local f=$(basename "${1}")
@@ -121,10 +115,9 @@ src_prepare() {
 	fi
 }
 
-
 src_install() {
 	insinto "${dir}"
-	doins * || die "doins * failed"
+	doins *
 
 	insinto "${dir}/missions"
 	doins missions/*
