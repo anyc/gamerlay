@@ -39,8 +39,8 @@ copy_file() {
 	else
 		echo "Copying '${f}'"
 		local d=$(echo ${f} | tr "[:upper:]" "[:lower:]")
-		cp -f "${1}" "${dest}/${d}"
-		return $?
+		cp -f "${1}" "${dest}/${d}" || die "copy ${1} failed"
+		return 0
 	fi
 }
 
@@ -80,19 +80,19 @@ pkg_setup() {
 }
 
 src_unpack() {
-	mkdir "${WORKDIR}/missions"
+	mkdir "${WORKDIR}/missions" || die "mkdir missions failed"
 
 	# Unpack GOG package if necessary
 	if ! use cdinstall; then
-		einfo "Unpacking ${MY_EXE}.  This will take a while..."
-		mkdir gog && cd gog || die "mkdir failed"
+		einfo "Unpacking ${MY_EXE}. This will take a while..."
+		mkdir gog && cd gog || die "mkdir gog failed"
 		innoextract -e -s -L "${DISTDIR}/${MY_EXE}" || die "innoextract failed"
-		cd ..
+		cd .. || die "cd .. failed"
 	fi
 
 	# Copy all (including optional) mission files
 	for i in "${F_ROOT}"/*.{hog,HOG,msn,MSN,pig,PIG,txt,TXT,pdf,PDF}; do
-		copy_file "$i" "${WORKDIR}/missions" || die "copy '${i}' failed"
+		copy_file "$i" "${WORKDIR}/missions"
 	done
 
 	# Move and validate required files
@@ -102,8 +102,8 @@ src_unpack() {
 	# Unpack data file patches
 	unpack d1datapt.zip
 
-	mkdir doc
-	mv missions/*.txt missions/*.pdf doc/
+	mkdir doc || die "mkdir doc failed"
+	mv missions/*.txt missions/*.pdf doc/ # ignore fail
 }
 
 src_prepare() {

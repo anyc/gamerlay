@@ -31,8 +31,8 @@ copy_file() {
 	else
 		echo "Copying '${f}'"
 		local d=$(echo ${f} | tr "[:upper:]" "[:lower:]")
-		cp -f "${1}" "${dest}/${d}"
-		return $?
+		cp -f "${1}" "${dest}/${d}" || die "copy ${1} failed"
+		return 0
 	fi
 }
 
@@ -51,42 +51,42 @@ pkg_setup() {
 }
 
 src_unpack() {
-	mkdir "${WORKDIR}/missions"
+	mkdir "${WORKDIR}/missions" || die "mkdir missions failed"
 
 	# Copy index files
 	for i in "${F_ROOT}"/{{hoard.ham,HOARD.HAM},*.{txt,TXT}}; do
-		copy_file "$i" "${WORKDIR}" || die "copy '${i}' failed"
+		copy_file "$i" "${WORKDIR}"
 	done
 
 	# Copy mission files
 	for i in "${F_ROOT}"/{d2x,D2X}.{hog,HOG,mn2,MN2}; do
-		copy_file "$i" "${WORKDIR}/missions" || die "copy '${i}' failed"
+		copy_file "$i" "${WORKDIR}/missions"
 	done
 
 	# Copy optional mission files
 	for i in "${F_ROOT}"/{missions,MISSIONS}/*; do
-		copy_file "$i" "${WORKDIR}/missions" || die "copy '${i}' failed"
+		copy_file "$i" "${WORKDIR}/missions"
 	done
 
 	# Also copy video files if desired
 	if use videos; then
 		# Require high resolution movie files
 		for i in "${F_ROOT}"/*-{h.mvl,H.MVL}; do
-			copy_file "$i" "${WORKDIR}" || die "copy '${i}' failed"
+			copy_file "$i" "${WORKDIR}"
 		done
 		if [ ! -f "${WORKDIR}/d2x-h.mvl" ] ; then
 			die "videos not found"
 		fi
 
 		# Also copy low resolution movie files (not available from GOG)
-		# Would anyone really want low-res videos at this point?  Probably not.
+		# Would anyone really want low-res videos at this point? Probably not.
 		#for i in "${F_ROOT}"/*-{l.mvl,L.MVL}; do
-		#	copy_file "$i" "${WORKDIR}" || die "copy '${i}' failed"
+		#	copy_file "$i" "${WORKDIR}"
 		#done
 	fi
 
-	mkdir doc
-	mv *.txt doc/
+	mkdir doc || die "mkdir doc failed"
+	mv *.txt doc/ # ignore fail
 }
 
 src_install() {

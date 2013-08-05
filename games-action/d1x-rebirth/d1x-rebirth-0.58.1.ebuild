@@ -51,6 +51,7 @@ src_unpack() {
 src_prepare() {
 	DOCS=({CHANGELOG,COPYING,INSTALL,README,RELEASE-NOTES}.txt)
 	edos2unix ${DOCS[@]}
+	epatch "${FILESDIR}"/${P}-flags.patch
 }
 
 src_compile() {

@@ -4,6 +4,7 @@
 
 EAPI=5
 
+CDROM_OPTIONAL="yes"
 inherit cdrom eutils games
 
 # Not possible to apply official 1.2 patch under Linux, so provide our own
@@ -23,7 +24,6 @@ SRC_URI="cdinstall? ( $MY_PATCH )
 LICENSE="${PN}"
 SLOT="0"
 KEYWORDS="amd64 ppc x86"
-PROPERTIES="cdinstall? ( interactive )"
 RESTRICT="!cdinstall? ( fetch )"
 IUSE="+cdinstall doc vertigo videos"
 
@@ -56,8 +56,8 @@ copy_file() {
 	else
 		echo "Copying '${f}'"
 		local d=$(echo ${f} | tr "[:upper:]" "[:lower:]")
-		cp -f "${1}" "${dest}/${d}"
-		return $?
+		cp -f "${1}" "${dest}/${d}" || die "copy ${1} failed"
+		return 0
 	fi
 }
 
@@ -98,7 +98,7 @@ pkg_setup() {
 }
 
 src_unpack() {
-	mkdir "${WORKDIR}"/{demos,missions}
+	mkdir "${WORKDIR}"/{demos,missions} || die "mkdir {demos,missions} failed"
 	use cdinstall && unpack ${MY_PATCH}
 
 	# Extract level data if installing from CD
@@ -106,34 +106,35 @@ src_unpack() {
 		unarj e "${F_ROOT}/descent2.sow" || die "unarj '${F_ROOT}/descent2.sow' failed"
 
 		# Remove files not needed by any Linux native client
-		rm -f *.{bat,dll,exe,ini,lst} endnote.txt
+		rm -f *.{bat,dll,exe,ini,lst} endnote.txt # ignore fail
 
 		# Move missions to appropriate directory
-		mv d2-2plyr.{hog,mn2} d2chaos.{hog,mn2} missions/
+		mv d2-2plyr.{hog,mn2} d2chaos.{hog,mn2} missions/ || \
+			die "move missions failed"
 
 		# Move demos to appropriate directory
-		mv *.dem demos/
+		mv *.dem demos/ || die "move demos failed"
 
 	# Othwerwise, copy files if pulling from install source
 	else
 		# Extract files from GOG package if necessary
 		if ! use cdinstall; then
-			einfo "Unpacking ${MY_EXE}.  This will take a while..."
-			mkdir gog && cd gog || die "mkdir failed"
+			einfo "Unpacking ${MY_EXE}. This will take a while..."
+			mkdir gog && cd gog || die "mkdir gog failed"
 			innoextract -e -s -p1 -L "${DISTDIR}/${MY_EXE}" || die "innoextract failed"
-			cd ..
+			cd .. || die "cd .. failed"
 		fi
 
 		for i in "${F_ROOT}"/*.{ham,HAM,hog,HOG,pig,PIG,s11,S11,s22,S22,txt,TXT,pdf,PDF}; do
-			copy_file "$i" "${WORKDIR}" || die "copy '${i}' failed"
+			copy_file "$i" "${WORKDIR}"
 		done
 
 		# Also copy optional missions and demos if available
 		for i in "${F_ROOT}"/{missions,MISSIONS}/*; do
-			copy_file "$i" "${WORKDIR}/missions" || die "copy '${i}' failed"
+			copy_file "$i" "${WORKDIR}/missions"
 		done
 		for i in "${F_ROOT}"/{demos,DEMOS}/*; do
-			copy_file "$i" "${WORKDIR}/demos" || die "copy '${i}' failed"
+			copy_file "$i" "${WORKDIR}/demos"
 		done
 	fi
 
@@ -141,7 +142,7 @@ src_unpack() {
 	if use videos; then
 		# Require high resolution movie files
 		for i in "${F_ROOT}"/*-{h.mvl,H.MVL}; do
-			copy_file "$i" "${WORKDIR}" || die "copy '${i}' failed"
+			copy_file "$i" "${WORKDIR}"
 		done
 		if [ ! -f "${WORKDIR}/intro-h.mvl" \
 			-o ! -f "${WORKDIR}/other-h.mvl" \
@@ -150,9 +151,9 @@ src_unpack() {
 		fi
 
 		# Also copy low resolution movie files (not available from GOG)
-		# Would anyone really want low-res videos at this point?  Probably not.
+		# Would anyone really want low-res videos at this point? Probably not.
 		#for i in "${F_ROOT}"/*-{l.mvl,L.MVL}; do
-		#	copy_file "$i" "${WORKDIR}" || die "copy '${i}' failed"
+		#	copy_file "$i" "${WORKDIR}"
 		#done
 	fi
 
@@ -168,11 +169,11 @@ src_prepare() {
 				mv ${i%.*}.new ${i%.*} || die "patch ${i%.*} failed"
 			done
 		fi
-		rm *.xdelta
+		rm *.xdelta || die "rm *.xdelta"
 	fi
 
-	mkdir doc
-	mv *.{txt,pdf} doc/
+	mkdir doc || die "mkdir doc failed"
+	mv *.{txt,pdf} doc/ # ignore fail
 }
 
 src_install() {

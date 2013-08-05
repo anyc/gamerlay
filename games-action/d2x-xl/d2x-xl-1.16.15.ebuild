@@ -61,20 +61,24 @@ src_unpack() {
 
 src_prepare() {
 	if use icon ; then
-		icotool -x "${PN}.ico" || die
+		icotool -x "${PN}.ico" || die "icotool failed"
 	fi
 
 	# Use our own data directory.
-	sed -i "s:/usr/local/games/${PN}:${DIR}:g" main/{setup,gamefolders}.cpp || die
+	sed -i "s:/usr/local/games/${PN}:${DIR}:g" main/{setup,gamefolders}.cpp || \
+		die "sed #1 failed"
 
 	# Don't need these libraries.
-	sed -i -r "/d2x_sdl_LDADD/s/-l(Xm|Xt|X11)//g" Makefile.am || die
+	sed -i -r "/d2x_sdl_LDADD/s/-l(Xm|Xt|X11)//g" Makefile.am || \
+		die "sed #2 failed"
 
 	# Strip C(XX)FLAGS.
-	sed -i -r "/C(XX)?FLAGS/s/-(fopenmp|g|O[0-9])//g" configure.ac || die
+	sed -i -r "/C(XX)?FLAGS/s/-(fopenmp|g|O[0-9])//g" configure.ac || \
+		die "sed #3 failed"
 
-	chmod a+x ./autogen.sh && ./autogen.sh
-	chmod +x configure || die
+	chmod a+x ./autogen.sh || die "chmod #1 failed"
+	./autogen.sh || die "autogen.sh failed"
+	chmod +x configure || die "chmod #2 failed"
 	eautoreconf
 }
 
@@ -98,24 +102,26 @@ src_install() {
 
 	# Unpack D2X-XL data files.
 	dodir "${DIR}"
-	cd "${D}${DIR}" || die
+	cd "${D}${DIR}" || die "cd \"${D}${DIR}\" failed"
 	unpack "${DATA_FILE}"
 
 	# Symlink original data files, which may or may not be present.
 
 	if use descent1; then
-		ln -s ../../d1x/descent.{hog,pig} data/ || die
+		ln -s ../../d1x/descent.{hog,pig} data/ || die "ln #1 failed"
 	fi
 
 	if use descent2; then
-		ln -s ../../d2x/descent2.{ham,hog,s11,s22} data/ || die
-		ln -s ../../d2x/{groupa,alien{1,2},fire,ice,water}.pig data/ || die
+		ln -s ../../d2x/descent2.{ham,hog,s11,s22} data/ || \
+			die "ln #2 failed"
+		ln -s ../../d2x/{groupa,alien{1,2},fire,ice,water}.pig data/ || \
+			die "ln #3 failed"
 	fi
 
 	if use descent2-vertigo; then
-		ln -s ../../d2x/hoard.ham data/ || die
-		mkdir missions || die
-		ln -s ../../d2x/missions/d2x.{hog,mn2} missions/ || die
+		ln -s ../../d2x/hoard.ham data/ || die "ln #4 failed"
+		mkdir missions || die "mdir missions failed"
+		ln -s ../../d2x/missions/d2x.{hog,mn2} missions/ || die "ln #5 failed"
 	fi
 
 	# Optional data.
@@ -127,9 +133,10 @@ src_install() {
 		for X in ${D2_TEXTURES}; do unpack "D2-hires-${X}.7z"; done
 
 		# Make everything lower case.
-		mv textures/D1 textures/d1 || die
-		mv sounds2/D1 sounds2/d1 || die
-		find -name "*[A-Z]*" -exec sh -c 'mv {} $(echo {} | tr A-Z a-z)' \; || die
+		mv textures/D1 textures/d1 || die "mv #1 failed"
+		mv sounds2/D1 sounds2/d1 || die "mv #2 failed"
+		find -name "*[A-Z]*" -exec sh -c 'mv {} $(echo {} | tr A-Z a-z)' \; || \
+			die "find -exec mv failed"
 	fi
 
 	prepgamesdirs
