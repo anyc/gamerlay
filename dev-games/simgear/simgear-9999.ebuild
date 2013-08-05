@@ -17,7 +17,7 @@ EGIT_REPO_URI="git://gitorious.org/fg/simgear.git
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS=""
-IUSE="debug headless +subversion test"
+IUSE="debug headless test"
 
 COMMON_DEPEND="
 	sys-libs/zlib
@@ -26,10 +26,6 @@ COMMON_DEPEND="
 		dev-libs/expat
 		media-libs/openal
 		virtual/opengl
-		subversion? (
-			dev-libs/apr
-			dev-vcs/subversion
-		)
 	)
 "
 
@@ -43,12 +39,13 @@ DOCS=(AUTHORS ChangeLog NEWS README Thanks)
 
 src_configure() {
 	local mycmakeargs=(
+		-DENABLE_LIBSVN=OFF
 		-DENABLE_RTI=OFF
 		-DENABLE_SOUND=ON
 		-DJPEG_FACTORY=OFF
+		-DSG_SVN_CLIENT=ON
 		-DSIMGEAR_SHARED=ON
 		-DSYSTEM_EXPAT=ON
-		$(cmake-utils_use_enable subversion LIBSVN)
 		$(cmake-utils_use headless SIMGEAR_HEADLESS)
 		$(cmake-utils_use_enable test TESTS)
 	)

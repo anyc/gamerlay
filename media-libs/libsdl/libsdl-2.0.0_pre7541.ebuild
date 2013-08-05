@@ -22,23 +22,23 @@ IUSE="3dnow alsa altivec +asm aqua fusionsound gles mmx nas opengl oss pulseaudi
 RDEPEND="
 	nas? (
 		media-libs/nas
-		x11-libs/libX11
-		x11-libs/libXext
-		x11-libs/libXt
+		x11-libs/libX11[${MULTILIB_USEDEP}]
+		x11-libs/libXext[${MULTILIB_USEDEP}]
+		x11-libs/libXt[${MULTILIB_USEDEP}]
 	)
 	X? (
-		x11-libs/libX11
-		x11-libs/libXcursor
-		x11-libs/libXext
-		x11-libs/libXi
-		x11-libs/libXt
-		x11-libs/libXrandr
-		x11-libs/libXrender
-		x11-libs/libXxf86vm
+		x11-libs/libX11[${MULTILIB_USEDEP}]
+		x11-libs/libXcursor[${MULTILIB_USEDEP}]
+		x11-libs/libXext[${MULTILIB_USEDEP}]
+		x11-libs/libXi[${MULTILIB_USEDEP}]
+		x11-libs/libXt[${MULTILIB_USEDEP}]
+		x11-libs/libXrandr[${MULTILIB_USEDEP}]
+		x11-libs/libXrender[${MULTILIB_USEDEP}]
+		x11-libs/libXxf86vm[${MULTILIB_USEDEP}]
 	)
-	xinerama? ( x11-libs/libXinerama )
-	xscreensaver? ( x11-libs/libXScrnSaver )
-	alsa? ( media-libs/alsa-lib )
+	xinerama? ( x11-libs/libXinerama[${MULTILIB_USEDEP}] )
+	xscreensaver? ( x11-libs/libXScrnSaver[${MULTILIB_USEDEP}] )
+	alsa? ( media-libs/alsa-lib[${MULTILIB_USEDEP}] )
 	fusionsound? ( >=media-libs/FusionSound-1.1.1 )
 	pulseaudio? ( >=media-sound/pulseaudio-0.9 )
 	gles? ( || ( media-libs/mesa[gles2] media-libs/mesa[gles] ) )
@@ -48,31 +48,26 @@ RDEPEND="
 
 DEPEND="${RDEPEND}
 	nas? (
-		x11-proto/xextproto
-		x11-proto/xproto
+		x11-proto/xextproto[${MULTILIB_USEDEP}]
+		x11-proto/xproto[${MULTILIB_USEDEP}]
 	)
 	X? (
-		x11-proto/inputproto
-		x11-proto/xextproto
-		x11-proto/xf86vidmodeproto
-		x11-proto/xproto
-		x11-proto/randrproto
-		x11-proto/renderproto
+		x11-proto/inputproto[${MULTILIB_USEDEP}]
+		x11-proto/xextproto[${MULTILIB_USEDEP}]
+		x11-proto/xf86vidmodeproto[${MULTILIB_USEDEP}]
+		x11-proto/xproto[${MULTILIB_USEDEP}]
+		x11-proto/randrproto[${MULTILIB_USEDEP}]
+		x11-proto/renderproto[${MULTILIB_USEDEP}]
 	)
-	xinerama? ( x11-proto/xineramaproto )
-	xscreensaver? ( x11-proto/scrnsaverproto )
+	xinerama? ( x11-proto/xineramaproto[${MULTILIB_USEDEP}] )
+	xscreensaver? ( x11-proto/scrnsaverproto[${MULTILIB_USEDEP}] )
 "
 
-S="${WORKDIR}/SDL-${MY_PV}"
+S=${WORKDIR}/SDL-${MY_PV}
 
 DOCS=( BUGS.txt CREDITS.txt README.txt README-hg.txt README-SDL.txt TODO.txt WhatsNew.txt )
 
 src_prepare() {
-	# Currently cmake produce libsdl2.so targets,
-	# but libtool libsdl2-2.0.so, so many applications (e.g. Steam) fails to
-	# find system libsdl. This patch workaround this problem.
-	# See http://bugzilla.libsdl.org/show_bug.cgi?id=1743
-	epatch "${FILESDIR}/${PN}-add-libtool-export-cmake-v2.patch"
 	# Make headers more universal for 32/64 archs.
 	# See http://bugzilla.libsdl.org/show_bug.cgi?id=1893
 	epatch "${FILESDIR}/${PN}-universal_xdata32_check.patch"
@@ -110,7 +105,7 @@ src_configure() {
 		$(cmake-utils_use video VIDEO_DUMMY)
 		$(cmake-utils_use X VIDEO_X11)
 		$(cmake-utils_use X VIDEO_X11_XCURSOR)
-		$(cmake-utils_use X VIDEO_X11_XINERAMA)
+		$(cmake-utils_use xinerama VIDEO_X11_XINERAMA)
 		$(cmake-utils_use X VIDEO_X11_XINPUT)
 		$(cmake-utils_use X VIDEO_X11_XRANDR)
 		$(cmake-utils_use xscreensaver VIDEO_X11_XSCRNSAVER)

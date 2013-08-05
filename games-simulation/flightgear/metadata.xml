@@ -5,7 +5,6 @@
     <flag name="fgpanel">Enable the standalone panel utility</flag>
     <flag name="jsbsim">Enable the JSBSim flight dynamics model</flag>
     <flag name="oldfdm">Enable the UIUC/LaRCsim flight dynamics model</flag>
-    <flag name="subversion">Enable Flightgear's Terrasync to link against libsvn</flag>
     <flag name="yasim">Enable the YASim flight dynamics model</flag>
 </use>
 <maintainer>

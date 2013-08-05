@@ -17,12 +17,12 @@ EGIT_REPO_URI="git://gitorious.org/fg/flightgear.git
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS=""
-IUSE="debug fgpanel +jsbsim oldfdm +subversion test +udev +yasim"
+IUSE="debug fgpanel +jsbsim oldfdm test +udev +yasim"
 
 COMMON_DEPEND="
 	dev-db/sqlite:3
 	>=dev-games/openscenegraph-3.0[png]
-	>=dev-games/simgear-9999[subversion?,-headless]
+	>=dev-games/simgear-9999[-headless]
 	sys-libs/zlib
 	virtual/opengl
 	udev? ( virtual/udev )
@@ -36,10 +36,6 @@ DEPEND="${COMMON_DEPEND}
 	>=dev-libs/boost-1.37
 	media-libs/openal
 	>=media-libs/plib-1.8.5
-	subversion? (
-		dev-libs/apr
-		dev-vcs/subversion
-	)
 "
 
 RDEPEND="${COMMON_DEPEND}"
@@ -61,7 +57,6 @@ src_configure() {
 		$(cmake-utils_use_enable jsbsim)
 		$(cmake-utils_use_enable oldfdm LARCSIM)
 		$(cmake-utils_use_enable oldfdm UIUC_MODEL)
-		$(cmake-utils_use_enable subversion LIBSVN)
 		$(cmake-utils_use_enable test LOGGING)
 		$(cmake-utils_use_enable test TESTS)
 		$(cmake-utils_use udev EVENT_INPUT)
