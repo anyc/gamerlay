@@ -83,8 +83,8 @@ S=${WORKDIR}/${MY_P}
 DOCS=(AUTHORS.txt ChangeLog NEWS.txt)
 
 PATCHES=(
-	"${FILESDIR}"/${PN}-3.1.4-cmake.patch
-	"${FILESDIR}"/${PN}-3.1.3-libav-0.7.patch
+	"${FILESDIR}"/${PN}-3.2.0-cmake.patch
+	"${FILESDIR}"/${PN}-3.2.0-ffmpeg.patch
 )
 
 src_configure() {
