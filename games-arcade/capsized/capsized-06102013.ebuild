@@ -25,11 +25,12 @@ RDEPEND="
 	media-libs/libvorbis
 	dev-lang/mono
 	media-libs/openal
-	media-libs/libsdl:2
+	media-libs/libsdl2
+	media-libs/sdl2-mixer
 "
 #	dev-dotnet/monogame # someday
 #	dev-dotnet/monogame-theoraplay # someday
-#	media-libs/sdl-mixer # when 2.0 tarball will be released
+#	media-libs/theoraplay # someday
 
 DOCS=( "Linux.README" )
 
@@ -74,7 +75,7 @@ src_install() {
 	# Also installing bundled theoraplay, since in is no such package in
 	# portage.
 	insinto "${GAMEDIR}/$(get_libdir)"
-	doins "$(get_libdir)/libSDL2_mixer-2.0.so.0"
+#	doins "$(get_libdir)/libSDL2_mixer-2.0.so.0"
 	doins "$(get_libdir)/libtheoraplay.so"
 
 	games_make_wrapper "${PN}" "mono ./NePlusUltra.exe" "${GAMEDIR}" "${GAMEDIR}/$(get_libdir)"

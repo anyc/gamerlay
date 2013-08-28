@@ -7,7 +7,7 @@ MY_PN="Spirits"
 
 inherit games
 
-DESCRIPTION="a tetrominoes game (i.e.: a Tetris clone) that uses the Xbox 360 Kinect"
+DESCRIPTION="Save the spirits of leaf litters"
 HOMEPAGE="http://www.spacesofplay.com/spirits/"
 SRC_URI="${PN}-linux-${PV}_120903-1348705231.zip"
 

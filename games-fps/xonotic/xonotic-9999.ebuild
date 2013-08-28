@@ -49,8 +49,8 @@ RDEPEND="
 	)
 	sdl? (
 		${UIRDEPEND}
-		!sdl2? ( media-libs/libsdl:0[X,audio,joystick,opengl,video] )
-		sdl2? ( media-libs/libsdl:2[X,opengl,video] )
+		!sdl2? ( media-libs/libsdl[X,audio,joystick,opengl,video] )
+		sdl2? ( media-libs/libsdl2[X,opengl,video] )
 	)
 "
 DEPEND="${RDEPEND}

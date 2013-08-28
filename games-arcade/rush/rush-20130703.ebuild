@@ -19,7 +19,7 @@ IUSE=""
 
 DEPEND=""
 RDEPEND="${DEPEND}
-	media-libs/libsdl:2
+	media-libs/libsdl2
 	media-libs/openal
 	sys-libs/zlib
 "
