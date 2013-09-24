@@ -55,6 +55,7 @@ COMMON_DEPEND="app-arch/bzip2
 	|| (
 		net-misc/curl[adns]
 		net-misc/curl[ares]
+		net-misc/curl[threads]
 	)
 	>=sys-devel/gcc-4.6
 	x11-libs/gtk+:2
