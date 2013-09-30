@@ -21,7 +21,6 @@ SRC_URI="
 
 RDEPEND="
 	dev-libs/json-c
-	media-libs/alsa-lib
 	media-libs/flac
 	virtual/glu
 	media-libs/libogg
@@ -29,11 +28,8 @@ RDEPEND="
 	media-libs/libsndfile
 	media-libs/libvorbis
 	virtual/opengl
-	media-sound/pulseaudio
 	sys-apps/util-linux
-	sys-devel/gcc
 	sys-libs/gdbm
-	sys-libs/glibc
 	x11-libs/libdrm
 	x11-libs/libICE
 	x11-libs/libSM
