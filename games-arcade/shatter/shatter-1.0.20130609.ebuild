@@ -2,15 +2,13 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="4"
+EAPI="5"
 
 inherit games unpacker-nixstaller
 
-TIMESTAMP="1347954459"
-
 DESCRIPTION="Retro-inspired brick-breaking game"
 HOMEPAGE="http://www.shattergame.com"
-SRC_URI="shatter-linux-${TIMESTAMP}.sh"
+SRC_URI="Shatter-Release-2013-06-09.sh"
 
 RESTRICT="fetch strip"
 
@@ -20,7 +18,9 @@ KEYWORDS="-* ~amd64 ~x86"
 IUSE=""
 
 DEPEND=""
-RDEPEND="x86? (	virtual/opengl
+RDEPEND="
+	x86? (
+		virtual/opengl
 		dev-libs/expat
 		media-gfx/nvidia-cg-toolkit
 		media-libs/fontconfig
@@ -33,19 +33,25 @@ RDEPEND="x86? (	virtual/opengl
 		x11-libs/libXau
 		x11-libs/libXdmcp
 		x11-libs/libXext
-		x11-libs/libxcb )
+		x11-libs/libxcb
+	)
 	amd64? (
 		app-emulation/emul-linux-x86-baselibs
 		app-emulation/emul-linux-x86-sdl
-		app-emulation/emul-linux-x86-xlibs )"
+		app-emulation/emul-linux-x86-xlibs
+	)
+"
 
 S="${WORKDIR}"
 MY_PN=Shatter
 
+# TODO: make fmod multilib
+
 QA_TEXTRELS="
 	opt/shatter/lib/libfmodex-4.36.21.so
 	opt/shatter/lib/libfmodeventnet-4.36.21.so
-	opt/shatter/lib/libfmodevent-4.36.21.so"
+	opt/shatter/lib/libfmodevent-4.36.21.so
+"
 
 pkg_nofetch() {
 	ewarn
