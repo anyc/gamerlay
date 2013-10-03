@@ -4,13 +4,11 @@
 
 EAPI="3"
 
-MY_PV="02a"
-
 inherit eutils games flag-o-matic
 
 DESCRIPTION="game similar to the PSX game Kula World / Roll Away"
 HOMEPAGE="http://cubosphere.sourceforge.net/"
-SRC_URI="mirror://sourceforge/${PN}/${PN}-beta${MY_PV}_linux_src.tar"
+SRC_URI="mirror://sourceforge/${PN}/${PN}_beta${PV}_linux_src.tar.gz"
 
 LICENSE="GPL-3"
 SLOT="0"
@@ -26,7 +24,7 @@ DEPEND="dev-lang/lua
 	virtual/opengl
 	virtual/glu"
 
-S="${WORKDIR}"/"${PN}"-beta"${MY_PV}"
+S="${WORKDIR}"/"${PN}"_beta"${PV}"/src
 
 src_prepare() {
 	cd "${S}"
