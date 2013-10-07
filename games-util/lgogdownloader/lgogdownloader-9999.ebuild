@@ -4,7 +4,7 @@
 
 EAPI="4"
 
-inherit eutils git
+inherit eutils git-2
 
 DESCRIPTION="Linux compatible gog.com downloader"
 HOMEPAGE="https://sites.google.com/site/gogdownloader/"
