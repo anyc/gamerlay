@@ -5,7 +5,7 @@
 EAPI=2
 
 EGIT_BRANCH="widechar"
-inherit games git
+inherit games git-2
 
 MY_P="tf-50b8"
 MY_PN="tinyfugue"
@@ -27,7 +27,7 @@ S=${WORKDIR}/${MY_PN}
 
 src_unpack() {
 	use doc && unpack ${A}
-	git_src_unpack
+	git-2_src_unpack
 }
 
 src_configure() {
