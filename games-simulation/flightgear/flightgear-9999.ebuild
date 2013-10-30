@@ -17,7 +17,7 @@ EGIT_REPO_URI="git://gitorious.org/fg/flightgear.git
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS=""
-IUSE="debug fgpanel +jsbsim oldfdm test +udev +yasim"
+IUSE="debug fgcom fgpanel +jsbsim oldfdm test +udev +yasim"
 
 COMMON_DEPEND="
 	dev-db/sqlite:3
@@ -53,6 +53,8 @@ src_configure() {
 		-DSIMGEAR_SHARED=ON
 		-DSP_FDMS=OFF
 		-DSYSTEM_SQLITE=ON
+		$(cmake-utils_use_enable fgcom)
+		$(cmake-utils_use_enable fgcom IAX)
 		$(cmake-utils_use_with fgpanel)
 		$(cmake-utils_use_enable jsbsim)
 		$(cmake-utils_use_enable oldfdm LARCSIM)
