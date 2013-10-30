@@ -52,7 +52,7 @@ src_configure() {
 		-DJPEG_FACTORY=OFF
 		-DSIMGEAR_SHARED=ON
 		-DSP_FDMS=OFF
-		-DSYSTEM_SQLITE=ON
+		-DSYSTEM_SQLITE=OFF
 		$(cmake-utils_use_enable fgcom)
 		$(cmake-utils_use_enable fgcom IAX)
 		$(cmake-utils_use_with fgpanel)
