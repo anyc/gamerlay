@@ -39,7 +39,7 @@ DEPEND="dev-cpp/sparsehash
 		media-libs/glew
 		media-libs/libsdl
 		media-libs/portaudio
-		media-libs/libsoundtouch
+		soundtouch? ( media-libs/libsoundtouch )
 		media-gfx/nvidia-cg-toolkit
 		virtual/jpeg
 		virtual/opengl
@@ -57,8 +57,9 @@ DEPEND="dev-cpp/sparsehash
 		app-emulation/emul-linux-x86-sdl
 		app-emulation/emul-linux-x86-soundlibs
 		app-emulation/emul-linux-x86-wxGTK
+		soundtouch? ( app-emulation/emul-linux-x86-libsoundtouch )
 	)
-	soundtouch? ( media-libs/libsoundtouch )	
+
 	"
 RDEPEND="${DEPEND}"
 
@@ -93,7 +94,7 @@ src_configure() {
 	cg_config=""
 	if use amd64; then
 		# tell cmake to use 32 bit library
-		wxgtk_config="-DwxWidgets_CONFIG_EXECUTABLE=/usr/bin/wx-config-32"
+		wxgtk_config="-DwxWidgets_CONFIG_EXECUTABLE=/usr/bin/wx-config-2.8-32"
 		cg_config="-DCG_LIBRARY=/opt/nvidia-cg-toolkit/lib32/libCg.so
 					-DCG_GL_LIBRARY=/opt/nvidia-cg-toolkit/lib32/libCgGL.so"
 	fi
