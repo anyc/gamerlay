@@ -70,7 +70,7 @@ src_configure() {
 
 src_install() {
 	cmake-utils_src_install
-	newicon -s 48 icons/fg-48.png ${PN}.png
+	doicon -s scalable icons/scalable/flightgear.svg
 	newmenu package/${PN}.desktop ${PN}.desktop
 	prepgamesdirs
 }
