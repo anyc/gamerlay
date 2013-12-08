@@ -1,6 +1,6 @@
 # Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v3
-# $Header: app-emulation/e-uae/fs-uae,v 1.0 2013/10/21 08:37:09 frostwork Exp $
+# $Header: app-emulation/e-uae/fs-uae,v 1.0 2013/12/08 07:19:41 frostwork Exp $
 
 EAPI="2"
 
@@ -16,22 +16,12 @@ KEYWORDS="~amd64 ~x86"
 IUSE="launcher"
 
 RDEPEND="virtual/opengl
+		media-libs/freetype:2
 		media-libs/openal
 		media-libs/libpng
-		media-libs/libsdl
-		sys-libs/zlib[minizip]"
+		>=media-libs/libsdl-1.2[joystick,opengl,X]
+		sys-libs/zlib"
 
 DEPEND="$RDEPEND"
 
 S="${WORKDIR}/${P}dev"
-
-src_prepare() {
-	sed -i '1i#define OF(x) x' src/archivers/zip/*.h
-}
-
-pkg_postinst() {
-	games_pkg_postinst
-	ewarn "Before you launch fs-uae for the first time you need to create and configure"
-	ewarn "~/.config/fs-uae/fs-uae.conf"
-	ewarn "for an example see ${GAMES_DATADIR}/${PN}/example.conf"
-}
