@@ -22,7 +22,7 @@ IUSE="debug headless test"
 COMMON_DEPEND="
 	sys-libs/zlib
 	!headless? (
-		>=dev-games/openscenegraph-3.0[png]
+		>=dev-games/openscenegraph-3.2[png]
 		dev-libs/expat
 		media-libs/openal
 		virtual/opengl

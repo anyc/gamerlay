@@ -21,7 +21,7 @@ IUSE="debug fgcom fgpanel +jsbsim oldfdm test +udev +yasim"
 
 COMMON_DEPEND="
 	dev-db/sqlite:3
-	>=dev-games/openscenegraph-3.0[png]
+	>=dev-games/openscenegraph-3.2[png]
 	>=dev-games/simgear-9999[-headless]
 	sys-libs/zlib
 	virtual/opengl
