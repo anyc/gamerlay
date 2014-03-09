@@ -38,7 +38,7 @@ nixstaller_unpack() {
 		[[ -f "./$i" ]] && (
 			local type=$(file -b ${i})
 			case ${type} in
-				data)
+				data|LZMA*)
 					tar -xJf "./$i"
 					;;
 				gzip*)
