@@ -1,4 +1,4 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -8,18 +8,21 @@ inherit cmake-utils games git-2
 
 DESCRIPTION="An open-source reimplementation of the popular UFO: Enemy Unknown"
 HOMEPAGE="http://openxcom.org/"
+# For translation files
+SRC_URI="http://openxcom.org/git_builds/openxcom_git_master_2014_03_18_2038.zip"
 EGIT_REPO_URI="https://github.com/SupSuper/OpenXcom.git"
-EGIT_COMMIT=3558366d159029149b83945916420531b8e670f1
+EGIT_COMMIT=56d81b7179c240b47f468e7abc62859471f582a3
 
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="doc"
+IUSE="debug doc"
 
-RDEPEND=">=dev-cpp/yaml-cpp-0.5.1
-	media-libs/libsdl:0
+RDEPEND="app-arch/unzip
+	>=dev-cpp/yaml-cpp-0.5.1
+	media-libs/libsdl
 	media-libs/sdl-gfx
-	media-libs/sdl-image:0
+	media-libs/sdl-image
 	media-libs/sdl-mixer
 	media-sound/timidity++"
 DEPEND="${RDEPEND}
@@ -45,6 +48,8 @@ src_compile() {
 src_install() {
 	cmake-utils_src_install
 	use doc && dohtml -r "${CMAKE_BUILD_DIR}"/docs/html/*
+	insinto "${GAMES_DATADIR}/${PN}/data/"
+	doins -r "../openxcom/data/Language/"
 
 	prepgamesdirs
 }
