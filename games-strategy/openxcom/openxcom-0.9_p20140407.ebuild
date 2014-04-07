@@ -9,9 +9,9 @@ inherit cmake-utils games git-2
 DESCRIPTION="An open-source reimplementation of the popular UFO: Enemy Unknown"
 HOMEPAGE="http://openxcom.org/"
 # For translation files
-SRC_URI="http://openxcom.org/git_builds/openxcom_git_master_2014_03_18_2038.zip"
+SRC_URI="http://openxcom.org/git_builds/openxcom_git_master_2014_04_07_0649.zip"
 EGIT_REPO_URI="https://github.com/SupSuper/OpenXcom.git"
-EGIT_COMMIT=56d81b7179c240b47f468e7abc62859471f582a3
+EGIT_COMMIT=001fc0d31727cb97fa16468ce6c978e47140342b
 
 LICENSE="GPL-3"
 SLOT="0"
