@@ -1,19 +1,20 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
 EAPI=5
 
-inherit games git-2
+inherit games
+
+MY_PV=${PV/_p/-hotfix}
 
 DESCRIPTION="A game/runtime interpreter for the Adventure Game Studio engine"
 HOMEPAGE="http://www.adventuregamestudio.co.uk/"
-#SRC_URI=""
-EGIT_REPO_URI="https://github.com/adventuregamestudio/ags.git"
+SRC_URI="https://github.com/adventuregamestudio/ags/archive/v.${MY_PV}.tar.gz -> ${PN}-v.${MY_PV}.tar.gz"
 
 LICENSE="Artistic-2"
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 DEPEND="
@@ -26,8 +27,10 @@ DEPEND="
 	media-libs/libvorbis"
 RDEPEND="${DEPEND}"
 
+S="${WORKDIR}/${PN}-v.${MY_PV}"
+
 src_prepare() {
-	sed -i -e "s:-O2 -pie -fpie -g -fsigned-char::" Engine/Makefile-defs.linux \
+	sed -i -e "s:-O2 -g -fsigned-char::" Engine/Makefile-defs.linux \
 		|| die
 }
 
