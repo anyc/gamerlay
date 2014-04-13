@@ -9,6 +9,7 @@ inherit cmake-utils git-2
 DESCRIPTION="Terrain editing programs for FlightGear"
 HOMEPAGE="http://terragear.sourceforge.net/"
 EGIT_REPO_URI="git://gitorious.org/fg/${PN}.git"
+EGIT_BRANCH="scenery/ws2.0"
 
 LICENSE="GPL-2"
 SLOT="0"
