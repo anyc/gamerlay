@@ -1,4 +1,4 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -49,7 +49,7 @@ RDEPEND="
 	)
 	sdl? (
 		${UIRDEPEND}
-		!sdl2? ( media-libs/libsdl[X,audio,joystick,opengl,video] )
+		!sdl2? ( media-libs/libsdl[X,joystick,opengl,sound,video] )
 		sdl2? ( media-libs/libsdl2[X,opengl,video] )
 	)
 "
