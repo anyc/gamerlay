@@ -1,8 +1,8 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="5"
+EAPI=5
 
 inherit eutils games
 
@@ -19,7 +19,7 @@ IUSE="extras"
 DEPEND="dev-libs/boost
 	media-libs/glew
 	media-libs/libpng:0
-	media-libs/libsdl[X,audio,joystick,opengl,video]
+	media-libs/libsdl[X,joystick,opengl,sound,video]
 	media-libs/sdl-image[png]
 	media-libs/sdl-mixer[vorbis]
 	media-libs/sdl-ttf
