@@ -1,4 +1,4 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -26,7 +26,7 @@ REQUIRED_USE="?? ( opl3-musicpack sc55-musicpack )
 	sc55-musicpack? ( music )"
 
 RDEPEND="dev-games/physfs[hog,zip]
-	media-libs/libsdl:0[X,audio,joystick,opengl?,video]
+	media-libs/libsdl:0[X,sound,joystick,opengl?,video]
 	music? (
 		media-libs/sdl-mixer:0[timidity]
 	)
