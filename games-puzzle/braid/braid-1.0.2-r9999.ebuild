@@ -1,8 +1,8 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="5"
+EAPI=5
 
 inherit unpacker games versionator
 
@@ -21,7 +21,7 @@ IUSE="linguas_ru"
 RESTRICT="strip fetch"
 
 DEPEND="app-arch/unzip"
-RDEPEND="media-libs/libsdl[audio,joystick,video]
+RDEPEND="media-libs/libsdl[joystick,sound,video]
 	x11-libs/libX11
 	x11-libs/libXau
 	x11-libs/libxcb
