@@ -1,4 +1,4 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -10,13 +10,13 @@ DESCRIPTION="2D battles of flying machines equipped with various slashing, pierc
 HOMEPAGE="http://www.koshutin.com/"
 SRC_URI="hf-linux-${PV:4}${PV:0:4}-bin"
 
-LICENSE="as-is"
+LICENSE="HPND"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="linguas_ru"
 
 DEPEND="app-arch/unzip"
-RDEPEND="media-libs/libsdl[audio,joystick,video]
+RDEPEND="media-libs/libsdl[joystick,sound,video]
 	media-libs/openal"
 
 RESTRICT="fetch"
