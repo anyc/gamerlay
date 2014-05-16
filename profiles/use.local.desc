@@ -2,11 +2,7 @@
 # your descriptions to your package's metadata.xml ONLY.
 # * generated automatically using egencache *
 
-dev-games/clanlib:gui - Build within the ClanGUI module
-dev-games/clanlib:network - Build within the ClanNetwork module
-dev-games/gigi:devil - Enable image loading via DevIL.
-dev-games/gigi:ogre - Enable OGRE support.
-dev-games/gigi:ois - Enable OIS support.
+app-emulation/emul-linux-x86-wxGTK:development - Install pkgconfig files
 dev-games/netradiant:darkplaces - Install DarkPlaces pack
 dev-games/netradiant:h2data - Install h2data tool
 dev-games/netradiant:nexuiz - Install Nexuiz pack
@@ -24,24 +20,25 @@ dev-games/netradiant:tremulous - Install Tremulous non GPL pack
 dev-games/netradiant:ufoai - Install UFO: Alien Invasion non GPL pack
 dev-games/netradiant:warsow - Install Warsow pack
 dev-games/netradiant:xonotic - Install Xonotic pack
-dev-games/ogre:boost - Add support for boost
-dev-games/ogre:boost-threads - Build with boost as threads provider
-dev-games/ogre:cg - NVIDIA toolkit plugin
-dev-games/ogre:double-precision - more precise calculations at the expense of speed
-dev-games/ogre:freeimage - freeimage plugin
-dev-games/ogre:ois - OIS plugin
-dev-games/ogre:poco-threads - Build with poco as threads provider
-dev-games/ogre:tbb-threads - Build with tbb as threads provider
-dev-games/ogre:tools - Build Ogre's command line tools
-dev-games/ogre:zip - zip plugin
-dev-games/simgear:X - Build non-headless version of simgear (full version)
-dev-games/simgear:subversion - Compile with libsvn support
-dev-libs/d0_blind_id:openssl - Use OpenSSL instead of GMP (beware of the OpenSSL license), for Mac OS X users only, GMP is faster.
-dev-libs/d0_blind_id:tommath - Use libtommath instead of GMP (slow, but WTFPL)
-games-action/d2x-rebirth:editor - Enable editor (Experimental!)
-games-action/d2x-rebirth:music_awe32 - Enable soundtrack recorded with the enhanced AWE32 soundfont
-games-action/d2x-rebirth:music_opl3 - Enable soundtrack recorded with the Yamaha YMF262 OPL3 Soundchip
-games-action/d2x-rebirth:music_sc55 - Enable soundtrack recorded with the Roland Sound Canvas SC-55
+dev-games/openscenegraph:fox - Build examples using x11-libs/fox library
+dev-games/openscenegraph:gdal - Enable support for sci-libs/gdal library
+dev-games/openscenegraph:itk - Build dev-tcltk/itk plugin
+dev-games/openscenegraph:openinventor - Build OpenInventor plugin
+dev-games/openscenegraph:osgapps - Build osg applications
+dev-games/openscenegraph:xrandr - Enable support for the X xrandr extension
+dev-games/simgear:headless - Build headless version of simgear (useful for terragear on a server)
+games-action/d1x-rebirth:data - Install data files
+games-action/d1x-rebirth:linguas_de - Provides German translations for the game's briefings, robot descriptions, and outro of the original campaign
+games-action/d1x-rebirth:music - Adds music support
+games-action/d1x-rebirth:opl3-musicpack - Include alternate version of the game's music, recorded with the Yamaha YMF262 OPL3 soundchip
+games-action/d1x-rebirth:sc55-musicpack - Include alternate version of the game's music, recorded with the Roland Sound Canvas SC-55 MIDI module
+games-action/d1x-rebirth:textures - Include high resolution (640x480) backgrounds, briefing images and fonts
+games-action/d2x-rebirth:data - Install data files
+games-action/d2x-rebirth:linguas_de - Provides German translations for the game's briefings, robot descriptions, and outro of the original campaign
+games-action/d2x-rebirth:music - Adds music support
+games-action/d2x-rebirth:opl3-musicpack - Include alternate version of the game's music, recorded with the Yamaha YMF262 OPL3 soundchip
+games-action/d2x-rebirth:sc55-musicpack - Include alternate version of the game's music, recorded with the Roland Sound Canvas SC-55 MIDI module
+games-arcade/frogatto:extras - Install additional modules
 games-arcade/myman:internal - Use internal display engine. Instead of ncurses/slang
 games-arcade/openggs:editor - useflag for the optional leveleditor
 games-arcade/smw:editor - useflag for the optional leveleditor
@@ -62,35 +59,36 @@ games-emulation/pcsx2-meta:usbnull - enable usbnull plugin support
 games-emulation/pcsx2-meta:zerogs - enable zerogs plugin support
 games-emulation/pcsx2-meta:zerospu - enable zerospu plugin support
 games-emulation/pcsx2-meta:zzogl - enable zzogl plugin support
-games-engines/residualvm:faad - Enable faad codec support
-games-engines/residualvm:fluidsynth - Enable fluidsynth support
-games-engines/residualvm:mpeg2 - Enable mpeg2 codec for cutscenes
-games-engines/residualvm:nasm - Enable nasm assebler inlines
 games-fps/dhewm3:roe - Adds support for the Resurrection of Evil expansion
+games-fps/xonotic:experimental - Use experimental master git branch instead of div0-stable
+games-fps/xonotic:maps - Download and install maps
+games-fps/xonotic:ode - Enable ODE physics engine support
 games-fps/xonotic:s3tc - Install media-libs/libtxc_dxtn for S3TC texture (de)compression, works with mesa drivers only
+games-fps/xonotic:sdl2 - Use SDL2 instead of SDL-1.2
+games-fps/xonotic:server - Enable compilation of server
+games-fps/xonotic:videocapture - Enable video capture feature
 games-fps/xonotic-data:client - Install files for client. Disabling is experimental.
 games-fps/xonotic-data:convert - Use cached-converter.sh for converting tga to jpeg
 games-fps/xonotic-data:low - Use low preset of cached-converter.sh: compress wav to ogg, lower jpeg quality.
-games-fps/xonotic-data:maps - Download and install maps.
 games-fps/xonotic-data:zip - Compress resources dirs in zip archives.
 games-fps/xonotic-maps:unofficial - Install unofficial maps. May be incomplete, unstable or broken.
+games-simulation/flightgear:fgcom - Build fgcom libs and utilities
+games-simulation/flightgear:fgpanel - Enable the standalone panel utility
 games-simulation/flightgear:jsbsim - Enable the JSBSim flight dynamics model
-games-simulation/flightgear:larcsim - Enable the LaRCsim flight dynamics model
-games-simulation/flightgear:subversion - Enable Flightgear's Terrasync to link against libsvn
-games-simulation/flightgear:uiuc - Enable the UIUC flight dynamics model
+games-simulation/flightgear:oldfdm - Enable the UIUC/LaRCsim flight dynamics model
 games-simulation/flightgear:yasim - Enable the YASim flight dynamics model
-games-simulation/openttd:aplaymidi - Enables midi music in game, using aplaymidi as an external player
-games-simulation/openttd:dedicated - Build only the openttd server, and not the client.
-games-simulation/openttd:lzo - Enables LZO compression for savegames. This is only needed to load extremely old savegames. (versions before 0.2)
-games-simulation/openttd:openmedia - Enables the free open media sets: OpenGFX, OpenSFX, OpenMSX, removing the requirement for proprietary TTD assets to play OpenTTD.
+games-sports/stuntrally:editor - Build and install maps editor
+games-sports/stuntrally:game - Build and install game client itself
 games-strategy/revenge-of-the-titans:hib - Install game from Humble Indie Bundle package
+games-util/desurium:32bit - add support for 32bit games in desurium
+games-util/desurium:bundled-wxgtk - build own wxGTK+-2.9.3 (recommended)
+games-util/desurium:gtest - enable runtime checks through gtest
+games-util/desurium:tools - install useful tools e.g. uploader
+games-util/desurium-meta:32bit - add support for 32bit games in desurium
+games-util/desurium-meta:games-deps - RUNTIME USE FLAG install known dependencies of games in desura
+games-util/steam-launcher:steamruntime - Enables the Steam runtime environment that uses bundled libraries instead of installed system libraries.
 media-libs/libmmd:bullet - enable bullet physics
 media-libs/libmmd:sfml - enable sfml texture loading
-media-libs/libsdl:audio - Control audio support (disable at your own risk)
-media-libs/libsdl:joystick - Control joystick support (disable at your own risk)
-media-libs/libsdl:ps3 - Build the PS3 video driver
-media-libs/libsdl:tslib - Build with tslib support for touchscreen devices
-media-libs/libsdl:video - Control video support (disable at your own risk)
 x11-apps/dunan:fmod - Add sound support (fmod)
 x11-apps/typhon:mmd - enable mikumikudance model support
 x11-apps/typhon:p3t - enabled shared libp3t support
