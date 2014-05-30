@@ -1,4 +1,4 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -47,6 +47,7 @@ src_configure() {
 		-DCMAKE_INSTALL_PREFIX=${GAMES_PREFIX}
 		-DFG_DATA_DIR="${GAMES_DATADIR}"/${PN}-live
 		-DENABLE_FGADMIN=OFF
+		-DLOGGING=ON
 		-DENABLE_PROFILE=OFF
 		-DENABLE_RTI=OFF
 		-DSIMGEAR_SHARED=ON
@@ -58,7 +59,6 @@ src_configure() {
 		$(cmake-utils_use_enable jsbsim)
 		$(cmake-utils_use_enable oldfdm LARCSIM)
 		$(cmake-utils_use_enable oldfdm UIUC_MODEL)
-		$(cmake-utils_use_enable test LOGGING)
 		$(cmake-utils_use_enable test TESTS)
 		$(cmake-utils_use udev EVENT_INPUT)
 		$(cmake-utils_use_enable yasim)
