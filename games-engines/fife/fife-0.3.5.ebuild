@@ -22,7 +22,7 @@ IUSE="debug profile"
 RDEPEND=">=dev-libs/boost-1.33.1
 	dev-python/pyyaml
 	>=media-libs/libsdl-1.2.8
-	media-libs/sdl2-ttf
+	>=media-libs/sdl-ttf-2.0.0
 	>media-libs/sdl-image-1.2.9[png]
 	media-libs/libvorbis
 	media-libs/libogg
