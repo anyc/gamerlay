@@ -17,7 +17,7 @@ LICENSE="GPL-2"
 
 KEYWORDS=""
 SLOT="0"
-IUSE="debug profile qt4"
+IUSE="debug profile"
 
 RDEPEND=">=dev-libs/boost-1.33.1
 	dev-python/pyyaml
@@ -32,8 +32,7 @@ RDEPEND=">=dev-libs/boost-1.33.1
 	x11-libs/libXext
 	dev-games/guichan[sdl,opengl]
 	virtual/opengl
-	virtual/glu
-	qt4? ( dev-qt/qtgui:4 )"
+	virtual/glu"
 DEPEND="${RDEPEND}
 	>=dev-lang/swig-1.3.40"
 
