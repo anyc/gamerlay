@@ -1,6 +1,6 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: x11-apps/typhontyphon-9999.ebuild,v 1.1 2012/01/20 17:48:23 by frostwork Exp $
+# $Header: x11-apps/typhon-9999.ebuild,v 1.2 2014/06/22 09:08:23 by frostwork Exp $
 
 EAPI="4"
 
@@ -11,13 +11,12 @@ inherit cmake-utils eutils subversion
 ESVN_REPO_URI="http://typhon-launcher.googlecode.com/svn/trunk/"
 
 DESCRIPTION="A slim and themeable opengl dashboard / program launcher"
-HOMEPAGE="http://www.frostworx.de/?p=1"
-#SRC_URI="http://www.frostworx.de/typhon/${P/_/-}.tar.bz2"
+HOMEPAGE="https://code.google.com/p/typhon-launcher/"
 
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS=""
-IUSE="debug mmd sfe +p3t"
+IUSE="debug mmd +p3t"
 
 S="${WORKDIR}/${P/_/-}"
 
@@ -25,7 +24,6 @@ RDEPEND="virtual/opengl
 	dev-libs/tinyxml
 	media-libs/libpng
 	>=media-libs/libsfml-2.0
-	sfe? ( media-libs/sfemovie )
 	sys-libs/zlib
 	mmd? ( media-libs/libmmd )
 	p3t? ( media-libs/libp3t )"
