@@ -1,60 +1,43 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Header: games-emulation/pcsx2-9999.ebuild,v 1.1 2014/06/20 08:30:00 frostwork Exp $
 
-EAPI=3
+EAPI=5
 
 WX_GTK_VER="2.8"
 
-inherit games cmake-utils subversion wxwidgets
+inherit games cmake-utils git-2 wxwidgets
 
 DESCRIPTION="A PlayStation 2 emulator"
 HOMEPAGE="http://www.pcsx2.net"
-ESVN_REPO_URI="http://pcsx2.googlecode.com/svn/trunk"
-ESVN_PROJECT="pcsx2"
+EGIT_REPO_URI="https://github.com/PCSX2/pcsx2.git"
 
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS=""
 
-IUSE="debug"
+RDEPEND="
+		app-arch/bzip2[abi_x86_32]
+		dev-libs/libaio[abi_x86_32]
+		sys-libs/zlib[abi_x86_32]
+		media-libs/alsa-lib[abi_x86_32]
+		media-libs/glew[abi_x86_32]
+		media-libs/libsdl[abi_x86_32]
+		media-libs/portaudio[abi_x86_32]
+		virtual/jpeg:62[abi_x86_32]
+		virtual/opengl[abi_x86_32]
+		x11-libs/gtk+:2[abi_x86_32]
+		x11-libs/libICE[abi_x86_32]
+		x11-libs/libX11[abi_x86_32]
+		x11-libs/libXext[abi_x86_32]
+		x11-libs/wxGTK:2.8[X,abi_x86_32]
+		x86? ( media-gfx/nvidia-cg-toolkit )
+		amd64? ( media-gfx/nvidia-cg-toolkit[multilib]	)
+"
 
-if use amd64; then
-	ABI="x86"
-fi
-if use debug; then
-	CMAKE_BUILD_TYPE="Debug"
-else
-	CMAKE_BUILD_TYPE="Release"
-fi
-
-DEPEND="dev-cpp/sparsehash
-	x86? (
-		app-arch/bzip2
-		sys-libs/zlib
-		media-libs/alsa-lib
-		media-libs/glew
-		media-libs/libsdl
-		media-libs/portaudio
-		media-gfx/nvidia-cg-toolkit
-		virtual/jpeg
-		virtual/opengl
-		x11-libs/gtk+:2
-		x11-libs/libICE
-		x11-libs/libX11
-		x11-libs/libXext
-		x11-libs/wxGTK[X]
-	)
-	amd64? ( media-gfx/nvidia-cg-toolkit[multilib]
-		app-emulation/emul-linux-x86-baselibs
-		app-emulation/emul-linux-x86-opengl
-		app-emulation/emul-linux-x86-xlibs
-		app-emulation/emul-linux-x86-gtklibs
-		app-emulation/emul-linux-x86-sdl
-		app-emulation/emul-linux-x86-soundlibs
-		app-emulation/emul-linux-x86-wxGTK
-	)"
-RDEPEND="${DEPEND}"
+DEPEND="${RDEPEND}
+	>=dev-cpp/sparsehash-1.5
+"
 
 src_prepare() {
 	sed -i -e "s:CDVDnull TRUE:CDVDnull FALSE:g" -i cmake/SelectPcsx2Plugins.cmake
@@ -76,16 +59,19 @@ src_prepare() {
 }
 
 src_configure() {
+	multilib_toolchain_setup x86
+	
 	wxgtk_config=""
 	cg_config=""
 	if use amd64; then
 		# tell cmake to use 32 bit library
-		wxgtk_config="-DwxWidgets_CONFIG_EXECUTABLE=/usr/bin/wx-config-2.8-32"
+		wxgtk_config="-DwxWidgets_CONFIG_EXECUTABLE=/usr/bin/wx-config-2.8-x86"
 		cg_config="-DCG_LIBRARY=/opt/nvidia-cg-toolkit/lib32/libCg.so
 					-DCG_GL_LIBRARY=/opt/nvidia-cg-toolkit/lib32/libCgGL.so"
 	fi
 
 	mycmakeargs="
+		-DCMAKE_BUILD_TYPE=Release
 		-DPACKAGE_MODE=1
 		-DPLUGIN_DIR=$(games_get_libdir)/${PN}
 		-DPLUGIN_DIR_COMPILATION=$(games_get_libdir)/${PN}
@@ -105,16 +91,4 @@ src_install() {
 	mv ${D}/usr/bin/* ${D}/usr/games/bin || die
 
 	prepgamesdirs
-}
-
-pkg_postinst() {
-	if use amd64; then
-		einfo "We currently use 64bit dev-cpp/sparsehash for compiling pcsx2"
-		einfo "since sparsehash installation contains only header files."
-		einfo "If you encounter any problems with that, try"
-		einfo ""
-		einfo "    ABI=\"x86\" emerge sparsehash"
-		einfo ""
-		einfo "and remerge pcsx2 before reporting bugs."
-	fi
 }

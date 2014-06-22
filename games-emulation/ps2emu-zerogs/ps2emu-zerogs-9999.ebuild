@@ -1,47 +1,32 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Header: games-emulation/ps2emu-zerogs-9999.ebuild,v 1.1 2014/06/20 08:30:00 frostwork Exp $
 
-EAPI=3
+EAPI=5
 
 WX_GTK_VER="2.8"
 
-inherit games cmake-utils subversion
+inherit games cmake-utils git-2
 
 DESCRIPTION="zerogs plugin for pcsx2"
 HOMEPAGE="http://www.pcsx2.net"
-ESVN_REPO_URI="http://pcsx2.googlecode.com/svn/trunk"
-ESVN_PROJECT="pcsx2"
+EGIT_REPO_URI="https://github.com/PCSX2/pcsx2.git"
 
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS=""
-IUSE="debug"
-if use amd64; then
-	ABI="x86"
-fi
-if use debug; then
-	CMAKE_BUILD_TYPE="Debug"
-else
-	CMAKE_BUILD_TYPE="Release"
-fi
 
 DEPEND="dev-cpp/sparsehash
-	x86? (
 		media-libs/glew
 		media-gfx/nvidia-cg-toolkit
 		virtual/opengl
 		x11-libs/libICE
 		x11-libs/libX11
-		x11-libs/libXext
-	)
-	amd64? ( media-gfx/nvidia-cg-toolkit[multilib]
-		app-emulation/emul-linux-x86-opengl
-		app-emulation/emul-linux-x86-xlibs
-	)"
+		x11-libs/libXext"
 RDEPEND="${DEPEND}"
 
 src_prepare() {
+	sed -i -e "s:EXTRA_PLUGINS FALSE:EXTRA_PLUGINS TRUE:g" -i cmake/BuildParameters.cmake
 	sed -i -e "s:add_subdirectory(3rdparty)::g" -i CMakeLists.txt
 	sed -i -e "s:INSTALL(FILES:#INSTALL(FILES:g" -i CMakeLists.txt
 	sed -i -e "s:add_subdirectory(locales)::g" -i CMakeLists.txt
@@ -69,15 +54,17 @@ src_prepare() {
 }
 
 src_configure() {
+	multilib_toolchain_setup x86
 	cg_config=""
 	if use amd64; then
 		# tell cmake to use 32 bit library
-		wxgtk_config="-DwxWidgets_CONFIG_EXECUTABLE=/usr/bin/wx-config-2.8-32"
+		wxgtk_config="-DwxWidgets_CONFIG_EXECUTABLE=/usr/bin/wx-config-2.8-x86"
 		cg_config="-DCG_LIBRARY=/opt/nvidia-cg-toolkit/lib32/libCg.so
 					-DCG_GL_LIBRARY=/opt/nvidia-cg-toolkit/lib32/libCgGL.so"
 	fi
 
 	mycmakeargs="
+		-DCMAKE_BUILD_TYPE=Release
 		-DPACKAGE_MODE=1
 		-DPLUGIN_DIR=$(games_get_libdir)/pcsx2
 		-DPLUGIN_DIR_COMPILATION=$(games_get_libdir)/pcsx2		
