@@ -26,6 +26,7 @@ RDEPEND="
 		app-emulation/emul-linux-x86-sdl
 	)
 	x86? (
+		media-libs/libsdl2
 		media-libs/openal
 		sys-libs/zlib
 	)
