@@ -6,8 +6,17 @@ EAPI="5"
 
 inherit games multilib
 
-TIMESTAMP="20121002"
-MY_P="${PN}-linux-${TIMESTAMP}_${PV}"
+TIMESTAMP="1371746492"
+
+# Hope, this is temporary. Dunno why they using a second-biger TS for x86 tarball
+TIMESTAMP_X86_TEMP="1371746493"
+
+MY_PN="Rochard"
+
+X86_URI="${MY_PN}_v${PV}_Linux_x86_${TIMESTAMP_X86_TEMP}.tar.gz"
+AMD64_URI="${MY_PN}_v${PV}_Linux_x64_${TIMESTAMP}.tar.gz"
+HT_X86_URI="${MY_PN}_Hard_Times_v${PV}_Linux_x86_${TIMESTAMP}.tar.gz"
+HT_AMD64_URI="${MY_PN}_Hard_Times_v${PV}_Linux_x64_${TIMESTAMP}.tar.gz"
 
 DESCRIPTION="A side-scrolling platformer packed with action, gravity-bending puzzles, space bandits and absurdly powerful astro-mining tools."
 HOMEPAGE="http://rochardthegame.com/"
@@ -16,10 +25,18 @@ SLOT="0"
 LICENSE="Rochard-EULA"
 KEYWORDS="-* ~amd64 ~x86"
 RESTRICT="fetch"
-IUSE=""
+IUSE="dlc"
 
-SRC_URI="x86? ( ${MY_P}-32bit.tar.gz )
-	amd64? ( ${MY_P}-64bit.tar.gz )"
+SRC_URI="
+	!dlc? (
+		x86? ( ${X86_URI} )
+		amd64? ( ${AMD64_URI} )
+	)
+	dlc? (
+		x86? ( ${HT_X86_URI} )
+		amd64? ( ${HT_AMD64_URI} )
+	)
+"
 
 RDEPEND="virtual/opengl
 	app-arch/gzip
@@ -35,7 +52,6 @@ RDEPEND="virtual/opengl
 DEPEND="${RDEPEND}"
 
 S="${WORKDIR}"
-MY_PN="Rochard"
 
 src_install() {
 	local dir="${GAMES_PREFIX_OPT}/${PN}";
@@ -56,6 +72,6 @@ src_install() {
 	newicon "${FILESDIR}/${MY_PN}.png" "${PN}.png" || die
 	make_desktop_entry "${PN}" "${MY_PN}" "${MY_PN}"
 
-	dodoc README changelog.txt
+	dodoc README.txt changelog.txt
 	prepgamesdirs
 }
