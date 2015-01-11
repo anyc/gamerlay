@@ -41,6 +41,7 @@ RDEPEND="
 			>=sys-devel/gcc-4.6.0[multilib]
 			>=sys-libs/glibc-2.15[multilib]
 			)
+
 		x86? (
 			>=sys-devel/gcc-4.6.0
 			>=sys-libs/glibc-2.15
@@ -48,7 +49,8 @@ RDEPEND="
 			x11-libs/libXau
 			x11-libs/libxcb
 			x11-libs/libXdmcp
-			)"
+			)
+"
 
 S=${WORKDIR}/steam/
 
@@ -57,6 +59,12 @@ src_prepare() {
 
 	# we use our ebuild functions to install the files
 	rm Makefile
+
+	sed -i \
+		-e "s:/usr/bin/steam:${GAMES_BINDIR}/steam:" \
+		${S}/steam.desktop || die "sed failed"
+
+	epatch_user
 }
 
 src_install() {
