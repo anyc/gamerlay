@@ -68,7 +68,7 @@ src_prepare() {
 }
 
 src_install() {
-	dobin steam
+	dogamesbin steam
 
 	insinto /usr/lib/steam/
 	doins bootstraplinux_ubuntu12_32.tar.xz
