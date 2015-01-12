@@ -4,10 +4,7 @@
 
 EAPI=5
 
-# Please report bugs/suggestions on: https://github.com/anyc/steam-overlay
-# or come to #gentoo-gamerlay in freenode IRC
-
-inherit eutils gnome2-utils fdo-mime udev
+inherit eutils gnome2-utils fdo-mime udev games
 
 DESCRIPTION="Installer, launcher and supplementary files for Valve's Steam client"
 HOMEPAGE="http://steampowered.com"
@@ -62,13 +59,13 @@ src_prepare() {
 
 	sed -i \
 		-e "s:/usr/bin/steam:${GAMES_BINDIR}/steam:" \
-		${S}/steam.desktop || die "sed failed"
+		"${S}"/steam.desktop || die "sed failed"
 
 	epatch_user
 }
 
 src_install() {
-	dogamesbin steam
+	dogamesbin steam || die "dogamesbin failed"
 
 	insinto /usr/lib/steam/
 	doins bootstraplinux_ubuntu12_32.tar.xz
@@ -88,6 +85,8 @@ src_install() {
 	# tgz archive contains no separate pixmap, see #38
 	insinto /usr/share/pixmaps/
 	newins 48/steam_tray_mono.png steam_tray_mono.png
+
+	prepgamesdirs
 }
 
 pkg_preinst() {
@@ -99,7 +98,7 @@ pkg_postinst() {
 	gnome2_icon_cache_update
 	udev_reload
 
-	elog "Execute /usr/bin/steam to download and install the actual"
+	elog "Execute ${GAMES_BINDIR}/steam to download and install the actual"
 	elog "client into your home folder. After installation, the script"
 	elog "also starts the client from your home folder."
 	elog ""
