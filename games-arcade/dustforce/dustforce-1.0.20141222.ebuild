@@ -2,15 +2,15 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="4"
+EAPI="5"
 
 inherit games multilib unpacker-nixstaller
 
-TIMESTAMP="1347954459"
+TIMESTAMP="2014-12-22"
 
 DESCRIPTION="An acrobatic janitor 2d platformer"
 HOMEPAGE="http://dustforce.com"
-SRC_URI="dustforce-linux-${TIMESTAMP}.sh"
+SRC_URI="Dustforce-Linux-${TIMESTAMP}.sh"
 
 RESTRICT="fetch"
 
@@ -20,7 +20,8 @@ KEYWORDS="-* ~amd64 ~x86"
 IUSE=""
 
 DEPEND=""
-RDEPEND="virtual/opengl
+RDEPEND="
+	virtual/opengl
 	app-arch/bzip2
 	dev-libs/expat
 	media-libs/fontconfig
@@ -37,7 +38,8 @@ RDEPEND="virtual/opengl
 	x11-libs/libXdmcp
 	x11-libs/libXext
 	x11-libs/libXrender
-	x11-libs/libxcb"
+	x11-libs/libxcb
+"
 
 S="${WORKDIR}"
 MY_PN=Dustforce
@@ -49,37 +51,31 @@ pkg_nofetch() {
 }
 
 src_unpack() {
-	local arch;
-	use x86 && arch="x86";
-	use amd64 && arch="x86_64";
-	nixstaller_unpack \
-		"instarchive_all" \
-		"instarchive_linux_${arch}" \
-		"subarch" \
-		"deps/cURL/cURL_files_linux_${arch}"
-		# FIXME: We need last two lines only due to broken dependency.
-		# May be it will be good to report it to upstream?
+	unzip -q "${DISTDIR}/${A}"
 }
 
 src_install() {
 	local dir="${GAMES_PREFIX_OPT}/${PN}"
+	local exe arch;
+
 	insinto "${dir}"
-	doins -r content
+	doins -r "data/noarch/content"
 	exeinto "${dir}"
 
-	local exe
-	use x86   && exe="${MY_PN}.bin.x86"
-	use amd64 && exe="${MY_PN}.bin.x86_64"
+	use x86   && arch="x86"
+	use amd64 && arch="x86_64"
 
-	doexe "${exe}"
+	exe="${MY_PN}.bin.${arch}"
+	doexe "data/${arch}/${exe}"
 
 	# Broken dep
 	insinto "${dir}/$(get_libdir)"
-	doins "$(get_libdir)/libcurl.so.3"
-	doicon "${MY_PN}.png"
+	doins -r "data/${arch}/$(get_libdir)"/*
+#/libcurl.so.3"
+	doicon "data/noarch/${MY_PN}.png"
 	make_desktop_entry "${PN}" "${MY_PN}" "${MY_PN}"
 	games_make_wrapper "${PN}" "./${exe}" "${dir}" "${dir}/$(get_libdir)"
 
-	dodoc README.linux
+	dodoc data/noarch/README.linux
 	prepgamesdirs
 }

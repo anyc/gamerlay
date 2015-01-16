@@ -4,10 +4,7 @@
 
 EAPI=5
 
-# Please report bugs/suggestions on: https://github.com/anyc/steam-overlay
-# or come to #gentoo-gamerlay in freenode IRC
-
-inherit eutils gnome2-utils fdo-mime udev
+inherit eutils gnome2-utils fdo-mime udev games
 
 DESCRIPTION="Installer, launcher and supplementary files for Valve's Steam client"
 HOMEPAGE="http://steampowered.com"
@@ -41,6 +38,7 @@ RDEPEND="
 			>=sys-devel/gcc-4.6.0[multilib]
 			>=sys-libs/glibc-2.15[multilib]
 			)
+
 		x86? (
 			>=sys-devel/gcc-4.6.0
 			>=sys-libs/glibc-2.15
@@ -48,7 +46,8 @@ RDEPEND="
 			x11-libs/libXau
 			x11-libs/libxcb
 			x11-libs/libXdmcp
-			)"
+			)
+"
 
 S=${WORKDIR}/steam/
 
@@ -57,10 +56,16 @@ src_prepare() {
 
 	# we use our ebuild functions to install the files
 	rm Makefile
+
+	sed -i \
+		-e "s:/usr/bin/steam:${GAMES_BINDIR}/steam:" \
+		"${S}"/steam.desktop || die "sed failed"
+
+	epatch_user
 }
 
 src_install() {
-	dobin steam
+	dogamesbin steam || die "dogamesbin failed"
 
 	insinto /usr/lib/steam/
 	doins bootstraplinux_ubuntu12_32.tar.xz
@@ -80,6 +85,8 @@ src_install() {
 	# tgz archive contains no separate pixmap, see #38
 	insinto /usr/share/pixmaps/
 	newins 48/steam_tray_mono.png steam_tray_mono.png
+
+	prepgamesdirs
 }
 
 pkg_preinst() {
@@ -91,7 +98,7 @@ pkg_postinst() {
 	gnome2_icon_cache_update
 	udev_reload
 
-	elog "Execute /usr/bin/steam to download and install the actual"
+	elog "Execute ${GAMES_BINDIR}/steam to download and install the actual"
 	elog "client into your home folder. After installation, the script"
 	elog "also starts the client from your home folder."
 	elog ""
