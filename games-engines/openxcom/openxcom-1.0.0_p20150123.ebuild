@@ -1,4 +1,4 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -9,9 +9,9 @@ inherit cmake-utils games git-2
 DESCRIPTION="An open-source reimplementation of the popular UFO: Enemy Unknown"
 HOMEPAGE="http://openxcom.org/"
 # For translation files
-SRC_URI="http://openxcom.org/git_builds/openxcom_git_master_2014_06_13_1923.zip"
+SRC_URI="http://openxcom.org/git_builds/openxcom_git_master_2015_01_23_1405.zip"
 EGIT_REPO_URI="https://github.com/SupSuper/OpenXcom.git"
-EGIT_COMMIT=71c8b2a2779ebd76f621e404d472d39fc4da022a
+EGIT_COMMIT=18bba3f2a886161ff4077e75b56ae88fc5e96236
 
 LICENSE="GPL-3"
 SLOT="0"
