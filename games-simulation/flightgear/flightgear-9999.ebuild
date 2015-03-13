@@ -1,4 +1,4 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -11,8 +11,8 @@ inherit games cmake-utils git-2
 
 DESCRIPTION="Open Source Flight Simulator"
 HOMEPAGE="http://www.flightgear.org/"
-EGIT_REPO_URI="git://gitorious.org/fg/flightgear.git
-		git://mapserver.flightgear.org/flightgear/"
+EGIT_REPO_URI="git://git.code.sf.net/p/${PN}/${PN}
+		git://mapserver.flightgear.org/${PN}/"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -28,7 +28,7 @@ COMMON_DEPEND="
 	udev? ( virtual/udev )
 	fgpanel? (
 		media-libs/freeglut
-		media-libs/libpng
+		media-libs/libpng:0
 	)
 "
 

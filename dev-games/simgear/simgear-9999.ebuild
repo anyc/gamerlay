@@ -1,4 +1,4 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -11,8 +11,8 @@ inherit cmake-utils git-2
 
 DESCRIPTION="Development library for simulation games"
 HOMEPAGE="http://www.simgear.org/"
-EGIT_REPO_URI="git://gitorious.org/fg/simgear.git
-		git://mapserver.flightgear.org/simgear/"
+EGIT_REPO_URI="git://git.code.sf.net/p/flightgear/${PN}
+		git://mapserver.flightgear.org/${PN}/"
 
 LICENSE="GPL-2"
 SLOT="0"
